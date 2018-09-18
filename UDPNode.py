@@ -3,7 +3,10 @@
 import socket
 import subprocess
 import threading
+import codecs
 import multiprocessing
+import sys
+import os
 
 class Mensaje:
 	def __init__(self,ip,puerto,mensaje):
@@ -21,15 +24,15 @@ class UDPNode:
 			message, clientAddress = serverSocket.recvfrom(2048)
 			mensaje = Mensaje(clientAddress[0],clientAddress[1], message)
 			self.guardarMensaje(mensaje)
-			self.imprimirMensaje(mensaje)
+			#self.imprimirMensaje(mensaje)
 
 	def procRecibeMsg(self):
 		print('UDP: Esta recibiendo mensajes en el fondo...\n')
 		serverSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-		serverSocket.bind(('25.37.185.211', 5000))
-		thrdRecibeMensaje = threading.Thread(target = self.recibeMensajes, args=(serverSocket,))
-		thrdRecibeMensaje.start()
-		clientSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+		serverSocket.bind(('25.8.90.106', 5001))
+		self.recibeMensajes(serverSocket)
+		#thrdRecibeMensaje = threading.Thread(target = self.recibeMensajes, args=(serverSocket,))
+		#thrdRecibeMensaje.start()
 
 	def imprimirMensaje(self, mensaje):
 		ip = mensaje.ip
@@ -64,6 +67,7 @@ class UDPNode:
 			serverPortS = input('Ingrese el puerto al que desea enviar: ')
 			clientSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 			clientSocket.sendto(message, (serverNameS, int(serverPortS)))
+			clientSocket.close()
 			print('El mensaje fue enviado.\n')
 
 	def tuplaToBytes(self, tupla):
@@ -112,17 +116,14 @@ class UDPNode:
 				self.imprimirMensajes()
 			elif taskUsuario == '3':
 				bandera = False
+				os._exit(1)
 				print('Se cerrara el menu.')
-				clientSocket.close()
-				thrdRecibeMensaje.terminate()
-				thrdRecibeMensaje.join()
 			else:
-				print('Ingrese una opcion valida.')
+				print('Ingrse opcion valida.')
 
 if __name__ == '__main__':
 	udp = UDPNode()
-	udp.procRecibeMsg()
+	thrdRecibeMensaje = threading.Thread(target = udp.procRecibeMsg)
+	thrdRecibeMensaje.start()
 	udp.despligueMenuUDP()
 
-#thrdRecibeMensaje.join()
-#Tipo UDP y envio del Mensaje:
