@@ -61,7 +61,7 @@ class UDPNode:
 			print(message)
 			serverNameS = input('Ingrese el IP del servidor al que quiere enviar el mensaje: ')
 			serverPortS = input('Ingrese el puerto al que desea enviar: ')
-
+			clientSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 			clientSocket.sendto(message, (serverNameS, int(serverPortS)))
 			print('El mensaje fue enviado.\n')
 
@@ -81,13 +81,17 @@ class UDPNode:
 	    return bytesmios
 
 	def leerMensaje(self):
+		print('Ingrese la cantidad de tuplas que quiere enviar:')
 		entradas = input()
 		vectorBytes = bytearray((int(entradas)).to_bytes(2, byteorder='big'))
 		i = 0
+		
 		while i < int(entradas):
+			print('Ingrese la tupla:')
 			tupla = input()
-			vectorBytes += tuplaToBytes(tupla)
+			vectorBytes += self.tuplaToBytes(tupla)
 			i = i + 1
+			print('\n')
 		return vectorBytes
 
 	#Metodo que despliega Menu principal de UDP
