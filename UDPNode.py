@@ -26,7 +26,7 @@ class UDPNode:
 	def procRecibeMsg(self):
 		print('UDP: Esta recibiendo mensajes en el fondo...\n')
 		serverSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-		serverSocket.bind(('25.8.90.106', 10001))
+		serverSocket.bind(('25.37.185.211', 5000))
 		thrdRecibeMensaje = threading.Thread(target = self.recibeMensajes, args=(serverSocket,))
 		thrdRecibeMensaje.start()
 		clientSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
