@@ -19,8 +19,9 @@ class UDPNode:
 	def recibeMensajes(self, serverSocket):
 		while 1:
 			message, clientAddress = serverSocket.recvfrom(2048)
-			self.guardarMensaje(message)
-			self.imprimirMensaje(message)
+			mensaje = Mensaje(clientAddress[0],clientAddress[1], message)
+			self.guardarMensaje(mensaje)
+			self.imprimirMensaje(mensaje)
 
 	def procRecibeMsg(self):
 		print('UDP: Esta recibiendo mensajes en el fondo...\n')
