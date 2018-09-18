@@ -1,0 +1,22 @@
+cada nodo tiene 2 threads
+	-Menu:recibe comandos desde consola, codi 
+	-Receptor: recibe datos
+
+
+Hay que tener un menu(en el thread que es el menu) con
+	-Borrar
+	-lleer tabla
+		ejemplo:
+			3
+			p1,m1,c1
+			p2,m2,c2
+			p3,m3,c3
+
+		leer recibe todo en ascii y hay que pasarlo a numeros
+	hay que decir todas las decicidicones de dise;o
+
+
+
+el receptor se debe realizar
+	en un soquet le puedo decir que mientras recibe mensajes, se queda en eso, no viendo la cola, pero asi no
+	asi si, bloqueelo agarrar datps ymandar a otro proceso a procesar el paquete y serializar la modificacion de la tabla ocn locks

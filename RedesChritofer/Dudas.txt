@@ -1,0 +1,6 @@
+Dudas sobre el proyecto
+	1-Cada vez que se inica un nodo, este inicia con un cliente y un servidor,
+		como hago para crear el cliente si todavia no existe ningun otro nodo?
+			no tengo la ip ni la mascara.
+
+	
