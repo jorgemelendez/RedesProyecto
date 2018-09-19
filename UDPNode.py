@@ -116,6 +116,7 @@ class TablaAlcanzabilidad:
 			if self.tabla[i].soyEsaFuente(ipFuente, puetoFuente) :
 				self.tabla.pop(i)
 			i = i + 1
+
 class UDPNode:
 	
 	mensajesRecibidos = list()
@@ -124,20 +125,43 @@ class UDPNode:
 	def guardarMensaje(self,mensaje):
 		self.mensajesRecibidos.append(mensaje)
 
+	def revisaMensaje(self, mensaje):
+		mascaraByte = bytearray()
+
+		ipA = int.from_bytes( mensaje[2:3], byteorder='big' )
+		ipB = int.from_bytes( mensaje[3:4], byteorder='big' )
+		ipC = int.from_bytes( mensaje[4:5], byteorder='big' )
+		ipD = int.from_bytes( mensaje[5:6], byteorder='big' )
+		mascara = int.from_bytes( mensaje[6:7], byteorder='big' )
+		
+		numBytes = mascara/8
+		numBits = mascara%8
+
+		if(numBits > 0):
+			numBitsAux = 1
+
+		for a in range (0,4):
+			if(numBytes != 0):
+				mascaraByte += (255).to_bytes(1,byteorder = 'big')
+		
+
+
+
+
 	def recibeMensajes(self, serverSocket):
 		while 1:
 			message, clientAddress = serverSocket.recvfrom(2048)
 			mensaje = Mensaje(clientAddress[0],clientAddress[1], message)
-			#bandera = self.revisaMensaje(mensaje)
+			self.revisaMensaje(message)
 			self.guardarMensaje(mensaje)
 			self.imprimirMensaje(mensaje)
 			self.tablaAlcanzabilidad.actualizarTabla(mensaje)
 
 
-	def procRecibeMsg(self):
+	def procRecibeMsg(self, ip, puerto):
 		print('UDP: Esta recibiendo mensajes en el fondo...\n')
 		serverSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-		serverSocket.bind(('25.8.90.106', 5005))
+		serverSocket.bind((ip, puerto))
 		self.recibeMensajes(serverSocket)
 
 	def imprimirMensaje(self, mensaje):
@@ -238,7 +262,9 @@ class UDPNode:
 
 if __name__ == '__main__':
 	udp = UDPNode()
-	thrdRecibeMensaje = threading.Thread(target = udp.procRecibeMsg)
+	ip = input('Ip;')
+	puerto = input('Puerto:')
+	thrdRecibeMensaje = threading.Thread(target = udp.procRecibeMsg, args = (ip, int(puerto),))
 	thrdRecibeMensaje.start()
 	udp.despligueMenuUDP()
 
