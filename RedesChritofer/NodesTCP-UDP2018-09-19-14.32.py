@@ -147,6 +147,7 @@ class UDPNode:
 				self.tablaAlcanzabilidad.actualizarTabla(mensaje)
 
 	def procRecibeMsg(self, ip, puerto):
+		print('UDP: Esta recibiendo mensajes en el fondo...\n')
 		serverSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 		serverSocket.bind((ip, puerto))
 		self.recibeMensajes(serverSocket)
