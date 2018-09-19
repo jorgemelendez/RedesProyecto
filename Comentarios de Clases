@@ -1,0 +1,4 @@
+ - Guardar y documentar como mandar el costo, big endian o little endian.
+ - Importante siempre pensar en 2 maneras dise;o de y especificar porque escogimos una.
+ - Se utilizar terminal xterm para poder sacar los mensajes.
+ - 
