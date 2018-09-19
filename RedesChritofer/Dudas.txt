@@ -3,4 +3,5 @@ Dudas sobre el proyecto
 		como hago para crear el cliente si todavia no existe ningun otro nodo?
 			no tengo la ip ni la mascara.
 
+	2- Como se da cuenta los de UDP que una conexion murio si no aviso?
 	

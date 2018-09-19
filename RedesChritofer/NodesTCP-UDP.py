@@ -126,7 +126,6 @@ class UDPNode:
 		while 1:
 			message, clientAddress = serverSocket.recvfrom(2048)
 			mensaje = Mensaje(clientAddress[0],clientAddress[1], message)
-			#self.revisaMensaje(message)
 			self.guardarMensaje(mensaje)
 			self.imprimirMensaje(mensaje)
 			self.tablaAlcanzabilidad.actualizarTabla(mensaje)
@@ -195,15 +194,19 @@ class UDPNode:
 		return vectorBytes
 
 	#Metodo que envia un mensaje mediante UDP al IP + socket que esocgio al inicio.
-	def envioMensajeUDP(self):
-			
-			#print(message)
-			serverNameS = input('Ingrese el IP del servidor al que quiere enviar el mensaje: ')
-			serverPortS = input('Ingrese el puerto al que desea enviar: ')
-			message = self.leerMensaje()
-			clientSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-			clientSocket.sendto(message, (serverNameS, int(serverPortS)))
-			clientSocket.close()
+	def envioMensajeUDP(self, mensajeExit):
+			if mensajeExit == 1:
+				serverNameS = input('Ingrese el IP del servidor al que quiere enviar el mensaje: ')
+				serverPortS = input('Ingrese el puerto al que desea enviar: ')
+				message = self.leerMensaje()
+				clientSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+				clientSocket.sendto(message, (serverNameS, int(serverPortS)))
+				clientSocket.close()
+			else:
+				serverNameS = input('Ingrese el IP del servidor al que quiere enviar el mensaje: ')
+				serverPortS = input('Ingrese el puerto al que desea enviar: ')
+				mensaje = bytearray((1).to_bytes(2, byteorder='big'))# cant tuplas
+				mensaje += (0).to_bytes(1, byteorder='big')
 			#print('El mensaje fue enviado.\n')
 
 	#def borrarme(self):
@@ -229,7 +232,7 @@ class UDPNode:
 		while bandera == True:
 			taskUsuario = input('Que desea hacer:')
 			if taskUsuario == '1':
-				self.envioMensajeUDP()
+				self.envioMensajeUDP(1)
 			elif taskUsuario == '2':
 				print("\n\n")
 				print('Mensajes recibidos:')
@@ -242,7 +245,7 @@ class UDPNode:
 				print("\n\n")
 			elif taskUsuario == '4':
 				bandera = False
-				#self.borrarme()
+				self.enviarMensaje(2)
 				print('Salida.')
 				os._exit(1)
 
