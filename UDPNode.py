@@ -8,14 +8,119 @@ import multiprocessing
 import sys
 import os
 
+
+
 class Mensaje:
 	def __init__(self,ip,puerto,mensaje):
 		self.ip = ip
 		self.puerto = puerto
 		self.mensaje = mensaje
 
+class Red:
+	def __init__(self,ipFuente,puertoFuente,ipRed, mascaraRed, costo):
+		self.ipFuente = ipFuente
+		self.puertoFuente = puertoFuente
+		self.ipRed = ipRed
+		self.mascaraRed = mascaraRed 
+		self.costo = costo
+
+	def soyEsaRed(self, ipRed, mascaraRed):
+		if ipRed == self.ipRed and mascaraRed == self.mascaraRed:
+			return True
+		return False
+
+	def soyEsaFuente(self, ipFuente, puertoFuente):
+		if ipFuente == self.ipFuente and puertoFuente == self.puertoFuente:
+			return True
+		return False
+
+	def costoMenor(self, costo):
+		if costo < self.costo:
+			return True
+		return False
+
+	def actualizarRed(self,ipFuente,puertoFuente,ipRed, mascaraRed, costo):
+		self.ipFuente = ipFuente
+		self.puertoFuente = puertoFuente
+		self.ipRed = ipRed
+		self.mascaraRed = mascaraRed 
+		self.costo = costo
+
+	def toString():
+		ipFuente = self.ipFuente
+		puertoFuente = self.puertoFuente
+		ipRed = self.ipRed
+		mascaraRed = self.mascaraRed 
+		costo = self.costo
+
+
+class TablaAlcanzabilidad:
+	tabla = list()
+	
+	def __init__(self):
+		self.tabla = list()
+
+	def exiteRed(self, ipRed, mascaraRed):
+		i = 0
+		largo = len(self.tabla)
+		while i < largo:
+			if self.tabla[i].soyEsaRed(ipRed, mascaraRed) :
+				return i
+			i = i + 1
+		return -1
+
+	def imprimirTabla(self):
+		i = 0
+		largo = len(self.tabla)
+		while i < largo:
+			ipFuente = self.tabla[i].ipFuente
+			puertoFuente = self.tabla[i].puertoFuente
+			ipA = int.from_bytes( self.tabla[i].ipRed[0:1], byteorder='big' )
+			ipB = int.from_bytes( self.tabla[i].ipRed[1:2], byteorder='big' )
+			ipC = int.from_bytes( self.tabla[i].ipRed[2:3], byteorder='big' )
+			ipD = int.from_bytes( self.tabla[i].ipRed[3:4], byteorder='big' )
+
+			mascaraRed = int.from_bytes( self.tabla[i].mascaraRed, byteorder='big' )
+			costo = int.from_bytes( self.tabla[i].costo, byteorder='big' )
+			print(str(ipFuente) + " " + str(puertoFuente) + " " + str(ipA) + "." + str(ipB) + "." + str(ipC) + "." + str(ipD) + " " + str(mascaraRed) + " " + str(costo) )
+
+			i = i + 1
+
+	def actualizarTabla(self, mensaje):
+		ipFuenteNuevo = mensaje.ip
+		puertoFuenteNuevo = mensaje.puerto
+		bytesMensaje = mensaje.mensaje
+
+		cantTuplas = int(codecs.encode(bytesMensaje[0:2], 'hex_codec'))
+		i = 0
+		while i < cantTuplas:
+			ipRedNuevo = bytesMensaje[(i*8)+2:(i*8)+6]
+			mascaraRedNuevo = bytesMensaje[(i*8)+6:(i*8)+7]
+			costoNuevo = bytesMensaje[(i*8)+7:(i*8)+10]
+
+			exite = self.exiteRed(ipRedNuevo, mascaraRedNuevo)
+			if exite == -1 :
+				#Se crea una nueva tupla
+				self.tabla.append(Red(ipFuenteNuevo,puertoFuenteNuevo,ipRedNuevo, mascaraRedNuevo, costoNuevo))
+			else:
+				#se actualiza la tupla de ser necesario
+				if self.tabla[i].costoMenor(costoNuevo) :
+					self.tabla[i].actualizarRed(ipFuenteNuevo,puertoFuenteNuevo,ipRedNuevo, mascaraRedNuevo, costoNuevo);
+				#Si el costo es mayor queda como antes
+			i = i + 1
+
+	def borrarFuente(self,ipFuente, puetoFuente):
+		i = 0
+		largo = len(self.tabla)
+		while i < largo:
+			if self.tabla[i].soyEsaFuente(ipFuente, puetoFuente) :
+				self.tabla.pop(i)
+			i = i + 1
 class UDPNode:
+	
 	mensajesRecibidos = list()
+	tablaAlcanzabilidad = TablaAlcanzabilidad()
+
 	def guardarMensaje(self,mensaje):
 		self.mensajesRecibidos.append(mensaje)
 
@@ -23,16 +128,17 @@ class UDPNode:
 		while 1:
 			message, clientAddress = serverSocket.recvfrom(2048)
 			mensaje = Mensaje(clientAddress[0],clientAddress[1], message)
+			bandera = self.revisaMensaje(mensaje)
 			self.guardarMensaje(mensaje)
-			#self.imprimirMensaje(mensaje)
+			self.imprimirMensaje(mensaje)
+			self.tablaAlcanzabilidad.actualizarTabla(mensaje)
+
 
 	def procRecibeMsg(self):
 		print('UDP: Esta recibiendo mensajes en el fondo...\n')
 		serverSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 		serverSocket.bind(('25.8.90.106', 5001))
 		self.recibeMensajes(serverSocket)
-		#thrdRecibeMensaje = threading.Thread(target = self.recibeMensajes, args=(serverSocket,))
-		#thrdRecibeMensaje.start()
 
 	def imprimirMensaje(self, mensaje):
 		ip = mensaje.ip
@@ -41,16 +147,18 @@ class UDPNode:
 
 		cantTuplas = int(codecs.encode(bytesMensaje[0:2], 'hex_codec'))
 		i = 0
-		print("IPf = " + str(ip) + " Puerto = " + str(puerto) + " dice : ")
+		#print("\n\nIPf = " + str(ip) + " Puerto = " + str(puerto) + " Envio el siguiente mensaje: ")
+		print("IPf = " + str(ip) + " Puerto = " + str(puerto) + " Envio el siguiente mensaje: ")
 		while i < cantTuplas:
-			ipA = codecs.encode(bytesMensaje[(i*8)+2:(i*8)+3], 'hex_codec')
-			ipB = codecs.encode(bytesMensaje[(i*8)+3:(i*8)+4], 'hex_codec')
-			ipC = codecs.encode(bytesMensaje[(i*8)+4:(i*8)+5], 'hex_codec')
-			ipD = codecs.encode(bytesMensaje[(i*8)+5:(i*8)+6], 'hex_codec')
-			mascara = codecs.encode(bytesMensaje[(i*8)+6:(i*8)+7], 'hex_codec')
-			costo = codecs.encode(bytesMensaje[(i*8)+7:(i*8)+10], 'hex_codec')
+			ipA = int.from_bytes( bytesMensaje[(i*8)+2:(i*8)+3], byteorder='big' )
+			ipB = int.from_bytes( bytesMensaje[(i*8)+3:(i*8)+4], byteorder='big' )
+			ipC = int.from_bytes( bytesMensaje[(i*8)+4:(i*8)+5], byteorder='big' )
+			ipD = int.from_bytes( bytesMensaje[(i*8)+5:(i*8)+6], byteorder='big' )
+			mascara = int.from_bytes( bytesMensaje[(i*8)+6:(i*8)+7], byteorder='big' )
+			costo = int.from_bytes( bytesMensaje[(i*8)+7:(i*8)+10], byteorder='big' )
 			print( str(ipA) + "." + str(ipB) + "." + str(ipC) + "." + str(ipD) + " " + str(mascara) + " " + str(costo) )
 			i = i + 1
+		#print("\n\n")
 
 	def imprimirMensajes(self):
 		i = 0
@@ -104,7 +212,8 @@ class UDPNode:
 		print('Menu principal del modulo de Red UDP: \n'
 					'\t1. Enviar un mensaje. \n'
 					'\t2. Ver mensajes recibidos. \n'
-					'\t3. Cerrar servidor de mensajes.')
+					'\t3. Imprimir tabla de alcanzabilidad.\n'
+					'\t4. Cerrar servidor de mensajes.')
 		bandera = True
 		while bandera == True:
 			taskUsuario = input('Que desea hacer:')
@@ -115,9 +224,15 @@ class UDPNode:
 				print('Estos son sus mensajes:')
 				self.imprimirMensajes()
 			elif taskUsuario == '3':
+				print("\n\n")
+				print('Tabla de alcanzabilidad:')
+				self.tablaAlcanzabilidad.imprimirTabla()
+				print("\n\n")
+			elif taskUsuario == '4':
 				bandera = False
 				os._exit(1)
 				print('Se cerrara el menu.')
+
 			else:
 				print('Ingrse opcion valida.')
 
