@@ -128,7 +128,7 @@ class UDPNode:
 		while 1:
 			message, clientAddress = serverSocket.recvfrom(2048)
 			mensaje = Mensaje(clientAddress[0],clientAddress[1], message)
-			bandera = self.revisaMensaje(mensaje)
+			#bandera = self.revisaMensaje(mensaje)
 			self.guardarMensaje(mensaje)
 			self.imprimirMensaje(mensaje)
 			self.tablaAlcanzabilidad.actualizarTabla(mensaje)
@@ -137,7 +137,7 @@ class UDPNode:
 	def procRecibeMsg(self):
 		print('UDP: Esta recibiendo mensajes en el fondo...\n')
 		serverSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-		serverSocket.bind(('25.8.90.106', 5001))
+		serverSocket.bind(('25.8.90.106', 5005))
 		self.recibeMensajes(serverSocket)
 
 	def imprimirMensaje(self, mensaje):
