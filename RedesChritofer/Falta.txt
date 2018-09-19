@@ -1,6 +1,6 @@
 Falta:
 	-leer mascara del destinatario del mensaje, todavia no entiendo bien para que
-	-imprimir el resultado del intento de transmision, segun codigos de error que devuelva la operacion de envio
+	-imprimir el resultado del intento de transmision, segun codigos de error que devuelva la operacion de envio(CREO QUE YA ESTA)
 
 
-	ERROR AL ENVIAR EL MENSAJE, RETORNAR ALGO Y MANDAR A BORRAR CONEXION
+	ERROR AL ENVIAR EL MENSAJE, RETORNAR ALGO Y MANDAR A BORRAR CONEXION, en la lista de conexiones del emisor, paara que no apaezca mas
