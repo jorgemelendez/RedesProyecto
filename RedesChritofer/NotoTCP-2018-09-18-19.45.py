@@ -26,11 +26,6 @@ class Red:
 			return True
 		return False
 
-	def soyEsaFuente(self, ipFuente, puertoFuente):
-		if ipFuente == self.ipFuente and puertoFuente == self.puertoFuente:
-			return True
-		return False
-
 	def costoMenor(self, costo):
 		if costo < self.costo:
 			return True
@@ -106,14 +101,6 @@ class TablaAlcanzabilidad:
 				#Si el costo es mayor queda como antes
 			i = i + 1
 
-	def borrarFuente(self,ipFuente, puetoFuente):
-		i = 0
-		largo = len(self.tabla)
-		while i < largo:
-			if self.tabla[i].soyEsaFuente(ipFuente, puetoFuente) :
-				self.tabla.pop(i)
-			i = i + 1
-
 class ReceptorTCP:
 	mensajesRecibidos = list()
 	tablaAlcanzabilidad = TablaAlcanzabilidad()
@@ -159,21 +146,12 @@ class ReceptorTCP:
 			try:
 				recibido = conexion.recv(1024)
 			except SocketError:
-				print("1")
-				self.tablaAlcanzabilidad.borrarFuente(addr[0],addr[1])
 				break
 
 			if(recibido == b''):#Salida para cuando el otro muere antes de mandar el primer mensaje
-				print("2")
-				self.tablaAlcanzabilidad.borrarFuente(addr[0],addr[1])
-				break
-
-			cantTuplas = int(codecs.encode(recibido[0:2], 'hex_codec'))
-			ipA = int.from_bytes( recibido[2:3], byteorder='big' )
+					break
 			#Si el mensaje recibido es la palabra close se cierra la aplicacion
-			if cantTuplas == 1 and len(recibido) == 3:
-				print("3")
-				self.tablaAlcanzabilidad.borrarFuente(addr[0],addr[1])
+			if recibido == "close":
 				break
 		 
 			#Si se reciben datos nos muestra la IP y el mensaje recibido
@@ -193,11 +171,11 @@ class ReceptorTCP:
 			self.tablaAlcanzabilidad.actualizarTabla(mensaje)
 			
 			#Devolvemos el mensaje al cliente
-			#try:
-			#	conexion.send(recibido)
-			#except SocketError as e:
+			try:
+				conexion.send(recibido)
+			except SocketError as e:
 				#print(e)
-			#	break
+				break
 		conexion.close()
 
 	def recibir(self,ip,puerto):
@@ -240,13 +218,7 @@ class ConexionAbierta:
 		self.puerto = puerto
 
 	def enviarMensaje(self,mensaje):
-		try:
-			sent = self.socketEmisorTCP.send(mensaje)
-		except SocketError as e:
-				print("ERROR AL ENVIAR EL MENSAJE")
-		else:
-			if sent == 0:
-				print("ERROR AL ENVIAR EL MENSAJE1")
+		self.socketEmisorTCP.send(mensaje)
 
 	def cerrarConexion(self):
 		self.socketEmisorTCP.close()
@@ -256,7 +228,6 @@ class ConexionAbierta:
 			return True
 		
 		return False
-
 
 class EmisorTCP:
 	#Objeto para guardar conexiones
@@ -326,10 +297,7 @@ class EmisorTCP:
 		i = 0
 		while i < int(entradas):
 			tupla = input()
-			if entradas == "1" and tupla == "0":
-				vectorBytes += (0).to_bytes(1, byteorder='big')
-			else:
-				vectorBytes += self.tuplaToBytes(tupla)
+			vectorBytes += self.tuplaToBytes(tupla)
 			i = i + 1
 		return vectorBytes
 
@@ -388,7 +356,6 @@ class EmisorTCP:
 		while i < cant:
 			self.conexiones[i].enviarMensaje(mensaje)
 			i = i + 1
-		self.cerrarConexiones()
 		return
 
 	def menu(self):#HACER UN WHILE CON UN MENU 

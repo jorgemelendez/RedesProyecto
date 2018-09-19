@@ -12,115 +12,11 @@ class Mensaje:
 		self.puerto = puerto
 		self.mensaje = mensaje
 
-
-class Red:
-	def __init__(self,ipFuente,puertoFuente,ipRed, mascaraRed, costo):
-		self.ipFuente = ipFuente
-		self.puertoFuente = puertoFuente
-		self.ipRed = ipRed
-		self.mascaraRed = mascaraRed 
-		self.costo = costo
-
-	def soyEsaRed(self, ipRed, mascaraRed):
-		if ipRed == self.ipRed and mascaraRed == self.mascaraRed:
-			return True
-		return False
-
-	def soyEsaFuente(self, ipFuente, puertoFuente):
-		if ipFuente == self.ipFuente and puertoFuente == self.puertoFuente:
-			return True
-		return False
-
-	def costoMenor(self, costo):
-		if costo < self.costo:
-			return True
-		return False
-
-	def actualizarRed(self,ipFuente,puertoFuente,ipRed, mascaraRed, costo):
-		self.ipFuente = ipFuente
-		self.puertoFuente = puertoFuente
-		self.ipRed = ipRed
-		self.mascaraRed = mascaraRed 
-		self.costo = costo
-
-	def toString():
-		ipFuente = self.ipFuente
-		puertoFuente = self.puertoFuente
-		ipRed = self.ipRed
-		mascaraRed = self.mascaraRed 
-		costo = self.costo
-
-
-class TablaAlcanzabilidad:
-	tabla = list()
-	
-	def __init__(self):
-		self.tabla = list()
-
-	def exiteRed(self, ipRed, mascaraRed):
-		i = 0
-		largo = len(self.tabla)
-		while i < largo:
-			if self.tabla[i].soyEsaRed(ipRed, mascaraRed) :
-				return i
-			i = i + 1
-		return -1
-
-	def imprimirTabla(self):
-		i = 0
-		largo = len(self.tabla)
-		while i < largo:
-			ipFuente = self.tabla[i].ipFuente
-			puertoFuente = self.tabla[i].puertoFuente
-			ipA = int.from_bytes( self.tabla[i].ipRed[0:1], byteorder='big' )
-			ipB = int.from_bytes( self.tabla[i].ipRed[1:2], byteorder='big' )
-			ipC = int.from_bytes( self.tabla[i].ipRed[2:3], byteorder='big' )
-			ipD = int.from_bytes( self.tabla[i].ipRed[3:4], byteorder='big' )
-
-			mascaraRed = int.from_bytes( self.tabla[i].mascaraRed, byteorder='big' )
-			costo = int.from_bytes( self.tabla[i].costo, byteorder='big' )
-			print(str(ipFuente) + " " + str(puertoFuente) + " " + str(ipA) + "." + str(ipB) + "." + str(ipC) + "." + str(ipD) + " " + str(mascaraRed) + " " + str(costo) )
-
-			i = i + 1
-
-	def actualizarTabla(self, mensaje):
-		ipFuenteNuevo = mensaje.ip
-		puertoFuenteNuevo = mensaje.puerto
-		bytesMensaje = mensaje.mensaje
-
-		cantTuplas = int(codecs.encode(bytesMensaje[0:2], 'hex_codec'))
-		i = 0
-		while i < cantTuplas:
-			ipRedNuevo = bytesMensaje[(i*8)+2:(i*8)+6]
-			mascaraRedNuevo = bytesMensaje[(i*8)+6:(i*8)+7]
-			costoNuevo = bytesMensaje[(i*8)+7:(i*8)+10]
-
-			exite = self.exiteRed(ipRedNuevo, mascaraRedNuevo)
-			if exite == -1 :
-				#Se crea una nueva tupla
-				self.tabla.append(Red(ipFuenteNuevo,puertoFuenteNuevo,ipRedNuevo, mascaraRedNuevo, costoNuevo))
-			else:
-				#se actualiza la tupla de ser necesario
-				if self.tabla[i].costoMenor(costoNuevo) :
-					self.tabla[i].actualizarRed(ipFuenteNuevo,puertoFuenteNuevo,ipRedNuevo, mascaraRedNuevo, costoNuevo);
-				#Si el costo es mayor queda como antes
-			i = i + 1
-
-	def borrarFuente(self,ipFuente, puetoFuente):
-		i = 0
-		largo = len(self.tabla)
-		while i < largo:
-			if self.tabla[i].soyEsaFuente(ipFuente, puetoFuente) :
-				self.tabla.pop(i)
-			i = i + 1
-
 class ReceptorTCP:
 	mensajesRecibidos = list()
-	tablaAlcanzabilidad = TablaAlcanzabilidad()
 
-	def __init__(self,mensajesRecibidos, tablaAlcanzabilidad):
+	def __init__(self,mensajesRecibidos):
 		self.mensajesRecibidos = mensajesRecibidos
-		self.tablaAlcanzabilidad = tablaAlcanzabilidad
 
 	def guardarMensaje(self,mensaje):
 		self.mensajesRecibidos.append(mensaje)
@@ -132,18 +28,17 @@ class ReceptorTCP:
 
 		cantTuplas = int(codecs.encode(bytesMensaje[0:2], 'hex_codec'))
 		i = 0
-		#print("\n\nIPf = " + str(ip) + " Puerto = " + str(puerto) + " Envio el siguiente mensaje: ")
-		print("IPf = " + str(ip) + " Puerto = " + str(puerto) + " Envio el siguiente mensaje: ")
+		print("\n\nIPf = " + str(ip) + " Puerto = " + str(puerto) + " Envio el siguiente mensaje: ")
 		while i < cantTuplas:
-			ipA = int.from_bytes( bytesMensaje[(i*8)+2:(i*8)+3], byteorder='big' )
-			ipB = int.from_bytes( bytesMensaje[(i*8)+3:(i*8)+4], byteorder='big' )
-			ipC = int.from_bytes( bytesMensaje[(i*8)+4:(i*8)+5], byteorder='big' )
-			ipD = int.from_bytes( bytesMensaje[(i*8)+5:(i*8)+6], byteorder='big' )
-			mascara = int.from_bytes( bytesMensaje[(i*8)+6:(i*8)+7], byteorder='big' )
-			costo = int.from_bytes( bytesMensaje[(i*8)+7:(i*8)+10], byteorder='big' )
+			ipA = int.from_bytes( bytesMensaje[(i*8)+2:(i*8)+3], byteorder='big' )#codecs.encode(bytesMensaje[(i*8)+2:(i*8)+3], 'hex_codec') )
+			ipB = int.from_bytes( bytesMensaje[(i*8)+3:(i*8)+4], byteorder='big' )#codecs.encode(bytesMensaje[(i*8)+3:(i*8)+4], 'hex_codec') )
+			ipC = int.from_bytes( bytesMensaje[(i*8)+4:(i*8)+5], byteorder='big' )#codecs.encode(bytesMensaje[(i*8)+4:(i*8)+5], 'hex_codec') )
+			ipD = int.from_bytes( bytesMensaje[(i*8)+5:(i*8)+6], byteorder='big' )#codecs.encode(bytesMensaje[(i*8)+5:(i*8)+6], 'hex_codec') )
+			mascara = int.from_bytes( bytesMensaje[(i*8)+6:(i*8)+7], byteorder='big' )#codecs.encode(bytesMensaje[(i*8)+6:(i*8)+7], 'hex_codec') )
+			costo = int.from_bytes( bytesMensaje[(i*8)+7:(i*8)+10], byteorder='big' )#codecs.encode(bytesMensaje[(i*8)+7:(i*8)+10], 'hex_codec') )
 			print( str(ipA) + "." + str(ipB) + "." + str(ipC) + "." + str(ipD) + " " + str(mascara) + " " + str(costo) )
 			i = i + 1
-		#print("\n\n")
+		print("\n\n")
 
 	def imprimirMensajes(self):
 		i = 0
@@ -156,24 +51,17 @@ class ReceptorTCP:
 		while True:
 			#Recibimos el mensaje, con el metodo recv recibimos datos y como parametro 
 			#la cantidad de bytes para recibir
-			try:
+			try:#EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE
+				#aqui hay problemas porque nos se maneja la excepcion de que se pierda la conexion
+				#print("Esperando mensaje")
 				recibido = conexion.recv(1024)
 			except SocketError:
-				print("1")
-				self.tablaAlcanzabilidad.borrarFuente(addr[0],addr[1])
 				break
 
 			if(recibido == b''):#Salida para cuando el otro muere antes de mandar el primer mensaje
-				print("2")
-				self.tablaAlcanzabilidad.borrarFuente(addr[0],addr[1])
-				break
-
-			cantTuplas = int(codecs.encode(recibido[0:2], 'hex_codec'))
-			ipA = int.from_bytes( recibido[2:3], byteorder='big' )
+					break
 			#Si el mensaje recibido es la palabra close se cierra la aplicacion
-			if cantTuplas == 1 and len(recibido) == 3:
-				print("3")
-				self.tablaAlcanzabilidad.borrarFuente(addr[0],addr[1])
+			if recibido == "close":
 				break
 		 
 			#Si se reciben datos nos muestra la IP y el mensaje recibido
@@ -190,14 +78,13 @@ class ReceptorTCP:
 			mensaje = Mensaje(addr[0],addr[1],recibido)
 			self.guardarMensaje(mensaje)
 			self.imprimirMensaje(mensaje) 
-			self.tablaAlcanzabilidad.actualizarTabla(mensaje)
 			
 			#Devolvemos el mensaje al cliente
-			#try:
-			#	conexion.send(recibido)
-			#except SocketError as e:
+			try:
+				conexion.send(recibido)
+			except SocketError as e:
 				#print(e)
-			#	break
+				break
 		conexion.close()
 
 	def recibir(self,ip,puerto):
@@ -240,13 +127,7 @@ class ConexionAbierta:
 		self.puerto = puerto
 
 	def enviarMensaje(self,mensaje):
-		try:
-			sent = self.socketEmisorTCP.send(mensaje)
-		except SocketError as e:
-				print("ERROR AL ENVIAR EL MENSAJE")
-		else:
-			if sent == 0:
-				print("ERROR AL ENVIAR EL MENSAJE1")
+		self.socketEmisorTCP.send(mensaje)
 
 	def cerrarConexion(self):
 		self.socketEmisorTCP.close()
@@ -257,19 +138,15 @@ class ConexionAbierta:
 		
 		return False
 
-
 class EmisorTCP:
 	#Objeto para guardar conexiones
 	conexiones = list()
 
 	mensajesRecibidos = list()
 
-	tablaAlcanzabilidad = TablaAlcanzabilidad()
-
-	def __init__(self,mensajesRecibidos, tablaAlcanzabilidad):
+	def __init__(self,mensajesRecibidos):
 		self.mensajesRecibidos = mensajesRecibidos
-		self.tablaAlcanzabilidad = tablaAlcanzabilidad
-		self.conexiones = list()
+		conexiones = list()
 
 	def hacerConexion(self, ip,puerto):
 		#se crea el socket para enviar
@@ -326,10 +203,7 @@ class EmisorTCP:
 		i = 0
 		while i < int(entradas):
 			tupla = input()
-			if entradas == "1" and tupla == "0":
-				vectorBytes += (0).to_bytes(1, byteorder='big')
-			else:
-				vectorBytes += self.tuplaToBytes(tupla)
+			vectorBytes += self.tuplaToBytes(tupla)
 			i = i + 1
 		return vectorBytes
 
@@ -340,7 +214,7 @@ class EmisorTCP:
 
 		cantTuplas = int(codecs.encode(bytesMensaje[0:2], 'hex_codec'))
 		i = 0
-		print("IPf = " + str(ip) + " Puerto = " + str(puerto) + " Envio el siguiente mensaje: ")
+		print("\n\nIPf = " + str(ip) + " Puerto = " + str(puerto) + " Envio el siguiente mensaje: ")
 		while i < cantTuplas:
 			ipA = int.from_bytes( bytesMensaje[(i*8)+2:(i*8)+3], byteorder='big' )#codecs.encode(bytesMensaje[(i*8)+2:(i*8)+3], 'hex_codec') )
 			ipB = int.from_bytes( bytesMensaje[(i*8)+3:(i*8)+4], byteorder='big' )#codecs.encode(bytesMensaje[(i*8)+3:(i*8)+4], 'hex_codec') )
@@ -350,7 +224,7 @@ class EmisorTCP:
 			costo = int.from_bytes( bytesMensaje[(i*8)+7:(i*8)+10], byteorder='big' )#codecs.encode(bytesMensaje[(i*8)+7:(i*8)+10], 'hex_codec') )
 			print( str(ipA) + "." + str(ipB) + "." + str(ipC) + "." + str(ipD) + " " + str(mascara) + " " + str(costo) )
 			i = i + 1
-		#print("\n\n")
+		print("\n\n")
 
 	def imprimirMensajes(self):
 		i = 0
@@ -388,31 +262,22 @@ class EmisorTCP:
 		while i < cant:
 			self.conexiones[i].enviarMensaje(mensaje)
 			i = i + 1
-		self.cerrarConexiones()
 		return
 
 	def menu(self):#HACER UN WHILE CON UN MENU 
 		print('Menu principal del modulo de Red TCP: \n'
 					'\t1. Enviar un mensaje. \n'
 					'\t2. Ver mensajes recibidos. \n'
-					'\t3. Imprimir tabla de alcanzabilidad. \n'
-					'\t4. Cerrar nodo.')
+					'\t3. Cerrar nodo.')
 		bandera = True
 		while bandera == True:
 			taskUsuario = input('Que desea hacer:')
 			if taskUsuario == '1':
 				self.enviarMensaje()
 			elif taskUsuario == '2':
-				print("\n\n")
 				print('Mensajes recibidos:')
 				self.imprimirMensajes()
-				print("\n\n")
 			elif taskUsuario == '3':
-				print("\n\n")
-				print('Tabla de alcanzabilidad:')
-				self.tablaAlcanzabilidad.imprimirTabla()
-				print("\n\n")
-			elif taskUsuario == '4':
 				bandera = False
 				self.borrarme()
 				print('Voy a morir')
@@ -430,13 +295,11 @@ class NodoTCP:
 
 	def iniciarNodoTCP(self,ip,puerto):
 		mensajesRecibidos = list()
-		tablaAlcanzabilidad = TablaAlcanzabilidad()
-
-		repetorTcp = ReceptorTCP(mensajesRecibidos, tablaAlcanzabilidad)
+		repetorTcp = ReceptorTCP(mensajesRecibidos)
 		proceso_repetorTcp = threading.Thread(target=repetorTcp.recibir, args=(ip,puerto,))
 		proceso_repetorTcp.start()
 
-		emisorTcp = EmisorTCP(mensajesRecibidos, tablaAlcanzabilidad)
+		emisorTcp = EmisorTCP(mensajesRecibidos)
 		proceso_emisorTcp = threading.Thread(target=emisorTcp.menu, args=())
 		proceso_emisorTcp.start()
 
