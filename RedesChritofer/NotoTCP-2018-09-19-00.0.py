@@ -57,7 +57,7 @@ class TablaAlcanzabilidad:
 	def __init__(self):
 		self.tabla = list()
 
-	def existeRed(self, ipRed, mascaraRed):
+	def exiteRed(self, ipRed, mascaraRed):
 		i = 0
 		largo = len(self.tabla)
 		while i < largo:
@@ -95,7 +95,7 @@ class TablaAlcanzabilidad:
 			mascaraRedNuevo = bytesMensaje[(i*8)+6:(i*8)+7]
 			costoNuevo = bytesMensaje[(i*8)+7:(i*8)+10]
 
-			exite = self.existeRed(ipRedNuevo, mascaraRedNuevo)
+			exite = self.exiteRed(ipRedNuevo, mascaraRedNuevo)
 			if exite == -1 :
 				#Se crea una nueva tupla
 				self.tabla.append(Red(ipFuenteNuevo,puertoFuenteNuevo,ipRedNuevo, mascaraRedNuevo, costoNuevo))
@@ -132,6 +132,7 @@ class ReceptorTCP:
 
 		cantTuplas = int(codecs.encode(bytesMensaje[0:2], 'hex_codec'))
 		i = 0
+		#print("\n\nIPf = " + str(ip) + " Puerto = " + str(puerto) + " Envio el siguiente mensaje: ")
 		print("IPf = " + str(ip) + " Puerto = " + str(puerto) + " Envio el siguiente mensaje: ")
 		while i < cantTuplas:
 			ipA = int.from_bytes( bytesMensaje[(i*8)+2:(i*8)+3], byteorder='big' )
@@ -142,7 +143,8 @@ class ReceptorTCP:
 			costo = int.from_bytes( bytesMensaje[(i*8)+7:(i*8)+10], byteorder='big' )
 			print( str(ipA) + "." + str(ipB) + "." + str(ipC) + "." + str(ipD) + " " + str(mascara) + " " + str(costo) )
 			i = i + 1
-		
+		#print("\n\n")
+
 	def imprimirMensajes(self):
 		i = 0
 		largo = len(self.mensajesRecibidos)
@@ -173,12 +175,29 @@ class ReceptorTCP:
 				print("Conexion Terminada")
 				self.tablaAlcanzabilidad.borrarFuente(addr[0],addr[1])
 				break
+		 
+			#Si se reciben datos nos muestra la IP y el mensaje recibido
+			#print (str(addr[0]) + " dice: ")
 			
+			#print(codecs.encode(recibido[0:2], 'hex_codec'))
+			#print(codecs.encode(recibido[2:3], 'hex_codec'))
+			#print(codecs.encode(recibido[3:4], 'hex_codec'))
+			#print(codecs.encode(recibido[4:5], 'hex_codec'))
+			#print(codecs.encode(recibido[5:6], 'hex_codec'))
+			#print(codecs.encode(recibido[6:7], 'hex_codec'))
+			#print(codecs.encode(recibido[7:10], 'hex_codec'))
+
 			mensaje = Mensaje(addr[0],addr[1],recibido)
 			self.guardarMensaje(mensaje)
 			self.imprimirMensaje(mensaje) 
 			self.tablaAlcanzabilidad.actualizarTabla(mensaje)
 			
+			#Devolvemos el mensaje al cliente
+			#try:
+			#	conexion.send(recibido)
+			#except SocketError as e:
+				#print(e)
+			#	break
 		conexion.close()
 
 	def recibir(self,ip,puerto):
@@ -193,7 +212,9 @@ class ReceptorTCP:
 		#El numero de conexiones entrantes que vamos a aceptar
 		s.listen(5)
 		
-		while True:
+		#j = 0
+		while True:#j < 2:
+			#j = j + 1
 			#Instanciamos un objeto sc (socket cliente) para recibir datos, al recibir datos este 
 			#devolvera tambien un objeto que representa una tupla con los datos de conexion: IP y puerto
 			conexion, addr = s.accept()
@@ -201,7 +222,13 @@ class ReceptorTCP:
 			thread_servidor = threading.Thread(target=self.establecerConexion, args=(conexion,addr))
 			thread_servidor.start()
 			print("Conexion recibida")
+		 
 		
+		#self.imprimirMensajes()
+		#print("Adios.!!!")
+		#thread_servidor.terminate()
+		#thread_servidor.join()
+		 
 		#Cerramos la instancia del socket cliente y servidor
 		s.close()
 
@@ -219,7 +246,7 @@ class ConexionAbierta:
 				print("ERROR AL ENVIAR EL MENSAJE")
 		else:
 			if sent == 0:
-				print("ERROR AL ENVIAR EL MENSAJE")
+				print("ERROR AL ENVIAR EL MENSAJE1")
 
 	def cerrarConexion(self):
 		self.socketEmisorTCP.close()
@@ -250,7 +277,7 @@ class EmisorTCP:
 		conexion = ConexionAbierta(ip,puerto,socketEmisorTCP)
 		#Se establece la conexion con el receptorTCP mediante la ip y el puerto
 		socketEmisorTCP.connect((ip, puerto))
-		print("Conexion establecida")
+		print("Conectado al servidor")
 		self.conexiones.append(conexion)
 
 	#retorna el numero del indice de la conexion si lo encuentra, sino entonces retorna -1
@@ -290,6 +317,7 @@ class EmisorTCP:
 	    bytesmios += (masc).to_bytes(1, byteorder='big')
 	    costo = int(tupladiv[2])
 	    bytesmios += (costo).to_bytes(3, byteorder='big')
+	    print(bytesmios)
 	    return bytesmios
 
 	def leerMensaje(self):
@@ -322,6 +350,7 @@ class EmisorTCP:
 			costo = int.from_bytes( bytesMensaje[(i*8)+7:(i*8)+10], byteorder='big' )#codecs.encode(bytesMensaje[(i*8)+7:(i*8)+10], 'hex_codec') )
 			print( str(ipA) + "." + str(ipB) + "." + str(ipC) + "." + str(ipD) + " " + str(mascara) + " " + str(costo) )
 			i = i + 1
+		#print("\n\n")
 
 	def imprimirMensajes(self):
 		i = 0
@@ -337,15 +366,18 @@ class EmisorTCP:
 		indice = self.buscarConexion(ip,int(puerto))
 
 		if indice == -1:
+			print("Voy a crear la conexion")
 			self.hacerConexion(ip,int(puerto))
-			print("Nueva conexion")
+			print("Nueva conexion echa")
 			mensaje = self.leerMensaje()
+			#mensaje = input("Mensaje a enviar: ")
 			self.conexiones[len(self.conexiones)-1].enviarMensaje(mensaje)
 			if len(mensaje) == 3:
 				self.conexiones.pop(len(self.conexiones)-1)
 		else:
-			print("Conexion existente")
+			print("Voy a usar una conexion existente")
 			mensaje = self.leerMensaje()
+			#mensaje = input("Mensaje a enviar: ")
 			self.conexiones[indice].enviarMensaje(mensaje)
 			if len(mensaje) == 3:
 				self.conexiones.pop(indice)
@@ -356,6 +388,7 @@ class EmisorTCP:
 
 		i = 0
 		cant = len(self.conexiones)
+		print(cant)
 		while i < cant:
 			self.conexiones[i].enviarMensaje(mensaje)
 			i = i + 1
@@ -386,12 +419,16 @@ class EmisorTCP:
 			elif taskUsuario == '4':
 				bandera = False
 				self.borrarme()
-				print('Salida.')
+				print('Voy a morir')
 				os._exit(1)
 				#proceso_repetorTcp.exit()
 			else:
 				print('Ingrese una opcion valida.')
 
+		#self.enviarMensaje()
+		#self.enviarMensaje()
+		#self.cerrarConexiones()
+		print('voy a retornar de menu')
 
 class NodoTCP:
 
@@ -406,6 +443,8 @@ class NodoTCP:
 		emisorTcp = EmisorTCP(mensajesRecibidos, tablaAlcanzabilidad)
 		proceso_emisorTcp = threading.Thread(target=emisorTcp.menu, args=())
 		proceso_emisorTcp.start()
+
+		print('voy a retornar de iniciarNodoTCP')
 
 
 def comando(comandosolicitado):
@@ -422,7 +461,6 @@ def comando(comandosolicitado):
 			puerto = comandosolicitado[inicioPuerto:]
 			nodoTCP = NodoTCP()
 			nodoTCP.iniciarNodoTCP(ip,int(puerto))
-			return 1
 		else:
 			if comandosolicitado.find("intAS") == 9:
 				finalIp = comandosolicitado[15:].find(" ")
@@ -431,19 +469,19 @@ def comando(comandosolicitado):
 				inicioPuerto = finalIp
 				puerto = comandosolicitado[inicioPuerto:]
 				#nodoUDP(ip,int(puerto))
-				return 1
 			else:
 				print("Comando no valido")
-				return -1
-	else:
-		print("Comando no valido")
-		return -1
+
+	#print("La direcion ip es: " + ip)
+	#print("El puerto es: " + puerto)
+	print('voy a retornar de comando')
+		
 def consola():
-	listo = -1
-	while listo == -1:
-		comandoDigitado = input(">")
-		listo = comando(comandoDigitado)
+	comandoDigitado = input(">")
+	comando(comandoDigitado)
 
 
 if __name__ == '__main__':
+	#nodo()
 	consola()
+	print('volvi al main')

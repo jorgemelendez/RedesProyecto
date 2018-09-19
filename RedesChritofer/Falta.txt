@@ -2,18 +2,5 @@ Falta:
 	-leer mascara del destinatario del mensaje, todavia no entiendo bien para que
 	-imprimir el resultado del intento de transmision, segun codigos de error que devuelva la operacion de envio
 
-	-hacer la tabla de alcanzabilidad
-	-borrar las tuplas relacionadas con un nodo que dice que se va a cerrar
-	-borrar las tuplas relacionadas con un nodo que se cierra sin avisar
 
-	-opcion para imprimir la tabla de alcanzabilidad
-
-	-borrar la impresion de bytes
-
-	-La lista de mensajes recibidos, deben borrarse si se pierde la conexion?
-
-
-
-
-Notas:
-	0.0.0.0 no es una ip aceptable, por lo que al legar unj mensaje con 1 de cantidad y 0 en el primer byte, lo mando a matar
+	ERROR AL ENVIAR EL MENSAJE, RETORNAR ALGO Y MANDAR A BORRAR CONEXION
