@@ -125,26 +125,6 @@ class UDPNode:
 	def guardarMensaje(self,mensaje):
 		self.mensajesRecibidos.append(mensaje)
 
-	def revisaMensaje(self, mensaje):
-		mascaraByte = bytearray()
-
-		ipA = int.from_bytes( mensaje[2:3], byteorder='big' )
-		ipB = int.from_bytes( mensaje[3:4], byteorder='big' )
-		ipC = int.from_bytes( mensaje[4:5], byteorder='big' )
-		ipD = int.from_bytes( mensaje[5:6], byteorder='big' )
-		mascara = int.from_bytes( mensaje[6:7], byteorder='big' )
-		
-		numBytes = mascara/8
-		numBits = mascara%8
-
-		if(numBits > 0):
-			numBitsAux = 1
-
-		for a in range (0,4):
-			if(numBytes != 0):
-				mascaraByte += (255).to_bytes(1,byteorder = 'big')
-		
-
 
 
 
@@ -152,7 +132,7 @@ class UDPNode:
 		while 1:
 			message, clientAddress = serverSocket.recvfrom(2048)
 			mensaje = Mensaje(clientAddress[0],clientAddress[1], message)
-			self.revisaMensaje(message)
+			#flag = self.revisaMensaje(message)
 			self.guardarMensaje(mensaje)
 			self.imprimirMensaje(mensaje)
 			self.tablaAlcanzabilidad.actualizarTabla(mensaje)
