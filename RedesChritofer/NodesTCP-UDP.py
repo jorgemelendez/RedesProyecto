@@ -104,8 +104,8 @@ class TablaAlcanzabilidad:
 				self.tabla.append(Red(ipFuenteNuevo,puertoFuenteNuevo,ipRedNuevo, mascaraRedNuevo, costoNuevo))
 			else:
 				#se actualiza la tupla de ser necesario
-				if self.tabla[i].costoMenor(costoNuevo) :
-					self.tabla[i].actualizarRed(ipFuenteNuevo,puertoFuenteNuevo,ipRedNuevo, mascaraRedNuevo, costoNuevo);
+				if self.tabla[exite].costoMenor(costoNuevo) :
+					self.tabla[exite].actualizarRed(ipFuenteNuevo,puertoFuenteNuevo,ipRedNuevo, mascaraRedNuevo, costoNuevo);
 				#Si el costo es mayor queda como antes
 			i = i + 1
 
