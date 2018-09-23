@@ -1,6 +1,20 @@
 Falta:
-	-leer mascara del destinatario del mensaje, todavia no entiendo bien para que
 	-imprimir el resultado del intento de transmision, segun codigos de error que devuelva la operacion de envio(CREO QUE YA ESTA)
 
 
 	ERROR AL ENVIAR EL MENSAJE, RETORNAR ALGO Y MANDAR A BORRAR CONEXION, en la lista de conexiones del emisor, paara que no apaezca mas
+
+
+
+
+
+	-UDP AVISE QUE VA A MORIR
+	-SEMAFOROS DE TCP(MENSAJES Y CONEXIONES), UDP YA ESTAN CREO
+		-DEBERIA PASAR MENSAJES Y CONEXIONES COMO CLASES CON SUS SEMAFOROS PARA ENVITAR ENRREDOS
+	-Revisar IP con mascara
+		De momento solo esta revisando a la hora en que llega
+	-REVISAR COMO SE ESTAN CERRANDO LOS THREADS
+
+
+
+	-Leer ip y mascara, revisar con ipaddress y luego pasarla a bytes, ESTO SOLO SI SE REVISA CUANDO SE INGRESA

@@ -14,6 +14,7 @@ class Mensaje:
 		self.puerto = puerto
 		self.mensaje = mensaje
 
+
 class Red:
 	def __init__(self,ipFuente,puertoFuente,ipRed, mascaraRed, costo):
 		self.ipFuente = ipFuente
@@ -51,13 +52,12 @@ class Fuente:
 
 class TablaAlcanzabilidad:
 	tabla = list()
-	lockTablaAlcanzabilidad = threading.Lock()
+	#lockTablaAlcanzabilidad = threading.Lock()
 	
 	def __init__(self):
 		self.tabla = list()
-		self.lockTablaAlcanzabilidad = threading.Lock()
+		#self.lockTablaAlcanzabilidad = threading.Lock()
 
-	#Llamar esta funcion solo con el candado adquirido, pues no lo usa interno
 	def existeRed(self, ipRed, mascaraRed):
 		#self.lockTablaAlcanzabilidad.acquire()
 		i = 0
@@ -70,9 +70,8 @@ class TablaAlcanzabilidad:
 		#self.lockTablaAlcanzabilidad.release()
 		return -1
 
-	#Llamar solo desde afuera, o adentro de metodos que no tengan el candado adquirido
 	def imprimirTabla(self):
-		self.lockTablaAlcanzabilidad.acquire()
+		#self.lockTablaAlcanzabilidad.acquire()
 		i = 0
 		largo = len(self.tabla)
 		while i < largo:
@@ -89,9 +88,8 @@ class TablaAlcanzabilidad:
 
 			i = i + 1
 
-		self.lockTablaAlcanzabilidad.release()
+		#self.lockTablaAlcanzabilidad.release()
 
-	#NO necesita tener candado porque no usa la lista
 	def validarIP(self, ip,mascara):
 		ipA = int.from_bytes( ip[0:1], byteorder='big' )
 		ipB = int.from_bytes( ip[1:2], byteorder='big' )
@@ -106,42 +104,31 @@ class TablaAlcanzabilidad:
 		except ValueError as e:
 			return False
 
-	#Adquirir el candado antes de usarla.
 	def borrarFuente(self,ipFuente, puetoFuente):
 		#self.lockTablaAlcanzabilidad.acquire()
-		#print("Entre a borrar fuente")
 		i = 0
 		largo = len(self.tabla)
 		while i < largo:
-			#print("while")
 			if self.tabla[i].soyEsaFuente(ipFuente, puetoFuente) :
 				self.tabla.pop(i)
-				largo = largo - 1
 			i = i + 1
-		#print("Termine while")
+
 		#self.lockTablaAlcanzabilidad.release()
 
-	#Llamar solo desde afuera, o adentro de metodos que no tengan el candado adquirido
 	def eliminarPrimerFuente(self):
-		self.lockTablaAlcanzabilidad.acquire()
-		#print("Entre a eliminar primer fuente")
+		print("Entre a eliminar fuente")
 		i = 0
 		largo = len(self.tabla)
 		if largo > 0:
 			ipFuente = self.tabla[i].ipFuente
 			puertoFuente = self.tabla[i].puertoFuente
-			#print("Mande a borrar fuente")
 			self.borrarFuente(ipFuente,puertoFuente)
-			#print("Volvi de borrar fuente")
-			self.lockTablaAlcanzabilidad.release()
 			return Fuente( ipFuente, puertoFuente )
 		else:
-			self.lockTablaAlcanzabilidad.release()
 			return Fuente( "", 0 )
 
-	#Llamar solo desde afuera, o adentro de metodos que no tengan el candado adquirido
 	def actualizarTabla(self, mensaje):
-		self.lockTablaAlcanzabilidad.acquire()
+		#self.lockTablaAlcanzabilidad.acquire()
 
 		ipFuenteNuevo = mensaje.ip
 		puertoFuenteNuevo = mensaje.puerto
@@ -168,25 +155,16 @@ class TablaAlcanzabilidad:
 			
 			i = i + 1
 
-		self.lockTablaAlcanzabilidad.release()
+		#self.lockTablaAlcanzabilidad.release()
 
 class UDPNode:
 	
 	mensajesRecibidos = list()
-	lockMensajesRecibidos = threading.Lock()
 	tablaAlcanzabilidad = TablaAlcanzabilidad()
 
-	def __init__(self):
-		self.mensajesRecibidos = list()
-		self.lockMensajesRecibidos = threading.Lock()
-
-	#Llamar con el candado lockMensajesRecibidos previamente tomado
 	def guardarMensaje(self,mensaje):
-		self.lockMensajesRecibidos.acquire()
 		self.mensajesRecibidos.append(mensaje)
-		self.lockMensajesRecibidos.release()
 
-	#Llamar con el candado lockMensajesRecibidos previamente tomado
 	def recibeMensajes(self, serverSocket):
 		while 1:
 			message, clientAddress = serverSocket.recvfrom(2048)
@@ -203,13 +181,10 @@ class UDPNode:
 				self.imprimirMensaje(mensaje)
 				self.tablaAlcanzabilidad.actualizarTabla(mensaje)
 
-	
 	def procRecibeMsg(self, ip, puerto):
-		#self.lockMensajesRecibidos.acquire()
 		serverSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 		serverSocket.bind((ip, puerto))
 		self.recibeMensajes(serverSocket)
-		#self.lockMensajesRecibidos.release()
 
 	def imprimirMensaje(self, mensaje):
 		ip = mensaje.ip
@@ -231,17 +206,13 @@ class UDPNode:
 			i = i + 1
 		#print("\n\n")
 
-	#Llamar solo desde afuera, o adentro de mentodos que no tengan el candado lockMensajesRecibidos adquirido
 	def imprimirMensajes(self):
-		self.lockMensajesRecibidos.acquire()
 		i = 0
 		largo = len(self.mensajesRecibidos)
 		while i < largo:
 			self.imprimirMensaje( self.mensajesRecibidos[i] )
 			i = i + 1
-		self.lockMensajesRecibidos.release()
 
-	#No necesita candado lockMensajesRecibidos previamente tomado
 	def tuplaToBytes(self, tupla):
 	    tupladiv = tupla.split(' ')
 	    numeroip = tupladiv[0]
@@ -257,7 +228,6 @@ class UDPNode:
 	    #print(bytesmios)
 	    return bytesmios
 
-	#No necesita candado lockMensajesRecibidos previamente tomado
 	def leerMensaje(self):
 		#print('Ingrese la cantidad de tuplas que quiere enviar:')
 		entradas = input()
@@ -272,7 +242,6 @@ class UDPNode:
 			#print('\n')
 		return vectorBytes
 
-	#No necesita candado lockMensajesRecibidos previamente tomado
 	#Metodo que envia un mensaje mediante UDP al IP + socket que esocgio al inicio.
 	def envioMensajeUDP(self):
 		serverNameS = input('Ingrese el IP del servidor al que quiere enviar el mensaje: ')
@@ -282,7 +251,7 @@ class UDPNode:
 		clientSocket.sendto(message, (serverNameS, int(serverPortS)))
 		clientSocket.close()
 
-	#No necesita candado lockMensajesRecibidos previamente tomado
+
 	def borrarme(self):
 		mensaje = bytearray((1).to_bytes(2, byteorder='big'))# cant tuplas
 		mensaje += (0).to_bytes(1, byteorder='big')
@@ -297,7 +266,7 @@ class UDPNode:
 			clientSocket.close()
 			fuente = self.tablaAlcanzabilidad.eliminarPrimerFuente()
 
-	#No necesita candado lockMensajesRecibidos previamente tomado
+
 	#Metodo que despliega Menu principal de UDP
 	def despligueMenuUDP(self):
 		print('Menu principal del modulo de Red UDP: \n'
