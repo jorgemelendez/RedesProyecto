@@ -107,22 +107,6 @@ class TablaAlcanzabilidad:
 			return False
 
 	#Adquirir el candado antes de usarla.
-	def borrarFuenteDesdeAfuera(self,ipFuente, puetoFuente):
-		self.lockTablaAlcanzabilidad.acquire()
-		#print("Entre a borrar fuente")
-		i = 0
-		largo = len(self.tabla)
-		while i < largo:
-			#print("while")
-			if self.tabla[i].soyEsaFuente(ipFuente, puetoFuente) :
-				self.tabla.pop(i)
-				largo = largo - 1
-			else:
-				i = i + 1
-		#print("Termine while")
-		self.lockTablaAlcanzabilidad.release()
-
-	#Adquirir el candado antes de usarla.
 	def borrarFuente(self,ipFuente, puetoFuente):
 		#self.lockTablaAlcanzabilidad.acquire()
 		#print("Entre a borrar fuente")
@@ -133,8 +117,7 @@ class TablaAlcanzabilidad:
 			if self.tabla[i].soyEsaFuente(ipFuente, puetoFuente) :
 				self.tabla.pop(i)
 				largo = largo - 1
-			else:
-				i = i + 1
+			i = i + 1
 		#print("Termine while")
 		#self.lockTablaAlcanzabilidad.release()
 
@@ -249,7 +232,7 @@ class UDPNode:
 			#Si el mensaje recibido es la palabra close se cierra la aplicacion
 			if cantTuplas == 1 and len(message) == 3 and mensajeSalir == 0:
 				print("Conexion Terminada")
-				self.tablaAlcanzabilidad.borrarFuenteDesdeAfuera(clientAddress[0],clientAddress[1])
+				self.tablaAlcanzabilidad.borrarFuente(clientAddress[0],clientAddress[1])
 			else:
 				self.mensajesRecibidos.guardarMensaje(mensaje)
 				self.mensajesRecibidos.imprimirMensaje(mensaje)
@@ -290,19 +273,7 @@ class UDPNode:
 		
 		while i < int(entradas):
 			#print('Ingrese la tupla:')
-			leer = True
-			while leer:
-				tupla = input()
-				ipPrueba = tupla.replace(" ", "/",1)
-				ipPrueba = ipPrueba.split(' ')[0]
-				try:
-					n = ipaddress.ip_network(ipPrueba) 
-				except ValueError as e:
-					print ("Ip o mascara no valida")
-					leer = True
-				else:
-					leer = False
-
+			tupla = input()
 			vectorBytes += self.tuplaToBytes(tupla)
 			i = i + 1
 			#print('\n')
@@ -311,26 +282,12 @@ class UDPNode:
 	#No necesita candado lockMensajesRecibidos previamente tomado
 	#Metodo que envia un mensaje mediante UDP al IP + socket que esocgio al inicio.
 	def envioMensajeUDP(self):
-		serverNameS = input('Digite la ip del destinatario: ')
-		ipPrueba = serverNameS + "/32"
-		try:
-			n = ipaddress.ip_network(ipPrueba)
-		except ValueError as e:
-			print ("Ip no valida")
-		else:
-			serverPortS = input('Digite el puerto del destinatario: ')
-			try:
-				n = int(serverPortS)
-			except ValueError as e:
-				print ("Puerto no valido")
-			else:
-				if n < 0 or n > 65535:
-					print ("Puerto no valido")
-				else:
-					message = self.leerMensaje()
-					clientSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-					clientSocket.sendto(message, (serverNameS, int(serverPortS)))
-					clientSocket.close()
+		serverNameS = input('Ingrese el IP del servidor al que quiere enviar el mensaje: ')
+		serverPortS = input('Ingrese el puerto al que desea enviar: ')
+		message = self.leerMensaje()
+		clientSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+		clientSocket.sendto(message, (serverNameS, int(serverPortS)))
+		clientSocket.close()
 
 	#No necesita candado lockMensajesRecibidos previamente tomado
 	def borrarme(self):
@@ -338,7 +295,7 @@ class UDPNode:
 		mensaje += (0).to_bytes(1, byteorder='big')
 
 		fuente = self.tablaAlcanzabilidad.eliminarPrimerFuente()
-		#print("Elimine la primer fuente")
+		print("Elimine la primer fuente")
 		while fuente.puertoFuente != 0:
 			mensaje = bytearray((1).to_bytes(2, byteorder='big'))# cant tuplas
 			mensaje += (0).to_bytes(1, byteorder='big')
@@ -387,6 +344,24 @@ class ReceptorTCP:
 		self.mensajesRecibidos = mensajesRecibidos
 		self.tablaAlcanzabilidad = tablaAlcanzabilidad
 
+	def imprimirMensaje(self, mensaje):
+		ip = mensaje.ip
+		puerto = mensaje.puerto
+		bytesMensaje = mensaje.mensaje
+
+		cantTuplas = int(codecs.encode(bytesMensaje[0:2], 'hex_codec'))
+		i = 0
+		print("IPf = " + str(ip) + " Puerto = " + str(puerto) + " Envio el siguiente mensaje: ")
+		while i < cantTuplas:
+			ipA = int.from_bytes( bytesMensaje[(i*8)+2:(i*8)+3], byteorder='big' )
+			ipB = int.from_bytes( bytesMensaje[(i*8)+3:(i*8)+4], byteorder='big' )
+			ipC = int.from_bytes( bytesMensaje[(i*8)+4:(i*8)+5], byteorder='big' )
+			ipD = int.from_bytes( bytesMensaje[(i*8)+5:(i*8)+6], byteorder='big' )
+			mascara = int.from_bytes( bytesMensaje[(i*8)+6:(i*8)+7], byteorder='big' )
+			costo = int.from_bytes( bytesMensaje[(i*8)+7:(i*8)+10], byteorder='big' )
+			print( str(ipA) + "." + str(ipB) + "." + str(ipC) + "." + str(ipD) + " " + str(mascara) + " " + str(costo) )
+			i = i + 1
+		
 	def establecerConexion(self, conexion, addr):
 		while True:
 			#Recibimos el mensaje, con el metodo recv recibimos datos y como parametro 
@@ -395,12 +370,12 @@ class ReceptorTCP:
 				recibido = conexion.recv(1024)
 			except SocketError:
 				print("Conexion Perdida")
-				self.tablaAlcanzabilidad.borrarFuenteDesdeAfuera(addr[0],addr[1])
+				self.tablaAlcanzabilidad.borrarFuente(addr[0],addr[1])
 				break
 
 			if(recibido == b''):#Salida para cuando el otro muere antes de mandar el primer mensaje
 				print("Conexion Perdida")
-				self.tablaAlcanzabilidad.borrarFuenteDesdeAfuera(addr[0],addr[1])
+				self.tablaAlcanzabilidad.borrarFuente(addr[0],addr[1])
 				break
 
 			cantTuplas = int(codecs.encode(recibido[0:2], 'hex_codec'))
@@ -408,7 +383,7 @@ class ReceptorTCP:
 			#Si el mensaje recibido es la palabra close se cierra la aplicacion
 			if cantTuplas == 1 and len(recibido) == 3:
 				print("Conexion Terminada")
-				self.tablaAlcanzabilidad.borrarFuenteDesdeAfuera(addr[0],addr[1])
+				self.tablaAlcanzabilidad.borrarFuente(addr[0],addr[1])
 				break
 			
 			mensaje = Mensaje(addr[0],addr[1],recibido)
@@ -422,11 +397,17 @@ class ReceptorTCP:
 		#instanciamos un objeto para trabajar con el socket
 		s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		 
+		#Con el metodo bind le indicamos que puerto debe escuchar y de que servidor esperar conexiones
+		#Es mejor dejarlo en blanco para recibir conexiones externas si es nuestro caso
 		s.bind((ip,puerto))
 		 
+		#Aceptamos conexiones entrantes con el metodo listen, y ademas aplicamos como parametro
+		#El numero de conexiones entrantes que vamos a aceptar
 		s.listen(5)
 		
 		while True:
+			#Instanciamos un objeto sc (socket cliente) para recibir datos, al recibir datos este 
+			#devolvera tambien un objeto que representa una tupla con los datos de conexion: IP y puerto
 			conexion, addr = s.accept()
 			
 			thread_servidor = threading.Thread(target=self.establecerConexion, args=(conexion,addr))
@@ -469,8 +450,6 @@ class EmisorTCP:
 	#Objeto para guardar conexiones
 	conexiones = list()
 
-	lockConexiones = threading.Lock()
-
 	mensajesRecibidos = MensajesRecibidos()
 
 	tablaAlcanzabilidad = TablaAlcanzabilidad()
@@ -479,25 +458,16 @@ class EmisorTCP:
 		self.mensajesRecibidos = mensajesRecibidos
 		self.tablaAlcanzabilidad = tablaAlcanzabilidad
 		self.conexiones = list()
-		self.lockConexiones = threading.Lock()
 
-	#Llamar con el candado puesto
 	def hacerConexion(self, ip,puerto):
 		#se crea el socket para enviar
 		socketEmisorTCP = socket.socket()
 		conexion = ConexionAbierta(ip,puerto,socketEmisorTCP)
 		#Se establece la conexion con el receptorTCP mediante la ip y el puerto
-		try:
-			socketEmisorTCP.connect((ip, puerto))
-		except SocketError:
-			print("Fallo de conexion")
-			return False
-		else:
-			print("Conexion establecida")
-			self.conexiones.append(conexion)
-			return True
+		socketEmisorTCP.connect((ip, puerto))
+		print("Conexion establecida")
+		self.conexiones.append(conexion)
 
-	#Llamar con el candado puesto
 	#retorna el numero del indice de la conexion si lo encuentra, sino entonces retorna -1
 	def buscarConexion(self, ip,puerto):
 		i = 0;
@@ -508,7 +478,6 @@ class EmisorTCP:
 			i = i + 1
 		return -1
 
-	#llamar con el candado puesto
 	def cerrarUnaConexion(self, ip,puerto):
 		i = 0;
 		largo = len(self.conexiones)
@@ -519,7 +488,6 @@ class EmisorTCP:
 				break
 			i = i + 1
 
-	#Llamar con el candado puesto
 	def cerrarConexiones(self):
 		while len(self.conexiones) != 0:
 			self.conexiones[0].cerrarConexion()
@@ -544,69 +512,39 @@ class EmisorTCP:
 		vectorBytes = bytearray((int(entradas)).to_bytes(2, byteorder='big'))
 		i = 0
 		while i < int(entradas):
-			leer = True
-			while leer:
-				tupla = input()
-				if entradas == "1" and tupla == "0":
-					leer = False
-					vectorBytes += (0).to_bytes(1, byteorder='big')
-				else:
-					ipPrueba = tupla.replace(" ", "/",1)
-					ipPrueba = ipPrueba.split(' ')[0]
-					try:
-						n = ipaddress.ip_network(ipPrueba)
-					except ValueError as e:
-						print ("Ip o mascara no valida")
-						leer = True
-					else:
-						leer = False
-						vectorBytes += self.tuplaToBytes(tupla)
+			tupla = input()
+			if entradas == "1" and tupla == "0":
+				vectorBytes += (0).to_bytes(1, byteorder='big')
+			else:
+				vectorBytes += self.tuplaToBytes(tupla)
 			i = i + 1
 		return vectorBytes
 
 	def enviarMensaje(self):
-		self.lockConexiones.acquire()
 		ip = input("Digite la ip del destinatario: ")
-		ipPrueba = ip + "/32"
-		try:
-			n = ipaddress.ip_network(ipPrueba)
-		except ValueError as e:
-			print ("Ip no valida")
+		puerto = input("Digite el puerto del destinatario: ")
+
+		indice = self.buscarConexion(ip,int(puerto))
+
+		if indice == -1:
+			self.hacerConexion(ip,int(puerto))
+			print("Nueva conexion")
+			mensaje = self.leerMensaje()
+			respEnvio = self.conexiones[len(self.conexiones)-1].enviarMensaje(mensaje)
+			if respEnvio == False:
+				self.cerrarUnaConexion(ip,int(puerto))
+			if len(mensaje) == 3:
+				self.conexiones.pop(len(self.conexiones)-1)
 		else:
-			puerto = input("Digite el puerto del destinatario: ")
-			try:
-				n = int(puerto)
-			except ValueError as e:
-				print ("Puerto no valido")
-			else:
-				if n < 0 or n > 65535:
-					print ("Puerto no valido")
-				else:
-
-					indice = self.buscarConexion(ip,int(puerto))
-
-					if indice == -1:
-						exito = self.hacerConexion(ip,int(puerto))
-						if exito:
-							print("Nueva conexion")
-							mensaje = self.leerMensaje()
-							respEnvio = self.conexiones[len(self.conexiones)-1].enviarMensaje(mensaje)
-							if respEnvio == False:
-								self.cerrarUnaConexion(ip,int(puerto))
-							if len(mensaje) == 3:
-								self.conexiones.pop(len(self.conexiones)-1)
-					else:
-						print("Conexion existente")
-						mensaje = self.leerMensaje()
-						respEnvio = self.conexiones[indice].enviarMensaje(mensaje)
-						if respEnvio == False:
-							self.cerrarUnaConexion(ip,int(puerto))
-						if len(mensaje) == 3:
-							self.conexiones.pop(indice)
-		self.lockConexiones.release()
+			print("Conexion existente")
+			mensaje = self.leerMensaje()
+			respEnvio = self.conexiones[indice].enviarMensaje(mensaje)
+			if respEnvio == False:
+				self.cerrarUnaConexion(ip,int(puerto))
+			if len(mensaje) == 3:
+				self.conexiones.pop(indice)
 
 	def borrarme(self):
-		self.lockConexiones.acquire()
 		mensaje = bytearray((1).to_bytes(2, byteorder='big'))# cant tuplas
 		mensaje += (0).to_bytes(1, byteorder='big')
 
@@ -616,7 +554,6 @@ class EmisorTCP:
 			self.conexiones[i].enviarMensaje(mensaje)
 			i = i + 1
 		self.cerrarConexiones()
-		self.lockConexiones.release()
 		return
 
 	def menu(self):#HACER UN WHILE CON UN MENU 
@@ -678,18 +615,9 @@ def comando(comandosolicitado):
 			ip =  comandosolicitado[19:finalIp]
 			inicioPuerto = finalIp
 			puerto = comandosolicitado[inicioPuerto:]
-
-			s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-			try:
-				s.bind((ip,int(puerto)))
-			except:
-				print ("Error, ip o puerto incorrectos")
-				return -1
-			else:
-				s.close()
-				nodoTCP = NodoTCP()
-				nodoTCP.iniciarNodoTCP(ip,int(puerto))
-				return 1
+			nodoTCP = NodoTCP()
+			nodoTCP.iniciarNodoTCP(ip,int(puerto))
+			return 1
 		else:
 			if comandosolicitado.find("intAS") == 9:
 				finalIp = comandosolicitado[15:].find(" ")
@@ -697,22 +625,13 @@ def comando(comandosolicitado):
 				ip =  comandosolicitado[15:finalIp]
 				inicioPuerto = finalIp
 				puerto = comandosolicitado[inicioPuerto:]
-
-				s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-				try:
-					s.bind((ip,int(puerto)))
-				except:
-					print ("Error, ip o puerto incorrectos")
-					return -1
-				else:
-					s.close()
-					nodoUDP = UDPNode()
-					thrdRecibeMensaje = threading.Thread(target = nodoUDP.procRecibeMsg, args = (ip, int(puerto),))
-					thrdRecibeMensaje.start()
-					thrdRecibeMensaje = threading.Thread(target = nodoUDP.despligueMenuUDP, args = ())
-					thrdRecibeMensaje.start()
-					#udp.despligueMenuUDP()
-					return 1
+				nodoUDP = UDPNode()
+				thrdRecibeMensaje = threading.Thread(target = nodoUDP.procRecibeMsg, args = (ip, int(puerto),))
+				thrdRecibeMensaje.start()
+				thrdRecibeMensaje = threading.Thread(target = nodoUDP.despligueMenuUDP, args = ())
+				thrdRecibeMensaje.start()
+				#udp.despligueMenuUDP()
+				return 1
 			else:
 				print("Comando no valido")
 				return -1

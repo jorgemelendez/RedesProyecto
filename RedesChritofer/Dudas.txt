@@ -1,12 +1,15 @@
 Dudas sobre el proyecto
 	
-	1- Validacion de red es solo cuando se recibe el mensaje
+	1- Validacion de red es solo cuando se recibe el mensaje -- AMBOS CASOS
 			De momento esta en que si la ip no es valida la ignora al recibir el mensaje e intentar meter en la tabla
 	
 
 	2- Cuando UDP quiere morir, se supone que le mando el mensaje a los que tengo como fuentes(ip y puerto) en la tabla de alcanzabilidad, 
 			-pero resulta que en la tabla de alcanzabilidad solo tengo los que me han mandado y por un puerto arbitrario, entonces va devolver en el puerto arbitrario y no en el que el otro está escuchando.
 					-Se debe crear un hilo que escucha en ese puerto arbitrario o que?
+
+
+					LO ENVIA ASI NO MAS, SIN IMPORTA SI LO RECIBE
 
 					
 	
