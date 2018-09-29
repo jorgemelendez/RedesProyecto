@@ -675,8 +675,8 @@ class EmisorTCP:
 					'\t1. Enviar un mensaje. \n'
 					'\t2. Ver mensajes recibidos. \n'
 					'\t3. Imprimir tabla de alcanzabilidad. \n'
-					'\t4. Cerrar nodo.'
-					'\t5. Conexiones existentes.')
+					'\t4. Conexiones existentes. \n'
+					'\t5. Cerrar nodo.')
 		bandera = True
 		while bandera == True:
 			taskUsuario = input('Que desea hacer:')
