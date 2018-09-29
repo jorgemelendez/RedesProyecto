@@ -354,6 +354,7 @@ class UDPNode:
 		mensaje += (0).to_bytes(1, byteorder='big')
 		fuente = self.tablaAlcanzabilidad.eliminarPrimerFuente()
 		#print("Elimine la primer fuente")
+		print ("llegue aqui")
 		while fuente.puertoFuente != 0:
 			clientSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 			clientSocket.sendto(mensaje, (fuente.ipFuente, fuente.puertoFuente))
@@ -484,6 +485,16 @@ class EmisorTCP:
 	mensajesRecibidos = MensajesRecibidos()
 
 	tablaAlcanzabilidad = TablaAlcanzabilidad()
+
+	#Llamar solo CON candado adquirido
+	def imprimirConexionesExistentes(self):
+		self.lockConexiones.acquire()
+		i = 0;
+		largo = len(self.conexiones)
+		while i < largo:
+			print(self.conexiones[i].ip + " " + self.conexiones[i].puerto)
+			i = i + 1
+		self.lockConexiones.release()
 
 	def __init__(self,mensajesRecibidos, tablaAlcanzabilidad):
 		self.mensajesRecibidos = mensajesRecibidos
@@ -686,6 +697,10 @@ class EmisorTCP:
 				print('Salida.')
 				os._exit(1)
 				#proceso_repetorTcp.exit()
+			elif taskUsuario == '5':
+				print("Conexiones existentes:")
+				self.imprimirConexionesExistentes()
+				self.borrarme()
 			else:
 				print('Ingrese una opcion valida.')
 
@@ -762,3 +777,5 @@ def comando(comandosolicitado):
 if __name__ == '__main__':
 	if len(sys.argv) == 4:
 		comando(sys.argv[1] + " " + sys.argv[2] + " " + sys.argv[3])
+	else: 
+		print("Faltan parametros")
