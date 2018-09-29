@@ -498,7 +498,7 @@ class EmisorTCP:
 		i = 0;
 		largo = len(self.conexiones)
 		while i < largo:
-			print(self.conexiones[i].ip + " " + int(self.conexiones[i].puerto) )
+			print(self.conexiones[i].ip + " " + str(self.conexiones[i].puerto) )
 			i = i + 1
 		self.lockConexiones.release()
 
@@ -701,7 +701,6 @@ class EmisorTCP:
 			elif taskUsuario == '4':
 				print("Conexiones existentes:")
 				self.imprimirConexionesExistentes()
-				self.borrarme()
 			else:
 				print('Ingrese una opcion valida.')
 
