@@ -486,21 +486,21 @@ class EmisorTCP:
 
 	tablaAlcanzabilidad = TablaAlcanzabilidad()
 
+	def __init__(self,mensajesRecibidos, tablaAlcanzabilidad):
+		self.mensajesRecibidos = mensajesRecibidos
+		self.tablaAlcanzabilidad = tablaAlcanzabilidad
+		self.conexiones = list()
+		self.lockConexiones = threading.Lock()
+
 	#Llamar solo CON candado adquirido
 	def imprimirConexionesExistentes(self):
 		self.lockConexiones.acquire()
 		i = 0;
 		largo = len(self.conexiones)
 		while i < largo:
-			print(self.conexiones[i].ip + " " + self.conexiones[i].puerto)
+			print(self.conexiones[i].ip + " " + int(self.conexiones[i].puerto) )
 			i = i + 1
 		self.lockConexiones.release()
-
-	def __init__(self,mensajesRecibidos, tablaAlcanzabilidad):
-		self.mensajesRecibidos = mensajesRecibidos
-		self.tablaAlcanzabilidad = tablaAlcanzabilidad
-		self.conexiones = list()
-		self.lockConexiones = threading.Lock()
 
 	#Llamar solo CON candado adquirido
 	def hacerConexion(self, ip,puerto):
@@ -675,7 +675,8 @@ class EmisorTCP:
 					'\t1. Enviar un mensaje. \n'
 					'\t2. Ver mensajes recibidos. \n'
 					'\t3. Imprimir tabla de alcanzabilidad. \n'
-					'\t4. Cerrar nodo.')
+					'\t4. Cerrar nodo.'
+					'\t5. Conexiones existentes.')
 		bandera = True
 		while bandera == True:
 			taskUsuario = input('Que desea hacer:')
@@ -691,13 +692,13 @@ class EmisorTCP:
 				print('Tabla de alcanzabilidad:')
 				self.tablaAlcanzabilidad.imprimirTabla()
 				print("\n\n")
-			elif taskUsuario == '4':
+			elif taskUsuario == '5':
 				bandera = False
 				self.borrarme()
 				print('Salida.')
 				os._exit(1)
 				#proceso_repetorTcp.exit()
-			elif taskUsuario == '5':
+			elif taskUsuario == '4':
 				print("Conexiones existentes:")
 				self.imprimirConexionesExistentes()
 				self.borrarme()
