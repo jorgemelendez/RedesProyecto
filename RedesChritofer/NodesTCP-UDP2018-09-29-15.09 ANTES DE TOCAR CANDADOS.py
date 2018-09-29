@@ -158,7 +158,7 @@ class TablaAlcanzabilidad:
 
 	#Llamar solo SIN candado adquirido
 	def actualizarTabla(self, mensaje):
-		#self.lockTablaAlcanzabilidad.acquire()
+		self.lockTablaAlcanzabilidad.acquire()
 
 		ipFuenteNuevo = mensaje.ip
 		puertoFuenteNuevo = mensaje.puerto
@@ -173,7 +173,6 @@ class TablaAlcanzabilidad:
 
 			if self.validarIP(ipRedNuevo,mascaraRedNuevo):
 
-				self.lockTablaAlcanzabilidad.acquire()
 				exite = self.existeRed(ipRedNuevo, mascaraRedNuevo)
 				if exite == -1 :
 					#Se crea una nueva tupla
@@ -183,10 +182,10 @@ class TablaAlcanzabilidad:
 					if self.tabla[exite].costoMenor(costoNuevo) :
 						self.tabla[exite].actualizarRed(ipFuenteNuevo,puertoFuenteNuevo,ipRedNuevo, mascaraRedNuevo, costoNuevo);
 					#Si el costo es mayor queda como antes
-				self.lockTablaAlcanzabilidad.release()
+			
 			i = i + 1
 
-		#self.lockTablaAlcanzabilidad.release()
+		self.lockTablaAlcanzabilidad.release()
 
 class MensajesRecibidos:
 	mensajesRecibidos = list()
@@ -196,13 +195,12 @@ class MensajesRecibidos:
 		self.mensajesRecibidos = list()
 		self.lockMensajesRecibidos = threading.Lock()
 
-	#Llamar solo SIN candado adquirido
+	#Llamar con el candado lockMensajesRecibidos previamente tomado
 	def guardarMensaje(self,mensaje):
 		self.lockMensajesRecibidos.acquire()
 		self.mensajesRecibidos.append(mensaje)
 		self.lockMensajesRecibidos.release()
 
-	#NO necesita tener candado
 	def imprimirMensaje(self, mensaje):
 		ip = mensaje.ip
 		puerto = mensaje.puerto
@@ -223,7 +221,7 @@ class MensajesRecibidos:
 			i = i + 1
 		#print("\n\n")
 
-	#Llamar solo SIN candado adquirido
+	#Llamar solo desde afuera, o adentro de mentodos que no tengan el candado lockMensajesRecibidos adquirido
 	def imprimirMensajes(self):
 		self.lockMensajesRecibidos.acquire()
 		i = 0
@@ -240,6 +238,7 @@ class UDPNode:
 	def __init__(self):
 		self.mensajesRecibidos = MensajesRecibidos()
 
+	#Llamar con el candado lockMensajesRecibidos previamente tomado
 	def recibeMensajes(self, serverSocket):
 		while 1:
 			message, clientAddress = serverSocket.recvfrom(2048)
@@ -263,6 +262,7 @@ class UDPNode:
 		self.recibeMensajes(serverSocket)
 		#self.lockMensajesRecibidos.release()
 
+	#No necesita candado lockMensajesRecibidos previamente tomado
 	def tuplaToBytes(self, tupla):
 		tupladiv = tupla.split(' ')
 		numeroip = tupladiv[0]
@@ -277,6 +277,7 @@ class UDPNode:
 		bytesmios += (costo).to_bytes(3, byteorder='big')
 		return bytesmios
 
+	#No necesita candado lockMensajesRecibidos previamente tomado
 	def leerMensaje(self):
 		#print('Ingrese la cantidad de tuplas que quiere enviar:')
 		entradas = 0
@@ -327,6 +328,8 @@ class UDPNode:
 			#print('\n')
 		return vectorBytes
 
+	#No necesita candado lockMensajesRecibidos previamente tomado
+	#Metodo que envia un mensaje mediante UDP al IP + socket que esocgio al inicio.
 	def envioMensajeUDP(self):
 		serverNameS = input('Digite la ip del destinatario: ')
 		ipPrueba = serverNameS + "/32"
@@ -349,6 +352,7 @@ class UDPNode:
 					clientSocket.sendto(message, (serverNameS, serverPortS))
 					clientSocket.close()
 
+	#No necesita candado lockMensajesRecibidos previamente tomado
 	def borrarme(self):
 		mensaje = bytearray((1).to_bytes(2, byteorder='big'))# cant tuplas
 		mensaje += (0).to_bytes(1, byteorder='big')
@@ -360,6 +364,8 @@ class UDPNode:
 			clientSocket.close()
 			fuente = self.tablaAlcanzabilidad.eliminarPrimerFuente()
 
+	#No necesita candado lockMensajesRecibidos previamente tomado
+	#Metodo que despliega Menu principal de UDP
 	def despligueMenuUDP(self):
 		print('Menu principal del modulo de Red UDP: \n'
 					'\t1. Enviar un mensaje. \n'
@@ -475,6 +481,7 @@ class ConexionAbierta:
 		
 		return False
 
+
 class EmisorTCP:
 	#Objeto para guardar conexiones
 	conexiones = list()
@@ -491,7 +498,7 @@ class EmisorTCP:
 		self.conexiones = list()
 		self.lockConexiones = threading.Lock()
 
-	#Llamar solo CON candado adquirido
+	#Llamar con el candado puesto
 	def hacerConexion(self, ip,puerto):
 		#se crea el socket para enviar
 		socketEmisorTCP = socket.socket()
@@ -507,7 +514,8 @@ class EmisorTCP:
 			self.conexiones.append(conexion)
 			return True
 
-	#Llamar solo CON candado adquirido
+	#Llamar con el candado puesto
+	#retorna el numero del indice de la conexion si lo encuentra, sino entonces retorna -1
 	def buscarConexion(self, ip,puerto):
 		i = 0;
 		largo = len(self.conexiones)
@@ -517,7 +525,7 @@ class EmisorTCP:
 			i = i + 1
 		return -1
 
-	#Llamar solo CON candado adquirido
+	#llamar con el candado puesto
 	def cerrarUnaConexion(self, ip,puerto):
 		i = 0;
 		largo = len(self.conexiones)
@@ -528,13 +536,12 @@ class EmisorTCP:
 				break
 			i = i + 1
 
-	#Llamar solo CON candado adquirido
+	#Llamar con el candado puesto
 	def cerrarConexiones(self):
 		while len(self.conexiones) != 0:
 			self.conexiones[0].cerrarConexion()
 			self.conexiones.remove(self.conexiones[0])
 
-	#NO necesita tener candado
 	def tuplaToBytes(self,tupla):
 		tupladiv = tupla.split(' ')
 		numeroip = tupladiv[0]
@@ -549,7 +556,6 @@ class EmisorTCP:
 		bytesmios += (costo).to_bytes(3, byteorder='big')
 		return bytesmios
 
-	#NO necesita tener candado
 	def leerMensaje(self):
 		#print('Ingrese la cantidad de tuplas que quiere enviar:')
 		entradas = 0
@@ -600,9 +606,8 @@ class EmisorTCP:
 			#print('\n')
 		return vectorBytes
 
-	#Llamar solo SIN candado adquirido
 	def enviarMensaje(self):
-		#self.lockConexiones.acquire()
+		self.lockConexiones.acquire()
 		ip = input("Digite la ip del destinatario: ")
 		ipPrueba = ip + "/32"
 		try:
@@ -619,7 +624,7 @@ class EmisorTCP:
 				if n < 0 or n > 65535:
 					print ("Puerto no valido")
 				else:
-					self.lockConexiones.acquire()
+
 					indice = self.buscarConexion(ip,int(puerto))
 
 					if indice == -1:
@@ -640,16 +645,14 @@ class EmisorTCP:
 							self.cerrarUnaConexion(ip,int(puerto))
 						if len(mensaje) == 3:
 							self.conexiones.pop(indice)
-					self.lockConexiones.release()
+		self.lockConexiones.release()
 
-	#Llamar solo SIN candado adquirido
 	def borrarme(self):
-		#self.lockConexiones.acquire()
+		self.lockConexiones.acquire()
 		mensaje = bytearray((1).to_bytes(2, byteorder='big'))# cant tuplas
 		mensaje += (0).to_bytes(1, byteorder='big')
 
 		i = 0
-		self.lockConexiones.acquire()
 		cant = len(self.conexiones)
 		while i < cant:
 			self.conexiones[i].enviarMensaje(mensaje)
@@ -658,7 +661,6 @@ class EmisorTCP:
 		self.lockConexiones.release()
 		return
 
-	#NO necesita tener candado
 	def menu(self):#HACER UN WHILE CON UN MENU 
 		print('Menu principal del modulo de Red TCP: \n'
 					'\t1. Enviar un mensaje. \n'
@@ -688,6 +690,7 @@ class EmisorTCP:
 				#proceso_repetorTcp.exit()
 			else:
 				print('Ingrese una opcion valida.')
+
 
 class NodoTCP:
 
@@ -753,12 +756,18 @@ def comando(comandosolicitado):
 					#udp.despligueMenuUDP()
 					return 1
 			else:
-				print("Parametros no valido")
+				print("Comando no valido")
 				return -1
 	else:
-		print("Parametros no valido")
+		print("Comando no valido")
 		return -1
 
+def consola():
+	listo = -1
+	while listo == -1:
+		comandoDigitado = input(">")
+		listo = comando(comandoDigitado)
+
+
 if __name__ == '__main__':
-	if len(sys.argv) == 4:
-		comando(sys.argv[1] + " " + sys.argv[2] + " " + sys.argv[3])
+	consola()
