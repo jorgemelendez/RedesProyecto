@@ -52,7 +52,7 @@ class EmisorUDP:
 			#print('Ingrese la tupla:')
 			leer = True
 			while leer:
-				tupla = input("Ingrese una tupla(ip mascara puerto): ")
+				tupla = input("Ingrese una tupla(ip mascara costo): ")
 				tuplaDividida = tupla.split()# tupla.replace(" ", "/",1)
 				if len(tuplaDividida) == 3 :
 					ipPrueba = tuplaDividida[0] + "/" + tuplaDividida[1]
