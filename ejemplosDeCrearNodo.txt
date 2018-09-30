@@ -1,0 +1,3 @@
+python3 NodesTCP-UPD.py creaNodo-intAS 192.168.0.15 5002
+
+python3 NodesTCP-UPD.py creaNodo-pseudoBGP 192.168.0.15 5002
