@@ -205,15 +205,16 @@ class EmisorTCP:
 		return
 
 	#NO necesita tener candado
-	def menu(self):#HACER UN WHILE CON UN MENU 
-		print('Menu principal del modulo de Red TCP: \n'
+	def menu(self):
+		
+		bandera = True
+		while bandera == True:
+			print('Menu principal del modulo de Red TCP: \n'
 					'\t1. Enviar un mensaje. \n'
 					'\t2. Ver mensajes recibidos. \n'
 					'\t3. Imprimir tabla de alcanzabilidad. \n'
 					'\t4. Conexiones existentes. \n'
 					'\t5. Cerrar nodo.')
-		bandera = True
-		while bandera == True:
 			taskUsuario = input('Que desea hacer:')
 			if taskUsuario == '1':
 				self.enviarMensaje()

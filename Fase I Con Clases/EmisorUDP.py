@@ -117,13 +117,14 @@ class EmisorUDP:
 			fuente = self.tablaAlcanzabilidad.eliminarPrimerFuente()
 
 	def despligueMenuUDP(self):
-		print('Menu principal del modulo de Red UDP: \n'
+
+		bandera = True
+		while bandera == True:
+			print('Menu principal del modulo de Red UDP: \n'
 					'\t1. Enviar un mensaje. \n'
 					'\t2. Ver mensajes recibidos. \n'
 					'\t3. Imprimir tabla de alcanzabilidad.\n'
 					'\t4. Cerrar servidor de mensajes.')
-		bandera = True
-		while bandera == True:
 			taskUsuario = input('Que desea hacer:')
 			if taskUsuario == '1':
 				self.envioMensajeUDP()
