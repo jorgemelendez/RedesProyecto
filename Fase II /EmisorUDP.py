@@ -10,6 +10,8 @@ from socket import error as SocketError
 from MensajesRecibidos import *
 from TablaAlcanzabilidad import *
 
+	
+
 class EmisorUDP:
 	#Objeto para guardar conexiones
 	mensajesRecibidos = MensajesRecibidos()
@@ -32,6 +34,7 @@ class EmisorUDP:
 		costo = int(tupladiv[2])
 		bytesmios += (costo).to_bytes(3, byteorder='big')
 		return bytesmios
+	
 	def leerMensaje(self):
 		#print('Ingrese la cantidad de tuplas que quiere enviar:')
 		entradas = 0

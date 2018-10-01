@@ -1,0 +1,8 @@
+Que pasa si un receptor no responde(osea no le llega le mensaje)?
+
+Preguntar si se necesita el puerto de origen y el puerto de destino en un mensaje?
+
+
+Como se pegaria los codigos si son distintos tipos en las estructuras de los mensajes?
+
+Se puede hacer la linea de mensaje y ack mensaje con un solo socket? es decir, envio datos y espero ack en el mismo socket?
