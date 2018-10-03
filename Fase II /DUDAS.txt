@@ -1,8 +1,29 @@
-Que pasa si un receptor no responde(osea no le llega le mensaje)?
+Que pasa si un receptor no responde nunca(osea no le llega le mensaje)?
 
-Preguntar si se necesita el puerto de origen y el puerto de destino en un mensaje?
+Que pasa si el receptor nunca responde a una solicitud de mensaje? a cuantos intentos se dice que que ese puerto no esta escuchando?
 
+Preguntar si se necesita el puerto de origen y el puerto de destino en un mensaje? Es que creo que no se necesita porque este estaria en la estrutura de leer el mensaje de sockets por defecto
 
 Como se pegaria los codigos si son distintos tipos en las estructuras de los mensajes?
 
-Se puede hacer la linea de mensaje y ack mensaje con un solo socket? es decir, envio datos y espero ack en el mismo socket?
+Se puede hacer la linea de mensaje y ack mensaje con un solo socket? es decir, envio datos y espero ack en el mismo socket? podemos hacerlo asi?
+
+Podemos usar SN y RN como numeros 0 y 1 nada mas, que se turnen? en caso de que no, definimos el tamano nosotros?
+
+Porque son los timeOut de los receptores?, en caso de timeout en el receptor que debe hacer? reenvar el ack?,  ,deberia de crear un hilo para cada conexion verdad? si si, como se hacer si todos estan escuchando en el mismo puerto?
+
+La bitacora de todo lo que hace el emisor y el receptor, es como decir que recibio el paquete con sn de tanto y envio ack con sn de tanto y asi? deben estar las bitacoras del emisor y receptor del mismo nodo en el mismo archivo? si hay 2 nodos en una misma maquina que genere nombres de bitacoras aleatorios?
+
+Al definir el tamano del paquete, incluye datos+encabezado o solo datos?
+
+En el algoritmo, cuando dice, "cuando reciba una trama libre de error", que quiere decir? en caso de recibir algo mal, mandamos un NACK
+
+Una simulacion de conexion solo debe durar en lo que se enviar el archivo completo? o perdura mas tiempo? si dura mas tiempo, cuando se cierra? cuando se envia ack?
+
+Una conexion logica debe de tenerla tanto el emisor como receptor del mismo nodo para poder enviarle archivos el receptor al emisor? para cumplir full duplex, en caso de que no, como seria lo de full?,
+
+En nuestro caso cuando dice "pasele el parquete a la capa superior" eso se puede ser un metodo que guarde los datos en la lista de mensajes recibidos para luego imprimirlos si se quiere imprimir? o que guarde lo recibido en un archivo?
+
+Para armar la conexion fullduplex se manda el puerto del Receptor "normal"(osea el puerto que se digito al crear el nodo) del nodo?
+
+Puede suceder el caso donde me llegue un mensaje de tipo iniciar conexion, pero la conexion ya existe? que se hace, se igunora?

@@ -27,7 +27,7 @@ class EmisorTCP:
 		self.conexiones = list()
 		self.lockConexiones = threading.Lock()
 
-	#Llamar solo CON candado adquirido
+	#Llamar solo SIN candado adquirido
 	def imprimirConexionesExistentes(self):
 		self.lockConexiones.acquire()
 		i = 0;

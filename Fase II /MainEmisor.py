@@ -10,6 +10,7 @@ from socket import error as SocketError
 from MensajesRecibidos import *
 from TablaAlcanzabilidad import *
 from LeerArchivo import *
+from ConexionLogicaUDP import *
 
 
 #contenido  = archivoToString("/home/christofer/Escritorio/RedesProyecto/ArchivoPrueba.txt")
@@ -21,51 +22,82 @@ while i < largo:
 	print(segmentado[i])
 	print (len(segmentado[i]))
 	i = i + 1"""
+class EmisorUDP:
 
-def enviarArchivo():
-	direccion = input('Digite la direccion del archivo: ')
-	contenido = archivoToString(direccion)
-	segmentado = segmentarArchivo(contenido, 3)#ESTE 3 ES EL NUMERO DE BYTES DE DATOS
+	conexiones = list()
+	lockConexiones = threading.Lock()
 
-	serverNameS = input('Digite la ip del destinatario: ')
-	ipPrueba = serverNameS + "/32"
-	try:
-		n = ipaddress.ip_network(ipPrueba)
-	except ValueError as e:
-		print ("Ip no valida")
-	else:
-		lecturaPuerto = input('Digite el puerto del destinatario: ')
+	miIpServidor = "192.168.0.15"
+	miPuertoServidor = 10000
+
+	def __init__(self):
+		self.conexiones = list()
+		self.lockConexiones = threading.Lock()
+
+	#Llamar solo CON candado adquirido
+	def buscarConexionLogica(self, ip,puerto):#APLICA SI LAS CONEXIONES DEBEN ESTAR PARA AMBOS , creo que deben estar aunque para tener una lista de las conexiones hechas para usarlas, VER QUE DICE LA PROFE
+		i = 0;
+		largo = len(self.conexiones)
+		while i < largo:
+			if self.conexiones[i].soyLaConexionHacia(ip,puerto) :
+				return i
+			i = i + 1
+		return -1
+
+	
+			
+
+	
+
+	def enviarArchivo(self):
+		ipServidor = input('Digite la ip del destinatario: ')
+		ipPrueba = ipServidor + "/32"
 		try:
-			serverPortS = int(lecturaPuerto)
+			n = ipaddress.ip_network(ipPrueba)
 		except ValueError as e:
-			print ("Puerto no valido")
+			print ("Ip no valida")
 		else:
-			if serverPortS < 0 or serverPortS > 65535:
+			lecturaPuerto = input('Digite el puerto del destinatario: ')
+			try:
+				puertoServidor = int(lecturaPuerto)
+			except ValueError as e:
 				print ("Puerto no valido")
 			else:
-				i = 0
-				largo = len(segmentado)
-				while i < largo:
-					message = segmentado[i]
-					clientSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-					clientSocket.settimeout(0.5)##AAAAAAAAAVERIGUAR CUANTO DEBERIA DE SER
-					llegoACK = False
-					while llegoACK == False:
-						clientSocket.sendto(message, (serverNameS, serverPortS))
-						try:
-							ACK, address = clientSocket.recvfrom(1024)
-							llegoACK = True
-							print(ACK)
-							#rREVISAR SI ES UN ACK
-						except socket.timeout:
-							print("No llego ACK")
+				if puertoServidor < 0 or puertoServidor > 65535:
+					print ("Puerto no valido")
+				else:
+					direccion = input('Digite la direccion del archivo: ')
+					contenido = archivoToString(direccion)
+					self.lockConexiones.acquire()
+					indice = self.buscarConexionLogica(ipServidor, puertoServidor)# APLICA SOLO SI LA CONEXIONES DEBEN ESTAR EN AMBOS, creo que deben estar aunque para tener una lista de las conexiones hechas para usarlas, 
+
+					if indice == -1:
+						conexion = ConexionLogicaUDP( ipServidor, puertoServidor, self.miIpServidor, self.miPuertoServidor )
+						exito = conexion.connect(ipServidor,puertoServidor)
+						if exito:
+							self.conexiones.append(conexion)
+							print("Nueva conexion")
+							respEnvio = self.conexiones[len(self.conexiones)-1].send(contenido)
+							if respEnvio == False:
+								self.cerrarUnaConexion(ip,int(puerto))
+					
+					else:
+						print("Conexion existente")
+						contenido = self.leerMensaje()
+						respEnvio = self.conexiones[indice].enviarMensaje(contenido)
+						if respEnvio == False:
+							self.cerrarUnaConexion(ip,int(puerto))
+						
+					self.lockConexiones.release()
+
+
 		
-					if ACK == (1).to_bytes(1, byteorder='big'):
-						i = i + 1
-					clientSocket.close()
+
+	
 
 
 
 
 if __name__ == '__main__':
-	enviarArchivo()
+	emisor = EmisorUDP()
+	emisor.enviarArchivo()
