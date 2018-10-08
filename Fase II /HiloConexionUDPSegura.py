@@ -98,9 +98,11 @@ class HiloConexionUDPSegura:
 
 				if self.etapaSyn != 3:
 					if self.etapaSyn == 0 and tipoPaq == 1:
+						#Guardar el SNpaq y revisar cuando hay que aumentarlo
 						self.connect(self.otraConexion[0], self.otraConexion[1])
 						self.etapaSyn = 1
 					elif self.etapaSyn == 2 and tipoPaq == 1:
+						#Guardar el SNpaq y revisar cuando hay que aumentarlo
 						ACKConexion = armarPaq(self.miConexion[0], self.miConexion[1], self.otraConexion[0], self.otraConexion[1], 3, self.SN, self.RN, self.ultimoMensajeMandado) #NO HAY QUE MANDAR DATOS PORQUE ES ESTABLECIENDO CONEXION
 						self.lockSocket.acquire()
 						self.socketConexion.sendto(ACKConexion, self.otraConexion)
