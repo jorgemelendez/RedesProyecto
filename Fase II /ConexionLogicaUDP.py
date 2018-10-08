@@ -21,6 +21,8 @@ class ConexionLogicaUDP:
 	hiloFuncionando = False
 
 	datosRecibidos = bytearray()
+
+	RN = 0
 	
 	#otroIpRec		: Ip por donde me hablo para establecer conexion
 	#otroPuertoRec	: Puerto por donde me hablo para establecer conexion
@@ -33,17 +35,40 @@ class ConexionLogicaUDP:
 		self.miPuertoRec = miPuertoRec
 		self.hiloFuncionando = False
 		self.datosRecibidos = bytearray()
+		self.RN = 0
 
 	def activarHiloFuncionando(self):
 		self.hiloFuncionando = False
 
-	def annadirDatosRecibidos(self,datosNuevos):
-		self.datosRecibidos += datosNuevos
-		#Enviar paquete de ack de respuesta
-		ACK = armarPaq(self.miIpRec,self.miPuertoRec,self.otroIpRec,self.otroPuertoRec,10,SNoRN, datos)
-		socketACK = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-		socketACK.sendto(ACK, (self.otroIpRec, self.otroPuertoRec))
-		socketACK.close()
+	def recv(self, emisor,recibido):
+		otroIpRec = bytesToIp(recibido[0:4])
+		#print(otroIpRec)
+		otroPuertoRec = bytesToInt(recibido[4:6])
+		#print(otroPuertoRec)
+		miIpRec = bytesToIp(recibido[6:10])
+		#print(miIpRec)
+		miPuertoRec = bytesToInt(recibido[10:12])
+		#print(miPuertoRec)
+		tipoPaq = bytesToInt(recibido[12:13])
+		secuencia = bytesToInt(recibido[13:14])
+		datos = recibido[13:]
+
+		print("SN")
+		print(secuencia)
+		print("RN")
+		print(self.RN)
+		if secuencia == self.RN:
+			print("ENTRE")
+			self.datosRecibidos += datos
+			#Enviar paquete de ack de respuesta
+			self.RN = self.RN + 1
+
+			ACK = armarPaq(miIpRec,miPuertoRec,otroIpRec,otroPuertoRec,20,self.RN, bytearray())
+			socketACK = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+			print(otroIpRec)
+			print(otroPuertoRec)
+			socketACK.sendto(ACK, emisor)
+			socketACK.close()
 
 	def soyLaConexionDesde(self,miIpRec,miPuertoRec):
 		if self.miIpRec == miIpRec and self.miPuertoRec == miPuertoRec:
@@ -99,6 +124,9 @@ class ConexionLogicaUDP:
 			llegoACK = False
 			intento = 0
 			while llegoACK == False:
+				print("aqui")
+				print(self.miPuertoRec)
+				print("aqui")
 				self.miSocketEmisor.sendto(tramaSN, (self.otroIpRec, self.otroPuertoRec))
 				try:
 					ACK, address = self.miSocketEmisor.recvfrom(1024)
@@ -106,11 +134,14 @@ class ConexionLogicaUDP:
 					intento = intento + 1
 					print("No llego ACK")
 				else:
+					print("AAAAQIO")
 					intento = 0
-					tipo = int.from_bytes( ACK[0:1], byteorder='big')
-					RN = int.from_bytes( ACK[1:2], byteorder='big')
-					if tipo == 20 and RN > SN:
-						SN = RN
+					tipo = int.from_bytes( ACK[12:13], byteorder='big')
+					RNrecibido = int.from_bytes( ACK[13:14], byteorder='big')
+					print(tipo)
+					print(RNrecibido)
+					if tipo == 20 and RNrecibido > SN:
+						SN = RNrecibido
 						llegoACK = True
 						i = i + 1
 						#print(ACK)

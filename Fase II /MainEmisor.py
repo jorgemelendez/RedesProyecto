@@ -27,7 +27,7 @@ class EmisorUDP:
 	conexiones = list()
 	lockConexiones = threading.Lock()
 
-	miIpServidor = "192.168.0.15"
+	miIpServidor = "172.16.105.251"
 	miPuertoServidor = 10000
 
 	def __init__(self):

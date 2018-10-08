@@ -119,13 +119,13 @@ class ReceptorUDP:
 	#Algoritmo ARQRECEPTOR
 	def paqueteConDatos(self, emisor, recibido):
 		otroIpRec = bytesToIp(recibido[0:4])
-		print(otroIpRec)
+		#print(otroIpRec)
 		otroPuertoRec = bytesToInt(recibido[4:6])
-		print(otroPuertoRec)
+		#print(otroPuertoRec)
 		miIpRec = bytesToIp(recibido[6:10])
-		print(miIpRec)
+		#print(miIpRec)
 		miPuertoRec = bytesToInt(recibido[10:12])
-		print(miPuertoRec)
+		#print(miPuertoRec)
 		tipoPaq = bytesToInt(recibido[12:13])
 		secuencia = bytesToInt(recibido[13:14])
 		datos = recibido[13:]
@@ -137,7 +137,8 @@ class ReceptorUDP:
 		if indice == -1:
 			print("Paquete de conexion no establecida")
 		else:
-			self.conexiones[indice].annadirDatosRecibidos(datos)
+			print("Mande a porocesar")
+			self.conexiones[indice].recv(emisor,recibido)
 		self.lockConexiones.release()
 		
 		
@@ -149,19 +150,19 @@ class ReceptorUDP:
 		serverSocket.bind((ip, puerto))
 		
 		while 1:#CREAR UN HILO PARA QUE PROCESE CADA MENSAJE RECIBIDO
-			mensaje, add = serverSocket.recvfrom(2048)
+			mensaje, addr = serverSocket.recvfrom(2048)
 			if bytesToInt(mensaje[12:13]) == 1:# Mensaje para establecer conexion
-				self.accept(serverSocket, add, mensaje)
+				self.accept(serverSocket, addr, mensaje)
 			elif bytesToInt(mensaje[12:13]) == 6:# Mensaje ack de establecer conexion(fin de establecimiento de conexion)
 				self.finalaccept(mensaje)
 			elif bytesToInt(mensaje[12:13]) == 16:# Mensaje de datos
 				if randrange(10) > 1:
-					self.paqueteConDatos(add, mensaje)
+					self.paqueteConDatos(addr, mensaje)
 
 
 if __name__ == '__main__':
 	mensajesRecibidos= MensajesRecibidos()
 	tablaAlcanzabilidad = TablaAlcanzabilidad()
 	servidorUDP = ReceptorUDP(mensajesRecibidos, tablaAlcanzabilidad)
-	proceso_receptorUDP = threading.Thread(target=servidorUDP.listen, args=("192.168.0.15",5000,))
+	proceso_receptorUDP = threading.Thread(target=servidorUDP.listen, args=("172.16.105.251",5000,))
 	proceso_receptorUDP.start()

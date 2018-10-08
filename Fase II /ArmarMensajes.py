@@ -40,14 +40,15 @@ def bytesToInt(numbytes):
 #tipoMensaje = 16, Indica mensaje de datos, e este caso el SEC(SN) si aplica, en los datos van los datos del mensaje
 #tipoMensaje = 20, Indica mensaje de ACK de datos, en este caso si aplica el SEC(RN), en este caso los datos van vacios
 #Todos los parametros deben venir en el formato respectivo, excepto los datos que deben venir en bytes
-def armarPaq(miIpRec,miPuertoRec,otroIpRec,otroPuertoRec,tipoMensaje,SNoRN, datos):
+def armarPaq(miIpRec, miPuertoRec, otroIpRec, otroPuertoRec, tipoMensaje, SN, RN, datos):
 	resp = bytearray()
 	resp += ipToBytes(miIpRec)#4bytes
 	resp += intToBytes(miPuertoRec,2)#2bytes
 	resp += ipToBytes(otroIpRec)#4bytes
 	resp += intToBytes(otroPuertoRec,2)#2bytes
 	resp += intToBytes(tipoMensaje,1)#1bytes
-	resp += intToBytes(SNoRN,1)#1bytes #ver de tamano SNoRN
+	resp += intToBytes(SN,1)#1bytes #ver de tamano SN
+	resp += intToBytes(RN,1)#1bytes #ver de tamano RN
 	resp += datos
 	#print (len(resp))
 	return resp
