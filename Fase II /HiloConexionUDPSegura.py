@@ -25,7 +25,7 @@ class HiloConexionUDPSegura:
 
 		self.ackDatosFin = False
 
-		self.ackHandshake = False
+		self.ackHandshakeTerminado = False
 		
 		self.ultimoMensajeMandado = bytearray()
 
@@ -64,7 +64,12 @@ class HiloConexionUDPSegura:
 				mensaje = self.buzonReceptor.sacarDatos(self.otraConexion)
 			if mensaje is None:
 
-				if self.etapaSyn == 3: #Caso donde no responde con paq nuevo
+				if self.etapaSyn == 3 and self.ackHandshakeTerminado == False:#Caso donde no llegan los primeros primeros datos y ya se envio el ack syn
+					ACKConexion = armarPaq(self.miConexion[0], self.miConexion[1], self.otraConexion[0], self.otraConexion[1], 3, self.SN, self.RN, bytearray()) #NO HAY QUE MANDAR DATOS PORQUE ES ESTABLECIENDO CONEXION
+					self.lockSocket.acquire()
+					self.socketConexion.sendto(ACKConexion, self.otraConexion)
+					self.lockSocket.release()
+				if self.etapaSyn == 3 and self.ackHandshakeTerminado == True: #Caso donde no responde con paq nuevo
 					ACKDatos = armarPaq(self.miConexion[0], self.miConexion[1], self.otraConexion[0], self.otraConexion[1], 10, self.SN, self.RN, self.ultimoMensajeMandado ) #VER SI TENGO DATOS PARA MANDAR
 					self.lockSocket.acquire()
 					self.socketConexion.sendto(ACKDatos, self.otraConexion)
