@@ -37,7 +37,7 @@ class HiloConexionUDPSegura:
 		return self.miConexion == (ip,puerto)
 
 	def meterArchivoAEnviar(self, contenidoArchivo):
-		segmentado = self.segmentarArchivo(contenidoArchivo, 5)
+		segmentado = segmentarArchivo(contenidoArchivo, 5)
 		self.lockArchivos.acquire()
 		self.ArchivosAEnviar.append(segmentado)
 		self.lockArchivos.release()
@@ -52,7 +52,7 @@ class HiloConexionUDPSegura:
 		
 
 	#METER MENSAJE EN EL BUZON ANTES DE CREAR EL HILO
-	def receptor():
+	def receptor(self):
 		while True:
 
 			
@@ -60,12 +60,12 @@ class HiloConexionUDPSegura:
 
 
 
-			mensaje = self.buzonReceptor.sacarDatos(self.otraConexion)
-			if mensaje is None:
+			recibido = self.buzonReceptor.sacarDatos(self.otraConexion)
+			if recibido is None:
 				time.sleep(1)#ANALIZAR LA CANTIDAD DE SEGUNDOS
-			#if mensaje is None:
-				mensaje = self.buzonReceptor.sacarDatos(self.otraConexion)
-			if mensaje is None:
+			#if recibido is None:
+				recibido = self.buzonReceptor.sacarDatos(self.otraConexion)
+			if recibido is None:
 
 				if self.etapaSyn == 3 and self.ackHandshakeTerminado == False:#Caso donde no llegan los primeros primeros datos y ya se envio el ack syn
 					ACKConexion = armarPaq(self.miConexion[0], self.miConexion[1], self.otraConexion[0], self.otraConexion[1], 3, self.SN, self.RN, bytearray()) #NO HAY QUE MANDAR DATOS PORQUE ES ESTABLECIENDO CONEXION
@@ -79,7 +79,7 @@ class HiloConexionUDPSegura:
 					self.lockSocket.release()
 				else:
 					if self.etapaSyn == 2: #Caso donde no responden syn
-						self.connect(self, self.otraConexion[0], self.otraConexion[1])
+						self.connect(self.otraConexion[0], self.otraConexion[1])
 						#VER CUANTOS INTENTOS DE RENVIO DE INTENTO DE CONEXIONS
 					else:
 						if self.etapaSyn == 1:#Caso donde no responden respuesta a syn(no llega ack syn)
@@ -246,7 +246,7 @@ class Server:
 			
 			self.lockConexiones.acquire()
 
-			existeConexion = buscarConexionLogica( clientAddress[0], clientAddress[1])
+			existeConexion = self.buscarConexionLogica( clientAddress[0], clientAddress[1])
 
 			if existeConexion != -1 :
 				self.buzonReceptor.meterDatos(clientAddress, recibido)
@@ -275,7 +275,7 @@ if __name__ == '__main__':
 
 	lockSocket = threading.Lock()
 
-	time.sleep(10)
+	#time.sleep(10)
 
 	buzonReceptor = Buzon()
 
@@ -283,9 +283,9 @@ if __name__ == '__main__':
 
 	lockConexiones = threading.Lock()
 
-	emisor = emisor( (sys.argv[1],sys.argv[2]), buzonReceptor, socketConexion, lockSocket, conexiones, lockConexiones)
+	emisor = emisor( (sys.argv[1],int(sys.argv[2])), buzonReceptor, socketConexion, lockSocket, conexiones, lockConexiones)
 
-	server = Server( (sys.argv[1],sys.argv[2]), buzonReceptor, socketConexion, lockSocket, conexiones, lockConexiones)
+	server = Server( (sys.argv[1],int(sys.argv[2])), buzonReceptor, socketConexion, lockSocket, conexiones, lockConexiones)
 
 	threadEmisor = threading.Thread(target=server.cicloServer, args=())
 	threadEmisor.start()
