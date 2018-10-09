@@ -19,9 +19,9 @@ class HiloConexionUDPSegura:
 		
 
 		self.lockArchivos = threading.Lock()
-		self.paquetesEnviar = list()#Archivos por enviar
+		self.ArchivosAEnviar = list()#Archivos por enviar
 
-		self.paqueteActual = list()#Archivo actual que se esta enviando
+		self.archivoActual = list()#Archivo actual que se esta enviando
 
 		self.ackDatosFin = False
 
@@ -29,10 +29,13 @@ class HiloConexionUDPSegura:
 		
 		self.ultimoMensajeMandado = bytearray()
 
+	def soyLaConexionHacia(self, ip, puerto):
+		return self.miConexion == (ip,puerto)
+
 	def meterArchivoAEnviar(self, contenidoArchivo):
 		segmentado = self.segmentarArchivo(contenidoArchivo, 5)
 		self.lockArchivos.acquire()
-		self.paquetesEnviar.append(segmentado)
+		self.ArchivosAEnviar.append(segmentado)
 		self.lockArchivos.release()
 
 
@@ -48,11 +51,7 @@ class HiloConexionUDPSegura:
 	def receptor():
 		while True:
 
-			if len(self.paqueteActual) == 0 and ackDatosFin == False: #paquete actual ya termino y ya lo confirmaron
-				if len(self.paquetesEnviar) != 0: # si hay mas paquetes para enviar
-					self.lockArchivos.acquire()
-					self.paqueteActual = self.paquetesEnviar.pop(0)
-					self.lockArchivos.release()
+			
 			
 
 
@@ -77,6 +76,7 @@ class HiloConexionUDPSegura:
 				else:
 					if self.etapaSyn == 2: #Caso donde no responden syn
 						self.connect(self, self.otraConexion[0], self.otraConexion[1])
+						#VER CUANTOS INTENTOS DE RENVIO DE INTENTO DE CONEXIONS
 					else:
 						if self.etapaSyn == 1:#Caso donde no responden respuesta a syn(no llega ack syn)
 							ACKConexion = armarPaq(self.miConexion[0], self.miConexion[1], self.otraConexion[0], self.otraConexion[1], 1, self.SN, self.RN, bytearray()) #NO HAY QUE MANDAR DATOS PORQUE ES ESTABLECIENDO CONEXION
@@ -94,15 +94,21 @@ class HiloConexionUDPSegura:
 				RNpaq = bytesToInt(recibido[14:15])
 				datos = recibido[15:]
 
+
+
 				#Poner primero el caso de que esta sincronmizando
 
 				if self.etapaSyn != 3:
 					if self.etapaSyn == 0 and tipoPaq == 1:
 						#Guardar el SNpaq y revisar cuando hay que aumentarlo
+						self.RN = SNpaq + 1
+						self.SN = 0
 						self.connect(self.otraConexion[0], self.otraConexion[1])
 						self.etapaSyn = 1
 					elif self.etapaSyn == 2 and tipoPaq == 1:
 						#Guardar el SNpaq y revisar cuando hay que aumentarlo
+						self.RN = SNpaq + 1
+						self.SN = RNpaq
 						ACKConexion = armarPaq(self.miConexion[0], self.miConexion[1], self.otraConexion[0], self.otraConexion[1], 3, self.SN, self.RN, self.ultimoMensajeMandado) #NO HAY QUE MANDAR DATOS PORQUE ES ESTABLECIENDO CONEXION
 						self.lockSocket.acquire()
 						self.socketConexion.sendto(ACKConexion, self.otraConexion)
@@ -116,25 +122,41 @@ class HiloConexionUDPSegura:
 						print("Mensaje extranno")
 						print(tipoPaq)
 				else:
-					if self.SN == self.RNpaq: #REVISAR SI ES DEL TIPO DE MENSAJE QUE ESTOY ESPERANDO
-						self.datosRecibidos += datos
-						#Enviar paquete de ack de respuesta
-						self.RN = self.RN + 1
+					if tipoPaq == 10:
+						if self.RN == SNpaq: #REVISAR SI ES DEL TIPO DE MENSAJE QUE ESTOY ESPERANDO
+							self.datosRecibidos += datos
+							#Enviar paquete de ack de respuesta
+							self.RN = self.RN + 1
 
-						#self.ultimoMensajeMandado = 
-						ACK = armarPaq(miIpRec, miPuertoRec, otroIpRec, otroPuertoRec, 1, self.SN, self.RN, self.ultimoMensajeMandado) #VER SI TENGO DATOS PARA MANDAR
-						
-						self.lockSocket.acquire()
-						self.socketConexion.sendto(ACK, emisor)
-						self.lockSocket.release()
+							if RNpaq > self.SN:
+								self.SN = RNpaq
+
+								if len(self.archivoActual) == 0: #paquete actual ya termino y ya lo confirmaron
+									self.lockArchivos.acquire()
+									if len(self.ArchivosAEnviar) != 0: # si hay mas paquetes para enviar
+										
+										self.archivoActual = self.ArchivosAEnviar.pop(0)
+									
+										self.ultimoMensajeMandado = self.archivoActual.pop(0)
+									else:
+										self.ultimoMensajeMandado = bytearray()
+									self.lockArchivos.release()
+								else:
+									self.ultimoMensajeMandado = self.archivoActual.pop(0)
+
+								ACK = armarPaq(self.miConexion[0], self.miConexion[1], self.otraConexion[0], self.otraConexion[1], 10, self.SN, self.RN, self.ultimoMensajeMandado) #VER SI TENGO DATOS PARA MANDAR
+								
+								self.lockSocket.acquire()
+								self.socketConexion.sendto(ACK, emisor)
+								self.lockSocket.release()
 
 
 
 class emisor:
 
-	def __init__(self, miConexion, buzonReceptor, socketConexion, lockSocket):
-		self.conexiones = list()
-		self.lockConexiones = threading.Lock()
+	def __init__(self, miConexion, buzonReceptor, socketConexion, lockSocket, conexiones, lockConexiones):
+		self.conexiones = conexiones
+		self.lockConexiones = lockConexiones
 		self.miConexion = miConexion
 		self.buzonReceptor = buzonReceptor
 		self.socketConexion = socketConexion
@@ -170,7 +192,7 @@ class emisor:
 					print ("Puerto no valido")
 				else:
 					direccion = input('Digite la direccion del archivo: ')
-					direccion = "/home/christofer/Escritorio/RedesProyecto/ArchivoPrueba.txt" #QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQUUUUUUUUUUUUUUUUUUIIIIIIIIIIIIIIIIIIIITTTTTTTTTTTTTTTAAAAAAAAAAAAAAAAAAAAAARRRRRRRRRRRRRRRRRRRRR
+					#direccion = "/home/christofer/Escritorio/RedesProyecto/ArchivoPrueba.txt" #QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQUUUUUUUUUUUUUUUUUUIIIIIIIIIIIIIIIIIIIITTTTTTTTTTTTTTTAAAAAAAAAAAAAAAAAAAAAARRRRRRRRRRRRRRRRRRRRR
 					contenido = archivoToString(direccion)
 					self.lockConexiones.acquire()
 					indice = self.buscarConexionLogica(otraIp, otroPuerto)
@@ -179,62 +201,88 @@ class emisor:
 						print ("Nueva conexion")
 						conexion = HiloConexionUDPSegura( self.buzonReceptor, (otraIp,otroPuerto), self.miConexion, self.socketConexion, self.lockSocket )
 						conexion.connect(otraIp,otroPuerto)
+						
 						hiloNuevaConexion = threading.Thread(target=conexion.receptor, args=())
 						hiloNuevaConexion.start()
 
-						self.conexiones.append(conexion)
+						self.conexiones.append(conexion)#ANALIDAR CUANDO HAY QUE SACARLA POR SI NO SE HACE EL HANDSHAKE O TERMINA LA CONEXION O TIMEOUT EN ENVIAR DATOS
 					
 					else:
 						print("Conexion existente")
 						
+					conexion.meterArchivoAEnviar(contenido)
 
-						if respEnvio == False:
-							self.cerrarUnaConexion(ip,int(puerto))
-						
 					self.lockConexiones.release()
 
 
 
 
+class Server:	
+	def __init__(self, miConexion, buzonReceptor, socketConexion, lockSocket, conexiones, lockConexiones):
+		self.conexiones = conexiones
+		self.lockConexiones = lockConexiones
+		self.miConexion = miConexion
+		self.buzonReceptor = buzonReceptor
+		self.socketConexion = socketConexion
+		self.lockSocket = lockSocket
+
+	#Llamar solo CON candado adquirido
+	def buscarConexionLogica(self, ip,puerto):#APLICA SI LAS CONEXIONES DEBEN ESTAR PARA AMBOS , creo que deben estar aunque para tener una lista de las conexiones hechas para usarlas, VER QUE DICE LA PROFE
+		i = 0;
+		largo = len(self.conexiones)
+		while i < largo:
+			if self.conexiones[i].soyLaConexionHacia(ip,puerto) :
+				return i
+			i = i + 1
+		return -1
+
+	def cicloServer():
+		while True:
+			recibido, clientAddress = self.socketConexion.recvfrom(2048)
+			
+			self.lockConexiones.acquire()
+
+			existeConexion = buscarConexionLogica( clientAddress[0], clientAddress[1])
+
+			if existeConexion != -1 :
+				self.buzonReceptor.meterDatos(clientAddress, recibido)
+			else:
+				tipoPaq = bytesToInt(recibido[12:13])
+				if tipoPaq == 1:
+					self.buzonReceptor.meterDatos(clientAddress, recibido)
+					
+					conexion = HiloConexionUDPSegura( self.buzonReceptor, clientAddress, self.miConexion, self.socketConexion, self.lockSocket )
+						
+					self.conexiones.append(conexion)#ANALIDAR CUANDO HAY QUE SACARLA POR SI NO SE HACE EL HANDSHAKE O TERMINA LA CONEXION O TIMEOUT EN ENVIAR DATOS
+					hiloNuevaConexion = threading.Thread(target=conexion.receptor, args=())
+					hiloNuevaConexion.start()
+				else:
+					print(clientAddress)
+					print("ESTA CONEXION NO EXITE Y LLEGO UN MENSAJE DISTINTO A SYN")
+			
+			self.lockConexiones.release()
 
 
 
 if __name__ == '__main__':
 
-	socketNuevo = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-	socketNuevo.bind(("192.168.0.15",int(sys.argv[1])))
+	socketConexion = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+	socketConexion.bind((sys.argv[1],int(sys.argv[2])))
+
+	lockSocket = threading.Lock()
 
 	time.sleep(10)
 
 	buzonReceptor = Buzon()
 
-	Hilo = HiloConexionUDPSegura(buzonReceptor, otraConexion, miConexion, socketConexion, lockSocket)
+	conexiones = list()
 
-	if len(sys.argv) == 3:#Inidica que si vienen 2 parametros es el que se va a conectar al otro
-		Hilo.connect("192.168.0.15", int(sys.argv[2]) )
+	lockConexiones = threading.Lock()
 
-	Hilo.receptor()
+	emisor = emisor( (sys.argv[1],sys.argv[2]), buzonReceptor, socketConexion, lockSocket, conexiones, lockConexiones)
 
+	server = Server( (sys.argv[1],sys.argv[2]), buzonReceptor, socketConexion, lockSocket, conexiones, lockConexiones)
 
-	proceso_repetorTcp = threading.Thread(target=repetorTcp.recibir, args=(ip,puerto,))
-	proceso_repetorTcp.start()
+	threadEmisor = threading.Thread(target=server.cicloServer, args=())
+	threadEmisor.start()
 
-
-
-
-	buzon = Buzon()
-	buzon.meterDatos(("192.168.0.15", 5000), "Primer dato")
-	buzon.meterDatos(("192.168.0.15", 5000), "Segundo dato")
-	buzon.meterDatos(("192.168.0.15", 5000), "Tercer dato")
-
-	print(buzon.sacarDatos(("192.168.0.15", 5000)))
-	time.sleep(0.5)
-
-	print(buzon.sacarDatos(("192.168.0.15", 5000)))
-	time.sleep(0.5)
-
-	print(buzon.sacarDatos(("192.168.0.15", 5000)))
-	time.sleep(0.5)
-
-	print(buzon.sacarDatos(("192.168.0.15", 5000)))
-	time.sleep(0.5)
