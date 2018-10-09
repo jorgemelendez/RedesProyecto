@@ -1,7 +1,11 @@
+import sys
 import time
 import socket
+import threading
+
 from ArmarMensajes import *
 from LeerArchivo import *
+from Buzon import *
 
 class HiloConexionUDPSegura:
 
@@ -236,7 +240,7 @@ class Server:
 			i = i + 1
 		return -1
 
-	def cicloServer():
+	def cicloServer(self):
 		while True:
 			recibido, clientAddress = self.socketConexion.recvfrom(2048)
 			
@@ -286,3 +290,4 @@ if __name__ == '__main__':
 	threadEmisor = threading.Thread(target=server.cicloServer, args=())
 	threadEmisor.start()
 
+	emisor.enviarArchivo()
