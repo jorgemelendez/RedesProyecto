@@ -165,6 +165,7 @@ class HiloConexionUDPSegura:
 							self.datosRecibidos += datos
 							if len(datos) == 0:
 								print("YA TERMINE DE ENVIAR DATOS")
+								print(self.datosRecibidos)
 							#Enviar paquete de ack de respuesta
 							self.RN = self.RN + 1
 
