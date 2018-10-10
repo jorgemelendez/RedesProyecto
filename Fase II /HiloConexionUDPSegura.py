@@ -100,6 +100,9 @@ class HiloConexionUDPSegura:
 
 
 
+				print("Etapa: "+ self.etapaSyn + " TipoPaq" + tipoPaq + " RN: " + self.RN + " SN: " + self.SN + " RNpaq: " + RNpaq + " SN: " + SNpaq  )
+
+
 				#Poner primero el caso de que esta sincronmizando
 
 				if self.etapaSyn != 3:
