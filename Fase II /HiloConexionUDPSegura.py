@@ -109,6 +109,7 @@ class HiloConexionUDPSegura:
 						self.SN = 0
 						self.connect(self.otraConexion[0], self.otraConexion[1])
 						self.etapaSyn = 1
+						print ("Entre en 1")
 					elif self.etapaSyn == 2 and tipoPaq == 1:
 						#Guardar el SNpaq y revisar cuando hay que aumentarlo
 						self.RN = SNpaq + 1
@@ -118,13 +119,16 @@ class HiloConexionUDPSegura:
 						self.socketConexion.sendto(ACKConexion, self.otraConexion)
 						self.lockSocket.release()
 						self.etapaSyn = 3
+						print ("Entre en 2")
 						break #QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQUUUUUUUUUUUUUUUUUUIIIIIIIIIIIIIIIIIIIITTTTTTTTTTTTTTTAAAAAAAAAAAAAAAAAAAAAARRRRRRRRRRRRRRRRRRRRR
 					elif self.etapaSyn == 1 and tipoPaq == 3:
 						self.etapaSyn = 3
+						print ("Entre en 3")
 						break #QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQUUUUUUUUUUUUUUUUUUIIIIIIIIIIIIIIIIIIIITTTTTTTTTTTTTTTAAAAAAAAAAAAAAAAAAAAAARRRRRRRRRRRRRRRRRRRRR
 					else:
 						print("Mensaje extranno")
 						print(tipoPaq)
+						print (self.etapaSyn)
 				else:
 					if tipoPaq == 10:
 						if self.RN == SNpaq: #REVISAR SI ES DEL TIPO DE MENSAJE QUE ESTOY ESPERANDO
