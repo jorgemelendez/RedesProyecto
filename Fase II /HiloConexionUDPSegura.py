@@ -100,7 +100,7 @@ class HiloConexionUDPSegura:
 
 
 
-				print("Etapa: "+ self.etapaSyn + " TipoPaq" + tipoPaq + " RN: " + self.RN + " SN: " + self.SN + " RNpaq: " + RNpaq + " SN: " + SNpaq  )
+				print("Etapa: "+ str(self.etapaSyn) + " TipoPaq" + str(tipoPaq) + " RN: " + str(self.RN) + " SN: " + str(self.SN) + " RNpaq: " + str(RNpaq) + " SN: " + str(SNpaq)  )
 
 
 				#Poner primero el caso de que esta sincronmizando
