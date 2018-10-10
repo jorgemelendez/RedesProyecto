@@ -20,7 +20,7 @@ class HiloConexionUDPSegura:
 		self.datosRecibidos = bytearray()
 		self.etapaSyn = 0
 
-		print("Cree hilo")		
+		#print("Cree hilo")		
 
 		self.lockArchivos = threading.Lock()
 		self.ArchivosAEnviar = list()#Archivos por enviar
@@ -100,7 +100,7 @@ class HiloConexionUDPSegura:
 
 
 
-				print("Etapa: "+ str(self.etapaSyn) + " TipoPaq" + str(tipoPaq) + " RN: " + str(self.RN) + " SN: " + str(self.SN) + " RNpaq: " + str(RNpaq) + " SN: " + str(SNpaq)  )
+				#print("Etapa: "+ str(self.etapaSyn) + " TipoPaq" + str(tipoPaq) + " RN: " + str(self.RN) + " SN: " + str(self.SN) + " RNpaq: " + str(RNpaq) + " SN: " + str(SNpaq)  )
 
 
 				#Poner primero el caso de que esta sincronmizando
@@ -112,7 +112,7 @@ class HiloConexionUDPSegura:
 						self.SN = 0
 						self.connect(self.otraConexion[0], self.otraConexion[1])
 						self.etapaSyn = 1
-						print ("Entre en 1")
+						#print ("Entre en 1")
 					elif self.etapaSyn == 2 and tipoPaq == 1:
 						#Guardar el SNpaq y revisar cuando hay que aumentarlo
 						self.RN = SNpaq + 1
@@ -122,12 +122,12 @@ class HiloConexionUDPSegura:
 						self.socketConexion.sendto(ACKConexion, self.otraConexion)
 						self.lockSocket.release()
 						self.etapaSyn = 3
-						print ("Entre en 2")
+						#print ("Entre en 2")
 						print ("Termine handshake como emisor")
 						#break #QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQUUUUUUUUUUUUUUUUUUIIIIIIIIIIIIIIIIIIIITTTTTTTTTTTTTTTAAAAAAAAAAAAAAAAAAAAAARRRRRRRRRRRRRRRRRRRRR
 					elif self.etapaSyn == 1 and tipoPaq == 3:
 						self.etapaSyn = 3
-						print ("Entre en 3")
+						#print ("Entre en 3")
 						print("Termine handshake como receptor")
 
 						self.RN = self.RN + 1
@@ -157,8 +157,8 @@ class HiloConexionUDPSegura:
 						#break #QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQUUUUUUUUUUUUUUUUUUIIIIIIIIIIIIIIIIIIIITTTTTTTTTTTTTTTAAAAAAAAAAAAAAAAAAAAAARRRRRRRRRRRRRRRRRRRRR
 					else:
 						print("Mensaje extranno")
-						print(tipoPaq)
-						print (self.etapaSyn)
+						#print(tipoPaq)
+						#print (self.etapaSyn)
 				else:
 					if tipoPaq == 10:
 						if self.RN == SNpaq: #REVISAR SI ES DEL TIPO DE MENSAJE QUE ESTOY ESPERANDO
@@ -288,14 +288,14 @@ class Server:
 
 			existeConexion = self.buscarConexionLogica( clientAddress[0], clientAddress[1])
 			print("EXISTE CONEXION")
-			print(existeConexion)
+			#print(existeConexion)
 
 			if existeConexion != -1 :
 				self.buzonReceptor.meterDatos(clientAddress, recibido)
 			else:
 				tipoPaq = bytesToInt(recibido[12:13])
-				print("Tipo paquete")
-				print(tipoPaq)
+				#print("Tipo paquete")
+				#print(tipoPaq)
 				if tipoPaq == 1:
 					self.buzonReceptor.meterDatos(clientAddress, recibido)
 					
