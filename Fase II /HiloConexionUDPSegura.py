@@ -151,7 +151,7 @@ class HiloConexionUDPSegura:
 							ACK = armarPaq(self.miConexion[0], self.miConexion[1], self.otraConexion[0], self.otraConexion[1], 10, self.SN, self.RN, self.ultimoMensajeMandado) #VER SI TENGO DATOS PARA MANDAR
 							
 							self.lockSocket.acquire()
-							self.socketConexion.sendto(ACK, emisor)
+							self.socketConexion.sendto(ACK, self.otraConexion)
 							self.lockSocket.release()
 						#VEEEEEEEEEEEEEEEEEEEER EL ELSE PORQUE CREO QUE HAY QUE MANDAR ALGO AUNQUE SEA UN ACK
 						#break #QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQUUUUUUUUUUUUUUUUUUIIIIIIIIIIIIIIIIIIIITTTTTTTTTTTTTTTAAAAAAAAAAAAAAAAAAAAAARRRRRRRRRRRRRRRRRRRRR
