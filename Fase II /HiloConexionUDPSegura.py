@@ -6,10 +6,11 @@ import threading
 from ArmarMensajes import *
 from LeerArchivo import *
 from Buzon import *
+from Bitacora import *
 
 class HiloConexionUDPSegura:
 
-	def __init__(self, buzonReceptor, otraConexion, miConexion, socketConexion, lockSocket):
+	def __init__(self, buzonReceptor, otraConexion, miConexion, socketConexion, lockSocket,  bitacora):
 		self.buzonReceptor = buzonReceptor
 		self.otraConexion = otraConexion
 		self.miConexion = miConexion
@@ -32,6 +33,8 @@ class HiloConexionUDPSegura:
 		self.ackHandshakeTerminado = False
 		
 		self.ultimoMensajeMandado = bytearray()
+
+		self.bitacora = bitacora
 
 	def soyLaConexionHacia(self, ip, puerto):
 		return self.otraConexion == (ip,puerto)
@@ -98,7 +101,7 @@ class HiloConexionUDPSegura:
 				RNpaq = bytesToInt(recibido[14:15])
 				datos = recibido[15:]
 
-
+				bitacora.escribir("HiloReceptor: recibi el mensaje " + "\nIpOtra: " + otroIpRec + "\nPuertoOtro: " + str(otroPuertoRec) + "\nIpMia: " + miIpRec + "\nPuertoMio: " + str(miPuertoRec) + "\nTipoPaquete: " + str(tipoPaq) + "\nSNpaq: " + str(SNpaq) + "\nRNpaq: " + RNpaq + "\nDatos: " + datos )
 
 				#print("Etapa: "+ str(self.etapaSyn) + " TipoPaq" + str(tipoPaq) + " RN: " + str(self.RN) + " SN: " + str(self.SN) + " RNpaq: " + str(RNpaq) + " SN: " + str(SNpaq)  )
 
@@ -196,13 +199,14 @@ class HiloConexionUDPSegura:
 
 class emisor:
 
-	def __init__(self, miConexion, buzonReceptor, socketConexion, lockSocket, conexiones, lockConexiones):
+	def __init__(self, miConexion, buzonReceptor, socketConexion, lockSocket, conexiones, lockConexiones, bitacora):
 		self.conexiones = conexiones
 		self.lockConexiones = lockConexiones
 		self.miConexion = miConexion
 		self.buzonReceptor = buzonReceptor
 		self.socketConexion = socketConexion
 		self.lockSocket = lockSocket
+		self.bitacora = bitacora
 
 
 
@@ -250,25 +254,27 @@ class emisor:
 						hiloNuevaConexion.start()
 
 						self.conexiones.append(conexion)#ANALIDAR CUANDO HAY QUE SACARLA POR SI NO SE HACE EL HANDSHAKE O TERMINA LA CONEXION O TIMEOUT EN ENVIAR DATOS
-					
+						bitacora.escribir("Emisor: cree la conexion" + otraIp + " " + str(otroPuerto) )
 					else:
 						print("Conexion existente")
 						
 						self.conexiones[indice].meterArchivoAEnviar(contenido)
 
+					bitacora.escribir("Emisor: envie un archivo a " + otraIp + " " + str(otroPuerto) )
 					self.lockConexiones.release()
 
 
 
 
 class Server:	
-	def __init__(self, miConexion, buzonReceptor, socketConexion, lockSocket, conexiones, lockConexiones):
+	def __init__(self, miConexion, buzonReceptor, socketConexion, lockSocket, conexiones, lockConexiones, bitacora):
 		self.conexiones = conexiones
 		self.lockConexiones = lockConexiones
 		self.miConexion = miConexion
 		self.buzonReceptor = buzonReceptor
 		self.socketConexion = socketConexion
 		self.lockSocket = lockSocket
+		self.bitacora = bitacora
 
 	#Llamar solo CON candado adquirido
 	def buscarConexionLogica(self, ip,puerto):#APLICA SI LAS CONEXIONES DEBEN ESTAR PARA AMBOS , creo que deben estar aunque para tener una lista de las conexiones hechas para usarlas, VER QUE DICE LA PROFE
@@ -281,6 +287,7 @@ class Server:
 		return -1
 
 	def cicloServer(self):
+		bitacora.escribir("Servidor: Inicie")
 		while True:
 			recibido, clientAddress = self.socketConexion.recvfrom(2048)
 			
@@ -298,7 +305,7 @@ class Server:
 				#print(tipoPaq)
 				if tipoPaq == 1:
 					self.buzonReceptor.meterDatos(clientAddress, recibido)
-					
+					bitacora.escribir("Servidor: cree la conexion" + clientAddress[0] + str(clientAddress[1]) )
 					conexion = HiloConexionUDPSegura( self.buzonReceptor, clientAddress, self.miConexion, self.socketConexion, self.lockSocket )
 						
 					self.conexiones.append(conexion)#ANALIDAR CUANDO HAY QUE SACARLA POR SI NO SE HACE EL HANDSHAKE O TERMINA LA CONEXION O TIMEOUT EN ENVIAR DATOS
@@ -314,6 +321,8 @@ class Server:
 
 if __name__ == '__main__':
 
+	bitacora = Bitacora("Bitacora.txt")
+
 	socketConexion = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 	socketConexion.bind((sys.argv[1],int(sys.argv[2])))
 
@@ -327,11 +336,13 @@ if __name__ == '__main__':
 
 	lockConexiones = threading.Lock()
 
-	emisor = emisor( (sys.argv[1],int(sys.argv[2])), buzonReceptor, socketConexion, lockSocket, conexiones, lockConexiones)
+	emisor = emisor( (sys.argv[1],int(sys.argv[2])), buzonReceptor, socketConexion, lockSocket, conexiones, lockConexiones, bitacora)
 
-	server = Server( (sys.argv[1],int(sys.argv[2])), buzonReceptor, socketConexion, lockSocket, conexiones, lockConexiones)
+	server = Server( (sys.argv[1],int(sys.argv[2])), buzonReceptor, socketConexion, lockSocket, conexiones, lockConexiones, bitacora)
 
 	threadEmisor = threading.Thread(target=server.cicloServer, args=())
 	threadEmisor.start()
 
 	emisor.enviarArchivo()
+
+	bitacora.terminar()
