@@ -129,6 +129,31 @@ class HiloConexionUDPSegura:
 						self.etapaSyn = 3
 						print ("Entre en 3")
 						print("Termine handshake como receptor")
+
+						self.RN = self.RN + 1
+
+							if RNpaq > self.SN:
+								self.SN = RNpaq
+
+								if len(self.archivoActual) == 0: #paquete actual ya termino y ya lo confirmaron
+									self.lockArchivos.acquire()
+									if len(self.ArchivosAEnviar) != 0: # si hay mas paquetes para enviar
+										
+										self.archivoActual = self.ArchivosAEnviar.pop(0)
+									
+										self.ultimoMensajeMandado = self.archivoActual.pop(0)
+									else:
+										self.ultimoMensajeMandado = bytearray()
+									self.lockArchivos.release()
+								else:
+									self.ultimoMensajeMandado = self.archivoActual.pop(0)
+
+								ACK = armarPaq(self.miConexion[0], self.miConexion[1], self.otraConexion[0], self.otraConexion[1], 10, self.SN, self.RN, self.ultimoMensajeMandado) #VER SI TENGO DATOS PARA MANDAR
+								
+								self.lockSocket.acquire()
+								self.socketConexion.sendto(ACK, emisor)
+								self.lockSocket.release()
+							#VEEEEEEEEEEEEEEEEEEEER EL ELSE PORQUE CREO QUE HAY QUE MANDAR ALGO AUNQUE SEA UN ACK
 						#break #QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQUUUUUUUUUUUUUUUUUUIIIIIIIIIIIIIIIIIIIITTTTTTTTTTTTTTTAAAAAAAAAAAAAAAAAAAAAARRRRRRRRRRRRRRRRRRRRR
 					else:
 						print("Mensaje extranno")
