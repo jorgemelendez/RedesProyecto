@@ -113,7 +113,7 @@ class HiloConexionUDPSegura:
 						#Guardar el SNpaq y revisar cuando hay que aumentarlo
 						self.RN = SNpaq + 1
 						self.SN = RNpaq
-						ACKConexion = armarPaq(self.miConexion[0], self.miConexion[1], self.otraConexion[0], self.otraConexion[1], 3, self.SN, self.RN, self.ultimoMensajeMandado) #NO HAY QUE MANDAR DATOS PORQUE ES ESTABLECIENDO CONEXION
+						ACKConexion = armarPaq(self.miConexion[0], self.miConexion[1], self.otraConexion[0], self.otraConexion[1], 3, self.SN, self.RN, bytearray()) #NO HAY QUE MANDAR DATOS PORQUE ES ESTABLECIENDO CONEXION
 						self.lockSocket.acquire()
 						self.socketConexion.sendto(ACKConexion, self.otraConexion)
 						self.lockSocket.release()
@@ -153,6 +153,7 @@ class HiloConexionUDPSegura:
 								self.lockSocket.acquire()
 								self.socketConexion.sendto(ACK, emisor)
 								self.lockSocket.release()
+							#VEEEEEEEEEEEEEEEEEEEER EL ELSE PORQUE CREO QUE HAY QUE MANDAR ALGO AUNQUE SEA UN ACK
 
 
 
@@ -205,6 +206,8 @@ class emisor:
 						print ("Nueva conexion")
 						conexion = HiloConexionUDPSegura( self.buzonReceptor, (otraIp,otroPuerto), self.miConexion, self.socketConexion, self.lockSocket )
 						conexion.connect(otraIp,otroPuerto)
+
+						conexion.meterArchivoAEnviar(contenido)
 						
 						hiloNuevaConexion = threading.Thread(target=conexion.receptor, args=())
 						hiloNuevaConexion.start()
@@ -214,7 +217,7 @@ class emisor:
 					else:
 						print("Conexion existente")
 						
-					conexion.meterArchivoAEnviar(contenido)
+						conexion.meterArchivoAEnviar(contenido)
 
 					self.lockConexiones.release()
 
