@@ -163,7 +163,7 @@ class HiloConexionUDPSegura:
 					if tipoPaq == 10:
 						if self.RN == SNpaq: #REVISAR SI ES DEL TIPO DE MENSAJE QUE ESTOY ESPERANDO
 							self.datosRecibidos += datos
-							if len(datos):
+							if len(datos) == 0:
 								print("YA TERMINE DE ENVIAR DATOS")
 							#Enviar paquete de ack de respuesta
 							self.RN = self.RN + 1
