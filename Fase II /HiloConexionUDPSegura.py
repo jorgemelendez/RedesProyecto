@@ -20,7 +20,7 @@ class HiloConexionUDPSegura:
 		self.datosRecibidos = bytearray()
 		self.etapaSyn = 0
 
-		
+		print("Cree hilo")		
 
 		self.lockArchivos = threading.Lock()
 		self.ArchivosAEnviar = list()#Archivos por enviar
@@ -34,7 +34,7 @@ class HiloConexionUDPSegura:
 		self.ultimoMensajeMandado = bytearray()
 
 	def soyLaConexionHacia(self, ip, puerto):
-		return self.miConexion == (ip,puerto)
+		return self.otraConexion == (ip,puerto)
 
 	def meterArchivoAEnviar(self, contenidoArchivo):
 		segmentado = segmentarArchivo(contenidoArchivo, 5)
@@ -254,11 +254,15 @@ class Server:
 			self.lockConexiones.acquire()
 
 			existeConexion = self.buscarConexionLogica( clientAddress[0], clientAddress[1])
+			print("EXISTE CONEXION")
+			print(existeConexion)
 
 			if existeConexion != -1 :
 				self.buzonReceptor.meterDatos(clientAddress, recibido)
 			else:
 				tipoPaq = bytesToInt(recibido[12:13])
+				print("Tipo paquete")
+				print(tipoPaq)
 				if tipoPaq == 1:
 					self.buzonReceptor.meterDatos(clientAddress, recibido)
 					
