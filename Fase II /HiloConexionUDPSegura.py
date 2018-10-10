@@ -254,7 +254,7 @@ class emisor:
 					else:
 						print("Conexion existente")
 						
-						conexion.meterArchivoAEnviar(contenido)
+						self.conexiones[indice].meterArchivoAEnviar(contenido)
 
 					self.lockConexiones.release()
 
