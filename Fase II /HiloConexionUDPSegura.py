@@ -120,10 +120,12 @@ class HiloConexionUDPSegura:
 						self.lockSocket.release()
 						self.etapaSyn = 3
 						print ("Entre en 2")
+						print ("Termine handshake como emisor")
 						break #QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQUUUUUUUUUUUUUUUUUUIIIIIIIIIIIIIIIIIIIITTTTTTTTTTTTTTTAAAAAAAAAAAAAAAAAAAAAARRRRRRRRRRRRRRRRRRRRR
 					elif self.etapaSyn == 1 and tipoPaq == 3:
 						self.etapaSyn = 3
 						print ("Entre en 3")
+						print("Termine handshake como receptor")
 						break #QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQUUUUUUUUUUUUUUUUUUIIIIIIIIIIIIIIIIIIIITTTTTTTTTTTTTTTAAAAAAAAAAAAAAAAAAAAAARRRRRRRRRRRRRRRRRRRRR
 					else:
 						print("Mensaje extranno")
