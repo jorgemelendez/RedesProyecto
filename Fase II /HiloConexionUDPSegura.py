@@ -345,4 +345,4 @@ if __name__ == '__main__':
 
 	emisor.enviarArchivo()
 
-	bitacora.terminar()
+	#bitacora.terminar()
