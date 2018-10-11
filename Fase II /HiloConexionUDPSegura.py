@@ -245,7 +245,7 @@ class emisor:
 
 					if indice == -1:
 						print ("Nueva conexion")
-						conexion = HiloConexionUDPSegura( self.buzonReceptor, (otraIp,otroPuerto), self.miConexion, self.socketConexion, self.lockSocket )
+						conexion = HiloConexionUDPSegura( self.buzonReceptor, (otraIp,otroPuerto), self.miConexion, self.socketConexion, self.lockSocket, self.bitacora )
 						conexion.connect(otraIp,otroPuerto)
 
 						conexion.meterArchivoAEnviar(contenido)
@@ -306,7 +306,7 @@ class Server:
 				if tipoPaq == 1:
 					self.buzonReceptor.meterDatos(clientAddress, recibido)
 					bitacora.escribir("Servidor: cree la conexion" + clientAddress[0] + str(clientAddress[1]) )
-					conexion = HiloConexionUDPSegura( self.buzonReceptor, clientAddress, self.miConexion, self.socketConexion, self.lockSocket )
+					conexion = HiloConexionUDPSegura( self.buzonReceptor, clientAddress, self.miConexion, self.socketConexion, self.lockSocket, self.bitacora)
 						
 					self.conexiones.append(conexion)#ANALIDAR CUANDO HAY QUE SACARLA POR SI NO SE HACE EL HANDSHAKE O TERMINA LA CONEXION O TIMEOUT EN ENVIAR DATOS
 					hiloNuevaConexion = threading.Thread(target=conexion.receptor, args=())

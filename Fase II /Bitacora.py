@@ -9,7 +9,7 @@ class Bitacora:
 		self.archivo.write(texto + "\n")
 		self.lockBitacora.release()
 
-	def terminar():
+	def terminar(self):
 		self.lockBitacora.acquire()
 		self.archivo.close()
 		self.lockBitacora.release()
