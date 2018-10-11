@@ -101,7 +101,7 @@ class HiloConexionUDPSegura:
 				RNpaq = bytesToInt(recibido[14:15])
 				datos = recibido[15:]
 
-				bitacora.escribir("HiloReceptor: recibi el mensaje " + "\nIpOtra: " + otroIpRec + "\nPuertoOtro: " + str(otroPuertoRec) + "\nIpMia: " + miIpRec + "\nPuertoMio: " + str(miPuertoRec) + "\nTipoPaquete: " + str(tipoPaq) + "\nSNpaq: " + str(SNpaq) + "\nRNpaq: " + RNpaq + "\nDatos: " + datos )
+				bitacora.escribir("HiloReceptor: recibi el mensaje " + "\nIpOtra: " + otroIpRec + "\nPuertoOtro: " + str(otroPuertoRec) + "\nIpMia: " + miIpRec + "\nPuertoMio: " + str(miPuertoRec) + "\nTipoPaquete: " + str(tipoPaq) + "\nSNpaq: " + str(SNpaq) + "\nRNpaq: " + str(RNpaq) + "\nDatos: " + datos )
 
 				#print("Etapa: "+ str(self.etapaSyn) + " TipoPaq" + str(tipoPaq) + " RN: " + str(self.RN) + " SN: " + str(self.SN) + " RNpaq: " + str(RNpaq) + " SN: " + str(SNpaq)  )
 
