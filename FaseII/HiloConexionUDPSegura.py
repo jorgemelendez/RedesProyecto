@@ -38,6 +38,7 @@ class HiloConexionUDPSegura:
 		self.bitacora = bitacora
 
 		self.primerDatoArchivo = False
+		self.now = datetime.datetime.now()
 
 	def soyLaConexionHacia(self, ip, puerto):
 		return self.otraConexion == (ip,puerto)
@@ -184,7 +185,7 @@ class HiloConexionUDPSegura:
 								self.primerDatoArchivo = True
 								print("ESTE ES EL PRIMER DATO DEL ARCHIVO")
 								bitacora.escribir("COMENCE A RECIBIR ARCHIVO")
-								self.archivo = open("Archivo-"+now.year + now.month + now.day + now.hour + now.minute + now.second + now.microsecond, "w+")
+								self.archivo = open("Archivo-"+self.now.year + self.now.month + self.now.day + self.now.hour + self.now.minute + self.now.second + self.now.microsecond, "w+")
 
 							if len(datos) > 0:
 								self.archivo.write(str(datos))
