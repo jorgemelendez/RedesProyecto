@@ -36,6 +36,8 @@ class HiloConexionUDPSegura:
 
 		self.bitacora = bitacora
 
+		self.primerDatoArchivo = False
+
 	def soyLaConexionHacia(self, ip, puerto):
 		return self.otraConexion == (ip,puerto)
 
@@ -65,7 +67,7 @@ class HiloConexionUDPSegura:
 
 			recibido = self.buzonReceptor.sacarDatos(self.otraConexion)
 			if recibido is None:
-				time.sleep(0.001)#ANALIZAR LA CANTIDAD DE SEGUNDOS
+				time.sleep(1)#ANALIZAR LA CANTIDAD DE SEGUNDOS
 			#if recibido is None:
 				recibido = self.buzonReceptor.sacarDatos(self.otraConexion)
 			if recibido is None:
@@ -77,7 +79,7 @@ class HiloConexionUDPSegura:
 					self.lockSocket.release()
 					bitacora.escribir("HiloReceptor: Reenvie ack de handshake " +  "\n\tmiConexion = (" + self.miConexion[0] + "," + str(self.miConexion[1]) + ")\n\totraConexion = (" + self.otraConexion[0] + "," + str(self.otraConexion[1]) + ")\n\tTipoMensaje = 3 \n\tSN = " + str(self.SN) + "\n\tRN = " + str(self.RN) + "\n\tDatos = ")
 				if self.etapaSyn == 3 and self.ackHandshakeTerminado == True: #Caso donde no responde con paq nuevo
-					ACKDatos = armarPaq(self.miConexion[0], self.miConexion[1], self.otraConexion[0], self.otraConexion[1], 10, self.SN, self.RN, self.ultimoMensajeMandado ) #VER SI TENGO DATOS PARA MANDAR
+					ACKDatos = armarPaq(self.miConexion[0], self.miConexion[1], self.otraConexion[0], self.otraConexion[1], 10, self.SN, self.RN, bytearray() ) #VER SI TENGO DATOS PARA MANDAR
 					self.lockSocket.acquire()
 					self.socketConexion.sendto(ACKDatos, self.otraConexion)
 					self.lockSocket.release()
@@ -94,7 +96,7 @@ class HiloConexionUDPSegura:
 							self.socketConexion.sendto(ACKConexion, self.otraConexion)
 							self.lockSocket.release()
 							bitacora.escribir("HiloReceptor: Reenvie respuesta de syn " +  "\n\tmiConexion = (" + self.miConexion[0] + "," + str(self.miConexion[1]) + ")\n\totraConexion = (" + self.otraConexion[0] + "," + str(self.otraConexion[1]) + ")\n\tTipoMensaje = 1 \n\tSN = " + str(self.SN) + "\n\tRN = " + str(self.RN) + "\n\tDatos = ")
-				time.sleep(0.001)#ANALIZAR LA CANTIDAD DE SEGUNDOS
+				time.sleep(1)#ANALIZAR LA CANTIDAD DE SEGUNDOS
 			else:
 				otroIpRec = bytesToIp(recibido[0:4])
 				otroPuertoRec = bytesToInt(recibido[4:6])
@@ -172,17 +174,29 @@ class HiloConexionUDPSegura:
 						#print(tipoPaq)
 						#print (self.etapaSyn)
 				else:
-					if tipoPaq == 10:
+					if tipoPaq == 10 or tipoPaq == 26:
 						if self.RN == SNpaq: #REVISAR SI ES DEL TIPO DE MENSAJE QUE ESTOY ESPERANDO
 							self.datosRecibidos += datos
-							if len(datos) == 0:
-								print("YA TERMINE DE RECIBIR DATOS")
+							
+							if self.primerDatoArchivo == False and len(datos) > 0:
+								self.primerDatoArchivo = True
+								print("ESTE ES EL PRIMER DATO DEL ARCHIVO")
+								
+
+							if tipoPaq == 26:
+								print("YA TERMINE DE RECIBIR ARCHIVO")
 								print(self.datosRecibidos)
+								self.primerDatoArchivo = False
+							
+
+								#AQUI VA EL CIERRE DEL ARCHIVO
 							#Enviar paquete de ack de respuesta
 							self.RN = self.RN + 1
 
 							if RNpaq > self.SN:
 								self.SN = RNpaq
+
+								tipo = 10
 
 								if len(self.archivoActual) == 0: #paquete actual ya termino y ya lo confirmaron
 									self.lockArchivos.acquire()
@@ -196,8 +210,11 @@ class HiloConexionUDPSegura:
 									self.lockArchivos.release()
 								else:
 									self.ultimoMensajeMandado = self.archivoActual.pop(0)
+									if len(self.archivoActual) == 0:
+										tipo = 26
+									
 
-								ACK = armarPaq(self.miConexion[0], self.miConexion[1], self.otraConexion[0], self.otraConexion[1], 10, self.SN, self.RN, self.ultimoMensajeMandado) #VER SI TENGO DATOS PARA MANDAR
+								ACK = armarPaq(self.miConexion[0], self.miConexion[1], self.otraConexion[0], self.otraConexion[1], tipo, self.SN, self.RN, self.ultimoMensajeMandado) #VER SI TENGO DATOS PARA MANDAR
 								
 								self.lockSocket.acquire()
 								self.socketConexion.sendto(ACK, self.otraConexion)
