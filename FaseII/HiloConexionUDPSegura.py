@@ -186,7 +186,8 @@ class HiloConexionUDPSegura:
 								bitacora.escribir("COMENCE A RECIBIR ARCHIVO")
 								self.archivo = open("Archivo-"+now.year + now.month + now.day + now.hour + now.minute + now.second + now.microsecond, "w+")
 
-							self.archivo.write(str(datos))
+							if len(datos) > 0:
+								self.archivo.write(str(datos))
 
 							if tipoPaq == 26:
 								print("YA TERMINE DE RECIBIR ARCHIVO")
