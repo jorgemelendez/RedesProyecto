@@ -2,6 +2,7 @@ import sys
 import time
 import socket
 import threading
+import datetime
 
 from ArmarMensajes import *
 from LeerArchivo import *
@@ -107,7 +108,7 @@ class HiloConexionUDPSegura:
 				RNpaq = bytesToInt(recibido[14:15])
 				datos = recibido[15:]
 
-				bitacora.escribir("HiloReceptor: recibi el mensaje " + "\n\tIpOtra: " + otroIpRec + "\n\tPuertoOtro: " + str(otroPuertoRec) + "\n\tIpMia: " + miIpRec + "\n\tPuertoMio: " + str(miPuertoRec) + "\n\tTipoPaquete: " + str(tipoPaq) + "\n\tSNpaq: " + str(SNpaq) + "\n\tRNpaq: " + str(RNpaq) + "\n\tDatos: " + datos.decode("utf-8") )
+				bitacora.escribir("HiloReceptor: recibi ACK de SYN " + "\n\tIpOtra: " + otroIpRec + "\n\tPuertoOtro: " + str(otroPuertoRec) + "\n\tIpMia: " + miIpRec + "\n\tPuertoMio: " + str(miPuertoRec) + "\n\tTipoPaquete: " + str(tipoPaq) + "\n\tSNpaq: " + str(SNpaq) + "\n\tRNpaq: " + str(RNpaq) + "\n\tDatos: " + datos.decode("utf-8") )
 
 				#print("Etapa: "+ str(self.etapaSyn) + " TipoPaq" + str(tipoPaq) + " RN: " + str(self.RN) + " SN: " + str(self.SN) + " RNpaq: " + str(RNpaq) + " SN: " + str(SNpaq)  )
 
@@ -178,17 +179,21 @@ class HiloConexionUDPSegura:
 						if self.RN == SNpaq: #REVISAR SI ES DEL TIPO DE MENSAJE QUE ESTOY ESPERANDO
 							self.datosRecibidos += datos
 							
+
 							if self.primerDatoArchivo == False and len(datos) > 0:
 								self.primerDatoArchivo = True
 								print("ESTE ES EL PRIMER DATO DEL ARCHIVO")
-								
+								bitacora.escribir("COMENCE A RECIBIR ARCHIVO")
+								self.archivo = open("Archivo-"+now.year + now.month + now.day + now.hour + now.minute + now.second + now.microsecond, "w+")
+
+							self.archivo.write(str(datos))
 
 							if tipoPaq == 26:
 								print("YA TERMINE DE RECIBIR ARCHIVO")
 								print(self.datosRecibidos)
 								self.primerDatoArchivo = False
-							
-
+								bitacora.escribir("TERMINE DE RECIBIR ARCHIVO")
+								self.archivo.close()
 								#AQUI VA EL CIERRE DEL ARCHIVO
 							#Enviar paquete de ack de respuesta
 							self.RN = self.RN + 1
@@ -323,7 +328,7 @@ class Server:
 			self.lockConexiones.acquire()
 
 			existeConexion = self.buscarConexionLogica( clientAddress[0], clientAddress[1])
-			print("EXISTE CONEXION")
+			#print("EXISTE CONEXION")
 			#print(existeConexion)
 
 			if existeConexion != -1 :
@@ -334,7 +339,7 @@ class Server:
 				#print(tipoPaq)
 				if tipoPaq == 1:
 					self.buzonReceptor.meterDatos(clientAddress, recibido)
-					bitacora.escribir("Servidor: cree la conexion" + clientAddress[0] + str(clientAddress[1]) )
+					bitacora.escribir("Servidor: cree la conexion " + clientAddress[0] + " " + str(clientAddress[1]) )
 					conexion = HiloConexionUDPSegura( self.buzonReceptor, clientAddress, self.miConexion, self.socketConexion, self.lockSocket, self.bitacora)
 						
 					self.conexiones.append(conexion)#ANALIDAR CUANDO HAY QUE SACARLA POR SI NO SE HACE EL HANDSHAKE O TERMINA LA CONEXION O TIMEOUT EN ENVIAR DATOS
