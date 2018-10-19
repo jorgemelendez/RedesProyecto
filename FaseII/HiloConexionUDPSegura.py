@@ -341,7 +341,9 @@ class Server:
 			#print(existeConexion)
 
 			if existeConexion != -1 :
-				if randrange(10)>1:
+				random = randrange(10)
+				print(random)
+				if random>1:
 					self.buzonReceptor.meterDatos(clientAddress, recibido)
 				else:
 					print("SE ELIMINO UN PAQUETE")
