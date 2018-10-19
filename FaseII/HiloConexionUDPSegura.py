@@ -82,11 +82,11 @@ class HiloConexionUDPSegura:
 					self.lockSocket.release()
 					bitacora.escribir("HiloReceptor: Reenvie ack de handshake " +  "\n\tmiConexion = (" + self.miConexion[0] + "," + str(self.miConexion[1]) + ")\n\totraConexion = (" + self.otraConexion[0] + "," + str(self.otraConexion[1]) + ")\n\tTipoMensaje = 3 \n\tSN = " + str(self.SN) + "\n\tRN = " + str(self.RN) + "\n\tDatos = ")
 				if self.etapaSyn == 3 and self.ackHandshakeTerminado == True: #Caso donde no responde con paq nuevo
-					if len(self.archivoActual) == 0:
-						tipo = 26
-					else:
-						tipo = 10
-					ACKDatos = armarPaq(self.miConexion[0], self.miConexion[1], self.otraConexion[0], self.otraConexion[1], tipo, self.SN, self.RN, bytearray() ) #VER SI TENGO DATOS PARA MANDAR
+					#if len(self.archivoActual) == 0:
+					#	tipo = 26
+					#else:
+					#	tipo = 10
+					ACKDatos = armarPaq(self.miConexion[0], self.miConexion[1], self.otraConexion[0], self.otraConexion[1], self.tipo, self.SN, self.RN, bytearray() ) #VER SI TENGO DATOS PARA MANDAR
 					self.lockSocket.acquire()
 					self.socketConexion.sendto(ACKDatos, self.otraConexion)
 					self.lockSocket.release()
@@ -208,7 +208,7 @@ class HiloConexionUDPSegura:
 							if RNpaq > self.SN:
 								self.SN = RNpaq
 
-								tipo = 10
+								self.tipo = 10
 
 								if len(self.archivoActual) == 0: #paquete actual ya termino y ya lo confirmaron
 									self.lockArchivos.acquire()
@@ -223,10 +223,10 @@ class HiloConexionUDPSegura:
 								else:
 									self.ultimoMensajeMandado = self.archivoActual.pop(0)
 									if len(self.archivoActual) == 0:
-										tipo = 26
+										self.tipo = 26
 									
 
-								ACK = armarPaq(self.miConexion[0], self.miConexion[1], self.otraConexion[0], self.otraConexion[1], tipo, self.SN, self.RN, self.ultimoMensajeMandado) #VER SI TENGO DATOS PARA MANDAR
+								ACK = armarPaq(self.miConexion[0], self.miConexion[1], self.otraConexion[0], self.otraConexion[1], self.tipo, self.SN, self.RN, self.ultimoMensajeMandado) #VER SI TENGO DATOS PARA MANDAR
 								
 								self.lockSocket.acquire()
 								self.socketConexion.sendto(ACK, self.otraConexion)
