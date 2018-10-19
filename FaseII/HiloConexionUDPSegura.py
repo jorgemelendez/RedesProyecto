@@ -74,7 +74,7 @@ class HiloConexionUDPSegura:
 			#if recibido is None:
 				recibido = self.buzonReceptor.sacarDatos(self.otraConexion)
 			if recibido is None:
-				print("Reenvio de paquete porque no llego")
+				#print("Reenvio de paquete porque no llego")
 				if self.etapaSyn == 3 and self.ackHandshakeTerminado == False:#Caso donde no llegan los primeros primeros datos y ya se envio el ack syn
 					ACKConexion = armarPaq(self.miConexion[0], self.miConexion[1], self.otraConexion[0], self.otraConexion[1], 3, self.SN, self.RN, bytearray()) #NO HAY QUE MANDAR DATOS PORQUE ES ESTABLECIENDO CONEXION
 					self.lockSocket.acquire()
@@ -82,7 +82,11 @@ class HiloConexionUDPSegura:
 					self.lockSocket.release()
 					bitacora.escribir("HiloReceptor: Reenvie ack de handshake " +  "\n\tmiConexion = (" + self.miConexion[0] + "," + str(self.miConexion[1]) + ")\n\totraConexion = (" + self.otraConexion[0] + "," + str(self.otraConexion[1]) + ")\n\tTipoMensaje = 3 \n\tSN = " + str(self.SN) + "\n\tRN = " + str(self.RN) + "\n\tDatos = ")
 				if self.etapaSyn == 3 and self.ackHandshakeTerminado == True: #Caso donde no responde con paq nuevo
-					ACKDatos = armarPaq(self.miConexion[0], self.miConexion[1], self.otraConexion[0], self.otraConexion[1], 10, self.SN, self.RN, bytearray() ) #VER SI TENGO DATOS PARA MANDAR
+					if len(self.archivoActual) == 0:
+						tipo = 26
+					else:
+						tipo = 10
+					ACKDatos = armarPaq(self.miConexion[0], self.miConexion[1], self.otraConexion[0], self.otraConexion[1], tipo, self.SN, self.RN, bytearray() ) #VER SI TENGO DATOS PARA MANDAR
 					self.lockSocket.acquire()
 					self.socketConexion.sendto(ACKDatos, self.otraConexion)
 					self.lockSocket.release()
@@ -335,10 +339,10 @@ class Server:
 			#print(existeConexion)
 
 			if existeConexion != -1 :
-				#if randrange(10)>1:
-				self.buzonReceptor.meterDatos(clientAddress, recibido)
-				#else:
-				#	print("SE ELIMINO UN PAQUETE")
+				if randrange(10)>1:
+					self.buzonReceptor.meterDatos(clientAddress, recibido)
+				else:
+					print("SE ELIMINO UN PAQUETE")
 			else:
 				tipoPaq = bytesToInt(recibido[12:13])
 				#print("Tipo paquete")
