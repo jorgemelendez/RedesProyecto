@@ -86,7 +86,7 @@ class HiloConexionUDPSegura:
 					#	tipo = 26
 					#else:
 					#	tipo = 10
-					ACKDatos = armarPaq(self.miConexion[0], self.miConexion[1], self.otraConexion[0], self.otraConexion[1], self.tipo, self.SN, self.RN, bytearray() ) #VER SI TENGO DATOS PARA MANDAR
+					ACKDatos = armarPaq(self.miConexion[0], self.miConexion[1], self.otraConexion[0], self.otraConexion[1], self.tipo, self.SN, self.RN, self.ultimoMensajeMandado ) #VER SI TENGO DATOS PARA MANDAR
 					self.lockSocket.acquire()
 					self.socketConexion.sendto(ACKDatos, self.otraConexion)
 					self.lockSocket.release()
