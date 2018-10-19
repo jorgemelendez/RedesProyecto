@@ -1,6 +1,6 @@
 Servidor: Inicie
 Servidor: cree la conexion 172.16.105.84 5000
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
@@ -16,48 +16,7 @@ HiloReceptor: envie syn para establecer conexion
 	SN = 0
 	RN = 1
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
-	IpOtra: 172.16.105.84
-	PuertoOtro: 5000
-	IpMia: 172.16.105.82
-	PuertoMio: 5000
-	TipoPaquete: 1
-	SNpaq: 0
-	RNpaq: 0
-	Datos: 
-Mensaje recibido extranno
-HiloReceptor: Reenvie respuesta de syn 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 1 
-	SN = 0
-	RN = 1
-	Datos = 
-HiloReceptor: Reenvie respuesta de syn 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 1 
-	SN = 0
-	RN = 1
-	Datos = 
-HiloReceptor: recibi ACK de SYN 
-	IpOtra: 172.16.105.84
-	PuertoOtro: 5000
-	IpMia: 172.16.105.82
-	PuertoMio: 5000
-	TipoPaquete: 1
-	SNpaq: 0
-	RNpaq: 0
-	Datos: 
-Mensaje recibido extranno
-HiloReceptor: Reenvie respuesta de syn 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 1 
-	SN = 0
-	RN = 1
-	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
@@ -74,7 +33,7 @@ HiloReceptor: envie ack de datos
 	SN = 1
 	RN = 2
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
@@ -91,7 +50,7 @@ HiloReceptor: envie ack de datos
 	SN = 2
 	RN = 3
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
@@ -107,7 +66,7 @@ HiloReceptor: envie ack de datos
 	SN = 3
 	RN = 4
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
@@ -123,7 +82,7 @@ HiloReceptor: envie ack de datos
 	SN = 4
 	RN = 5
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
@@ -139,7 +98,7 @@ HiloReceptor: envie ack de datos
 	SN = 5
 	RN = 6
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
@@ -155,2311 +114,1584 @@ HiloReceptor: envie ack de datos
 	SN = 6
 	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
+	Datos = 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
-	TipoPaquete: 10
+	TipoPaquete: 3
 	SNpaq: 7
 	RNpaq: 7
-	Datos: ta ha
-HiloReceptor: envie ack de datos 
+	Datos: 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
 	TipoMensaje = 10 
-	SN = 7
-	RN = 8
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
-	TipoPaquete: 10
-	SNpaq: 8
-	RNpaq: 8
-	Datos: ciend
-HiloReceptor: envie ack de datos 
+	TipoPaquete: 3
+	SNpaq: 7
+	RNpaq: 7
+	Datos: 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
 	TipoMensaje = 10 
-	SN = 8
-	RN = 9
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
-	TipoPaquete: 10
-	SNpaq: 9
-	RNpaq: 9
-	Datos: i uno
-HiloReceptor: envie ack de datos 
+	TipoPaquete: 3
+	SNpaq: 7
+	RNpaq: 7
+	Datos: 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
 	TipoMensaje = 10 
-	SN = 9
-	RN = 10
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: Reenvie ack de handshake 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
-	Datos = 
-HiloReceptor: Reenvie ack de handshake 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
-	Datos = 
-HiloReceptor: Reenvie ack de handshake 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
-	Datos = 
-HiloReceptor: recibi ACK de SYN 
-	IpOtra: 172.16.105.84
-	PuertoOtro: 5000
-	IpMia: 172.16.105.82
-	PuertoMio: 5000
-	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
-	Datos: 
-HiloReceptor: Reenvie ack de handshake 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
-	Datos = 
-HiloReceptor: Reenvie ack de handshake 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
-	Datos = 
-HiloReceptor: Reenvie ack de handshake 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
-	Datos = 
-HiloReceptor: recibi ACK de SYN 
-	IpOtra: 172.16.105.84
-	PuertoOtro: 5000
-	IpMia: 172.16.105.82
-	PuertoMio: 5000
-	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
-	Datos: 
-HiloReceptor: Reenvie ack de handshake 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
-	Datos = 
-HiloReceptor: recibi ACK de SYN 
-	IpOtra: 172.16.105.84
-	PuertoOtro: 5000
-	IpMia: 172.16.105.82
-	PuertoMio: 5000
-	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
-	Datos: 
-HiloReceptor: Reenvie ack de handshake 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
-	Datos = 
-HiloReceptor: recibi ACK de SYN 
-	IpOtra: 172.16.105.84
-	PuertoOtro: 5000
-	IpMia: 172.16.105.82
-	PuertoMio: 5000
-	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
-	Datos: 
-HiloReceptor: Reenvie ack de handshake 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
-	Datos = 
-HiloReceptor: recibi ACK de SYN 
-	IpOtra: 172.16.105.84
-	PuertoOtro: 5000
-	IpMia: 172.16.105.82
-	PuertoMio: 5000
-	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
-	Datos: 
-HiloReceptor: Reenvie ack de handshake 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
-	Datos = 
-HiloReceptor: Reenvie ack de handshake 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
-	Datos = 
-HiloReceptor: recibi ACK de SYN 
-	IpOtra: 172.16.105.84
-	PuertoOtro: 5000
-	IpMia: 172.16.105.82
-	PuertoMio: 5000
-	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
-	Datos: 
-HiloReceptor: Reenvie ack de handshake 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
-	Datos = 
-HiloReceptor: recibi ACK de SYN 
-	IpOtra: 172.16.105.84
-	PuertoOtro: 5000
-	IpMia: 172.16.105.82
-	PuertoMio: 5000
-	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
-	Datos: 
-HiloReceptor: Reenvie ack de handshake 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
-	Datos = 
-HiloReceptor: recibi ACK de SYN 
-	IpOtra: 172.16.105.84
-	PuertoOtro: 5000
-	IpMia: 172.16.105.82
-	PuertoMio: 5000
-	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
-	Datos: 
-HiloReceptor: Reenvie ack de handshake 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
-	Datos = 
-HiloReceptor: recibi ACK de SYN 
-	IpOtra: 172.16.105.84
-	PuertoOtro: 5000
-	IpMia: 172.16.105.82
-	PuertoMio: 5000
-	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
-	Datos: 
-HiloReceptor: Reenvie ack de handshake 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
-	Datos = 
-HiloReceptor: Reenvie ack de handshake 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
-	Datos = 
-HiloReceptor: recibi ACK de SYN 
-	IpOtra: 172.16.105.84
-	PuertoOtro: 5000
-	IpMia: 172.16.105.82
-	PuertoMio: 5000
-	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
-	Datos: 
-HiloReceptor: Reenvie ack de handshake 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
-	Datos = 
-HiloReceptor: recibi ACK de SYN 
-	IpOtra: 172.16.105.84
-	PuertoOtro: 5000
-	IpMia: 172.16.105.82
-	PuertoMio: 5000
-	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
-	Datos: 
-HiloReceptor: Reenvie ack de handshake 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
-	Datos = 
-HiloReceptor: recibi ACK de SYN 
-	IpOtra: 172.16.105.84
-	PuertoOtro: 5000
-	IpMia: 172.16.105.82
-	PuertoMio: 5000
-	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
-	Datos: 
-HiloReceptor: Reenvie ack de handshake 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
-	Datos = 
-HiloReceptor: recibi ACK de SYN 
-	IpOtra: 172.16.105.84
-	PuertoOtro: 5000
-	IpMia: 172.16.105.82
-	PuertoMio: 5000
-	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
-	Datos: 
-HiloReceptor: Reenvie ack de handshake 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
-	Datos = 
-HiloReceptor: recibi ACK de SYN 
-	IpOtra: 172.16.105.84
-	PuertoOtro: 5000
-	IpMia: 172.16.105.82
-	PuertoMio: 5000
-	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
-	Datos: 
-HiloReceptor: Reenvie ack de handshake 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
-	Datos = 
-HiloReceptor: recibi ACK de SYN 
-	IpOtra: 172.16.105.84
-	PuertoOtro: 5000
-	IpMia: 172.16.105.82
-	PuertoMio: 5000
-	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
-	Datos: 
-HiloReceptor: Reenvie ack de handshake 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
-	Datos = 
-HiloReceptor: recibi ACK de SYN 
-	IpOtra: 172.16.105.84
-	PuertoOtro: 5000
-	IpMia: 172.16.105.82
-	PuertoMio: 5000
-	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
-	Datos: 
-HiloReceptor: Reenvie ack de handshake 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
-	Datos = 
-HiloReceptor: recibi ACK de SYN 
-	IpOtra: 172.16.105.84
-	PuertoOtro: 5000
-	IpMia: 172.16.105.82
-	PuertoMio: 5000
-	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
-	Datos: 
-HiloReceptor: Reenvie ack de handshake 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
-	Datos = 
-HiloReceptor: recibi ACK de SYN 
-	IpOtra: 172.16.105.84
-	PuertoOtro: 5000
-	IpMia: 172.16.105.82
-	PuertoMio: 5000
-	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
-	Datos: 
-HiloReceptor: Reenvie ack de handshake 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
-	Datos = 
-HiloReceptor: Reenvie ack de handshake 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
-	Datos = 
-HiloReceptor: recibi ACK de SYN 
-	IpOtra: 172.16.105.84
-	PuertoOtro: 5000
-	IpMia: 172.16.105.82
-	PuertoMio: 5000
-	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
-	Datos: 
-HiloReceptor: Reenvie ack de handshake 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
-	Datos = 
-HiloReceptor: recibi ACK de SYN 
-	IpOtra: 172.16.105.84
-	PuertoOtro: 5000
-	IpMia: 172.16.105.82
-	PuertoMio: 5000
-	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
-	Datos: 
-HiloReceptor: Reenvie ack de handshake 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
-	Datos = 
-HiloReceptor: recibi ACK de SYN 
-	IpOtra: 172.16.105.84
-	PuertoOtro: 5000
-	IpMia: 172.16.105.82
-	PuertoMio: 5000
-	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
-	Datos: 
-HiloReceptor: Reenvie ack de handshake 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
-	Datos = 
-HiloReceptor: recibi ACK de SYN 
-	IpOtra: 172.16.105.84
-	PuertoOtro: 5000
-	IpMia: 172.16.105.82
-	PuertoMio: 5000
-	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
-	Datos: 
-HiloReceptor: Reenvie ack de handshake 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
-	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
-	IpOtra: 172.16.105.84
-	PuertoOtro: 5000
-	IpMia: 172.16.105.82
-	PuertoMio: 5000
-	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
-	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
-	IpOtra: 172.16.105.84
-	PuertoOtro: 5000
-	IpMia: 172.16.105.82
-	PuertoMio: 5000
-	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
-	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
-	IpOtra: 172.16.105.84
-	PuertoOtro: 5000
-	IpMia: 172.16.105.82
-	PuertoMio: 5000
-	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
-	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
-	Datos = 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
-	IpOtra: 172.16.105.84
-	PuertoOtro: 5000
-	IpMia: 172.16.105.82
-	PuertoMio: 5000
-	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
-	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
-	IpOtra: 172.16.105.84
-	PuertoOtro: 5000
-	IpMia: 172.16.105.82
-	PuertoMio: 5000
-	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
-	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
-	Datos = 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
-	IpOtra: 172.16.105.84
-	PuertoOtro: 5000
-	IpMia: 172.16.105.82
-	PuertoMio: 5000
-	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
-	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
-	IpOtra: 172.16.105.84
-	PuertoOtro: 5000
-	IpMia: 172.16.105.82
-	PuertoMio: 5000
-	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
-	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
-	Datos = 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
-	IpOtra: 172.16.105.84
-	PuertoOtro: 5000
-	IpMia: 172.16.105.82
-	PuertoMio: 5000
-	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
-	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
-	Datos = 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: Reenvie ack de handshake 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
-	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
-	IpOtra: 172.16.105.84
-	PuertoOtro: 5000
-	IpMia: 172.16.105.82
-	PuertoMio: 5000
-	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
-	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: Reenvie ack de handshake 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
-	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
-	Datos = 
-HiloReceptor: Reenvie ack de handshake 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
-	Datos = 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
-	Datos = 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
-	Datos = 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
-	Datos = 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
-	Datos = 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
-	Datos = 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
-	IpOtra: 172.16.105.84
-	PuertoOtro: 5000
-	IpMia: 172.16.105.82
-	PuertoMio: 5000
-	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
-	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
-	Datos = 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
-	IpOtra: 172.16.105.84
-	PuertoOtro: 5000
-	IpMia: 172.16.105.82
-	PuertoMio: 5000
-	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
-	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
-	Datos = 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
-	IpOtra: 172.16.105.84
-	PuertoOtro: 5000
-	IpMia: 172.16.105.82
-	PuertoMio: 5000
-	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
-	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
-	IpOtra: 172.16.105.84
-	PuertoOtro: 5000
-	IpMia: 172.16.105.82
-	PuertoMio: 5000
-	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
-	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
-	IpOtra: 172.16.105.84
-	PuertoOtro: 5000
-	IpMia: 172.16.105.82
-	PuertoMio: 5000
-	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
-	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
-	IpOtra: 172.16.105.84
-	PuertoOtro: 5000
-	IpMia: 172.16.105.82
-	PuertoMio: 5000
-	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
-	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
-	IpOtra: 172.16.105.84
-	PuertoOtro: 5000
-	IpMia: 172.16.105.82
-	PuertoMio: 5000
-	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
-	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
-	IpOtra: 172.16.105.84
-	PuertoOtro: 5000
-	IpMia: 172.16.105.82
-	PuertoMio: 5000
-	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
-	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
-	IpOtra: 172.16.105.84
-	PuertoOtro: 5000
-	IpMia: 172.16.105.82
-	PuertoMio: 5000
-	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
-	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
-	IpOtra: 172.16.105.84
-	PuertoOtro: 5000
-	IpMia: 172.16.105.82
-	PuertoMio: 5000
-	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
-	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
-	IpOtra: 172.16.105.84
-	PuertoOtro: 5000
-	IpMia: 172.16.105.82
-	PuertoMio: 5000
-	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
-	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
-	IpOtra: 172.16.105.84
-	PuertoOtro: 5000
-	IpMia: 172.16.105.82
-	PuertoMio: 5000
-	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
-	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
-	IpOtra: 172.16.105.84
-	PuertoOtro: 5000
-	IpMia: 172.16.105.82
-	PuertoMio: 5000
-	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
-	Datos: 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
+HiloReceptor: recibi mensaje 
 	IpOtra: 172.16.105.84
 	PuertoOtro: 5000
 	IpMia: 172.16.105.82
 	PuertoMio: 5000
 	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
+	SNpaq: 7
+	RNpaq: 7
 	Datos: 
-HiloReceptor: Reenvie ack de handshake 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
-	Datos = 
-HiloReceptor: Reenvie ack de handshake 
-	miConexion = (172.16.105.82,5000)
-	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
-	Datos = 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: Reenvie ack de handshake 
+HiloReceptor: Reenvie ack de datos 
 	miConexion = (172.16.105.82,5000)
 	otraConexion = (172.16.105.84,5000)
-	TipoMensaje = 3 
-	SN = 9
-	RN = 10
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
 	Datos = 
-HiloReceptor: recibi ACK de SYN 
-	IpOtra: 172.16.105.84
-	PuertoOtro: 5000
-	IpMia: 172.16.105.82
-	PuertoMio: 5000
-	TipoPaquete: 3
-	SNpaq: 10
-	RNpaq: 10
-	Datos: 

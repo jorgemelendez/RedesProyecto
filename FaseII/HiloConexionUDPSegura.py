@@ -141,6 +141,7 @@ class HiloConexionUDPSegura:
 						self.etapaSyn = 3
 						#print ("Entre en 2")
 						print ("Termine handshake como emisor")
+						self.ackHandshakeTerminado = True
 						bitacora.escribir("HiloReceptor: envie ack de syn " +  "\n\tmiConexion = (" + self.miConexion[0] + "," + str(self.miConexion[1]) + ")\n\totraConexion = (" + self.otraConexion[0] + "," + str(self.otraConexion[1]) + ")\n\tTipoMensaje = 3 \n\tSN = " + str(self.SN) + "\n\tRN = " + str(self.RN) + "\n\tDatos = ")
 						bitacora.escribir("Termine handshake como emisor")
 						#break #QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQUUUUUUUUUUUUUUUUUUIIIIIIIIIIIIIIIIIIIITTTTTTTTTTTTTTTAAAAAAAAAAAAAAAAAAAAAARRRRRRRRRRRRRRRRRRRRR
