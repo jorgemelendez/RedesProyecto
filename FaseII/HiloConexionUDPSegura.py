@@ -114,7 +114,7 @@ class HiloConexionUDPSegura:
 				RNpaq = bytesToInt(recibido[14:15])
 				datos = recibido[15:]
 
-				bitacora.escribir("HiloReceptor: recibi ACK de SYN " + "\n\tIpOtra: " + otroIpRec + "\n\tPuertoOtro: " + str(otroPuertoRec) + "\n\tIpMia: " + miIpRec + "\n\tPuertoMio: " + str(miPuertoRec) + "\n\tTipoPaquete: " + str(tipoPaq) + "\n\tSNpaq: " + str(SNpaq) + "\n\tRNpaq: " + str(RNpaq) + "\n\tDatos: " + datos.decode("utf-8") )
+				bitacora.escribir("HiloReceptor: recibi mensaje " + "\n\tIpOtra: " + otroIpRec + "\n\tPuertoOtro: " + str(otroPuertoRec) + "\n\tIpMia: " + miIpRec + "\n\tPuertoMio: " + str(miPuertoRec) + "\n\tTipoPaquete: " + str(tipoPaq) + "\n\tSNpaq: " + str(SNpaq) + "\n\tRNpaq: " + str(RNpaq) + "\n\tDatos: " + datos.decode("utf-8") )
 
 				#print("Etapa: "+ str(self.etapaSyn) + " TipoPaq" + str(tipoPaq) + " RN: " + str(self.RN) + " SN: " + str(self.SN) + " RNpaq: " + str(RNpaq) + " SN: " + str(SNpaq)  )
 
@@ -148,6 +148,7 @@ class HiloConexionUDPSegura:
 						self.etapaSyn = 3
 						#print ("Entre en 3")
 						print("Termine handshake como receptor")
+						self.ackHandshakeTerminado = True
 						bitacora.escribir("Termine handshake como receptor")
 						self.RN = self.RN + 1
 
