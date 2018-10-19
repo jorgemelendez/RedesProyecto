@@ -3,6 +3,7 @@ import time
 import socket
 import threading
 import datetime
+from random import randrange
 
 from ArmarMensajes import *
 from LeerArchivo import *
@@ -73,7 +74,7 @@ class HiloConexionUDPSegura:
 			#if recibido is None:
 				recibido = self.buzonReceptor.sacarDatos(self.otraConexion)
 			if recibido is None:
-
+				print("Reenvio de paquete porque no llego")
 				if self.etapaSyn == 3 and self.ackHandshakeTerminado == False:#Caso donde no llegan los primeros primeros datos y ya se envio el ack syn
 					ACKConexion = armarPaq(self.miConexion[0], self.miConexion[1], self.otraConexion[0], self.otraConexion[1], 3, self.SN, self.RN, bytearray()) #NO HAY QUE MANDAR DATOS PORQUE ES ESTABLECIENDO CONEXION
 					self.lockSocket.acquire()
@@ -185,14 +186,14 @@ class HiloConexionUDPSegura:
 								self.primerDatoArchivo = True
 								print("ESTE ES EL PRIMER DATO DEL ARCHIVO")
 								bitacora.escribir("COMENCE A RECIBIR ARCHIVO")
-								self.archivo = open("Archivo-"+self.now.year + self.now.month + self.now.day + self.now.hour + self.now.minute + self.now.second + self.now.microsecond, "w+")
+								self.archivo = open("Archivo-"+str(self.now.year) +"_"+ str(self.now.month) +"_"+ str(self.now.day) +"_"+ str(self.now.hour) +"_"+ str(self.now.minute) +"_"+ str(self.now.second) +"_"+ str(self.now.microsecond), "wb+")
 
 							if len(datos) > 0:
-								self.archivo.write(str(datos))
+								self.archivo.write(datos)
 
 							if tipoPaq == 26:
 								print("YA TERMINE DE RECIBIR ARCHIVO")
-								print(self.datosRecibidos)
+								#print(self.datosRecibidos)
 								self.primerDatoArchivo = False
 								bitacora.escribir("TERMINE DE RECIBIR ARCHIVO")
 								self.archivo.close()
@@ -334,7 +335,10 @@ class Server:
 			#print(existeConexion)
 
 			if existeConexion != -1 :
-				self.buzonReceptor.meterDatos(clientAddress, recibido)
+				if randrange(10)>1:
+					self.buzonReceptor.meterDatos(clientAddress, recibido)
+				else:
+					print("SE ELIMINO UN PAQUETE")
 			else:
 				tipoPaq = bytesToInt(recibido[12:13])
 				#print("Tipo paquete")

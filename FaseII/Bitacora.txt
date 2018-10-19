@@ -1,0 +1,1523 @@
+Servidor: Inicie
+Servidor: cree la conexion 172.16.105.84 5000
+HiloReceptor: recibi ACK de SYN 
+	IpOtra: 172.16.105.84
+	PuertoOtro: 5000
+	IpMia: 172.16.105.82
+	PuertoMio: 5000
+	TipoPaquete: 1
+	SNpaq: 0
+	RNpaq: 0
+	Datos: 
+HiloReceptor: envie syn para establecer conexion 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 1 
+	SN = 0
+	RN = 1
+	Datos = 
+HiloReceptor: recibi ACK de SYN 
+	IpOtra: 172.16.105.84
+	PuertoOtro: 5000
+	IpMia: 172.16.105.82
+	PuertoMio: 5000
+	TipoPaquete: 3
+	SNpaq: 1
+	RNpaq: 1
+	Datos: 
+Termine handshake como receptor
+HiloReceptor: envie ack de datos 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 2
+	Datos = 
+HiloReceptor: recibi ACK de SYN 
+	IpOtra: 172.16.105.84
+	PuertoOtro: 5000
+	IpMia: 172.16.105.82
+	PuertoMio: 5000
+	TipoPaquete: 10
+	SNpaq: 2
+	RNpaq: 2
+	Datos: chris
+COMENCE A RECIBIR ARCHIVO
+HiloReceptor: envie ack de datos 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 10 
+	SN = 2
+	RN = 3
+	Datos = 
+HiloReceptor: recibi ACK de SYN 
+	IpOtra: 172.16.105.84
+	PuertoOtro: 5000
+	IpMia: 172.16.105.82
+	PuertoMio: 5000
+	TipoPaquete: 10
+	SNpaq: 3
+	RNpaq: 3
+	Datos: tophe
+HiloReceptor: envie ack de datos 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 10 
+	SN = 3
+	RN = 4
+	Datos = 
+HiloReceptor: recibi ACK de SYN 
+	IpOtra: 172.16.105.84
+	PuertoOtro: 5000
+	IpMia: 172.16.105.82
+	PuertoMio: 5000
+	TipoPaquete: 26
+	SNpaq: 4
+	RNpaq: 4
+	Datos: r
+TERMINE DE RECIBIR ARCHIVO
+HiloReceptor: envie ack de datos 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 10 
+	SN = 4
+	RN = 5
+	Datos = 
+HiloReceptor: recibi ACK de SYN 
+	IpOtra: 172.16.105.84
+	PuertoOtro: 5000
+	IpMia: 172.16.105.82
+	PuertoMio: 5000
+	TipoPaquete: 10
+	SNpaq: 5
+	RNpaq: 5
+	Datos: 
+HiloReceptor: envie ack de datos 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 10 
+	SN = 5
+	RN = 6
+	Datos = 
+HiloReceptor: recibi ACK de SYN 
+	IpOtra: 172.16.105.84
+	PuertoOtro: 5000
+	IpMia: 172.16.105.82
+	PuertoMio: 5000
+	TipoPaquete: 10
+	SNpaq: 6
+	RNpaq: 6
+	Datos: 
+HiloReceptor: envie ack de datos 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 10 
+	SN = 6
+	RN = 7
+	Datos = 
+HiloReceptor: recibi ACK de SYN 
+	IpOtra: 172.16.105.84
+	PuertoOtro: 5000
+	IpMia: 172.16.105.82
+	PuertoMio: 5000
+	TipoPaquete: 10
+	SNpaq: 7
+	RNpaq: 7
+	Datos: 
+HiloReceptor: envie ack de datos 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 10 
+	SN = 7
+	RN = 8
+	Datos = 
+HiloReceptor: recibi ACK de SYN 
+	IpOtra: 172.16.105.84
+	PuertoOtro: 5000
+	IpMia: 172.16.105.82
+	PuertoMio: 5000
+	TipoPaquete: 10
+	SNpaq: 8
+	RNpaq: 8
+	Datos: 
+HiloReceptor: envie ack de datos 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 10 
+	SN = 8
+	RN = 9
+	Datos = 
+HiloReceptor: recibi ACK de SYN 
+	IpOtra: 172.16.105.84
+	PuertoOtro: 5000
+	IpMia: 172.16.105.82
+	PuertoMio: 5000
+	TipoPaquete: 10
+	SNpaq: 9
+	RNpaq: 9
+	Datos: 
+HiloReceptor: envie ack de datos 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 10 
+	SN = 9
+	RN = 10
+	Datos = 
+HiloReceptor: recibi ACK de SYN 
+	IpOtra: 172.16.105.84
+	PuertoOtro: 5000
+	IpMia: 172.16.105.82
+	PuertoMio: 5000
+	TipoPaquete: 10
+	SNpaq: 10
+	RNpaq: 10
+	Datos: 
+HiloReceptor: envie ack de datos 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 10 
+	SN = 10
+	RN = 11
+	Datos = 
+HiloReceptor: recibi ACK de SYN 
+	IpOtra: 172.16.105.84
+	PuertoOtro: 5000
+	IpMia: 172.16.105.82
+	PuertoMio: 5000
+	TipoPaquete: 10
+	SNpaq: 11
+	RNpaq: 11
+	Datos: 
+HiloReceptor: envie ack de datos 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 10 
+	SN = 11
+	RN = 12
+	Datos = 
+HiloReceptor: recibi ACK de SYN 
+	IpOtra: 172.16.105.84
+	PuertoOtro: 5000
+	IpMia: 172.16.105.82
+	PuertoMio: 5000
+	TipoPaquete: 10
+	SNpaq: 12
+	RNpaq: 12
+	Datos: 
+HiloReceptor: envie ack de datos 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 10 
+	SN = 12
+	RN = 13
+	Datos = 
+HiloReceptor: recibi ACK de SYN 
+	IpOtra: 172.16.105.84
+	PuertoOtro: 5000
+	IpMia: 172.16.105.82
+	PuertoMio: 5000
+	TipoPaquete: 10
+	SNpaq: 13
+	RNpaq: 13
+	Datos: 
+HiloReceptor: envie ack de datos 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 10 
+	SN = 13
+	RN = 14
+	Datos = 
+HiloReceptor: recibi ACK de SYN 
+	IpOtra: 172.16.105.84
+	PuertoOtro: 5000
+	IpMia: 172.16.105.82
+	PuertoMio: 5000
+	TipoPaquete: 10
+	SNpaq: 14
+	RNpaq: 14
+	Datos: 
+HiloReceptor: envie ack de datos 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 10 
+	SN = 14
+	RN = 15
+	Datos = 
+HiloReceptor: recibi ACK de SYN 
+	IpOtra: 172.16.105.84
+	PuertoOtro: 5000
+	IpMia: 172.16.105.82
+	PuertoMio: 5000
+	TipoPaquete: 10
+	SNpaq: 15
+	RNpaq: 15
+	Datos: 
+HiloReceptor: envie ack de datos 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 10 
+	SN = 15
+	RN = 16
+	Datos = 
+HiloReceptor: recibi ACK de SYN 
+	IpOtra: 172.16.105.84
+	PuertoOtro: 5000
+	IpMia: 172.16.105.82
+	PuertoMio: 5000
+	TipoPaquete: 10
+	SNpaq: 16
+	RNpaq: 16
+	Datos: 
+HiloReceptor: envie ack de datos 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 10 
+	SN = 16
+	RN = 17
+	Datos = 
+HiloReceptor: recibi ACK de SYN 
+	IpOtra: 172.16.105.84
+	PuertoOtro: 5000
+	IpMia: 172.16.105.82
+	PuertoMio: 5000
+	TipoPaquete: 10
+	SNpaq: 17
+	RNpaq: 17
+	Datos: 
+HiloReceptor: envie ack de datos 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 10 
+	SN = 17
+	RN = 18
+	Datos = 
+HiloReceptor: recibi ACK de SYN 
+	IpOtra: 172.16.105.84
+	PuertoOtro: 5000
+	IpMia: 172.16.105.82
+	PuertoMio: 5000
+	TipoPaquete: 10
+	SNpaq: 18
+	RNpaq: 18
+	Datos: 
+HiloReceptor: envie ack de datos 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 10 
+	SN = 18
+	RN = 19
+	Datos = 
+HiloReceptor: recibi ACK de SYN 
+	IpOtra: 172.16.105.84
+	PuertoOtro: 5000
+	IpMia: 172.16.105.82
+	PuertoMio: 5000
+	TipoPaquete: 10
+	SNpaq: 19
+	RNpaq: 19
+	Datos: 
+HiloReceptor: envie ack de datos 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 10 
+	SN = 19
+	RN = 20
+	Datos = 
+HiloReceptor: recibi ACK de SYN 
+	IpOtra: 172.16.105.84
+	PuertoOtro: 5000
+	IpMia: 172.16.105.82
+	PuertoMio: 5000
+	TipoPaquete: 10
+	SNpaq: 20
+	RNpaq: 20
+	Datos: 
+HiloReceptor: envie ack de datos 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 10 
+	SN = 20
+	RN = 21
+	Datos = 
+HiloReceptor: recibi ACK de SYN 
+	IpOtra: 172.16.105.84
+	PuertoOtro: 5000
+	IpMia: 172.16.105.82
+	PuertoMio: 5000
+	TipoPaquete: 10
+	SNpaq: 21
+	RNpaq: 21
+	Datos: 
+HiloReceptor: envie ack de datos 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 10 
+	SN = 21
+	RN = 22
+	Datos = 
+HiloReceptor: recibi ACK de SYN 
+	IpOtra: 172.16.105.84
+	PuertoOtro: 5000
+	IpMia: 172.16.105.82
+	PuertoMio: 5000
+	TipoPaquete: 10
+	SNpaq: 22
+	RNpaq: 22
+	Datos: 
+HiloReceptor: envie ack de datos 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 10 
+	SN = 22
+	RN = 23
+	Datos = 
+HiloReceptor: recibi ACK de SYN 
+	IpOtra: 172.16.105.84
+	PuertoOtro: 5000
+	IpMia: 172.16.105.82
+	PuertoMio: 5000
+	TipoPaquete: 10
+	SNpaq: 23
+	RNpaq: 23
+	Datos: 
+HiloReceptor: envie ack de datos 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 10 
+	SN = 23
+	RN = 24
+	Datos = 
+HiloReceptor: recibi ACK de SYN 
+	IpOtra: 172.16.105.84
+	PuertoOtro: 5000
+	IpMia: 172.16.105.82
+	PuertoMio: 5000
+	TipoPaquete: 10
+	SNpaq: 24
+	RNpaq: 24
+	Datos: 
+HiloReceptor: envie ack de datos 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 10 
+	SN = 24
+	RN = 25
+	Datos = 
+HiloReceptor: recibi ACK de SYN 
+	IpOtra: 172.16.105.84
+	PuertoOtro: 5000
+	IpMia: 172.16.105.82
+	PuertoMio: 5000
+	TipoPaquete: 10
+	SNpaq: 25
+	RNpaq: 25
+	Datos: 
+HiloReceptor: envie ack de datos 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 10 
+	SN = 25
+	RN = 26
+	Datos = 
+HiloReceptor: recibi ACK de SYN 
+	IpOtra: 172.16.105.84
+	PuertoOtro: 5000
+	IpMia: 172.16.105.82
+	PuertoMio: 5000
+	TipoPaquete: 10
+	SNpaq: 26
+	RNpaq: 26
+	Datos: 
+HiloReceptor: envie ack de datos 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 10 
+	SN = 26
+	RN = 27
+	Datos = 
+HiloReceptor: recibi ACK de SYN 
+	IpOtra: 172.16.105.84
+	PuertoOtro: 5000
+	IpMia: 172.16.105.82
+	PuertoMio: 5000
+	TipoPaquete: 10
+	SNpaq: 27
+	RNpaq: 27
+	Datos: 
+HiloReceptor: envie ack de datos 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 10 
+	SN = 27
+	RN = 28
+	Datos = 
+HiloReceptor: recibi ACK de SYN 
+	IpOtra: 172.16.105.84
+	PuertoOtro: 5000
+	IpMia: 172.16.105.82
+	PuertoMio: 5000
+	TipoPaquete: 10
+	SNpaq: 28
+	RNpaq: 28
+	Datos: 
+HiloReceptor: envie ack de datos 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 10 
+	SN = 28
+	RN = 29
+	Datos = 
+HiloReceptor: recibi ACK de SYN 
+	IpOtra: 172.16.105.84
+	PuertoOtro: 5000
+	IpMia: 172.16.105.82
+	PuertoMio: 5000
+	TipoPaquete: 10
+	SNpaq: 29
+	RNpaq: 29
+	Datos: 
+HiloReceptor: envie ack de datos 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 10 
+	SN = 29
+	RN = 30
+	Datos = 
+HiloReceptor: recibi ACK de SYN 
+	IpOtra: 172.16.105.84
+	PuertoOtro: 5000
+	IpMia: 172.16.105.82
+	PuertoMio: 5000
+	TipoPaquete: 10
+	SNpaq: 30
+	RNpaq: 30
+	Datos: 
+HiloReceptor: envie ack de datos 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 10 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
+HiloReceptor: Reenvie ack de handshake 
+	miConexion = (172.16.105.82,5000)
+	otraConexion = (172.16.105.84,5000)
+	TipoMensaje = 3 
+	SN = 30
+	RN = 31
+	Datos = 
