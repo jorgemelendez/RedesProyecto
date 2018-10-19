@@ -170,7 +170,7 @@ class HiloConexionUDPSegura:
 								self.ultimoMensajeMandado = self.archivoActual.pop(0)
 
 							ACK = armarPaq(self.miConexion[0], self.miConexion[1], self.otraConexion[0], self.otraConexion[1], 10, self.SN, self.RN, self.ultimoMensajeMandado) #VER SI TENGO DATOS PARA MANDAR
-							
+							self.tipo = 10
 							self.lockSocket.acquire()
 							self.socketConexion.sendto(ACK, self.otraConexion)
 							self.lockSocket.release()
