@@ -170,6 +170,8 @@ class HiloConexionUDPSegura:
 							self.RN = self.RN + 1
 							if self.FinArchivoSN+1 == RNpaq and self.FinArchivoRN == self.SN:
 								self.termineEnviar.release()
+							else:
+								self.bitacora.escribir("FinArchivoSN+1 = " + str(self.FinArchivoSN+1) + "\nRNPaq = " + str(RNPaq) + "\nFinArchivoRN= " + str(self.FinArchivoRN) + "\nSN= "+ str(self.SN))
 							if RNpaq > self.SN:
 								self.SN = RNpaq
 								self.tipo = 10
