@@ -27,7 +27,7 @@ class HiloConexionUDPSegura:
 
 		self.lockArchivos = threading.Lock()
 		self.termineEnviar = threading.Lock()
-		self.ArchivosAEnviar = list()#Archivos por enviar
+		#self.ArchivosAEnviar = list()#Archivos por enviar
 
 		self.archivoActual = list()#Archivo actual que se esta enviando
 
@@ -303,10 +303,6 @@ class HiloConexionUDPSegura:
 					elif tipoPaq == 6:
 						bitacora.escribir("HiloReceptor: Finalice")
 						break
-
-			self.lockArchivos.acquire()
-			cantidadArchivos = len(self.ArchivosAEnviar)
-			self.lockArchivos.release()
 
 
 class emisor:
