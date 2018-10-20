@@ -299,7 +299,6 @@ class HiloConexionUDPSegura:
 						self.lockSocket.acquire()
 						self.socketConexion.sendto(ACK, self.otraConexion)
 						self.lockSocket.release()
-						
 						break
 					elif tipoPaq == 6:
 						bitacora.escribir("HiloReceptor: Finalice")
@@ -308,6 +307,15 @@ class HiloConexionUDPSegura:
 			self.lockArchivos.acquire()
 			cantidadArchivos = len(self.ArchivosAEnviar)
 			self.lockArchivos.release()
+			
+			
+
+		while True:
+			ACK = armarPaq(self.miConexion[0], self.miConexion[1], self.otraConexion[0], self.otraConexion[1], self.tipo, self.SN, self.RN, self.ultimoMensajeMandado) #VER SI TENGO DATOS PARA MANDAR
+			self.lockSocket.acquire()
+			self.socketConexion.sendto(ACK, self.otraConexion)
+			self.lockSocket.release()
+			bitacora.escribir("HiloReceptor: envie ack de datos " +  "\n\tmiConexion = (" + self.miConexion[0] + "," + str(self.miConexion[1]) + ")\n\totraConexion = (" + self.otraConexion[0] + "," + str(self.otraConexion[1]) + ")\n\tTipoMensaje = 10 \n\tSN = " + str(self.SN) + "\n\tRN = " + str(self.RN) + "\n\tDatos = " + self.ultimoMensajeMandado.decode("utf-8"))
 							
 
 
