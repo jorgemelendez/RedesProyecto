@@ -26,7 +26,6 @@ class HiloConexionUDPSegura:
 		#print("Cree hilo")		
 
 		self.lockArchivos = threading.Lock()
-		self.termineEnviar = threading.Lock()
 		self.ArchivosAEnviar = list()#Archivos por enviar
 
 		self.archivoActual = list()#Archivo actual que se esta enviando
@@ -42,28 +41,14 @@ class HiloConexionUDPSegura:
 		self.primerDatoArchivo = False
 		self.now = datetime.datetime.now()
 
-		self.continuarReceptor = True
-
 	def soyLaConexionHacia(self, ip, puerto):
 		return self.otraConexion == (ip,puerto)
 
 	def meterArchivoAEnviar(self, contenidoArchivo):
-		#segmentado = segmentarArchivo(contenidoArchivo, 5)
-		#self.lockArchivos.acquire()
-		#self.ArchivosAEnviar.append(segmentado)
-		#self.lockArchivos.release()
-
-		#------------------------------------------------------------
+		segmentado = segmentarArchivo(contenidoArchivo, 5)
 		self.lockArchivos.acquire()
-		self.archivoActual = segmentarArchivo(contenidoArchivo, 5)
-#		cantidadDeBytes = len(self.archivoActual) #De fijo es mayor que 0, ASEGURARNOS
+		self.ArchivosAEnviar.append(segmentado)
 		self.lockArchivos.release()
-
-		self.termineEnviar.acquire()
-		self.termineEnviar.acquire()
-		self.termineEnviar.release()
-
-		#------------------------------------------------------------
 
 
 	def connect(self, ipServidor, puertoServidor):
@@ -72,10 +57,6 @@ class HiloConexionUDPSegura:
 		self.socketConexion.sendto(mensaje, (ipServidor, puertoServidor))
 		self.lockSocket.release()
 		self.etapaSyn = 2
-		self.bitacora.escribir("HiloReceptor: Envie syn a " + ipServidor + " " + str(puertoServidor) )
-
-	#def cerrarCon(self, conexion):
-
 		
 
 	#METER MENSAJE EN EL BUZON ANTES DE CREAR EL HILO
@@ -175,23 +156,18 @@ class HiloConexionUDPSegura:
 						if RNpaq > self.SN:
 							self.SN = RNpaq
 
-							self.lockArchivos.acquire()
 							if len(self.archivoActual) == 0: #paquete actual ya termino y ya lo confirmaron
-								
-								
-								#self.lockArchivos.acquire()
-								#if len(self.ArchivosAEnviar) != 0: # si hay mas paquetes para enviar
+								self.lockArchivos.acquire()
+								if len(self.ArchivosAEnviar) != 0: # si hay mas paquetes para enviar
 									
-								#	self.archivoActual = self.ArchivosAEnviar.pop(0)
+									self.archivoActual = self.ArchivosAEnviar.pop(0)
 								
-								#	self.ultimoMensajeMandado = self.archivoActual.pop(0)
-								#else:
-								self.ultimoMensajeMandado = bytearray()
-								#self.lockArchivos.release()
+									self.ultimoMensajeMandado = self.archivoActual.pop(0)
+								else:
+									self.ultimoMensajeMandado = bytearray()
+								self.lockArchivos.release()
 							else:
 								self.ultimoMensajeMandado = self.archivoActual.pop(0)
-
-							self.lockArchivos.release()
 
 							ACK = armarPaq(self.miConexion[0], self.miConexion[1], self.otraConexion[0], self.otraConexion[1], 10, self.SN, self.RN, self.ultimoMensajeMandado) #VER SI TENGO DATOS PARA MANDAR
 							self.tipo = 10
@@ -231,34 +207,25 @@ class HiloConexionUDPSegura:
 							#Enviar paquete de ack de respuesta
 							self.RN = self.RN + 1
 
-							if self.FinArchivoSN+1 == RNpaq and self.FinArchivoRN == self.SN:
-								self.termineEnviar.release()
-
 							if RNpaq > self.SN:
 								self.SN = RNpaq
 
 								self.tipo = 10
 
-								self.lockArchivos.acquire()
 								if len(self.archivoActual) == 0: #paquete actual ya termino y ya lo confirmaron
-									#self.lockArchivos.acquire()
-									#if len(self.ArchivosAEnviar) != 0: # si hay mas paquetes para enviar
+									self.lockArchivos.acquire()
+									if len(self.ArchivosAEnviar) != 0: # si hay mas paquetes para enviar
 										
-									#	self.archivoActual = self.ArchivosAEnviar.pop(0)
+										self.archivoActual = self.ArchivosAEnviar.pop(0)
 									
-									#	self.ultimoMensajeMandado = self.archivoActual.pop(0)
-									#else:
-									self.ultimoMensajeMandado = bytearray()
-									#self.lockArchivos.release()
+										self.ultimoMensajeMandado = self.archivoActual.pop(0)
+									else:
+										self.ultimoMensajeMandado = bytearray()
+									self.lockArchivos.release()
 								else:
 									self.ultimoMensajeMandado = self.archivoActual.pop(0)
 									if len(self.archivoActual) == 0:
 										self.tipo = 26
-										self.FinArchivoSN = self.SN
-										self.FinArchivoRN = self.RN
-
-								self.lockArchivos.release()
-
 									
 
 								ACK = armarPaq(self.miConexion[0], self.miConexion[1], self.otraConexion[0], self.otraConexion[1], self.tipo, self.SN, self.RN, self.ultimoMensajeMandado) #VER SI TENGO DATOS PARA MANDAR
@@ -271,12 +238,6 @@ class HiloConexionUDPSegura:
 						else:
 							bitacora.escribir("Mensaje recibido extranno, RN != SNpaq")
 
-			self.lockArchivos.acquire()
-			cantidadArchivos = len(self.ArchivosAEnviar)
-			self.lockArchivos.release()
-			
-			if self.continuarReceptor == False and cantidadArchivos == 0:
-				break
 
 
 class emisor:
@@ -330,17 +291,13 @@ class emisor:
 						conexion = HiloConexionUDPSegura( self.buzonReceptor, (otraIp,otroPuerto), self.miConexion, self.socketConexion, self.lockSocket, self.bitacora )
 						conexion.connect(otraIp,otroPuerto)
 
-						
+						conexion.meterArchivoAEnviar(contenido)
 						
 						hiloNuevaConexion = threading.Thread(target=conexion.receptor, args=())
 						hiloNuevaConexion.start()
 
 						self.conexiones.append(conexion)#ANALIDAR CUANDO HAY QUE SACARLA POR SI NO SE HACE EL HANDSHAKE O TERMINA LA CONEXION O TIMEOUT EN ENVIAR DATOS
 						bitacora.escribir("Emisor: cree la conexion" + otraIp + " " + str(otroPuerto) )
-
-						conexion.meterArchivoAEnviar(contenido)
-
-						
 					else:
 						print("Conexion existente")
 						
