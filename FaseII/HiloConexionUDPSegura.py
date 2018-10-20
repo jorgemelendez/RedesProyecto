@@ -42,6 +42,7 @@ class HiloConexionUDPSegura:
 		self.primerDatoArchivo = False
 		self.now = datetime.datetime.now()
 
+		self.lockContinuarReceptor = threading.Lock()
 		self.continuarReceptor = True
 
 		self.tipo = 0
@@ -64,9 +65,11 @@ class HiloConexionUDPSegura:
 #		cantidadDeBytes = len(self.archivoActual) #De fijo es mayor que 0, ASEGURARNOS
 		self.lockArchivos.release()
 
+		#print("Pegue")
 		self.termineEnviar.acquire()
 		self.termineEnviar.acquire()
 		self.termineEnviar.release()
+		#print("Pase")
 
 		#------------------------------------------------------------
 
@@ -79,8 +82,10 @@ class HiloConexionUDPSegura:
 		self.etapaSyn = 2
 		self.bitacora.escribir("HiloReceptor: Envie syn a " + ipServidor + " " + str(puertoServidor) )
 
-	#def cerrarCon(self, conexion):
-
+	def close(self):
+		self.lockContinuarReceptor.acquire()
+		self.continuarReceptor = False
+		self.lockContinuarReceptor.release()
 		
 
 	#METER MENSAJE EN EL BUZON ANTES DE CREAR EL HILO
@@ -265,24 +270,50 @@ class HiloConexionUDPSegura:
 
 								self.lockArchivos.release()
 
-									
-
-								ACK = armarPaq(self.miConexion[0], self.miConexion[1], self.otraConexion[0], self.otraConexion[1], self.tipo, self.SN, self.RN, self.ultimoMensajeMandado) #VER SI TENGO DATOS PARA MANDAR
+								self.lockContinuarReceptor.acquire()
+								continuo = self.continuarReceptor
+								self.lockContinuarReceptor.release()
+								if continuo == False:
+									self.tipo = 4
+									ACK = armarPaq(self.miConexion[0], self.miConexion[1], self.otraConexion[0], self.otraConexion[1], self.tipo, self.SN, self.RN, bytearray())
+								else:
+									ACK = armarPaq(self.miConexion[0], self.miConexion[1], self.otraConexion[0], self.otraConexion[1], self.tipo, self.SN, self.RN, self.ultimoMensajeMandado) #VER SI TENGO DATOS PARA MANDAR
 								
 								self.lockSocket.acquire()
 								self.socketConexion.sendto(ACK, self.otraConexion)
 								self.lockSocket.release()
-								bitacora.escribir("HiloReceptor: envie ack de datos " +  "\n\tmiConexion = (" + self.miConexion[0] + "," + str(self.miConexion[1]) + ")\n\totraConexion = (" + self.otraConexion[0] + "," + str(self.otraConexion[1]) + ")\n\tTipoMensaje = 10 \n\tSN = " + str(self.SN) + "\n\tRN = " + str(self.RN) + "\n\tDatos = " + self.ultimoMensajeMandado.decode("utf-8"))
+								bitacora.escribir("HiloReceptor: envie ack de datos " +  "\n\tmiConexion = (" + self.miConexion[0] + "," + str(self.miConexion[1]) + ")\n\totraConexion = (" + self.otraConexion[0] + "," + str(self.otraConexion[1]) + ")\n\tTipoMensaje = "+str(self.tipo)+" \n\tSN = " + str(self.SN) + "\n\tRN = " + str(self.RN) + "\n\tDatos = " + self.ultimoMensajeMandado.decode("utf-8"))
 							#VEEEEEEEEEEEEEEEEEEEER EL ELSE PORQUE CREO QUE HAY QUE MANDAR ALGO AUNQUE SEA UN ACK
 						else:
 							bitacora.escribir("Mensaje recibido extranno, RN != SNpaq")
+					elif tipoPaq == 4:
+						bitacora.escribir("El mensaje recibido es de cerrar conexion")
+						self.RN = self.RN + 1
+
+						if RNpaq > self.SN:
+							self.SN = RNpaq
+						ACK = armarPaq(self.miConexion[0], self.miConexion[1], self.otraConexion[0], self.otraConexion[1], 6, self.SN, self.RN, bytearray()) #VER SI TENGO DATOS PARA MANDAR
+						bitacora.escribir("HiloReceptor: envie ack para finalizar conexion " +  "\n\tmiConexion = (" + self.miConexion[0] + "," + str(self.miConexion[1]) + ")\n\totraConexion = (" + self.otraConexion[0] + "," + str(self.otraConexion[1]) + ")\n\tTipoMensaje = 6 \n\tSN = " + str(self.SN) + "\n\tRN = " + str(self.RN) + "\n\tDatos = " )
+						bitacora.escribir("HiloReceptor: Finalice")
+						
+						break
+					elif tipoPaq == 6:
+						bitacora.escribir("HiloReceptor: Finalice")
+						break
 
 			self.lockArchivos.acquire()
 			cantidadArchivos = len(self.ArchivosAEnviar)
 			self.lockArchivos.release()
 			
-			if self.continuarReceptor == False and cantidadArchivos == 0:
-				break
+			
+
+		while True:
+			ACK = armarPaq(self.miConexion[0], self.miConexion[1], self.otraConexion[0], self.otraConexion[1], self.tipo, self.SN, self.RN, self.ultimoMensajeMandado) #VER SI TENGO DATOS PARA MANDAR
+			self.lockSocket.acquire()
+			self.socketConexion.sendto(ACK, self.otraConexion)
+			self.lockSocket.release()
+			bitacora.escribir("HiloReceptor: envie ack de datos " +  "\n\tmiConexion = (" + self.miConexion[0] + "," + str(self.miConexion[1]) + ")\n\totraConexion = (" + self.otraConexion[0] + "," + str(self.otraConexion[1]) + ")\n\tTipoMensaje = 10 \n\tSN = " + str(self.SN) + "\n\tRN = " + str(self.RN) + "\n\tDatos = " + self.ultimoMensajeMandado.decode("utf-8"))
+							
 
 
 class emisor:
@@ -346,6 +377,7 @@ class emisor:
 
 						self.lockConexiones.release()
 						conexion.meterArchivoAEnviar(contenido)
+						conexion.close()
 
 						
 					else:
