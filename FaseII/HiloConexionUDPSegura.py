@@ -338,6 +338,7 @@ class Server:
 			try:
 				recibido, clientAddress = self.socketConexion.recvfrom(2048)
 			except socket.timeout:
+				x=0
 				#self.lockSocket.release()
 			else:
 				#self.socketConexion.settimeout(0)
