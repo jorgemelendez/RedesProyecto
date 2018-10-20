@@ -368,9 +368,10 @@ class Server:
 				self.lockFin.acquire()
 				termino = self.fin
 				self.lockFin.release()
+				print(termino)
 				if termino == True:
 					break
-				print("Pase")
+				
 
 class nodo:
 
@@ -413,6 +414,7 @@ class nodo:
 				self.lockFin.acquire()
 				self.fin = True
 				self.lockFin.release()
+				print("Cambie varuable a " + str(self.fin))
 				break
 			else:
 				print('Ingrese una opcion valida.')
