@@ -300,7 +300,7 @@ class Emisor:
 					self.bitacora.escribir("Emisor: envie un archivo a " + otraIp + " " + str(otroPuerto) )
 
 class Server:
-	def __init__(self, miConexion, buzonReceptor, socketConexion, lockSocket, conexiones, lockConexiones, bitacora, lockFin, fin):
+	def __init__(self, miConexion, buzonReceptor, socketConexion, lockSocket, conexiones, lockConexiones, bitacora, banderaFin):
 		self.conexiones = conexiones
 		self.lockConexiones = lockConexiones
 		self.miConexion = miConexion
@@ -309,7 +309,7 @@ class Server:
 		self.lockSocket = lockSocket
 		self.bitacora = bitacora
 		self.lockFin = lockFin
-		self.fin = fin
+		self.banderaFin = banderaFin
 
 	#Llamar solo CON candado adquirido
 	def buscarConexionLogica(self, ip,puerto):#APLICA SI LAS CONEXIONES DEBEN ESTAR PARA AMBOS , creo que deben estar aunque para tener una lista de las conexiones hechas para usarlas, VER QUE DICE LA PROFE
@@ -339,12 +339,6 @@ class Server:
 				recibido, clientAddress = self.socketConexion.recvfrom(2048)
 			except socket.timeout:
 				x=0
-				self.lockFin.acquire()
-				termino = self.fin
-				self.lockFin.release()
-				#print(termino)
-				if termino == True:
-					break
 				#self.lockSocket.release()
 			else:
 				#self.socketConexion.settimeout(0)
@@ -370,14 +364,24 @@ class Server:
 					else:
 						print(clientAddress)
 						print("ESTA CONEXION NO EXITE Y LLEGO UN MENSAJE DISTINTO A SYN")
-				self.lockConexiones.release()
-				self.lockFin.acquire()
-				termino = self.fin
-				self.lockFin.release()
-				#print(termino)
-				if termino == True:
-					break
-				
+			if self.banderaFin.leerBandera():
+				break
+
+class BanderaFin:
+	def __init__(self, bandera):
+		self.bandera = bandera
+		self.lockBandera = threading.Lock()
+
+	def leerBandera(self):
+		self.lockBandera.acquire()
+		retorno = self.bandera
+		self.lockBandera.release()
+		return retorno
+
+	def modificarBandera(self,bandera):
+		self.lockBandera.acquire()
+		self.bandera = bandera
+		self.lockBandera.release()		
 
 class nodo:
 
@@ -392,8 +396,9 @@ class nodo:
 		self.lockConexiones = threading.Lock()
 		self.emisor = Emisor( self.miConexion, self.buzonReceptor, self.socketConexion, self.lockSocket, self.conexiones, self.lockConexiones, self.bitacora)
 		self.lockFin = threading.Lock()
-		self.fin = False
-		self.server = Server( self.miConexion, self.buzonReceptor, self.socketConexion, self.lockSocket, self.conexiones, self.lockConexiones, self.bitacora, self.lockFin, self.fin)
+		self.banderaFin = BanderaFin()
+		self.banderaFin.modificarBandera(False)
+		self.server = Server( self.miConexion, self.buzonReceptor, self.socketConexion, self.lockSocket, self.conexiones, self.lockConexiones, self.bitacora, self.banderaFin)
 
 	def cerrarTodo(self):
 		self.lockConexiones.acquire()
