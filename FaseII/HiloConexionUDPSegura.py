@@ -3,6 +3,7 @@ import time
 import socket
 import threading
 import datetime
+import os
 from random import randrange
 
 from ArmarMensajes import *
@@ -165,8 +166,8 @@ class HiloConexionUDPSegura:
 				else:
 					if tipoPaq == 10 or tipoPaq == 26:
 						if self.RN == SNpaq: #REVISAR SI ES DEL TIPO DE MENSAJE QUE ESTOY ESPERANDO
-							print(". ", end='')
 							self.datosRecibidos += datos
+							print(".")
 							self.ackHandshakeTerminado = True
 							if self.primerDatoArchivo == False and len(datos) > 0:
 								self.primerDatoArchivo = True
