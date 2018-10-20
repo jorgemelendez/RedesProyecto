@@ -1,2 +1,0 @@
-Notas:
-	Hilos receptores por conexion: para cada hilo receptor se le debe pasar el ip, puerto donde espera ACKs el emisor

@@ -1,3 +1,0 @@
-Servidor: Inicie
-Emisor: cree la conexion10.1.138.18 5000
-Emisor: envie un archivo a 10.1.138.18 5000
