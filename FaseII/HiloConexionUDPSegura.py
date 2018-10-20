@@ -368,7 +368,7 @@ class Server:
 			self.lockFin.acquire()
 			termino = self.fin
 			self.lockFin.release()
-			print(termino)
+			#print(termino)
 			if termino == True:
 				break
 				
