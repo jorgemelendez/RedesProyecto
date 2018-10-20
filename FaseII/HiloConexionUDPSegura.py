@@ -288,7 +288,7 @@ class Emisor:
 						print("Conexion existente")
 						self.lockConexiones.release()
 						self.conexiones[indice].meterArchivoAEnviar(contenido)
-						print("Sali de enviar archivo 1")
+						print("Sali de enviar archivo 2")
 					self.bitacora.escribir("Emisor: envie un archivo a " + otraIp + " " + str(otroPuerto) )
 
 class Server:
