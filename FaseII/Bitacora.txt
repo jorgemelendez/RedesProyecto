@@ -1,41 +1,9 @@
 Servidor: Inicie
-HiloReceptor: Envie syn a 25.16.114.54 5000
-Emisor: cree la conexion25.16.114.54 5000
-HiloReceptor: Envie syn a 25.16.114.54 5000
-HiloReceptor: Reenvie syn 
-	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
-	TipoMensaje = 1 
-	SN = 0
-	RN = 0
-	Datos = 
-HiloReceptor: Envie syn a 25.16.114.54 5000
-HiloReceptor: Reenvie syn 
-	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
-	TipoMensaje = 1 
-	SN = 0
-	RN = 0
-	Datos = 
-HiloReceptor: Envie syn a 25.16.114.54 5000
-HiloReceptor: Reenvie syn 
-	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
-	TipoMensaje = 1 
-	SN = 0
-	RN = 0
-	Datos = 
-HiloReceptor: Envie syn a 25.16.114.54 5000
-HiloReceptor: Reenvie syn 
-	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
-	TipoMensaje = 1 
-	SN = 0
-	RN = 0
-	Datos = 
+HiloReceptor: Envie syn a 25.8.85.180 6000
+Emisor: cree la conexion25.8.85.180 6000
 HiloReceptor: recibi mensaje 
-	IpOtra: 25.16.114.54
-	PuertoOtro: 5000
+	IpOtra: 25.8.85.180
+	PuertoOtro: 6000
 	IpMia: 25.8.85.180
 	PuertoMio: 5000
 	TipoPaquete: 1
@@ -44,15 +12,15 @@ HiloReceptor: recibi mensaje
 	Datos: 
 HiloReceptor: envie ack de syn 
 	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
+	otraConexion = (25.8.85.180,6000)
 	TipoMensaje = 3 
 	SN = 1
 	RN = 1
 	Datos = 
 Termine handshake como emisor
 HiloReceptor: recibi mensaje 
-	IpOtra: 25.16.114.54
-	PuertoOtro: 5000
+	IpOtra: 25.8.85.180
+	PuertoOtro: 6000
 	IpMia: 25.8.85.180
 	PuertoMio: 5000
 	TipoPaquete: 10
@@ -61,21 +29,14 @@ HiloReceptor: recibi mensaje
 	Datos: 
 HiloReceptor: envie ack de datos 
 	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
-	TipoMensaje = 10 
-	SN = 2
-	RN = 2
-	Datos = Quier
-HiloReceptor: Reenvie ack de datos 
-	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
+	otraConexion = (25.8.85.180,6000)
 	TipoMensaje = 10 
 	SN = 2
 	RN = 2
 	Datos = Quier
 HiloReceptor: recibi mensaje 
-	IpOtra: 25.16.114.54
-	PuertoOtro: 5000
+	IpOtra: 25.8.85.180
+	PuertoOtro: 6000
 	IpMia: 25.8.85.180
 	PuertoMio: 5000
 	TipoPaquete: 10
@@ -84,21 +45,14 @@ HiloReceptor: recibi mensaje
 	Datos: 
 HiloReceptor: envie ack de datos 
 	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
-	TipoMensaje = 10 
-	SN = 3
-	RN = 3
-	Datos = o pas
-HiloReceptor: Reenvie ack de datos 
-	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
+	otraConexion = (25.8.85.180,6000)
 	TipoMensaje = 10 
 	SN = 3
 	RN = 3
 	Datos = o pas
 HiloReceptor: recibi mensaje 
-	IpOtra: 25.16.114.54
-	PuertoOtro: 5000
+	IpOtra: 25.8.85.180
+	PuertoOtro: 6000
 	IpMia: 25.8.85.180
 	PuertoMio: 5000
 	TipoPaquete: 10
@@ -107,14 +61,14 @@ HiloReceptor: recibi mensaje
 	Datos: 
 HiloReceptor: envie ack de datos 
 	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
+	otraConexion = (25.8.85.180,6000)
 	TipoMensaje = 10 
 	SN = 4
 	RN = 4
 	Datos = ar es
 HiloReceptor: recibi mensaje 
-	IpOtra: 25.16.114.54
-	PuertoOtro: 5000
+	IpOtra: 25.8.85.180
+	PuertoOtro: 6000
 	IpMia: 25.8.85.180
 	PuertoMio: 5000
 	TipoPaquete: 10
@@ -123,14 +77,31 @@ HiloReceptor: recibi mensaje
 	Datos: 
 HiloReceptor: envie ack de datos 
 	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
+	otraConexion = (25.8.85.180,6000)
 	TipoMensaje = 10 
 	SN = 5
 	RN = 5
 	Datos = te ar
 HiloReceptor: recibi mensaje 
-	IpOtra: 25.16.114.54
-	PuertoOtro: 5000
+	IpOtra: 25.8.85.180
+	PuertoOtro: 6000
+	IpMia: 25.8.85.180
+	PuertoMio: 5000
+	TipoPaquete: 10
+	SNpaq: 4
+	RNpaq: 5
+	Datos: 
+Mensaje recibido extranno, RN != SNpaq
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.8.85.180,6000)
+	TipoMensaje = 10 
+	SN = 5
+	RN = 5
+	Datos = te ar
+HiloReceptor: recibi mensaje 
+	IpOtra: 25.8.85.180
+	PuertoOtro: 6000
 	IpMia: 25.8.85.180
 	PuertoMio: 5000
 	TipoPaquete: 10
@@ -139,31 +110,14 @@ HiloReceptor: recibi mensaje
 	Datos: 
 HiloReceptor: envie ack de datos 
 	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
+	otraConexion = (25.8.85.180,6000)
 	TipoMensaje = 10 
 	SN = 6
 	RN = 6
 	Datos = chivo
 HiloReceptor: recibi mensaje 
-	IpOtra: 25.16.114.54
-	PuertoOtro: 5000
-	IpMia: 25.8.85.180
-	PuertoMio: 5000
-	TipoPaquete: 10
-	SNpaq: 5
-	RNpaq: 6
-	Datos: 
-Mensaje recibido extranno, RN != SNpaq
-HiloReceptor: Reenvie ack de datos 
-	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
-	TipoMensaje = 10 
-	SN = 6
-	RN = 6
-	Datos = chivo
-HiloReceptor: recibi mensaje 
-	IpOtra: 25.16.114.54
-	PuertoOtro: 5000
+	IpOtra: 25.8.85.180
+	PuertoOtro: 6000
 	IpMia: 25.8.85.180
 	PuertoMio: 5000
 	TipoPaquete: 10
@@ -172,31 +126,22 @@ HiloReceptor: recibi mensaje
 	Datos: 
 HiloReceptor: envie ack de datos 
 	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
+	otraConexion = (25.8.85.180,6000)
 	TipoMensaje = 10 
 	SN = 7
 	RN = 7
 	Datos =  de u
-HiloReceptor: recibi mensaje 
-	IpOtra: 25.16.114.54
-	PuertoOtro: 5000
-	IpMia: 25.8.85.180
-	PuertoMio: 5000
-	TipoPaquete: 10
-	SNpaq: 6
-	RNpaq: 7
-	Datos: 
-Mensaje recibido extranno, RN != SNpaq
+Server: se elimino un paquete que recibi
 HiloReceptor: Reenvie ack de datos 
 	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
+	otraConexion = (25.8.85.180,6000)
 	TipoMensaje = 10 
 	SN = 7
 	RN = 7
 	Datos =  de u
 HiloReceptor: recibi mensaje 
-	IpOtra: 25.16.114.54
-	PuertoOtro: 5000
+	IpOtra: 25.8.85.180
+	PuertoOtro: 6000
 	IpMia: 25.8.85.180
 	PuertoMio: 5000
 	TipoPaquete: 10
@@ -205,529 +150,43 @@ HiloReceptor: recibi mensaje
 	Datos: 
 HiloReceptor: envie ack de datos 
 	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
+	otraConexion = (25.8.85.180,6000)
 	TipoMensaje = 10 
 	SN = 8
 	RN = 8
 	Datos = n lad
+Server: se elimino un paquete que recibi
 HiloReceptor: Reenvie ack de datos 
 	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
+	otraConexion = (25.8.85.180,6000)
 	TipoMensaje = 10 
 	SN = 8
 	RN = 8
 	Datos = n lad
+Server: se elimino un paquete que recibi
 HiloReceptor: Reenvie ack de datos 
 	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
+	otraConexion = (25.8.85.180,6000)
 	TipoMensaje = 10 
 	SN = 8
 	RN = 8
 	Datos = n lad
 HiloReceptor: recibi mensaje 
-	IpOtra: 25.16.114.54
-	PuertoOtro: 5000
+	IpOtra: 25.8.85.180
+	PuertoOtro: 6000
 	IpMia: 25.8.85.180
 	PuertoMio: 5000
-	TipoPaquete: 10
+	TipoPaquete: 4
 	SNpaq: 8
 	RNpaq: 9
 	Datos: 
-HiloReceptor: envie ack de datos 
+El mensaje recibido es de cerrar conexion
+HiloReceptor: envie ack para finalizar conexion 
 	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
-	TipoMensaje = 10 
+	otraConexion = (25.8.85.180,6000)
+	TipoMensaje = 6 
 	SN = 9
 	RN = 9
-	Datos = o a o
-HiloReceptor: recibi mensaje 
-	IpOtra: 25.16.114.54
-	PuertoOtro: 5000
-	IpMia: 25.8.85.180
-	PuertoMio: 5000
-	TipoPaquete: 10
-	SNpaq: 9
-	RNpaq: 10
-	Datos: 
-HiloReceptor: envie ack de datos 
-	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
-	TipoMensaje = 10 
-	SN = 10
-	RN = 10
-	Datos = tro!!
-HiloReceptor: recibi mensaje 
-	IpOtra: 25.16.114.54
-	PuertoOtro: 5000
-	IpMia: 25.8.85.180
-	PuertoMio: 5000
-	TipoPaquete: 10
-	SNpaq: 10
-	RNpaq: 11
-	Datos: 
-HiloReceptor: envie ack de datos 
-	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
-	TipoMensaje = 10 
-	SN = 11
-	RN = 11
-	Datos = !!! n
-HiloReceptor: Reenvie ack de datos 
-	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
-	TipoMensaje = 10 
-	SN = 11
-	RN = 11
-	Datos = !!! n
-HiloReceptor: Reenvie ack de datos 
-	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
-	TipoMensaje = 10 
-	SN = 11
-	RN = 11
-	Datos = !!! n
-HiloReceptor: recibi mensaje 
-	IpOtra: 25.16.114.54
-	PuertoOtro: 5000
-	IpMia: 25.8.85.180
-	PuertoMio: 5000
-	TipoPaquete: 10
-	SNpaq: 11
-	RNpaq: 12
-	Datos: 
-HiloReceptor: envie ack de datos 
-	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
-	TipoMensaje = 10 
-	SN = 12
-	RN = 12
-	Datos = o se 
-HiloReceptor: recibi mensaje 
-	IpOtra: 25.16.114.54
-	PuertoOtro: 5000
-	IpMia: 25.8.85.180
-	PuertoMio: 5000
-	TipoPaquete: 10
-	SNpaq: 12
-	RNpaq: 13
-	Datos: 
-HiloReceptor: envie ack de datos 
-	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
-	TipoMensaje = 10 
-	SN = 13
-	RN = 13
-	Datos = que p
-HiloReceptor: Reenvie ack de datos 
-	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
-	TipoMensaje = 10 
-	SN = 13
-	RN = 13
-	Datos = que p
-HiloReceptor: recibi mensaje 
-	IpOtra: 25.16.114.54
-	PuertoOtro: 5000
-	IpMia: 25.8.85.180
-	PuertoMio: 5000
-	TipoPaquete: 10
-	SNpaq: 13
-	RNpaq: 14
-	Datos: 
-HiloReceptor: envie ack de datos 
-	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
-	TipoMensaje = 10 
-	SN = 14
-	RN = 14
-	Datos = utas 
-HiloReceptor: Reenvie ack de datos 
-	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
-	TipoMensaje = 10 
-	SN = 14
-	RN = 14
-	Datos = utas 
-HiloReceptor: Reenvie ack de datos 
-	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
-	TipoMensaje = 10 
-	SN = 14
-	RN = 14
-	Datos = utas 
-HiloReceptor: Reenvie ack de datos 
-	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
-	TipoMensaje = 10 
-	SN = 14
-	RN = 14
-	Datos = utas 
-HiloReceptor: recibi mensaje 
-	IpOtra: 25.16.114.54
-	PuertoOtro: 5000
-	IpMia: 25.8.85.180
-	PuertoMio: 5000
-	TipoPaquete: 10
-	SNpaq: 14
-	RNpaq: 15
-	Datos: 
-HiloReceptor: envie ack de datos 
-	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
-	TipoMensaje = 10 
-	SN = 15
-	RN = 15
-	Datos = estoy
-HiloReceptor: recibi mensaje 
-	IpOtra: 25.16.114.54
-	PuertoOtro: 5000
-	IpMia: 25.8.85.180
-	PuertoMio: 5000
-	TipoPaquete: 10
-	SNpaq: 15
-	RNpaq: 16
-	Datos: 
-HiloReceptor: envie ack de datos 
-	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
-	TipoMensaje = 10 
-	SN = 16
-	RN = 16
-	Datos =  escr
-HiloReceptor: recibi mensaje 
-	IpOtra: 25.16.114.54
-	PuertoOtro: 5000
-	IpMia: 25.8.85.180
-	PuertoMio: 5000
-	TipoPaquete: 10
-	SNpaq: 15
-	RNpaq: 16
-	Datos: 
-Mensaje recibido extranno, RN != SNpaq
-HiloReceptor: Reenvie ack de datos 
-	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
-	TipoMensaje = 10 
-	SN = 16
-	RN = 16
-	Datos =  escr
-HiloReceptor: recibi mensaje 
-	IpOtra: 25.16.114.54
-	PuertoOtro: 5000
-	IpMia: 25.8.85.180
-	PuertoMio: 5000
-	TipoPaquete: 10
-	SNpaq: 16
-	RNpaq: 17
-	Datos: 
-HiloReceptor: envie ack de datos 
-	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
-	TipoMensaje = 10 
-	SN = 17
-	RN = 17
-	Datos = birie
-HiloReceptor: recibi mensaje 
-	IpOtra: 25.16.114.54
-	PuertoOtro: 5000
-	IpMia: 25.8.85.180
-	PuertoMio: 5000
-	TipoPaquete: 10
-	SNpaq: 17
-	RNpaq: 18
-	Datos: 
-HiloReceptor: envie ack de datos 
-	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
-	TipoMensaje = 10 
-	SN = 18
-	RN = 18
-	Datos = ndo p
-HiloReceptor: recibi mensaje 
-	IpOtra: 25.16.114.54
-	PuertoOtro: 5000
-	IpMia: 25.8.85.180
-	PuertoMio: 5000
-	TipoPaquete: 10
-	SNpaq: 17
-	RNpaq: 18
-	Datos: 
-Mensaje recibido extranno, RN != SNpaq
-HiloReceptor: Reenvie ack de datos 
-	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
-	TipoMensaje = 10 
-	SN = 18
-	RN = 18
-	Datos = ndo p
-HiloReceptor: recibi mensaje 
-	IpOtra: 25.16.114.54
-	PuertoOtro: 5000
-	IpMia: 25.8.85.180
-	PuertoMio: 5000
-	TipoPaquete: 10
-	SNpaq: 18
-	RNpaq: 19
-	Datos: 
-HiloReceptor: envie ack de datos 
-	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
-	TipoMensaje = 10 
-	SN = 19
-	RN = 19
-	Datos = ero m
-HiloReceptor: Reenvie ack de datos 
-	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
-	TipoMensaje = 10 
-	SN = 19
-	RN = 19
-	Datos = ero m
-HiloReceptor: recibi mensaje 
-	IpOtra: 25.16.114.54
-	PuertoOtro: 5000
-	IpMia: 25.8.85.180
-	PuertoMio: 5000
-	TipoPaquete: 10
-	SNpaq: 18
-	RNpaq: 19
-	Datos: 
-Mensaje recibido extranno, RN != SNpaq
-HiloReceptor: Reenvie ack de datos 
-	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
-	TipoMensaje = 10 
-	SN = 19
-	RN = 19
-	Datos = ero m
-HiloReceptor: recibi mensaje 
-	IpOtra: 25.16.114.54
-	PuertoOtro: 5000
-	IpMia: 25.8.85.180
-	PuertoMio: 5000
-	TipoPaquete: 10
-	SNpaq: 19
-	RNpaq: 20
-	Datos: 
-HiloReceptor: envie ack de datos 
-	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
-	TipoMensaje = 10 
-	SN = 20
-	RN = 20
-	Datos = e val
-HiloReceptor: recibi mensaje 
-	IpOtra: 25.16.114.54
-	PuertoOtro: 5000
-	IpMia: 25.8.85.180
-	PuertoMio: 5000
-	TipoPaquete: 10
-	SNpaq: 20
-	RNpaq: 21
-	Datos: 
-HiloReceptor: envie ack de datos 
-	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
-	TipoMensaje = 10 
-	SN = 21
-	RN = 21
-	Datos = e ver
-HiloReceptor: recibi mensaje 
-	IpOtra: 25.16.114.54
-	PuertoOtro: 5000
-	IpMia: 25.8.85.180
-	PuertoMio: 5000
-	TipoPaquete: 10
-	SNpaq: 20
-	RNpaq: 21
-	Datos: 
-Mensaje recibido extranno, RN != SNpaq
-HiloReceptor: Reenvie ack de datos 
-	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
-	TipoMensaje = 10 
-	SN = 21
-	RN = 21
-	Datos = e ver
-HiloReceptor: recibi mensaje 
-	IpOtra: 25.16.114.54
-	PuertoOtro: 5000
-	IpMia: 25.8.85.180
-	PuertoMio: 5000
-	TipoPaquete: 10
-	SNpaq: 21
-	RNpaq: 22
-	Datos: 
-HiloReceptor: envie ack de datos 
-	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
-	TipoMensaje = 10 
-	SN = 22
-	RN = 22
-	Datos = ga la
-HiloReceptor: recibi mensaje 
-	IpOtra: 25.16.114.54
-	PuertoOtro: 5000
-	IpMia: 25.8.85.180
-	PuertoMio: 5000
-	TipoPaquete: 10
-	SNpaq: 21
-	RNpaq: 22
-	Datos: 
-Mensaje recibido extranno, RN != SNpaq
-HiloReceptor: Reenvie ack de datos 
-	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
-	TipoMensaje = 10 
-	SN = 22
-	RN = 22
-	Datos = ga la
-HiloReceptor: recibi mensaje 
-	IpOtra: 25.16.114.54
-	PuertoOtro: 5000
-	IpMia: 25.8.85.180
-	PuertoMio: 5000
-	TipoPaquete: 10
-	SNpaq: 22
-	RNpaq: 23
-	Datos: 
-HiloReceptor: envie ack de datos 
-	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
-	TipoMensaje = 10 
-	SN = 23
-	RN = 23
-	Datos =  visa
-HiloReceptor: Reenvie ack de datos 
-	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
-	TipoMensaje = 10 
-	SN = 23
-	RN = 23
-	Datos =  visa
-HiloReceptor: recibi mensaje 
-	IpOtra: 25.16.114.54
-	PuertoOtro: 5000
-	IpMia: 25.8.85.180
-	PuertoMio: 5000
-	TipoPaquete: 10
-	SNpaq: 23
-	RNpaq: 24
-	Datos: 
-HiloReceptor: envie ack de datos 
-	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
-	TipoMensaje = 10 
-	SN = 24
-	RN = 24
-	Datos =  amer
-HiloReceptor: recibi mensaje 
-	IpOtra: 25.16.114.54
-	PuertoOtro: 5000
-	IpMia: 25.8.85.180
-	PuertoMio: 5000
-	TipoPaquete: 10
-	SNpaq: 24
-	RNpaq: 25
-	Datos: 
-HiloReceptor: envie ack de datos 
-	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
-	TipoMensaje = 26 
-	SN = 25
-	RN = 25
-	Datos = icana
-HiloReceptor: recibi mensaje 
-	IpOtra: 25.16.114.54
-	PuertoOtro: 5000
-	IpMia: 25.8.85.180
-	PuertoMio: 5000
-	TipoPaquete: 10
-	SNpaq: 24
-	RNpaq: 25
-	Datos: 
-Mensaje recibido extranno, RN != SNpaq
-HiloReceptor: Reenvie ack de datos 
-	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
-	TipoMensaje = 10 
-	SN = 25
-	RN = 25
-	Datos = icana
-HiloReceptor: recibi mensaje 
-	IpOtra: 25.16.114.54
-	PuertoOtro: 5000
-	IpMia: 25.8.85.180
-	PuertoMio: 5000
-	TipoPaquete: 10
-	SNpaq: 25
-	RNpaq: 26
-	Datos: 
-HiloReceptor: envie ack de datos 
-	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
-	TipoMensaje = 10 
-	SN = 26
-	RN = 26
 	Datos = 
-Emisor: envie un archivo a 25.16.114.54 5000
-HiloReceptor: recibi mensaje 
-	IpOtra: 25.16.114.54
-	PuertoOtro: 5000
-	IpMia: 25.8.85.180
-	PuertoMio: 5000
-	TipoPaquete: 10
-	SNpaq: 25
-	RNpaq: 26
-	Datos: 
-Mensaje recibido extranno, RN != SNpaq
-HiloReceptor: Reenvie ack de datos 
-	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
-	TipoMensaje = 10 
-	SN = 26
-	RN = 26
-	Datos = 
-HiloReceptor: recibi mensaje 
-	IpOtra: 25.16.114.54
-	PuertoOtro: 5000
-	IpMia: 25.8.85.180
-	PuertoMio: 5000
-	TipoPaquete: 10
-	SNpaq: 25
-	RNpaq: 26
-	Datos: 
-Mensaje recibido extranno, RN != SNpaq
-HiloReceptor: Reenvie ack de datos 
-	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
-	TipoMensaje = 10 
-	SN = 26
-	RN = 26
-	Datos = 
-HiloReceptor: recibi mensaje 
-	IpOtra: 25.16.114.54
-	PuertoOtro: 5000
-	IpMia: 25.8.85.180
-	PuertoMio: 5000
-	TipoPaquete: 10
-	SNpaq: 26
-	RNpaq: 27
-	Datos: 
-HiloReceptor: envie fin de conexion 
-	miConexion = (25.8.85.180,5000)
-	otraConexion = (25.16.114.54,5000)
-	TipoMensaje = 4 
-	SN = 27
-	RN = 27
-	Datos = 
-HiloReceptor: recibi mensaje 
-	IpOtra: 25.16.114.54
-	PuertoOtro: 5000
-	IpMia: 25.8.85.180
-	PuertoMio: 5000
-	TipoPaquete: 6
-	SNpaq: 27
-	RNpaq: 28
-	Datos: 
 HiloReceptor: Finalice
+Emisor: envie un archivo a 25.8.85.180 6000
