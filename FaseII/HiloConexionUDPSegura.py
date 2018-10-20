@@ -99,7 +99,7 @@ class HiloConexionUDPSegura:
 
 			recibido = self.buzonReceptor.sacarDatos(self.otraConexion)
 			if recibido is None:
-				time.sleep(1)#ANALIZAR LA CANTIDAD DE SEGUNDOS
+				time.sleep(0.1)#ANALIZAR LA CANTIDAD DE SEGUNDOS
 			#if recibido is None:
 				recibido = self.buzonReceptor.sacarDatos(self.otraConexion)
 			if recibido is None:
@@ -133,7 +133,7 @@ class HiloConexionUDPSegura:
 							self.socketConexion.sendto(ACKConexion, self.otraConexion)
 							self.lockSocket.release()
 							bitacora.escribir("HiloReceptor: Reenvie respuesta de syn " +  "\n\tmiConexion = (" + self.miConexion[0] + "," + str(self.miConexion[1]) + ")\n\totraConexion = (" + self.otraConexion[0] + "," + str(self.otraConexion[1]) + ")\n\tTipoMensaje = 1 \n\tSN = " + str(self.SN) + "\n\tRN = " + str(self.RN) + "\n\tDatos = ")
-				time.sleep(1)#ANALIZAR LA CANTIDAD DE SEGUNDOS
+				time.sleep(0.1)#ANALIZAR LA CANTIDAD DE SEGUNDOS
 			else:
 				otroIpRec = bytesToIp(recibido[0:4])
 				otroPuertoRec = bytesToInt(recibido[4:6])
