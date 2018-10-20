@@ -335,5 +335,5 @@ if __name__ == '__main__':
 	threadEmisor = threading.Thread(target=server.cicloServer, args=())
 	threadEmisor.start()
 	emisor.enviarArchivo()
-	time.sleep(10)
+	time.sleep(4)
 	bitacora.terminar()
