@@ -338,4 +338,4 @@ if __name__ == '__main__':
 	threadEmisor.start()
 	emisor.enviarArchivo()
 	time.sleep(10)
-	bitacora.terminar()
+	bitacora.terminar() 
