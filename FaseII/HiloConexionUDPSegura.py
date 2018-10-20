@@ -44,8 +44,11 @@ class HiloConexionUDPSegura:
 		self.lockArchivos.acquire()
 		self.archivoActual = segmentarArchivo(contenidoArchivo, 5)
 		self.lockArchivos.release()
+		print("Primero")
 		self.termineEnviar.acquire()
+		print("Segundo")
 		self.termineEnviar.acquire()
+		print("Tercero")
 		self.termineEnviar.release()
 
 	def connect(self, ipServidor, puertoServidor):
