@@ -210,6 +210,8 @@ class HiloConexionUDPSegura:
 						self.socketConexion.sendto(ACK, self.otraConexion)
 						self.lockSocket.release()
 						print("break 1")
+						if self.termineEnviar.locked():
+							self.termineEnviar.release()
 						break
 					elif tipoPaq == 6:
 						self.bitacora.escribir("HiloReceptor: Finalice")
