@@ -365,12 +365,12 @@ class Server:
 						print(clientAddress)
 						print("ESTA CONEXION NO EXITE Y LLEGO UN MENSAJE DISTINTO A SYN")
 				self.lockConexiones.release()
-				self.lockFin.acquire()
-				termino = self.fin
-				self.lockFin.release()
-				print(termino)
-				if termino == True:
-					break
+			self.lockFin.acquire()
+			termino = self.fin
+			self.lockFin.release()
+			print(termino)
+			if termino == True:
+				break
 				
 
 class nodo:
