@@ -114,6 +114,7 @@ class HiloConexionUDPSegura:
 					if self.etapaSyn == 2: #Caso donde no responden syn
 						self.connect(self.otraConexion[0], self.otraConexion[1])
 						#VER CUANTOS INTENTOS DE RENVIO DE INTENTO DE CONEXIONS
+						print("REENVIE SYN")
 						bitacora.escribir("HiloReceptor: Reenvie syn " +  "\n\tmiConexion = (" + self.miConexion[0] + "," + str(self.miConexion[1]) + ")\n\totraConexion = (" + self.otraConexion[0] + "," + str(self.otraConexion[1]) + ")\n\tTipoMensaje = 1 \n\tSN = " + str(self.SN) + "\n\tRN = " + str(self.RN) + "\n\tDatos = ")
 					else:
 						if self.etapaSyn == 1:#Caso donde no responden respuesta a syn(no llega ack syn)
@@ -338,16 +339,18 @@ class emisor:
 						self.conexiones.append(conexion)#ANALIDAR CUANDO HAY QUE SACARLA POR SI NO SE HACE EL HANDSHAKE O TERMINA LA CONEXION O TIMEOUT EN ENVIAR DATOS
 						bitacora.escribir("Emisor: cree la conexion" + otraIp + " " + str(otroPuerto) )
 
+						self.lockConexiones.release()
 						conexion.meterArchivoAEnviar(contenido)
 
 						
 					else:
 						print("Conexion existente")
+						self.lockConexiones.release()
 						
 						self.conexiones[indice].meterArchivoAEnviar(contenido)
 
 					bitacora.escribir("Emisor: envie un archivo a " + otraIp + " " + str(otroPuerto) )
-					self.lockConexiones.release()
+					#self.lockConexiones.release()
 
 
 
