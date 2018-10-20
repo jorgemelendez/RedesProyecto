@@ -279,9 +279,6 @@ class Emisor:
 						self.bitacora.escribir("Emisor: cree la conexion" + otraIp + " " + str(otroPuerto) )
 						self.lockConexiones.release()
 						conexion.meterArchivoAEnviar(contenido)
-						#print("Antes del close")
-						#conexion.close()
-						#print("Despues del close")
 					else:
 						print("Conexion existente")
 						self.lockConexiones.release()
@@ -289,8 +286,8 @@ class Emisor:
 						self.conexiones[indice].meterArchivoAEnviar(contenido)
 					self.bitacora.escribir("Emisor: envie un archivo a " + otraIp + " " + str(otroPuerto) )
 
-class Server:	
-	def __init__(self, miConexion, buzonReceptor, socketConexion, lockSocket, conexiones, lockConexiones, bitacora):
+class Server:
+	def __init__(self, miConexion, buzonReceptor, socketConexion, lockSocket, conexiones, lockConexiones, bitacora, lockFin, fin):
 		self.conexiones = conexiones
 		self.lockConexiones = lockConexiones
 		self.miConexion = miConexion
@@ -298,6 +295,8 @@ class Server:
 		self.socketConexion = socketConexion
 		self.lockSocket = lockSocket
 		self.bitacora = bitacora
+		self.lockFin = lockFin
+		self.fin = fin
 
 	#Llamar solo CON candado adquirido
 	def buscarConexionLogica(self, ip,puerto):#APLICA SI LAS CONEXIONES DEBEN ESTAR PARA AMBOS , creo que deben estar aunque para tener una lista de las conexiones hechas para usarlas, VER QUE DICE LA PROFE
@@ -342,6 +341,11 @@ class Server:
 					print(clientAddress)
 					print("ESTA CONEXION NO EXITE Y LLEGO UN MENSAJE DISTINTO A SYN")
 			self.lockConexiones.release()
+			self.lockFin.acquire()
+			termino = self.fin
+			self.lockFin.release()
+			if termino == True:
+				break
 
 class nodo:
 
@@ -355,7 +359,9 @@ class nodo:
 		self.conexiones = list()
 		self.lockConexiones = threading.Lock()
 		self.emisor = Emisor( self.miConexion, self.buzonReceptor, self.socketConexion, self.lockSocket, self.conexiones, self.lockConexiones, self.bitacora)
-		self.server = Server( self.miConexion, self.buzonReceptor, self.socketConexion, self.lockSocket, self.conexiones, self.lockConexiones, self.bitacora)
+		self.lockFin = threading.Lock()
+		self.fin = False
+		self.server = Server( self.miConexion, self.buzonReceptor, self.socketConexion, self.lockSocket, self.conexiones, self.lockConexiones, self.bitacora, self.lockFin, self.fin)
 
 	def cerrarTodo(self):
 		self.lockConexiones.acquire()
@@ -379,6 +385,9 @@ class nodo:
 			elif taskUsuario == '2':
 				self.cerrarTodo()
 			elif taskUsuario == '3':
+				self.lockFin.acquire()
+				self.fin = True
+				self.lockFin.release()
 				break
 			else:
 				print('Ingrese una opcion valida.')
