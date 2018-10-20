@@ -363,7 +363,8 @@ class Server:
 					else:
 						print(clientAddress)
 						print("ESTA CONEXION NO EXITE Y LLEGO UN MENSAJE DISTINTO A SYN")
-			if self.banderaFin.leerBandera() == True:
+				self.lockConexiones.release()
+			if self.banderaFin.leerBandera():
 				break
 
 class BanderaFin:
