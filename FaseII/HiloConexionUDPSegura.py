@@ -334,36 +334,42 @@ class Server:
 		self.bitacora.escribir("Servidor: Inicie")
 		while True:
 			self.lockSocket.acquire()
-			recibido, clientAddress = self.socketConexion.recvfrom(2048)
-			self.lockSocket.release()
-			self.lockConexiones.acquire()
-			existeConexion = self.buscarConexionLogica( clientAddress[0], clientAddress[1])
-			if existeConexion != -1 :
-				tipoPaq = bytesToInt(recibido[12:13])
-				random = randrange(10)
-				if random>1 or tipoPaq == 6:
-					self.buzonReceptor.meterDatos(clientAddress, recibido)
-				else:
-					self.bitacora.escribir("Server: se elimino un paquete que recibi")
+			socketConexion.settimeout(1)
+			try:
+				recibido, clientAddress = self.socketConexion.recvfrom(2048)
+			except socket.Timeouterror:
+				print("Timeout")
 			else:
-				tipoPaq = bytesToInt(recibido[12:13])
-				if tipoPaq == 1:
-					self.buzonReceptor.meterDatos(clientAddress, recibido)
-					self.bitacora.escribir("Servidor: cree la conexion " + clientAddress[0] + " " + str(clientAddress[1]) )
-					conexion = HiloConexionUDPSegura( self.buzonReceptor, clientAddress, self.miConexion, self.socketConexion, self.lockSocket, self.bitacora)
-					self.conexiones.append(conexion)#ANALIDAR CUANDO HAY QUE SACARLA POR SI NO SE HACE EL HANDSHAKE O TERMINA LA CONEXION O TIMEOUT EN ENVIAR DATOS
-					hiloNuevaConexion = threading.Thread(target=self.crearHilo, args=(conexion,))
-					hiloNuevaConexion.start()
+				socketConexion.settimeout(0)
+				self.lockSocket.release()
+				self.lockConexiones.acquire()
+				existeConexion = self.buscarConexionLogica( clientAddress[0], clientAddress[1])
+				if existeConexion != -1 :
+					tipoPaq = bytesToInt(recibido[12:13])
+					random = randrange(10)
+					if random>1 or tipoPaq == 6:
+						self.buzonReceptor.meterDatos(clientAddress, recibido)
+					else:
+						self.bitacora.escribir("Server: se elimino un paquete que recibi")
 				else:
-					print(clientAddress)
-					print("ESTA CONEXION NO EXITE Y LLEGO UN MENSAJE DISTINTO A SYN")
-			self.lockConexiones.release()
-			self.lockFin.acquire()
-			termino = self.fin
-			self.lockFin.release()
-			if termino == True:
-				break
-			print("Pase")
+					tipoPaq = bytesToInt(recibido[12:13])
+					if tipoPaq == 1:
+						self.buzonReceptor.meterDatos(clientAddress, recibido)
+						self.bitacora.escribir("Servidor: cree la conexion " + clientAddress[0] + " " + str(clientAddress[1]) )
+						conexion = HiloConexionUDPSegura( self.buzonReceptor, clientAddress, self.miConexion, self.socketConexion, self.lockSocket, self.bitacora)
+						self.conexiones.append(conexion)#ANALIDAR CUANDO HAY QUE SACARLA POR SI NO SE HACE EL HANDSHAKE O TERMINA LA CONEXION O TIMEOUT EN ENVIAR DATOS
+						hiloNuevaConexion = threading.Thread(target=self.crearHilo, args=(conexion,))
+						hiloNuevaConexion.start()
+					else:
+						print(clientAddress)
+						print("ESTA CONEXION NO EXITE Y LLEGO UN MENSAJE DISTINTO A SYN")
+				self.lockConexiones.release()
+				self.lockFin.acquire()
+				termino = self.fin
+				self.lockFin.release()
+				if termino == True:
+					break
+				print("Pase")
 
 class nodo:
 
