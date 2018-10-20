@@ -364,7 +364,6 @@ class Server:
 						print(clientAddress)
 						print("ESTA CONEXION NO EXITE Y LLEGO UN MENSAJE DISTINTO A SYN")
 				self.lockConexiones.release()
-			print(self.banderaFin.leerBandera())
 			if self.banderaFin.leerBandera():
 				break
 
@@ -423,7 +422,6 @@ class nodo:
 				self.cerrarTodo()
 			elif taskUsuario == '3':
 				self.banderaFin.modificarBandera(True)
-				print("Cambie varuable a " + str(self.fin))
 				break
 			else:
 				print('Ingrese una opcion valida.')
@@ -431,9 +429,7 @@ class nodo:
 	def nodo(self):
 		threadEmisor = threading.Thread(target=self.server.cicloServer, args=())
 		threadEmisor.start()
-		#emisor.enviarArchivo()
 		self.menu()
-		#time.sleep(10)
 		self.bitacora.terminar()
 		print("Emisor termine")
 
