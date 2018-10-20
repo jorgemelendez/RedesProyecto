@@ -181,6 +181,9 @@ class HiloConexionUDPSegura:
 								else:
 									self.ultimoMensajeMandado = self.archivoActual.pop(0)
 									if len(self.archivoActual) == 0:
+										self.bitacora.escribir("Ultimo pedazo de enviar")
+										self.bitacora.escribir("FinArchivoSN = " + str(self.SN))
+										self.bitacora.escribir("FinArchivoRN = " + str(self.RN))
 										self.tipo = 26
 										self.FinArchivoSN = self.SN
 										self.FinArchivoRN = self.RN
