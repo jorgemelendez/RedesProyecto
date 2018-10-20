@@ -337,8 +337,8 @@ class Server:
 			self.socketConexion.settimeout(1)
 			try:
 				recibido, clientAddress = self.socketConexion.recvfrom(2048)
-			except timeout:
-				print("Timeout")
+			except socket.timeout:
+				x = 0
 			else:
 				self.socketConexion.settimeout(0)
 				self.lockSocket.release()
