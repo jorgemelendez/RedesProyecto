@@ -44,11 +44,11 @@ class HiloConexionUDPSegura:
 		self.lockArchivos.acquire()
 		self.archivoActual = segmentarArchivo(contenidoArchivo, 5)
 		self.lockArchivos.release()
-		print("Primero")
+		#print("Primero")
 		self.termineEnviar.acquire()
-		print("Segundo")
+		#print("Segundo")
 		self.termineEnviar.acquire()
-		print("Tercero")
+		#print("Tercero")
 		self.termineEnviar.release()
 
 	def connect(self, ipServidor, puertoServidor):
@@ -67,12 +67,23 @@ class HiloConexionUDPSegura:
 
 	#METER MENSAJE EN EL BUZON ANTES DE CREAR EL HILO
 	def receptor(self):
+		contador = 0
 		while True:
 			recibido = self.buzonReceptor.sacarDatos(self.otraConexion)
 			if recibido is None:
 				time.sleep(0.5)#ANALIZAR LA CANTIDAD DE SEGUNDOS
 				recibido = self.buzonReceptor.sacarDatos(self.otraConexion)
 			if recibido is None:
+				contador = contador + 1
+				if contador == 5:
+					if self.etapaSyn == 3 and self.ackHandshakeTerminado == False:
+						print("No se pudo establecer la conexion")
+						self.bitacora.escribir("No se pudo establecer la conexion")
+					else:
+						print("Conexion perdida")
+						self.bitacora.escribir("Conexion perdida")
+					self.termineEnviar.release()
+					break
 				if self.etapaSyn == 3 and self.ackHandshakeTerminado == False:#Caso donde no llegan los primeros primeros datos y ya se envio el ack syn
 					ACKConexion = armarPaq(self.miConexion[0], self.miConexion[1], self.otraConexion[0], self.otraConexion[1], 3, self.SN, self.RN, bytearray()) #NO HAY QUE MANDAR DATOS PORQUE ES ESTABLECIENDO CONEXION
 					self.lockSocket.acquire()
@@ -88,7 +99,7 @@ class HiloConexionUDPSegura:
 				else:
 					if self.etapaSyn == 2: #Caso donde no responden syn
 						self.connect(self.otraConexion[0], self.otraConexion[1])
-						print("REENVIE SYN")
+						#print("REENVIE SYN")
 						self.bitacora.escribir("HiloReceptor: Reenvie syn " +  "\n\tmiConexion = (" + self.miConexion[0] + "," + str(self.miConexion[1]) + ")\n\totraConexion = (" + self.otraConexion[0] + "," + str(self.otraConexion[1]) + ")\n\tTipoMensaje = 1 \n\tSN = " + str(self.SN) + "\n\tRN = " + str(self.RN) + "\n\tDatos = ")
 					else:
 						if self.etapaSyn == 1:#Caso donde no responden respuesta a syn(no llega ack syn)
@@ -99,6 +110,7 @@ class HiloConexionUDPSegura:
 							self.bitacora.escribir("HiloReceptor: Reenvie respuesta de syn " +  "\n\tmiConexion = (" + self.miConexion[0] + "," + str(self.miConexion[1]) + ")\n\totraConexion = (" + self.otraConexion[0] + "," + str(self.otraConexion[1]) + ")\n\tTipoMensaje = 1 \n\tSN = " + str(self.SN) + "\n\tRN = " + str(self.RN) + "\n\tDatos = ")
 				time.sleep(0.5)#ANALIZAR LA CANTIDAD DE SEGUNDOS
 			else:
+				contador = 0
 				otroIpRec = bytesToIp(recibido[0:4])
 				otroPuertoRec = bytesToInt(recibido[4:6])
 				miIpRec = bytesToIp(recibido[6:10])
@@ -123,13 +135,13 @@ class HiloConexionUDPSegura:
 						self.socketConexion.sendto(ACKConexion, self.otraConexion)
 						self.lockSocket.release()
 						self.etapaSyn = 3
-						print ("Termine handshake como emisor")
+						#print ("Termine handshake como emisor")
 						#self.ackHandshakeTerminado = True
 						self.bitacora.escribir("HiloReceptor: envie ack de syn " +  "\n\tmiConexion = (" + self.miConexion[0] + "," + str(self.miConexion[1]) + ")\n\totraConexion = (" + self.otraConexion[0] + "," + str(self.otraConexion[1]) + ")\n\tTipoMensaje = 3 \n\tSN = " + str(self.SN) + "\n\tRN = " + str(self.RN) + "\n\tDatos = ")
 						self.bitacora.escribir("Termine handshake como emisor")
 					elif self.etapaSyn == 1 and tipoPaq == 3:
 						self.etapaSyn = 3
-						print("Termine handshake como receptor")
+						##print("Termine handshake como receptor")
 						self.ackHandshakeTerminado = True
 						self.bitacora.escribir("Termine handshake como receptor")
 						self.RN = self.RN + 1
@@ -148,22 +160,23 @@ class HiloConexionUDPSegura:
 							self.lockSocket.release()
 							self.bitacora.escribir("HiloReceptor: envie ack de datos " +  "\n\tmiConexion = (" + self.miConexion[0] + "," + str(self.miConexion[1]) + ")\n\totraConexion = (" + self.otraConexion[0] + "," + str(self.otraConexion[1]) + ")\n\tTipoMensaje = 10 \n\tSN = " + str(self.SN) + "\n\tRN = " + str(self.RN) + "\n\tDatos = " + self.ultimoMensajeMandado.decode("utf-8"))
 					else:
-						print("Mensaje extranno")
-						self.bitacora.escribir("Mensaje recibido extranno")
+						#print("Mensaje extranno")
+						self.bitacora.escribir("Mensaje recibido no conincide en ningun caso")
 				else:
 					if tipoPaq == 10 or tipoPaq == 26:
 						if self.RN == SNpaq: #REVISAR SI ES DEL TIPO DE MENSAJE QUE ESTOY ESPERANDO
+							print(". ", end='')
 							self.datosRecibidos += datos
 							self.ackHandshakeTerminado = True
 							if self.primerDatoArchivo == False and len(datos) > 0:
 								self.primerDatoArchivo = True
-								print("ESTE ES EL PRIMER DATO DEL ARCHIVO")
+								#print("ESTE ES EL PRIMER DATO DEL ARCHIVO")
 								self.bitacora.escribir("COMENCE A RECIBIR ARCHIVO")
 								self.archivo = open("Archivo-"+str(self.now.year) +"_"+ str(self.now.month) +"_"+ str(self.now.day) +"_"+ str(self.now.hour) +"_"+ str(self.now.minute) +"_"+ str(self.now.second) +"_"+ str(self.now.microsecond), "wb+")
 							if len(datos) > 0:
 								self.archivo.write(datos)
 							if tipoPaq == 26:
-								print("YA TERMINE DE RECIBIR ARCHIVO")
+								#print("YA TERMINE DE RECIBIR ARCHIVO")
 								self.primerDatoArchivo = False
 								self.bitacora.escribir("TERMINE DE RECIBIR ARCHIVO")
 								self.archivo.close()
@@ -194,7 +207,7 @@ class HiloConexionUDPSegura:
 								ultimo = self.ultimoMensajeMandado
 								#print("Pregunte si era 4")
 								if continuo == False:
-									print("ENTRE A ENVIAR MENSAJE TIPO 4")
+									#print("ENTRE A ENVIAR MENSAJE TIPO 4")
 									self.tipo = 4
 									ACK = armarPaq(self.miConexion[0], self.miConexion[1], self.otraConexion[0], self.otraConexion[1], self.tipo, self.SN, self.RN, bytearray())
 									self.bitacora.escribir("HiloReceptor: envie fin de conexion " +  "\n\tmiConexion = (" + self.miConexion[0] + "," + str(self.miConexion[1]) + ")\n\totraConexion = (" + self.otraConexion[0] + "," + str(self.otraConexion[1]) + ")\n\tTipoMensaje = "+str(self.tipo)+" \n\tSN = " + str(self.SN) + "\n\tRN = " + str(self.RN) + "\n\tDatos = ")
@@ -217,17 +230,17 @@ class HiloConexionUDPSegura:
 						self.lockSocket.acquire()
 						self.socketConexion.sendto(ACK, self.otraConexion)
 						self.lockSocket.release()
-						print("break 1")
+						#print("break 1")
 						if self.termineEnviar.locked():
 							self.termineEnviar.release()
 						break
 					elif tipoPaq == 6:
 						self.bitacora.escribir("HiloReceptor: Finalice")
-						print("break 2")
+						#print("break 2")
 						if self.termineEnviar.locked():
 							self.termineEnviar.release()
 						break
-		print("Salir de while")
+		#print("Salir de while")
 
 
 class Emisor:
@@ -253,12 +266,12 @@ class Emisor:
 
 	def crearHilo(self, conexion):
 		conexion.receptor()
-		print("Antes del terminar")
+		#print("Antes del terminar")
 		self.lockConexiones.acquire()
-		print("Despues del lock")
+		#print("Despues del lock")
 		self.conexiones.remove(conexion)
 		self.lockConexiones.release()
-		print("Libere el lock 1")
+		#print("Libere el lock 1")
 
 	def enviarArchivo(self):
 		otraIp = input('Digite la ip del destinatario: ')
@@ -282,7 +295,7 @@ class Emisor:
 					self.lockConexiones.acquire()
 					indice = self.buscarConexionLogica(otraIp, otroPuerto)
 					if indice == -1:
-						print ("Nueva conexion")
+						#print ("Nueva conexion")
 						conexion = HiloConexionUDPSegura( self.buzonReceptor, (otraIp,otroPuerto), self.miConexion, self.socketConexion, self.lockSocket, self.bitacora )
 						conexion.connect(otraIp,otroPuerto)
 						hiloNuevaConexion = threading.Thread(target=self.crearHilo, args=(conexion,))
@@ -291,12 +304,12 @@ class Emisor:
 						self.bitacora.escribir("Emisor: cree la conexion" + otraIp + " " + str(otroPuerto) )
 						self.lockConexiones.release()
 						conexion.meterArchivoAEnviar(contenido)
-						print("Sali de enviar archivo 1")
+						#print("Sali de enviar archivo 1")
 					else:
-						print("Conexion existente")
+						#print("Conexion existente")
 						self.lockConexiones.release()
 						self.conexiones[indice].meterArchivoAEnviar(contenido)
-						print("Sali de enviar archivo 2")
+						#print("Sali de enviar archivo 2")
 					self.bitacora.escribir("Emisor: envie un archivo a " + otraIp + " " + str(otroPuerto) )
 
 class Server:
@@ -322,12 +335,12 @@ class Server:
 
 	def crearHilo(self, conexion):
 		conexion.receptor()
-		print("Antes del terminar")
+		#print("Antes del terminar")
 		self.lockConexiones.acquire()
-		print("Despues del lock")
+		#print("Despues del lock")
 		self.conexiones.remove(conexion)
 		self.lockConexiones.release()
-		print("Libere el lock 1")
+		#print("Libere el lock 1")
 
 	def cicloServer(self):
 		self.bitacora.escribir("Servidor: Inicie")
@@ -361,8 +374,8 @@ class Server:
 						hiloNuevaConexion = threading.Thread(target=self.crearHilo, args=(conexion,))
 						hiloNuevaConexion.start()
 					else:
-						print(clientAddress)
-						print("ESTA CONEXION NO EXITE Y LLEGO UN MENSAJE DISTINTO A SYN")
+						self.bitacora.escribir(clientAddress)
+						self.bitacora.escribir("ESTA CONEXION NO EXITE Y LLEGO UN MENSAJE DISTINTO A SYN")
 				self.lockConexiones.release()
 			if self.banderaFin.leerBandera():
 				break
@@ -431,7 +444,7 @@ class nodo:
 		threadEmisor.start()
 		self.menu()
 		self.bitacora.terminar()
-		print("Emisor termine")
+		#print("Emisor termine")
 
 if __name__ == '__main__':
 	prueba = nodo((sys.argv[1],int(sys.argv[2])))
