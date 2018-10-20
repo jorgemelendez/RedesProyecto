@@ -422,9 +422,7 @@ class nodo:
 			elif taskUsuario == '2':
 				self.cerrarTodo()
 			elif taskUsuario == '3':
-				self.lockFin.acquire()
-				self.fin = True
-				self.lockFin.release()
+				self.banderaFin.modificarBandera(True)
 				print("Cambie varuable a " + str(self.fin))
 				break
 			else:
