@@ -308,7 +308,6 @@ class Server:
 		self.socketConexion = socketConexion
 		self.lockSocket = lockSocket
 		self.bitacora = bitacora
-		self.lockFin = lockFin
 		self.banderaFin = banderaFin
 
 	#Llamar solo CON candado adquirido
@@ -396,8 +395,7 @@ class nodo:
 		self.lockConexiones = threading.Lock()
 		self.emisor = Emisor( self.miConexion, self.buzonReceptor, self.socketConexion, self.lockSocket, self.conexiones, self.lockConexiones, self.bitacora)
 		self.lockFin = threading.Lock()
-		self.banderaFin = BanderaFin()
-		self.banderaFin.modificarBandera(False)
+		self.banderaFin = BanderaFin(False)
 		self.server = Server( self.miConexion, self.buzonReceptor, self.socketConexion, self.lockSocket, self.conexiones, self.lockConexiones, self.bitacora, self.banderaFin)
 
 	def cerrarTodo(self):
