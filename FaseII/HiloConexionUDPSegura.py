@@ -167,7 +167,6 @@ class HiloConexionUDPSegura:
 					if tipoPaq == 10 or tipoPaq == 26:
 						if self.RN == SNpaq: #REVISAR SI ES DEL TIPO DE MENSAJE QUE ESTOY ESPERANDO
 							self.datosRecibidos += datos
-							print(".")
 							self.ackHandshakeTerminado = True
 							if self.primerDatoArchivo == False and len(datos) > 0:
 								self.primerDatoArchivo = True
@@ -176,6 +175,7 @@ class HiloConexionUDPSegura:
 								self.archivo = open("Archivo-"+str(self.now.year) +"_"+ str(self.now.month) +"_"+ str(self.now.day) +"_"+ str(self.now.hour) +"_"+ str(self.now.minute) +"_"+ str(self.now.second) +"_"+ str(self.now.microsecond), "wb+")
 							if len(datos) > 0:
 								self.archivo.write(datos)
+								print(".")
 							if tipoPaq == 26:
 								#print("YA TERMINE DE RECIBIR ARCHIVO")
 								self.primerDatoArchivo = False
