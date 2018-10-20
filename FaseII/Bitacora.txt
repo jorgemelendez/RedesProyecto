@@ -1,0 +1,3880 @@
+Servidor: Inicie
+HiloReceptor: Envie syn a 25.16.114.54 5000
+Emisor: cree la conexion25.16.114.54 5000
+HiloReceptor: Envie syn a 25.16.114.54 5000
+HiloReceptor: Reenvie syn 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 1 
+	SN = 0
+	RN = 0
+	Datos = 
+HiloReceptor: recibi mensaje 
+	IpOtra: 25.16.114.54
+	PuertoOtro: 5000
+	IpMia: 25.8.85.180
+	PuertoMio: 5000
+	TipoPaquete: 1
+	SNpaq: 0
+	RNpaq: 1
+	Datos: 
+HiloReceptor: envie ack de syn 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 3 
+	SN = 1
+	RN = 1
+	Datos = 
+Termine handshake como emisor
+HiloReceptor: recibi mensaje 
+	IpOtra: 25.16.114.54
+	PuertoOtro: 5000
+	IpMia: 25.8.85.180
+	PuertoMio: 5000
+	TipoPaquete: 1
+	SNpaq: 0
+	RNpaq: 1
+	Datos: 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: recibi mensaje 
+	IpOtra: 25.16.114.54
+	PuertoOtro: 5000
+	IpMia: 25.8.85.180
+	PuertoMio: 5000
+	TipoPaquete: 1
+	SNpaq: 0
+	RNpaq: 1
+	Datos: 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: recibi mensaje 
+	IpOtra: 25.16.114.54
+	PuertoOtro: 5000
+	IpMia: 25.8.85.180
+	PuertoMio: 5000
+	TipoPaquete: 1
+	SNpaq: 0
+	RNpaq: 1
+	Datos: 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: recibi mensaje 
+	IpOtra: 25.16.114.54
+	PuertoOtro: 5000
+	IpMia: 25.8.85.180
+	PuertoMio: 5000
+	TipoPaquete: 1
+	SNpaq: 0
+	RNpaq: 1
+	Datos: 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: recibi mensaje 
+	IpOtra: 25.16.114.54
+	PuertoOtro: 5000
+	IpMia: 25.8.85.180
+	PuertoMio: 5000
+	TipoPaquete: 1
+	SNpaq: 0
+	RNpaq: 1
+	Datos: 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: recibi mensaje 
+	IpOtra: 25.16.114.54
+	PuertoOtro: 5000
+	IpMia: 25.8.85.180
+	PuertoMio: 5000
+	TipoPaquete: 1
+	SNpaq: 0
+	RNpaq: 1
+	Datos: 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: recibi mensaje 
+	IpOtra: 25.16.114.54
+	PuertoOtro: 5000
+	IpMia: 25.8.85.180
+	PuertoMio: 5000
+	TipoPaquete: 1
+	SNpaq: 0
+	RNpaq: 1
+	Datos: 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: recibi mensaje 
+	IpOtra: 25.16.114.54
+	PuertoOtro: 5000
+	IpMia: 25.8.85.180
+	PuertoMio: 5000
+	TipoPaquete: 1
+	SNpaq: 0
+	RNpaq: 1
+	Datos: 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: recibi mensaje 
+	IpOtra: 25.16.114.54
+	PuertoOtro: 5000
+	IpMia: 25.8.85.180
+	PuertoMio: 5000
+	TipoPaquete: 1
+	SNpaq: 0
+	RNpaq: 1
+	Datos: 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: recibi mensaje 
+	IpOtra: 25.16.114.54
+	PuertoOtro: 5000
+	IpMia: 25.8.85.180
+	PuertoMio: 5000
+	TipoPaquete: 1
+	SNpaq: 0
+	RNpaq: 1
+	Datos: 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: recibi mensaje 
+	IpOtra: 25.16.114.54
+	PuertoOtro: 5000
+	IpMia: 25.8.85.180
+	PuertoMio: 5000
+	TipoPaquete: 1
+	SNpaq: 0
+	RNpaq: 1
+	Datos: 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: recibi mensaje 
+	IpOtra: 25.16.114.54
+	PuertoOtro: 5000
+	IpMia: 25.8.85.180
+	PuertoMio: 5000
+	TipoPaquete: 1
+	SNpaq: 0
+	RNpaq: 1
+	Datos: 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: recibi mensaje 
+	IpOtra: 25.16.114.54
+	PuertoOtro: 5000
+	IpMia: 25.8.85.180
+	PuertoMio: 5000
+	TipoPaquete: 1
+	SNpaq: 0
+	RNpaq: 1
+	Datos: 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: recibi mensaje 
+	IpOtra: 25.16.114.54
+	PuertoOtro: 5000
+	IpMia: 25.8.85.180
+	PuertoMio: 5000
+	TipoPaquete: 1
+	SNpaq: 0
+	RNpaq: 1
+	Datos: 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: recibi mensaje 
+	IpOtra: 25.16.114.54
+	PuertoOtro: 5000
+	IpMia: 25.8.85.180
+	PuertoMio: 5000
+	TipoPaquete: 1
+	SNpaq: 0
+	RNpaq: 1
+	Datos: 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 
+HiloReceptor: Reenvie ack de datos 
+	miConexion = (25.8.85.180,5000)
+	otraConexion = (25.16.114.54,5000)
+	TipoMensaje = 10 
+	SN = 1
+	RN = 1
+	Datos = 

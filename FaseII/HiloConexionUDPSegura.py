@@ -44,6 +44,11 @@ class HiloConexionUDPSegura:
 
 		self.continuarReceptor = True
 
+		self.tipo = 0
+
+		self.FinArchivoSN = 0
+		self.FinArchivoRN = 0
+
 	def soyLaConexionHacia(self, ip, puerto):
 		return self.otraConexion == (ip,puerto)
 
@@ -346,7 +351,7 @@ class emisor:
 					else:
 						print("Conexion existente")
 						self.lockConexiones.release()
-						
+
 						self.conexiones[indice].meterArchivoAEnviar(contenido)
 
 					bitacora.escribir("Emisor: envie un archivo a " + otraIp + " " + str(otroPuerto) )
@@ -388,7 +393,7 @@ class Server:
 
 			if existeConexion != -1 :
 				random = randrange(10)
-				print(random)
+				#print(random)
 				if random>1:
 					self.buzonReceptor.meterDatos(clientAddress, recibido)
 				else:
