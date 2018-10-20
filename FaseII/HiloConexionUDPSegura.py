@@ -181,15 +181,17 @@ class HiloConexionUDPSegura:
 								self.lockContinuarReceptor.acquire()
 								continuo = self.continuarReceptor
 								self.lockContinuarReceptor.release()
+								ultimo = self.ultimoMensajeMandado
 								if continuo == False:
 									self.tipo = 4
 									ACK = armarPaq(self.miConexion[0], self.miConexion[1], self.otraConexion[0], self.otraConexion[1], self.tipo, self.SN, self.RN, bytearray())
+									bitacora.escribir("HiloReceptor: envie fin de conexion " +  "\n\tmiConexion = (" + self.miConexion[0] + "," + str(self.miConexion[1]) + ")\n\totraConexion = (" + self.otraConexion[0] + "," + str(self.otraConexion[1]) + ")\n\tTipoMensaje = "+str(self.tipo)+" \n\tSN = " + str(self.SN) + "\n\tRN = " + str(self.RN) + "\n\tDatos = ")
 								else:
 									ACK = armarPaq(self.miConexion[0], self.miConexion[1], self.otraConexion[0], self.otraConexion[1], self.tipo, self.SN, self.RN, self.ultimoMensajeMandado) #VER SI TENGO DATOS PARA MANDAR
+									bitacora.escribir("HiloReceptor: envie ack de datos " +  "\n\tmiConexion = (" + self.miConexion[0] + "," + str(self.miConexion[1]) + ")\n\totraConexion = (" + self.otraConexion[0] + "," + str(self.otraConexion[1]) + ")\n\tTipoMensaje = "+str(self.tipo)+" \n\tSN = " + str(self.SN) + "\n\tRN = " + str(self.RN) + "\n\tDatos = " + self.ultimoMensajeMandado.decode("utf-8"))
 								self.lockSocket.acquire()
 								self.socketConexion.sendto(ACK, self.otraConexion)
 								self.lockSocket.release()
-								bitacora.escribir("HiloReceptor: envie ack de datos " +  "\n\tmiConexion = (" + self.miConexion[0] + "," + str(self.miConexion[1]) + ")\n\totraConexion = (" + self.otraConexion[0] + "," + str(self.otraConexion[1]) + ")\n\tTipoMensaje = "+str(self.tipo)+" \n\tSN = " + str(self.SN) + "\n\tRN = " + str(self.RN) + "\n\tDatos = " + self.ultimoMensajeMandado.decode("utf-8"))
 						else:
 							bitacora.escribir("Mensaje recibido extranno, RN != SNpaq")
 					elif tipoPaq == 4:
@@ -335,5 +337,5 @@ if __name__ == '__main__':
 	threadEmisor = threading.Thread(target=server.cicloServer, args=())
 	threadEmisor.start()
 	emisor.enviarArchivo()
-	time.sleep(4)
+	time.sleep(10)
 	bitacora.terminar()
