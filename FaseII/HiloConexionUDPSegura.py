@@ -335,3 +335,4 @@ if __name__ == '__main__':
 	threadEmisor = threading.Thread(target=server.cicloServer, args=())
 	threadEmisor.start()
 	emisor.enviarArchivo()
+	bitacora.terminar()
