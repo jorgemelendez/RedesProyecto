@@ -184,7 +184,7 @@ class HiloConexionUDPSegura:
 								continuo = self.continuarReceptor
 								self.lockContinuarReceptor.release()
 								ultimo = self.ultimoMensajeMandado
-								print("Pregunte si era 4")
+								#print("Pregunte si era 4")
 								if continuo == False:
 									print("ENTRE A ENVIAR MENSAJE TIPO 4")
 									self.tipo = 4
@@ -326,8 +326,9 @@ class Server:
 			self.lockConexiones.acquire()
 			existeConexion = self.buscarConexionLogica( clientAddress[0], clientAddress[1])
 			if existeConexion != -1 :
+				tipoPaq = bytesToInt(recibido[12:13])
 				random = randrange(10)
-				if random>1:
+				if random>1 or tipoPaq == 6:
 					self.buzonReceptor.meterDatos(clientAddress, recibido)
 				else:
 					self.bitacora.escribir("Server: se elimino un paquete que recibi")
