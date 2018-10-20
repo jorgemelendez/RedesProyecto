@@ -334,13 +334,13 @@ class Server:
 		self.bitacora.escribir("Servidor: Inicie")
 		while True:
 			self.lockSocket.acquire()
-			socketConexion.settimeout(1)
+			self.socketConexion.settimeout(1)
 			try:
 				recibido, clientAddress = self.socketConexion.recvfrom(2048)
 			except socket.Timeouterror:
 				print("Timeout")
 			else:
-				socketConexion.settimeout(0)
+				self.socketConexion.settimeout(0)
 				self.lockSocket.release()
 				self.lockConexiones.acquire()
 				existeConexion = self.buscarConexionLogica( clientAddress[0], clientAddress[1])
