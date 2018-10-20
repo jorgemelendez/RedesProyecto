@@ -283,11 +283,12 @@ class Emisor:
 						self.bitacora.escribir("Emisor: cree la conexion" + otraIp + " " + str(otroPuerto) )
 						self.lockConexiones.release()
 						conexion.meterArchivoAEnviar(contenido)
+						print("Sali de enviar archivo 1")
 					else:
 						print("Conexion existente")
 						self.lockConexiones.release()
-
 						self.conexiones[indice].meterArchivoAEnviar(contenido)
+						print("Sali de enviar archivo 1")
 					self.bitacora.escribir("Emisor: envie un archivo a " + otraIp + " " + str(otroPuerto) )
 
 class Server:
@@ -403,7 +404,7 @@ class nodo:
 		threadEmisor.start()
 		#emisor.enviarArchivo()
 		self.menu()
-		time.sleep(10)
+		#time.sleep(10)
 		self.bitacora.terminar()
 		print("Emisor termine")
 
