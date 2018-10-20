@@ -333,15 +333,15 @@ class Server:
 	def cicloServer(self):
 		self.bitacora.escribir("Servidor: Inicie")
 		while True:
-			self.lockSocket.acquire()
+			#self.lockSocket.acquire()
 			self.socketConexion.settimeout(1)
 			try:
 				recibido, clientAddress = self.socketConexion.recvfrom(2048)
 			except socket.timeout:
-				self.lockSocket.release()
+				#self.lockSocket.release()
 			else:
-				self.socketConexion.settimeout(0)
-				self.lockSocket.release()
+				#self.socketConexion.settimeout(0)
+				#self.lockSocket.release()
 				self.lockConexiones.acquire()
 				existeConexion = self.buscarConexionLogica( clientAddress[0], clientAddress[1])
 				if existeConexion != -1 :
