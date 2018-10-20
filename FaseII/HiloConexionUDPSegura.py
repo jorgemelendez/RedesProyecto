@@ -250,6 +250,7 @@ class Emisor:
 		print("Despues del lock")
 		self.conexiones.remove(conexion)
 		self.lockConexiones.release()
+		print("Libere el lock 1")
 
 	def enviarArchivo(self):
 		otraIp = input('Digite la ip del destinatario: ')
@@ -318,6 +319,7 @@ class Server:
 		print("Despues del lock")
 		self.conexiones.remove(conexion)
 		self.lockConexiones.release()
+		print("Libere el lock 1")
 
 	def cicloServer(self):
 		self.bitacora.escribir("Servidor: Inicie")
