@@ -337,7 +337,7 @@ class Server:
 			self.socketConexion.settimeout(1)
 			try:
 				recibido, clientAddress = self.socketConexion.recvfrom(2048)
-			except socket.Timeouterror:
+			except timeout:
 				print("Timeout")
 			else:
 				self.socketConexion.settimeout(0)
