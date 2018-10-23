@@ -35,8 +35,8 @@ class HiloConexionUDPSegura:
 		self.lockContinuarReceptor = threading.Lock()
 		self.continuarReceptor = True
 		self.tipo = 0
-		self.FinArchivoSN = 0
-		self.FinArchivoRN = 0
+		self.FinArchivoSN = None
+		self.FinArchivoRN = None
 
 	def soyLaConexionHacia(self, ip, puerto):
 		return self.otraConexion == (ip,puerto)
