@@ -240,12 +240,14 @@ class HiloConexionUDPSegura:
 						#print("break 1")
 						if self.termineEnviar.locked():
 							self.termineEnviar.release()
+						print("El otro nodo cerro la conexion")
 						break
 					elif tipoPaq == 6:
 						self.bitacora.escribir("HiloReceptor: Finalice")
 						#print("break 2")
 						if self.termineEnviar.locked():
 							self.termineEnviar.release()
+						print("Cerre la conexion")
 						break
 		#print("Salir de while")
 
