@@ -35,8 +35,8 @@ class HiloConexionUDPSegura:
 		self.lockContinuarReceptor = threading.Lock()
 		self.continuarReceptor = True
 		self.tipo = 0
-		self.FinArchivoSN = None
-		self.FinArchivoRN = None
+		self.FinArchivoSN = -1
+		self.FinArchivoRN = -1
 
 	def soyLaConexionHacia(self, ip, puerto):
 		return self.otraConexion == (ip,puerto)
@@ -186,7 +186,7 @@ class HiloConexionUDPSegura:
 								self.archivo.close()
 							self.RN = (self.RN + 1) % 8
 							print("FinArchivoSN + 1 = " + str((self.FinArchivoSN+1)%8) + " RNpaq = " + str(RNpaq) + " FinArchivoRN = " + str(self.FinArchivoRN) + " SNPaq = " + str(SNpaq) )
-							if (self.FinArchivoSN+1)%8 == RNpaq and self.FinArchivoRN == SNpaq:
+							if (self.FinArchivoSN > 0  and self.FinArchivoSN+1)%8 == RNpaq and self.FinArchivoRN == SNpaq:
 								self.termineEnviar.release()
 							else:
 								self.bitacora.escribir("FinArchivoSN+1 = " + str(self.FinArchivoSN+1) + "\nRNPaq = " + str(RNpaq) + "\nFinArchivoRN= " + str(self.FinArchivoRN) + "\nSNpaq= "+ str(SNpaq))
