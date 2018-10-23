@@ -188,6 +188,7 @@ class HiloConexionUDPSegura:
 							print("FinArchivoSN + 1 = " + str((self.FinArchivoSN+1)%8) + " RNpaq = " + str(RNpaq) + " FinArchivoRN = " + str(self.FinArchivoRN) + " SNPaq = " + str(SNpaq) )
 							if (self.FinArchivoSN > 0  and self.FinArchivoSN+1)%8 == RNpaq and self.FinArchivoRN == SNpaq:
 								self.termineEnviar.release()
+								self.FinArchivoSN = -1
 							else:
 								self.bitacora.escribir("FinArchivoSN+1 = " + str(self.FinArchivoSN+1) + "\nRNPaq = " + str(RNpaq) + "\nFinArchivoRN= " + str(self.FinArchivoRN) + "\nSNpaq= "+ str(SNpaq))
 							if (RNpaq > self.SN or (RNpaq==0 and self.SN==7)):
