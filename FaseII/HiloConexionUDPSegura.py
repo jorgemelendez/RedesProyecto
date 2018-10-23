@@ -383,7 +383,7 @@ class Server:
 						hiloNuevaConexion = threading.Thread(target=self.crearHilo, args=(conexion,))
 						hiloNuevaConexion.start()
 					else:
-						self.bitacora.escribir(clientAddress)
+						self.bitacora.escribir("("+clientAddress[0] + "," +str(clientAddress[1])+")")
 						self.bitacora.escribir("ESTA CONEXION NO EXITE Y LLEGO UN MENSAJE DISTINTO A SYN")
 				self.lockConexiones.release()
 			if self.banderaFin.leerBandera():
