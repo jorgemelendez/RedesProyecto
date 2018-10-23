@@ -76,7 +76,7 @@ class HiloConexionUDPSegura:
 				recibido = self.buzonReceptor.sacarDatos(self.otraConexion)
 			if recibido is None:
 				contador = contador + 1
-				if contador == 5:
+				if contador == 10:
 					if self.etapaSyn == 3 and self.ackHandshakeTerminado == False:
 						print("No se pudo establecer la conexion")
 						self.bitacora.escribir("No se pudo establecer la conexion")
