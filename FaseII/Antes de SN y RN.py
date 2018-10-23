@@ -123,33 +123,30 @@ class HiloConexionUDPSegura:
 				self.bitacora.escribir("HiloReceptor: recibi mensaje " + "\n\tIpOtra: " + otroIpRec + "\n\tPuertoOtro: " + str(otroPuertoRec) + "\n\tIpMia: " + miIpRec + "\n\tPuertoMio: " + str(miPuertoRec) + "\n\tTipoPaquete: " + str(tipoPaq) + "\n\tSNpaq: " + str(SNpaq) + "\n\tRNpaq: " + str(RNpaq) + "\n\tDatos: " + datos.decode("utf-8") )
 				if self.etapaSyn != 3:
 					if self.etapaSyn == 0 and tipoPaq == 1:
-						self.RN = SNpaq
-						self.RN = (self.RN + 1) % 8
+						self.RN = SNpaq + 1
 						self.SN = 0
 						self.connect(self.otraConexion[0], self.otraConexion[1])
 						self.etapaSyn = 1
 						self.bitacora.escribir("HiloReceptor: envie syn (paso 2) " +  "\n\tmiConexion = (" + self.miConexion[0] + "," + str(self.miConexion[1]) + ")\n\totraConexion = (" + self.otraConexion[0] + "," + str(self.otraConexion[1]) + ")\n\tTipoMensaje = 1 \n\tSN = " + str(self.SN) + "\n\tRN = " + str(self.RN) + "\n\tDatos = " )
 					elif self.etapaSyn == 2 and tipoPaq == 1:
-						if self.SN < RNpaq:
-							self.RN = SNpaq
-							self.RN = (self.RN + 1) % 8
-							self.SN = RNpaq
-							ACKConexion = armarPaq(self.miConexion[0], self.miConexion[1], self.otraConexion[0], self.otraConexion[1], 3, self.SN, self.RN, bytearray()) #NO HAY QUE MANDAR DATOS PORQUE ES ESTABLECIENDO CONEXION
-							self.lockSocket.acquire()
-							self.socketConexion.sendto(ACKConexion, self.otraConexion)
-							self.lockSocket.release()
-							self.etapaSyn = 3
-							#print ("Termine handshake como emisor")
-							#self.ackHandshakeTerminado = True
-							self.bitacora.escribir("HiloReceptor: envie ack de syn " +  "\n\tmiConexion = (" + self.miConexion[0] + "," + str(self.miConexion[1]) + ")\n\totraConexion = (" + self.otraConexion[0] + "," + str(self.otraConexion[1]) + ")\n\tTipoMensaje = 3 \n\tSN = " + str(self.SN) + "\n\tRN = " + str(self.RN) + "\n\tDatos = ")
-							self.bitacora.escribir("Termine handshake como emisor")
+						self.RN = SNpaq + 1
+						self.SN = RNpaq
+						ACKConexion = armarPaq(self.miConexion[0], self.miConexion[1], self.otraConexion[0], self.otraConexion[1], 3, self.SN, self.RN, bytearray()) #NO HAY QUE MANDAR DATOS PORQUE ES ESTABLECIENDO CONEXION
+						self.lockSocket.acquire()
+						self.socketConexion.sendto(ACKConexion, self.otraConexion)
+						self.lockSocket.release()
+						self.etapaSyn = 3
+						#print ("Termine handshake como emisor")
+						#self.ackHandshakeTerminado = True
+						self.bitacora.escribir("HiloReceptor: envie ack de syn " +  "\n\tmiConexion = (" + self.miConexion[0] + "," + str(self.miConexion[1]) + ")\n\totraConexion = (" + self.otraConexion[0] + "," + str(self.otraConexion[1]) + ")\n\tTipoMensaje = 3 \n\tSN = " + str(self.SN) + "\n\tRN = " + str(self.RN) + "\n\tDatos = ")
+						self.bitacora.escribir("Termine handshake como emisor")
 					elif self.etapaSyn == 1 and tipoPaq == 3:
-						if (RNpaq > self.SN or (RNpaq==0 and self.SN==7)) and self.RN == SNpaq:
-							self.etapaSyn = 3
-							##print("Termine handshake como receptor")
-							self.ackHandshakeTerminado = True
-							self.bitacora.escribir("Termine handshake como receptor")
-							self.RN = (self.RN + 1) % 8
+						self.etapaSyn = 3
+						##print("Termine handshake como receptor")
+						self.ackHandshakeTerminado = True
+						self.bitacora.escribir("Termine handshake como receptor")
+						self.RN = self.RN + 1
+						if RNpaq > self.SN:
 							self.SN = RNpaq
 							self.lockArchivos.acquire()
 							if len(self.archivoActual) == 0: #paquete actual ya termino y ya lo confirmaron
@@ -184,12 +181,12 @@ class HiloConexionUDPSegura:
 								self.primerDatoArchivo = False
 								self.bitacora.escribir("TERMINE DE RECIBIR ARCHIVO")
 								self.archivo.close()
-							self.RN = (self.RN + 1) % 8
+							self.RN = self.RN + 1
 							if self.FinArchivoSN+1 == RNpaq and self.FinArchivoRN == SNpaq:
 								self.termineEnviar.release()
 							else:
 								self.bitacora.escribir("FinArchivoSN+1 = " + str(self.FinArchivoSN+1) + "\nRNPaq = " + str(RNpaq) + "\nFinArchivoRN= " + str(self.FinArchivoRN) + "\nSNpaq= "+ str(SNpaq))
-							if (RNpaq > self.SN or (RNpaq==0 and self.SN==7)):
+							if RNpaq > self.SN:
 								self.SN = RNpaq
 								self.tipo = 10
 								self.lockArchivos.acquire()
@@ -225,8 +222,8 @@ class HiloConexionUDPSegura:
 							self.bitacora.escribir("Mensaje recibido extranno, RN != SNpaq")
 					elif tipoPaq == 4:
 						self.bitacora.escribir("El mensaje recibido es de cerrar conexion")
-						self.RN = (self.RN + 1) % 8
-						if (RNpaq > self.SN or (RNpaq==0 and self.SN==7)):
+						self.RN = self.RN + 1
+						if RNpaq > self.SN:
 							self.SN = RNpaq
 						ACK = armarPaq(self.miConexion[0], self.miConexion[1], self.otraConexion[0], self.otraConexion[1], 6, self.SN, self.RN, bytearray()) #VER SI TENGO DATOS PARA MANDAR
 						self.bitacora.escribir("HiloReceptor: envie ack para finalizar conexion " +  "\n\tmiConexion = (" + self.miConexion[0] + "," + str(self.miConexion[1]) + ")\n\totraConexion = (" + self.otraConexion[0] + "," + str(self.otraConexion[1]) + ")\n\tTipoMensaje = 6 \n\tSN = " + str(self.SN) + "\n\tRN = " + str(self.RN) + "\n\tDatos = " )
