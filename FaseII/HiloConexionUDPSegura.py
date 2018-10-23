@@ -185,10 +185,11 @@ class HiloConexionUDPSegura:
 								self.bitacora.escribir("TERMINE DE RECIBIR ARCHIVO")
 								self.archivo.close()
 							self.RN = (self.RN + 1) % 8
-							print("FinArchivoSN + 1 = " + str((self.FinArchivoSN+1)%8) + " RNpaq = " + str(RNpaq) + " FinArchivoRN = " + str(self.FinArchivoRN) + " SNPaq = " + str(SNpaq) )
+							#print("FinArchivoSN + 1 = " + str((self.FinArchivoSN+1)%8) + " RNpaq = " + str(RNpaq) + " FinArchivoRN = " + str(self.FinArchivoRN) + " SNPaq = " + str(SNpaq) )
 							if (self.FinArchivoSN > 0  and self.FinArchivoSN+1)%8 == RNpaq and self.FinArchivoRN == SNpaq:
 								self.termineEnviar.release()
 								self.FinArchivoSN = -1
+								self.FinArchivoRN = -1
 							else:
 								self.bitacora.escribir("FinArchivoSN+1 = " + str(self.FinArchivoSN+1) + "\nRNPaq = " + str(RNpaq) + "\nFinArchivoRN= " + str(self.FinArchivoRN) + "\nSNpaq= "+ str(SNpaq))
 							if (RNpaq > self.SN or (RNpaq==0 and self.SN==7)):
@@ -301,7 +302,7 @@ class Emisor:
 					self.lockConexiones.acquire()
 					indice = self.buscarConexionLogica(otraIp, otroPuerto)
 					if indice == -1:
-						#print ("Nueva conexion")
+						print ("Nueva conexion")
 						conexion = HiloConexionUDPSegura( self.buzonReceptor, (otraIp,otroPuerto), self.miConexion, self.socketConexion, self.lockSocket, self.bitacora )
 						conexion.connect(otraIp,otroPuerto)
 						hiloNuevaConexion = threading.Thread(target=self.crearHilo, args=(conexion,))
@@ -312,7 +313,7 @@ class Emisor:
 						conexion.meterArchivoAEnviar(contenido)
 						#print("Sali de enviar archivo 1")
 					else:
-						#print("Conexion existente")
+						print("Conexion existente")
 						self.lockConexiones.release()
 						self.conexiones[indice].meterArchivoAEnviar(contenido)
 						#print("Sali de enviar archivo 2")
