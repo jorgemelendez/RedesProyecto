@@ -185,7 +185,7 @@ class HiloConexionUDPSegura:
 								self.bitacora.escribir("TERMINE DE RECIBIR ARCHIVO")
 								self.archivo.close()
 							self.RN = (self.RN + 1) % 8
-							if self.FinArchivoSN+1 == RNpaq and self.FinArchivoRN == SNpaq:
+							if (self.FinArchivoSN+1)%8 == RNpaq and self.FinArchivoRN == SNpaq:
 								self.termineEnviar.release()
 							else:
 								self.bitacora.escribir("FinArchivoSN+1 = " + str(self.FinArchivoSN+1) + "\nRNPaq = " + str(RNpaq) + "\nFinArchivoRN= " + str(self.FinArchivoRN) + "\nSNpaq= "+ str(SNpaq))
