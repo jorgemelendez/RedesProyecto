@@ -474,7 +474,7 @@ class nodo:
 			print('Menu principal del modulo de Red TCP: \n'
 					'\t1. Enviar un archivo. \n'
 					'\t2. CerrarConexion. \n'
-					'\t3. CerrarConexion. \n'
+					'\t3. Cerrar una conexion especifica. \n'
 					'\t4. Salir. \n')
 			taskUsuario = input('Que desea hacer:')
 			if taskUsuario == '1':
