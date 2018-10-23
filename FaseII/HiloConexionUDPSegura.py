@@ -83,7 +83,8 @@ class HiloConexionUDPSegura:
 					else:
 						print("Conexion perdida")
 						self.bitacora.escribir("Conexion perdida")
-					self.termineEnviar.release()
+					if self.termineEnviar.locked():
+						self.termineEnviar.release()
 					break
 				if self.etapaSyn == 3 and self.ackHandshakeTerminado == False:#Caso donde no llegan los primeros primeros datos y ya se envio el ack syn
 					ACKConexion = armarPaq(self.miConexion[0], self.miConexion[1], self.otraConexion[0], self.otraConexion[1], 3, self.SN, self.RN, bytearray()) #NO HAY QUE MANDAR DATOS PORQUE ES ESTABLECIENDO CONEXION
