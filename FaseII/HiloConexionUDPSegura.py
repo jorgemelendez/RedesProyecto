@@ -369,7 +369,7 @@ class Server:
 				if existeConexion != -1 :
 					tipoPaq = bytesToInt(recibido[12:13])
 					random = randrange(10)
-					if random>1 or tipoPaq == 6:
+					if random>1:
 						self.buzonReceptor.meterDatos(clientAddress, recibido)
 					else:
 						self.bitacora.escribir("Server: se elimino un paquete que recibi")
