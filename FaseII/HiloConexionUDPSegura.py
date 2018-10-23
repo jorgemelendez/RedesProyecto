@@ -181,7 +181,7 @@ class HiloConexionUDPSegura:
 								self.archivo.write(datos)
 								print(".")
 							if tipoPaq == 26:
-								#print("YA TERMINE DE RECIBIR ARCHIVO")
+								print("YA TERMINE DE RECIBIR ARCHIVO")
 								self.primerDatoArchivo = False
 								self.bitacora.escribir("TERMINE DE RECIBIR ARCHIVO")
 								self.archivo.close()
