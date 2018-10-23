@@ -422,6 +422,41 @@ class nodo:
 		self.banderaFin = BanderaFin(False)
 		self.server = Server( self.miConexion, self.buzonReceptor, self.socketConexion, self.lockSocket, self.conexiones, self.lockConexiones, self.bitacora, self.banderaFin)
 
+	def cerrarUnaConexion(self):
+		otraIp = input('Digite la ip del destinatario: ')
+		ipPrueba = otraIp + "/32"
+		try:
+			n = ipaddress.ip_network(ipPrueba)
+		except ValueError as e:
+			print ("Ip no valida")
+		else:
+			lecturaPuerto = input('Digite el puerto del destinatario: ')
+			try:
+				otroPuerto = int(lecturaPuerto)
+			except ValueError as e:
+				print ("Puerto no valido")
+			else:
+				if otroPuerto < 0 or otroPuerto > 65535:
+					print ("Puerto no valido")
+				else:
+					i = 0;
+					encontre = False
+					self.lockConexiones.acquire()
+					largo = len(self.conexiones)
+					while i < largo:
+						if self.conexiones[i].soyLaConexionHacia(otraIp,otroPuerto):
+							self.conexiones[i].close()
+							encontre = True
+							break
+						i = i + 1
+					self.lockConexiones.release()
+					if encontre == False:
+						print("La conexion (" + otraIp + "," + str(otroPuerto) + ") no existia")
+						self.bitacora.escribir("La conexion (" + otraIp + "," + str(otroPuerto) + ") no existia")
+					else:
+						print("La conexion (" + otraIp + "," + str(otroPuerto) + ") fue cerrada")
+						self.bitacora.escribir("La conexion (" + otraIp + "," + str(otroPuerto) + ") fue cerrada")
+
 	def cerrarTodo(self):
 		self.lockConexiones.acquire()
 		i = 0;
@@ -430,6 +465,8 @@ class nodo:
 			self.conexiones[i].close()
 			i = i + 1
 		self.lockConexiones.release()
+		print("Se cerraron todas las conexiones")
+		self.bitacora.escribir("Se cerraron todas las conexiones")
 
 	def menu(self):
 		bandera = True
@@ -437,13 +474,16 @@ class nodo:
 			print('Menu principal del modulo de Red TCP: \n'
 					'\t1. Enviar un archivo. \n'
 					'\t2. CerrarConexion. \n'
-					'\t3. Salir. \n')
+					'\t3. CerrarConexion. \n'
+					'\t4. Salir. \n')
 			taskUsuario = input('Que desea hacer:')
 			if taskUsuario == '1':
 				self.emisor.enviarArchivo()
 			elif taskUsuario == '2':
 				self.cerrarTodo()
 			elif taskUsuario == '3':
+				self.cerrarUnaConexion()
+			elif taskUsuario == '4':
 				self.banderaFin.modificarBandera(True)
 				break
 			else:
