@@ -1,9 +1,0 @@
- - Guardar y documentar como mandar el costo, big endian o little endian.
- - Importante siempre pensar en 2 maneras dise;o de y especificar porque escogimos una.
- - Se utilizar terminal xterm para poder sacar los mensajes.
- - Ver como hace python para implementar los diccionarios.
- - Checkear en el mismo mensaje que venga la misma direccion pero con pesos diferentes.
- - En UDP hay que ir a borrar las entradas cuando me mandan a decir que el nodo se va a    	morir.
- - Cuidar cuando uno manda un mensaje y no hay nadie escuchando. Tratar ese exception
- - Capturar el error de establecer conexion no existente.
-

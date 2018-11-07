@@ -1,8 +1,0 @@
-Falta:
-	
-	-REVISAR COMO SE ESTAN CERRANDO LOS THREADS
-
-
-
-PROBLEMAS QUE EXISTE:
-	-En tcp cuando muere un server que lo tengo en la lista de conexiones abiertas, se da cuenta que muerio hasta el segundo mensaje despues de la muerte
