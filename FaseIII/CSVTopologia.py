@@ -12,23 +12,46 @@ class CSVTopologia:
 		for line in leearchivo:
 			listaTupla = line.split(',')
 
-		idConexion = listaTuplas[0], int(listaTuplas[1]), int(listaTuplas[2])
-		hayKey = self.listaTuplas.get(idConexion)
-		otroIpDistancia = listaTuplas[3],int(listaTuplas[4]),int(listaTuplas[5]), int(listaTuplas[6])
+		#Pregunta si la mascara y el puerto que ingreso esta correcta.
+		mascara1 = int(listaTuplas[1])
+		puerto1 = int(listaTuplas[2])
 
-		if hayKey is None:
-			listaDireccion = list()
-			listaDireccion.append()
-			self.listaTuplas[idConexion] = listaDireccion
-		else
-			listaDireccion.append
+		#El string de conexion para ensennar el mensaje.
+		idConexion = listaTuplas[0], mascara1, int(listaTuplas[2])
 
-		if listaMensajes is None:
-			listaMensajes = list()
-			listaMensajes.append(otroIpDistancia)
-			self.buzon[idConexion] = listaMensajes
+		#El If funciona para ver si se ignora o se ingresa cada tupla.
+		if mascara1 < 2 or mascara1 > 30: 
+			print('Se ingoro: ' + idConexion +' .La mascara debe de estar [2,30]')
+		else:		
+			#Pregunta si el puerto esta entre los rangos. 
+			hayKey = self.listaTuplas.get(idConexion)
+			
+			#Pregunta si la mascara esta entre 2-30, si se exede pone el mayor rango.
+			mascara2 = int(listaTuplas[4])
+			puerto2 = int(listaTuplas[5])
+			distancia = int(listaTuplas[6])
+
+			otroIpDistancia = listaTuplas[3],mascara2,puerto2, distancia
+
+		if mascara2 < 2 or mascara2 > 30:
+			print('Se ignoro agregar ' + otroIpDistancia + ' a la conexion ' + idConexion +' . La mascara debe estar entre [2,30]')
+
+		elif distancia < 20 or distancia > 100:
+			print ('Se ignoro agregar ' + otroIpDistancia + ' a la conexion ' + idConexion +' . La distancia debe estar entre [20,100]')
 		else:
-			listaMensajes.append(otroIpDistancia)
+			if hayKey is None:
+				listaDireccion = list()
+				listaDireccion.append()
+				self.listaTuplas[idConexion] = listaDireccion
+			else
+				listaDireccion.append
+
+			if listaMensajes is None:
+				listaMensajes = list()
+				listaMensajes.append(otroIpDistancia)
+				self.buzon[idConexion] = listaMensajes
+			else:
+				listaMensajes.append(otroIpDistancia)
 
 
 	def getDiccionario(self):
