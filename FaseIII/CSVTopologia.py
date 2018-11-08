@@ -12,9 +12,9 @@ class CSVTopologia:
 		for line in leearchivo:
 			listaTupla = line.split(',')
 
-		idConexion = listaTuplas[0], listaTuplas[1], listaTuplas[2]
+		idConexion = listaTuplas[0], int(listaTuplas[1]), int(listaTuplas[2])
 		hayKey = self.listaTuplas.get(idConexion)
-		otroIpDistancia = listaTuplas[3],listaTuplas[4],listaTuplas[5], listaTuplas[6]
+		otroIpDistancia = listaTuplas[3],int(listaTuplas[4]),int(listaTuplas[5]), int(listaTuplas[6])
 
 		if hayKey is None:
 			listaDireccion = list()
