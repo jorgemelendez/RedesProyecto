@@ -11,3 +11,6 @@ NodoUDP
 	Poner el servidor de vecinos como parametro como parametro y aumentar el numero en el IF para que sea valido el parametro
 
 	Quitar la clase intermedia de NodesTCP-UDP
+
+EmisorUDP:
+	Este es el que tiene que enviar el mensaje cuando se va a morir, deberia de enviarlo solo a sus vecinos

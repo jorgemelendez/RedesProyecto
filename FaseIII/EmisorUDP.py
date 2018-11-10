@@ -12,9 +12,10 @@ from TablaAlcanzabilidad import *
 
 class EmisorUDP:
 
-	def __init__(self,mensajesRecibidos, tablaAlcanzabilidad, socketNodo, lockSocketNodo):
+	def __init__(self,mensajesRecibidos, tablaAlcanzabilidad, tablaVecinos, socketNodo, lockSocketNodo):
 		self.mensajesRecibidos = mensajesRecibidos
 		self.tablaAlcanzabilidad = tablaAlcanzabilidad
+		self.tablaVecinos = tablaVecinos
 		self.socketNodo = socketNodo
 		self.lockSocketNodo = lockSocketNodo
 		
@@ -124,7 +125,8 @@ class EmisorUDP:
 					'\t1. Enviar un mensaje. \n'
 					'\t2. Ver mensajes recibidos. \n'
 					'\t3. Imprimir tabla de alcanzabilidad.\n'
-					'\t4. Cerrar servidor de mensajes.')
+					'\t4. Imprimir tabla de vecinos.\n'
+					'\t5. Cerrar servidor de mensajes.')
 			taskUsuario = input('Que desea hacer:')
 			if taskUsuario == '1':
 				self.envioMensajeUDP()
@@ -139,6 +141,11 @@ class EmisorUDP:
 				self.tablaAlcanzabilidad.imprimirTabla()
 				print("\n\n")
 			elif taskUsuario == '4':
+				print("\n\n")
+				print('Tabla de vecinos:')
+				self.tablaVecinos.imprimirTablaVecinos()
+				print("\n\n")
+			elif taskUsuario == '5':
 				bandera = False
 				self.borrarme()
 				print('Salida.')

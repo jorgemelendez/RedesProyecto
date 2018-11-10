@@ -24,7 +24,7 @@ class TablaVecinos:
 			puertoi = bytesToInt(objetoVecinos[5+i*8 : 7+i*8])#5 - 6 --> Puerto
 			distaciai = bytesToInt(objetoVecinos[7+i*8 : 8+i*8])#7 --> Distancia
 			llave = ipi,masci,puertoi # la llave del diccionaroi es la (Ip, Mascara, Puerto)
-			valor = distaciai
+			valor = distaciai, False #El valor va a ser (distancia,bitActivo)
 			self.diccVecinos[llave] = valor
 			i = i + 1
 
@@ -38,7 +38,7 @@ class TablaVecinos:
 		self.lockDiccVecinos.acquire()
 		valor = self.diccVecinos[llave]
 		self.lockDiccVecinos.release()
-		return valor
+		return valor[0] #En la tupla el primer valor es la distancia 
 
 	#Metodo para modificar la distancia hacia un vecino
 	# debe estar se ese es un vecino suyo
@@ -49,8 +49,40 @@ class TablaVecinos:
 	def modificarDistancia(self, ip, mascara, puerto, distancia):
 		llave = ip, mascara, puerto
 		self.lockDiccVecinos.acquire()
-		self.diccVecinos[llave] = distancia
+		self.diccVecinos[llave] = distancia, self.diccVecinos[llave][1] #Se mete la nueva distancia y se deja el valor antiguo del bitActivo
 		self.lockDiccVecinos.release()
+
+	#Funcion que retorna si el vecino se encientra como activo o no en la tabla de vecinos
+	# retorna True si el vecino esta activo, False en caso contrario
+	#ip: ip del vecino
+	#mascara: mascara del vecino
+	#puerto: puerto del vecino
+	def obtenerBitActivo(self, ip, mascara, puerto):
+		llave = ip, mascara, puerto
+		self.lockDiccVecinos.acquire()
+		valor = self.diccVecinos[llave]
+		self.lockDiccVecinos.release()
+		return valor[1] #En la tupla el segundo valor es el bitActivo del vecino 
+
+	#Metodo para modificar la distancia hacia un vecino
+	# debe estar se ese es un vecino suyo
+	#ip: ip del vecino
+	#mascara: mascara del vecino
+	#puerto: puerto del vecino
+	#distancia: nueva distancia hacia el vecino
+	def modificarBitActivo(self, ip, mascara, puerto, bitActivo):
+		llave = ip, mascara, puerto
+		self.lockDiccVecinos.acquire()
+		self.diccVecinos[llave] = self.diccVecinos[llave][0], bitActivo #Se mete la nueva distancia y se deja el valor antiguo del bitActivo
+		self.lockDiccVecinos.release()
+
+	#Metodo que recorre el diccionario e imprime la tabla
+	# Formato de la tabla es (ip mascara puerto distancia bitActivo)
+	def imprimirTablaVecinos(self):
+		llaves = self.diccVecinos.keys()
+		for x in llaves:
+			valor = self.diccVecinos[x]
+			print( x[0] + " " + str(x[1]) + " " + str(x[2]) + " " + str(valor[0]) + " " + str(valor[1]) )
 
 #if __name__ == '__main__':
 #	tablaVecinos = TablaVecinos()
@@ -62,10 +94,7 @@ class TablaVecinos:
 #	
 #	tablaVecinos.ingresarVecinos(mensaje)
 #
-#	print(tablaVecinos.obtenerDistancia("192.168.100.17", 24, 9000 ) )
-#	print(tablaVecinos.obtenerDistancia("192.168.100.17", 24, 10000 ) )
-#	print(tablaVecinos.obtenerDistancia("192.168.100.17", 24, 11000 ) )
-#	print(tablaVecinos.obtenerDistancia("192.168.100.17", 24, 12000 ) )
+#	tablaVecinos.imprimirTablaVecinos()
 #
 #
 #	tablaVecinos.modificarDistancia("192.168.100.17", 24, 9000, 20)
@@ -75,7 +104,14 @@ class TablaVecinos:
 #
 #	print("\n\n\n\n")
 #
-#	print(tablaVecinos.obtenerDistancia("192.168.100.17", 24, 9000 ) )
-#	print(tablaVecinos.obtenerDistancia("192.168.100.17", 24, 10000 ) )
-#	print(tablaVecinos.obtenerDistancia("192.168.100.17", 24, 11000 ) )
-#	print(tablaVecinos.obtenerDistancia("192.168.100.17", 24, 12000 ) )
+#	tablaVecinos.imprimirTablaVecinos()
+#
+#
+#	tablaVecinos.modificarBitActivo("192.168.100.17", 24, 9000, True)
+#	tablaVecinos.modificarBitActivo("192.168.100.17", 24, 10000, True)
+#	tablaVecinos.modificarBitActivo("192.168.100.17", 24, 11000, True)
+#	tablaVecinos.modificarBitActivo("192.168.100.17", 24, 12000, True)
+#
+#	print("\n\n\n\n")
+#
+#	tablaVecinos.imprimirTablaVecinos()

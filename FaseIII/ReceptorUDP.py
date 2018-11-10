@@ -16,9 +16,10 @@ class ReceptorUDP:
 	mensajesRecibidos = MensajesRecibidos()
 	tablaAlcanzabilidad = TablaAlcanzabilidad()
 
-	def __init__(self,mensajesRecibidos, tablaAlcanzabilidad, socketNodo, lockSocketNodo):
+	def __init__(self,mensajesRecibidos, tablaAlcanzabilidad, tablaVecinos, socketNodo, lockSocketNodo):
 		self.mensajesRecibidos = mensajesRecibidos
 		self.tablaAlcanzabilidad = tablaAlcanzabilidad
+		self.tablaVecinos = tablaVecinos
 		self.socketNodo = socketNodo
 		self.lockSocketNodo = lockSocketNodo
 
