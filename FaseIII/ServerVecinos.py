@@ -49,7 +49,8 @@ class ServerVecinos:
 	def recibeMensajes(self):
 		while 1:
 			message, clientAddress = self.serverSocket.recvfrom(2048)
-			
+			#En el mensaje debe de venir la mascara, esto para hacer la busqueda
+			#La IP y el Puerto se toman de clientAddress
 			if len(message) == 1:
 				mascara = intToBytes( message, 1 )
 				if mascara > 1 and mascara < 31 :
@@ -60,9 +61,10 @@ class ServerVecinos:
 
 	#Menu del Servidor de vecinos
 	def iniciar(self):
+		#Crea hilo para escuchar mensajes y responder a ellos
 		hiloServidor = threading.Thread(target=self.recibeMensajes, args=())
 		hiloServidor.start()
-
+		#Menu del servidor de vecinos
 		bandera = True
 		while bandera == True:
 			print('Menu principal del modulo de Red UDP: \n'

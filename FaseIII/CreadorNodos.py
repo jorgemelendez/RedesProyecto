@@ -18,6 +18,8 @@ class CreadorNodos:
 			pid = subprocess.Popen(args=["gnome-terminal", "--command=python3 NodesTCP-UDP.py creaNodo-intAS " + ip + " " + str(puertos[i])]).pid
 			if(pid > 2):
 				print("Creado con exito")
+			else:
+				print("Error al crear al nodo")
 
 
 if __name__ == '__main__':
@@ -25,4 +27,4 @@ if __name__ == '__main__':
 		creador = CreadorNodos()
 		creador.crearNodos(sys.argv[1])
 	else: 
-		print("Ingrese la direccion del archivo CSV")
+		print("Faltan parametros, ingrese la direccion del archivo CSV")
