@@ -4,6 +4,7 @@ import threading
 import threading
 import socket
 import os
+import sys
 
 #Clase de Nodo que funciona para distribuir los vencinos de nodos
 class ServerVecinos:
@@ -16,7 +17,12 @@ class ServerVecinos:
 		self.dicVecinos = lectorTopologia.getDiccionario()
 		#Socket
 		self.serverSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-		self.serverSocket.bind((ip, puerto))
+		try:
+			self.serverSocket.bind((ip, puerto))
+		except:
+			print ("Error, no se puede crear el Servidor de Vecinos en esa ip con ese puerto")
+			self.serverSocket.close()
+			os._exit(1)
 
 	#Funcion para obtener el mensaje que hay que enviar a un nodo
 	# que solicito sus vecinos
@@ -52,6 +58,7 @@ class ServerVecinos:
 				else:
 					print("Llego solicitud de vencinos con una mascara invalida")
 
+	#Menu del Servidor de vecinos
 	def iniciar(self):
 		hiloServidor = threading.Thread(target=self.recibeMensajes, args=())
 		hiloServidor.start()
@@ -67,7 +74,10 @@ class ServerVecinos:
 			else:
 				print('Ingrese opcion valida.')
 
-
+#Hay que poner la direccion del archivo CSV como parametro y aumentar la condicion del if y enviar el parametro
 if __name__ == '__main__':
-	servidor = ServerVecinos("10.1.137.114", 5000, "/home/christofer/Escritorio/RedesProyecto/CSVServidor")
-	servidor.iniciar()
+	if len(sys.argv) == 3:
+		servidor = ServerVecinos(sys.argv[1], int(sys.argv[2]), "/home/christofer/Escritorio/RedesProyecto/CSVServidor")
+		servidor.iniciar()
+	else: 
+		print("Faltan parametros")
