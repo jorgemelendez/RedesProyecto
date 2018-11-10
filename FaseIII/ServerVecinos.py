@@ -1,6 +1,9 @@
 from CSVTopologia import *
 from ArmarMensajes import *
 import threading
+import threading
+import socket
+import os
 
 #Clase de Nodo que funciona para distribuir los vencinos de nodos
 class ServerVecinos:
@@ -49,8 +52,22 @@ class ServerVecinos:
 				else:
 					print("Llego solicitud de vencinos con una mascara invalida")
 
+	def iniciar(self):
+		hiloServidor = threading.Thread(target=self.recibeMensajes, args=())
+		hiloServidor.start()
+
+		bandera = True
+		while bandera == True:
+			print('Menu principal del modulo de Red UDP: \n'
+					'\t1. Salir. \n')
+			taskUsuario = input('Que desea hacer:')
+			if taskUsuario == '1':
+				bandera = False
+				os._exit(1)
+			else:
+				print('Ingrese opcion valida.')
 
 
 if __name__ == '__main__':
 	servidor = ServerVecinos("10.1.137.114", 5000, "/home/christofer/Escritorio/RedesProyecto/CSVServidor")
-	servidor.recibeMensajes()
+	servidor.iniciar()
