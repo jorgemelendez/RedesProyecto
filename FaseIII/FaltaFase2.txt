@@ -1,6 +1,8 @@
 Indicaciones de cosas que falta para la fase 3
 
 
-Archivo:	ServerVecinos
-			
-				Poner la direccion del archivo como parametro y aumentar el numero en el IF para que sea valido el parametro
+ServerVecinos		
+	Poner la direccion del archivo como parametro y aumentar el numero en el IF para que sea valido el parametro
+
+CreadorNodos
+	Poner la direccion del archivo como parametro y aumentar el numero en el IF para que sea valido el parametro

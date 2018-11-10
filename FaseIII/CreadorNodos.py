@@ -23,8 +23,8 @@ class CreadorNodos:
 
 
 if __name__ == '__main__':
-	if len(sys.argv) == 2:
+	if len(sys.argv) == 1:
 		creador = CreadorNodos()
-		creador.crearNodos(sys.argv[1])
+		creador.crearNodos("/home/christofer/Escritorio/RedesProyecto/10.232.68.72")
 	else: 
 		print("Faltan parametros, ingrese la direccion del archivo CSV")
