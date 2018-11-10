@@ -13,9 +13,12 @@ class CreadorNodos:
 		ip = lectorCSV.getIP()
 		puertos = lectorCSV.getListaPuertos()
 
-		cantidad = len(puertos)
-		for i in range(cantidad):
-			pid = subprocess.Popen(args=["gnome-terminal", "--command=python3 NodesTCP-UDP.py creaNodo-intAS " + ip + " " + str(puertos[i])]).pid
+		print("Cantidad de puertos leida ",len(puertos))
+
+		#cantidad = len(puertos)
+		for i in puertos:
+			print("Puerto: ",i)
+			pid = subprocess.Popen(args=["gnome-terminal", "--command=python3 NodesTCP-UDP.py creaNodo-intAS " + ip + " " + str(i)]).pid
 			if(pid > 2):
 				print("Creado con exito")
 			else:

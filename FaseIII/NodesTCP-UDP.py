@@ -49,8 +49,8 @@ def comando(comandosolicitado):
 					return -1
 				else:
 					s.close()
-					nodoUDP = NodoUDP()
-					nodoUDP.iniciarNodoUDP(ip,int(puerto))
+					nodoUDP = NodoUDP(ip,int(puerto))
+					nodoUDP.iniciarNodoUDP()
 					#udp.despligueMenuUDP()
 					return 1
 			else:

@@ -29,7 +29,11 @@ class ServerVecinos:
 	def obtenerMensajeDeVecinos(self, llave):
 		self.lockDicVecinos.acquire()
 		vecinos = self.dicVecinos.get(llave)
-		mensajeVecinos = self.construirMensaje(vecinos)
+		mensajeVecinos = bytearray()
+		if vecinos is not None:
+			mensajeVecinos = self.construirMensaje(vecinos)
+		else:
+			print("No tiene vecinos ", llave)
 		self.lockDicVecinos.release()
 		return mensajeVecinos
 
@@ -52,7 +56,7 @@ class ServerVecinos:
 			#En el mensaje debe de venir la mascara, esto para hacer la busqueda
 			#La IP y el Puerto se toman de clientAddress
 			if len(message) == 1:
-				mascara = intToBytes( message, 1 )
+				mascara = bytesToInt( message[0:1] )
 				if mascara > 1 and mascara < 31 :
 					respuesta = self.obtenerMensajeDeVecinos( (clientAddress[0], mascara, clientAddress[1]) )
 					self.serverSocket.sendto(respuesta, clientAddress)

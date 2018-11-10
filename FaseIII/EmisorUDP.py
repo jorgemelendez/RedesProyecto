@@ -11,13 +11,12 @@ from MensajesRecibidos import *
 from TablaAlcanzabilidad import *
 
 class EmisorUDP:
-	#Objeto para guardar conexiones
-	mensajesRecibidos = MensajesRecibidos()
-	tablaAlcanzabilidad = TablaAlcanzabilidad()
 
-	def __init__(self,mensajesRecibidos, tablaAlcanzabilidad):
+	def __init__(self,mensajesRecibidos, tablaAlcanzabilidad, socketNodo, lockSocketNodo):
 		self.mensajesRecibidos = mensajesRecibidos
 		self.tablaAlcanzabilidad = tablaAlcanzabilidad
+		self.socketNodo = socketNodo
+		self.lockSocketNodo = lockSocketNodo
 		
 	def tuplaToBytes(self,tupla):
 		tupladiv = tupla.split(' ')
@@ -101,20 +100,20 @@ class EmisorUDP:
 					print ("Puerto no valido")
 				else:
 					message = self.leerMensaje()
-					clientSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-					clientSocket.sendto(message, (serverNameS, serverPortS))
-					clientSocket.close()
+					self.lockSocketNodo.acquire()
+					self.socketNodo.sendto(message, (serverNameS, serverPortS))
+					self.lockSocketNodo.release()
 
 	def borrarme(self):
 		mensaje = bytearray((1).to_bytes(2, byteorder='big'))# cant tuplas
 		mensaje += (0).to_bytes(1, byteorder='big')
 		fuente = self.tablaAlcanzabilidad.eliminarPrimerFuente()
 		#print("Elimine la primer fuente")
-		print ("llegue aqui")
+		#print ("llegue aqui")
 		while fuente.puertoFuente != 0:
-			clientSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-			clientSocket.sendto(mensaje, (fuente.ipFuente, fuente.puertoFuente))
-			clientSocket.close()
+			self.lockSocketNodo.acquire()
+			self.socketNodo.sendto(mensaje, (fuente.ipFuente, fuente.puertoFuente))
+			self.lockSocketNodo.release()
 			fuente = self.tablaAlcanzabilidad.eliminarPrimerFuente()
 
 	def despligueMenuUDP(self):
