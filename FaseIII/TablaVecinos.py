@@ -82,7 +82,7 @@ class TablaVecinos:
 		llaves = self.diccVecinos.keys()
 		for x in llaves:
 			valor = self.diccVecinos[x]
-			print( x[0] + " " + str(x[1]) + " " + str(x[2]) + " " + str(valor[0]) + " " + str(valor[1]) )
+			print( str(x) + " " + str(valor[0]) + " " + str(valor[1]) )
 
 	#Funcion que retornar los vecinos
 	def obtenerVecinos(self):

@@ -15,4 +15,12 @@ NodoUDP
 	Poner la mascara como variable, en la funcion pedirVecinos y en contactarVecinos
 
 EmisorUDP:
-	Este es el que tiene que enviar el mensaje cuando se va a morir, deberia de enviarlo solo a sus vecinos
+	Este es el que tiene que enviar el mensaje cuando se va a morir, deberia de enviarlo solo a sus vecinos}
+
+TablaAlcanzabilidad:
+	Mandar la bitacora del nodo por paramentro a la tabla de alcabilidad en el contructor
+	Mandar a bitacora las actualizacion de la tabla en actualizarTabla
+	Ver si en alguna ocacion tengo que borrar entradas donde se cumpla que el atravez sea X, posiblemente si muere un vecino
+	Revisar su hay que validar la IP, creo que no porque en este caso las IPs son de maquinas y no de redes entonces cualquier ip debe funcionar, en el metodo actualizar tabla
+
+	Analizar que pasa cuando hacia el peso de un vecino, se borra la tupla en esta y se ingresa la nueva o se actualiza el valor

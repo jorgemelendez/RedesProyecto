@@ -105,6 +105,7 @@ class EmisorUDP:
 					self.socketNodo.sendto(message, (serverNameS, serverPortS))
 					self.lockSocketNodo.release()
 
+	#Ahora deberia de hacerse avisandole a los vecinos nada mas
 	def borrarme(self):
 		mensaje = bytearray((1).to_bytes(2, byteorder='big'))# cant tuplas
 		mensaje += (0).to_bytes(1, byteorder='big')
