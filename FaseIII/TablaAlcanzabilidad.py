@@ -67,7 +67,7 @@ class TablaAlcanzabilidad:
 		#print("Termine while")
 		self.lockTablaAlcanzabilidad.release()
 
-	#Llamar solo SIN candado adquirido
+	#Metodo para actualizar la tabla cuando llega un mensaje de actializacio de tabla
 	#mensaje: actualizacion recibido (2bytes de cantidad de tuplas, 
 	#      tuplas (ip,mascara,puerto,distancia))
 	#atravezDe: tupla que es el intermediario entre el nodo y el destino, tupla (ip,mascara,puerto)
@@ -102,6 +102,20 @@ class TablaAlcanzabilidad:
 			#else:
 			#	print("Se ignora " + str(x) + " porque no es una IP valida en esa mascara")
 			i = i + 1
+
+	#Metodo para agregar un alcanzable
+	#alcanzable: no alcanzable, tupla (ip,mascara,puerto)
+	#distanciaNuevo: costo entre alcanzable y atravezDe
+	#atravezDe: tupla que es el intermediario entre el nodo y el destino, tupla (ip,mascara,puerto)
+	def annadirAlcanzable(self, alcanzable, distanciaNuevo, atravezDe):
+		self.lockTablaAlcanzabilidad.acquire()
+		exite = self.tabla.get(alcanzable)
+		if exite == None : #Si una entrada con ese Key NO existe, se crea
+			#Se crea una nueva tupla
+			self.tabla[alcanzable] = distanciaNuevo, atravezDe
+		else:#Si existe una entrada con ese Key, se actualiza el valor de ser necesario
+			print(str(alcanzable) + " este nodo no deberia estar exstir en la tabla porque apenas esta llegando mensaje de aviso de que se desperto")
+		self.lockTablaAlcanzabilidad.release()
 
 
 

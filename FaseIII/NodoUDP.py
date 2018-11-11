@@ -90,6 +90,8 @@ class NodoUDP:
 				self.tablaVecinos.modificarBitActivo(x[0], x[1], x[2], False)
 			else:
 				self.tablaVecinos.modificarBitActivo(x[0], x[1], x[2], True)
+				distancia = self.tablaVecinos.obtenerDistancia(x[0], x[1], x[2])
+				self.tablaAlcanzabilidad.annadirAlcanzable( x, distancia, x )
 
 	#Metodo que da inico al nodo, manda a ejecutar un hilo receptor y el emisor(interfaz con usuario)
 	def iniciarNodoUDP(self):

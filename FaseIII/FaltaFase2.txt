@@ -28,6 +28,8 @@ TablaAlcanzabilidad:
 
 	Analizar que pasa cuando hacia el peso de un vecino, se borra la tupla en esta y se ingresa la nueva o se actualiza el valor
 
+	En actualizarTabla falta sumar la distancia entre atravez y el nodo
+
 ReceptorUDP:
 	Metodo responderVivo se debe de hacer bien
 

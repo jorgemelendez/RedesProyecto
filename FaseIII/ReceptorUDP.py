@@ -33,6 +33,9 @@ class ReceptorUDP:
 		mensajeRespContacto += intToBytes(24,1) #Se pone la mascara en el mensaje de solicitudes
 		mascara = bytesToInt(mensaje[1:2])
 		estadoVecino = self.tablaVecinos.obtenerBitActivo(vecino[0], mascara, vecino[1])
+		distancia = self.tablaVecinos.obtenerDistancia(vecino[0], mascara, vecino[1])
+		tuplaVecino = vecino[0], mascara, vecino[1]
+		self.tablaAlcanzabilidad.annadirAlcanzable( tuplaVecino, distancia, tuplaVecino )
 		if estadoVecino == None:
 			print(str(vecino[0]) + " " + str(mascara) + " " + str(vecino[0]) + " no es uno de mis vecinos")
 		elif estadoVecino == True:
