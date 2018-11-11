@@ -1,6 +1,8 @@
 import ipaddress
 
-#Si lo que retorna tiene len() = 0, entonces no era una ip
+#Funcion que pasa un string IP a 4 bytes,
+# retorna 0 bytes si la ip era invalida
+#ip: ip que quiere convertir a bytes
 def ipToBytes(ip):
 	myip = ip.split('.')
 	bytesIp = bytearray()
@@ -13,9 +15,11 @@ def ipToBytes(ip):
 		for x in range(0, 4):
 			ipnum = int(myip[x])
 			bytesIp += (ipnum).to_bytes(1, byteorder='big')
-	
 	return bytesIp
 
+#Funcion que convierte una IP de 4 bytes a
+# una ip String
+#bytesIp: la ip en 4 bytes que desea convertir
 def bytesToIp(bytesIp):
 	ip = str(int(bytesIp[0]))
 	ip += "."
@@ -24,12 +28,16 @@ def bytesToIp(bytesIp):
 	ip += str(int(bytesIp[2]))
 	ip += "."
 	ip += str(int(bytesIp[3]))
-	
 	return ip
 
+#Funcion que retorna el entero num en un vector de bytes de cantBytes bytes
+#num: entero que desea convertir
+#cantBytes: cantidad de bytes que se quiere que tenga el numero convertido
 def intToBytes( num, cantBytes ):
 	return (num).to_bytes(cantBytes, byteorder='big')
 
+#Funcion que convierte un vector de bytes en un entero
+#numbytes: bytes que quiere convertir en un numero entero
 def bytesToInt(numbytes):
 	return int.from_bytes(numbytes, byteorder='big')
 
@@ -50,77 +58,4 @@ def armarPaq(miIpRec, miPuertoRec, otroIpRec, otroPuertoRec, tipoMensaje, SN, RN
 	resp += intToBytes(SN,1)#1bytes #ver de tamano SN
 	resp += intToBytes(RN,1)#1bytes #ver de tamano RN
 	resp += datos
-	#print (len(resp))
 	return resp
-"""
-def armarPaqIniciarConexion(miPuertoReceptor):
-	#datos = (puertoReceptorACKOrigen).to_bytes(2, byteorder='big')
-	datos = (miPuertoReceptor).to_bytes(2, byteorder='big')
-	
-	return armarPaq(2,0, datos)
-
-#REVISAR SI SE NECESITA RECONOCIMIENTO, EN ESTE CASO NO PORQUE ES ACK DE CONEXION CRE0
-#REVISAR PARA QUE SE NECESITA EL PUERTORECEPTORACK, el otro si porque hay que mandar mi puerto receptor
-def armarPaqACKConexion():
-	#datos = (puertoReceptorACKOrigen).to_bytes(2, byteorder='big')
-	datos = bytearray()#(miPuertoReceptor).to_bytes(2, byteorder='big')
-	
-	return armarPaq(10,0, datos)
-
-#REVISAR PARA QUE SE NECESITA EL PUERTORECEPTORES
-def armarPaqDatos(SN, datosCodificados):
-	#datos = (puertoReceptorACKOrigen).to_bytes(2, byteorder='big')
-	#datos += (puertoReceptorMensOrigen).to_bytes(2, byteorder='big')
-
-	datos = datosCodificados
-	return armarPaq(16,SN, datos)
-
-#REVISAR PARA QUE SE NECESITA EL PUERTORECEPTORACK, el otro si porque hay que mandar mi puerto receptor
-def armarPaqACKDatos(RN):
-	#datos = (puertoReceptorACKOrigen).to_bytes(2, byteorder='big')
-	datos = bytearray()
-	
-	return armarPaq(24,RN, datos)
-"""
-
-
-
-
-
-
-
-
-def desarmarMensaje(mensaje):
-	if mensaje[0:1] == 2:
-		print ("Paquete de iniciar conexion")
-	elif mensaje[0:1] == 10:
-		print ("Paquete ACK de iniciar conexion")
-
-#Deben ser 4 porque debe ser fullduplex, entonces por cada dirreccion se debe tener para mandar mensajes, y el ack de vuelva, eso seria una y la otra agrega 2 mas.
-
-
-
-"""
-class Prueba:
-	mensaje = Mensaje()
-	
-	def establecerConexion(self, otroIpRec, otroPuertoRec):
-		mysocket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
-		mysocket.settimeout(0.5)
-
-		mensajeConexion = mensaje.armarPaqACKConexion(5000,otroPuertoRec,secuencia,reconocimiento, puertoReceptorACKOrigen, puertoReceptorMensOrigen)
-
-		while user_input:
-		    mysocket.sendto(mensajeConexion, (otroIpRec, otroPuertoRec) )     
-		    acknowledged = False
-		    # spam dest until they acknowledge me (sounds like my kids)
-		    while not acknowledged:
-		        try:
-		            ACK, address = mysocket.recvfrom(1024)
-		            acknowledged = True
-		        except socket.timeout:
-		            mysocket.sendto(user_input, dest)
-		    print (ACK)
-		    user_input = raw_input()
-
-		mysocket.close()"""

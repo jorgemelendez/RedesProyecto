@@ -18,7 +18,8 @@ class HiloEnviaTabla:
 	#tablaVecinos: Tabla de vecinos para saber a quien enviarselos
 	#socketNodo: socket del nodo para enviar la tabla
 	#lockSocketNodo: lock para utilizar el socket
-	def __init__(self, tablaAlcanzabilidad, tablaVecinos, socketNodo, lockSocketNodo):
+	def __init__(self, nodoId, tablaAlcanzabilidad, tablaVecinos, socketNodo, lockSocketNodo):
+		self.nodoId = nodoId
 		self.tablaAlcanzabilidad = tablaAlcanzabilidad
 		self.tablaVecinos = tablaVecinos
 		self.socketNodo = socketNodo
@@ -28,11 +29,10 @@ class HiloEnviaTabla:
 	#vecino: tupla (ip, mascara, puerto) del vecino
 	#tablaEnrutamiento: tabla de alcanzabilidad que se le pidio a TablaAlcanzabilidad
 	def construirMensaje(self, vecino, tablaEnrutamiento):
-		#print("Vecino: " + str(vecino))
 		mensaje = bytearray()
 		mensaje += intToBytes(8,1)#Tipos de mensaje es 8, actualizacion de la tabla
-		mensaje += intToBytes(24,1)#Tipos de mensaje es 8, actualizacion de la tabla
-		cantidaTuplasEnviar = (len(tablaEnrutamiento) - 1)
+		mensaje += intToBytes(self.nodoId[1],1)#Se annade la mascara en el mensaje
+		cantidaTuplasEnviar = (len(tablaEnrutamiento) - 1)# -1 porque no se manda la tupla del nodo que estoy contactando
 		mensaje += intToBytes(cantidaTuplasEnviar,2)
 		for x in tablaEnrutamiento: #Cada x tiene la forma (ip, mascara, puerto, distancia)
 			if (x[0],x[1],x[2]) != vecino:
@@ -51,8 +51,6 @@ class HiloEnviaTabla:
 			self.lockSocketNodo.acquire()
 			self.socketNodo.sendto( mensajeTablaParaVecino, (x[0], x[2]) )
 			self.lockSocketNodo.release()
-			#print("Entre a enviarle al vecino " + str(x))
-
 
 	#Metodo que es el ciclo de envio de tablas cada 30 segundos
 	def iniciarCiclo(self):

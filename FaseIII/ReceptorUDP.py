@@ -14,11 +14,14 @@ from ArmarMensajes import *
 
 
 class ReceptorUDP:
-	#mensajesRecibidos = MensajesRecibidos()
-	tablaAlcanzabilidad = TablaAlcanzabilidad()
 
-	def __init__(self, nodoId, mensajesRecibidos, tablaAlcanzabilidad, tablaVecinos, socketNodo, lockSocketNodo):
-		#self.mensajesRecibidos = mensajesRecibidos
+	#Constructor
+	#nodoId: id del nodo, tupla (ip, mascara, puerto)
+	#tablaAlcanzabilidad: tabla de alcanzabilidad del nodo
+	#tablaVecinos: tabla de vecinos del nodo
+	#socketNodo: sockect del nodo
+	#lockSocketNodo: lock del socket del nodo
+	def __init__(self, nodoId, tablaAlcanzabilidad, tablaVecinos, socketNodo, lockSocketNodo):
 		self.nodoId = nodoId
 		self.tablaAlcanzabilidad = tablaAlcanzabilidad
 		self.tablaVecinos = tablaVecinos
@@ -27,11 +30,11 @@ class ReceptorUDP:
 
 	#Metodo para responder a vecino que si estoy vivo
 	#vecino: tupla que es (ip, puerto)
-	#mascara: mascara del vecino
+	#mensaje: mascara del vecino
 	def responderVivo(self, vecino, mensaje):
 		mensajeRespContacto = bytearray()
 		mensajeRespContacto += intToBytes(2,1)#Tipo de mensaje es 1
-		mensajeRespContacto += intToBytes(24,1) #Se pone la mascara en el mensaje de solicitudes
+		mensajeRespContacto += intToBytes(self.nodoId[1],1) #Se pone la mascara en el mensaje de solicitudes
 		mascara = bytesToInt(mensaje[1:2])
 		estadoVecino = self.tablaVecinos.obtenerBitActivo(vecino[0], mascara, vecino[1])
 		distancia = self.tablaVecinos.obtenerDistancia(vecino[0], mascara, vecino[1])
@@ -49,35 +52,36 @@ class ReceptorUDP:
 
 	#Metodo para activar vecino en la tabla vecinos, y meterlo en la tabla de vecinos
 	#vecino: tupla que es (ip. puerto)
-	#mascara: mascara del vecino
+	#mensaje: mascara del vecino
 	def respondieronVivo(self, vecino, mensaje):
 		mascara = bytesToInt(mensaje[1:2])
 		print("Este tipo de mensajes(resp Vivo) no deberian de llegar estando dentro de ReceptorUDP")
 
-	#Metodo para activar vecino en la tabla vecinos, y meterlo en la tabla de vecinos
+	#Metodo para desactivar vecino en la tabla vecinos y sacar las entradas a las que se llevaban mediante este
 	#vecino: tupla que es (ip. puerto)
-	#mascara: mascara del vecino
+	#mensaje: mascara del vecino
 	def murioVecino(self, vecino, mensaje):
 		mascara = bytesToInt(mensaje[1:2])
 		self.tablaVecinos.modificarBitActivo(vecino[0], mascara, vecino[1], False) #Se pone como un vecino no activo
 		self.tablaAlcanzabilidad.borrarAtravez(vecino[0], mascara, vecino[1]) #Se borran las entradas con las que se iban atravez de ese nodo
 
+	#Metodo que procesa un mensaje de actualizacion de tabla
+	#vecino: tupla que es (ip. puerto)
+	#mensaje: mensaje recibido, viene la mascara en el segundo byte
 	def mensajeActualizacionTabla(self, vecino, mensaje):
 		mensajeQuitandoTipo = mensaje[2:]
-		vecinoConMascara = vecino[0], bytesToInt( mensaje[1:2]), vecino[1]
-		distanciaVecino = self.tablaVecinos.obtenerDistancia(vecino[0], bytesToInt( mensaje[1:2]), vecino[1])
+		vecinoConMascara = vecino[0], bytesToInt( mensaje[1:2] ), vecino[1]
+		distanciaVecino = self.tablaVecinos.obtenerDistancia(vecino[0], bytesToInt( mensaje[1:2] ), vecino[1])
 		self.tablaAlcanzabilidad.actualizarTabla(mensajeQuitandoTipo, vecinoConMascara, distanciaVecino)
 
+	#Metodo encargado de recibir los mensajes que le envian al nodo
 	def recibeMensajes(self):
 		while 1:
-			#self.lockSocketNodo.acquire()
 			message, clientAddress = self.socketNodo.recvfrom(2048)
-			#self.lockSocketNodo.release()
-			#mensaje = Mensaje(clientAddress[0],clientAddress[1], message)
 			tipoMensaje = bytesToInt(message[0:1])
 			if tipoMensaje == 1:
 				self.responderVivo(clientAddress, message)
-			elif tipoMensaje == 2:#Creo que este caso no tiene sentido aqui
+			elif tipoMensaje == 2:#Creo que este caso no tiene sentido aqui, pero por si llegara uno, para decir que esta fuera de lugar
 				self.respondieronVivo(clientAddress, message)
 			elif tipoMensaje == 4:
 				self.murioVecino(clientAddress, message)
@@ -85,17 +89,3 @@ class ReceptorUDP:
 				self.mensajeActualizacionTabla(clientAddress, message)
 			else:
 				print("Llego mensaje con tipo desconocido")
-
-	def tuplaToBytes(self, tupla):
-		tupladiv = tupla.split(' ')
-		numeroip = tupladiv[0]
-		myip = numeroip.split('.')
-		bytesmios = bytearray()
-		for x in range(0, 4):
-			ipnum = int(myip[x])
-			bytesmios += (ipnum).to_bytes(1, byteorder='big')
-		masc = int(tupladiv[1])
-		bytesmios += (masc).to_bytes(1, byteorder='big')
-		costo = int(tupladiv[2])
-		bytesmios += (costo).to_bytes(3, byteorder='big')
-		return bytesmios
