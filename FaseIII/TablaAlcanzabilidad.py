@@ -22,10 +22,12 @@ class TablaAlcanzabilidad:
 
 	#Metodo que imprime la tabla de alcanzabilidad del nodo
 	def imprimirTabla(self):
+		self.lockTablaAlcanzabilidad.acquire()
 		llaves = self.tabla.keys()
 		for x in llaves:
 			valor = self.tabla[x]
 			print( str(x) + " " + str(valor[0]) + " " + str(valor[1]) )
+		self.lockTablaAlcanzabilidad.release()
 
 	#Metodo para validar que la ip que llego el valida
 	#ip: ip a validad
@@ -95,7 +97,7 @@ class TablaAlcanzabilidad:
 				self.tabla[x] = distanciaNuevo, atravezDe
 			else:#Si existe una entrada con ese Key, se actualiza el valor de ser necesario
 				#Se pregunta si el costo recibido es menor al que tenia, en caso de que si se atualiza
-				if exite[0] > distanciaNuevo:
+				if exite[0] > distanciaNuevo:#EN ESTA PREGUNTA FALTA SUMAR LA DISTANCIA DEL VECINO
 					self.tabla[x] = distanciaNuevo, atravezDe
 					#FALTA MANDAR A BITACORA
 			self.lockTablaAlcanzabilidad.release()
@@ -117,8 +119,16 @@ class TablaAlcanzabilidad:
 			print(str(alcanzable) + " este nodo no deberia estar exstir en la tabla porque apenas esta llegando mensaje de aviso de que se desperto")
 		self.lockTablaAlcanzabilidad.release()
 
-
-
+	#Metodo para retornar lista de (ip, mascara, puerto, distancia) de los que conozco
+	def obtenerTabla(self):
+		self.lockTablaAlcanzabilidad.acquire()
+		llaves = self.tabla.keys()
+		tabla = list()
+		for x in llaves:
+			valor = self.tabla[x]
+			tabla.append( (x[0],x[1],x[2],valor[0]) )
+		self.lockTablaAlcanzabilidad.release()
+		return tabla
 
 #if __name__ == '__main__':
 #	tablaAlcanzabilidad = TablaAlcanzabilidad()

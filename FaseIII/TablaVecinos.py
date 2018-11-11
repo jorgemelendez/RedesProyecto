@@ -18,6 +18,7 @@ class TablaVecinos:
 	def ingresarVecinos(self, objetoVecinos):
 		largo = int(len(objetoVecinos) / 8)
 		i = 0
+		self.lockDiccVecinos.acquire()
 		while i < largo:
 			ipi = bytesToIp(objetoVecinos[0+i*8 : 4+i*8]) #0 - 3 --> IP
 			masci = bytesToInt(objetoVecinos[4+i*8 : 5+i*8])#4 --> Mascara
@@ -27,6 +28,7 @@ class TablaVecinos:
 			valor = distaciai, False #El valor va a ser (distancia,bitActivo)
 			self.diccVecinos[llave] = valor
 			i = i + 1
+		self.lockDiccVecinos.release()
 
 	#Funcion que retorna la distancia que existe hacia un vecino
 	# retorna nulo si no existe ese como vecino
@@ -79,10 +81,12 @@ class TablaVecinos:
 	#Metodo que recorre el diccionario e imprime la tabla
 	# Formato de la tabla es (ip mascara puerto distancia bitActivo)
 	def imprimirTablaVecinos(self):
+		self.lockDiccVecinos.acquire()
 		llaves = self.diccVecinos.keys()
 		for x in llaves:
 			valor = self.diccVecinos[x]
 			print( str(x) + " " + str(valor[0]) + " " + str(valor[1]) )
+		self.lockDiccVecinos.release()
 
 	#Funcion que retornar los vecinos
 	def obtenerVecinos(self):
@@ -90,6 +94,19 @@ class TablaVecinos:
 		llaves = self.diccVecinos.keys()
 		self.lockDiccVecinos.release()
 		return llaves
+
+	#Metodo que retorna una lista de los vecinos que se encuentran activos en la tabla de vecinos
+	# Formato de la lista es (ip mascara puerto)
+	def obtenerVecinosActivos(self):
+		self.lockDiccVecinos.acquire()
+		llaves = self.diccVecinos.keys()
+		vecinosActivos = list()
+		for x in llaves:
+			valor = self.diccVecinos[x]
+			if valor[1]:
+				vecinosActivos.append(x)
+		self.lockDiccVecinos.release()
+		return vecinosActivos
 
 #if __name__ == '__main__':
 #	tablaVecinos = TablaVecinos()
