@@ -15,6 +15,9 @@ from EmisorUDP import *
 
 class NodoUDP:
 
+	#Constructor
+	#ip: ip de la maquina donde va a ser iniciado
+	#puerto: puerto donde va a ser iniciado
 	def __init__(self, ip, puerto):
 		self.mensajesRecibidos = MensajesRecibidos()
 		self.tablaAlcanzabilidad = TablaAlcanzabilidad()
@@ -23,11 +26,12 @@ class NodoUDP:
 		self.socketNodo.bind((ip, puerto))
 		self.lockSocketNodo = threading.Lock()
 
+	#Funcion para pedir los vecinos al ServerVecinos
 	#Retorna 1 si se pudo comunicar con el servidor de vecinos
 	#Retorna 0 si no se pudo comunicar con el servidor de vecinos
 	def pedirVecinos(self):
 		mensajeSolicitudVecinos = bytearray()
-		mensajeSolicitudVecinos += intToBytes(24,1) #Se pone la mascara en el mensaje de solicituds
+		mensajeSolicitudVecinos += intToBytes(24,1) #Se pone la mascara en el mensaje de solicitudes
 		banderaParada = False
 		vecinos = bytearray()
 		self.socketNodo.settimeout(1)
@@ -44,9 +48,9 @@ class NodoUDP:
 					print("El servidor no esta activo")
 					banderaParada = True
 			else:
-				#print(vecinos)
-				banderaParada = True
-
+				if serverAddress == ("192.168.100.17", 5000):
+					#print(vecinos)
+					banderaParada = True
 		self.socketNodo.settimeout(None)
 		if intento == 10:
 			return 0
@@ -54,8 +58,42 @@ class NodoUDP:
 			self.tablaVecinos.ingresarVecinos(vecinos)
 			return 1
 
+	#Metodo para intentar contactar a los vecinos para ver si estan activos
+	def contactarVecinos(self):
+		mensajeSolicitudVecinos = bytearray()
+		mensajeSolicitudVecinos += intToBytes(24,1) #Se pone la mascara en el mensaje de solicitudes
+
+		vecinosTabla = self.tablaVecinos.obtenerVecinos()
+		for x in vecinosTabla: #Cada x, es (ip, mascara, puerto)
+			banderaParada = False
+			vecinos = bytearray()
+			self.socketNodo.settimeout(1)
+			intento = 1
+			while not(banderaParada):
+				self.lockSocketNodo.acquire()
+				self.socketNodo.sendto(mensajeSolicitudVecinos, (x[0], x[2]))
+				self.lockSocketNodo.release()
+				try:
+					vecinos, serverAddress = self.socketNodo.recvfrom(2048)
+				except socket.timeout:
+					intento = intento + 1
+					if intento == 3:# ver si se aumenta mas
+						print("El vecino " + str(x) + " no esta activo")
+						banderaParada = True
+				else:
+					if serverAddress == (x[0], x[2]):
+						#print(vecinos)
+						banderaParada = True
+			self.socketNodo.settimeout(None)
+			if intento == 3:
+				self.tablaVecinos.modificarBitActivo(x[0], x[1], x[2], False)
+			else:
+				self.tablaVecinos.modificarBitActivo(x[0], x[1], x[2], True)
+
+	#Metodo que da inico al nodo, manda a ejecutar un hilo receptor y el emisor(interfaz con usuario)
 	def iniciarNodoUDP(self):
 		llenaronVecinos = self.pedirVecinos()
+		self.contactarVecinos()
 		if llenaronVecinos == 1:
 			receptorUDP = ReceptorUDP(self.mensajesRecibidos, self.tablaAlcanzabilidad, self.tablaVecinos, self.socketNodo, self.lockSocketNodo)
 			proceso_receptorUDP = threading.Thread(target=receptorUDP.recibeMensajes, args=())

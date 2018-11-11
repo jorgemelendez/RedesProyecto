@@ -12,5 +12,7 @@ NodoUDP
 
 	Quitar la clase intermedia de NodesTCP-UDP
 
+	Poner la mascara como variable, en la funcion pedirVecinos y en contactarVecinos
+
 EmisorUDP:
 	Este es el que tiene que enviar el mensaje cuando se va a morir, deberia de enviarlo solo a sus vecinos

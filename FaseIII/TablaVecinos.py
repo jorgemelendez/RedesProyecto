@@ -41,7 +41,7 @@ class TablaVecinos:
 		return valor[0] #En la tupla el primer valor es la distancia 
 
 	#Metodo para modificar la distancia hacia un vecino
-	# debe estar se ese es un vecino suyo
+	# debe estar seguro que ese es un vecino suyo
 	#ip: ip del vecino
 	#mascara: mascara del vecino
 	#puerto: puerto del vecino
@@ -64,12 +64,12 @@ class TablaVecinos:
 		self.lockDiccVecinos.release()
 		return valor[1] #En la tupla el segundo valor es el bitActivo del vecino 
 
-	#Metodo para modificar la distancia hacia un vecino
-	# debe estar se ese es un vecino suyo
+	#Metodo para modificar el BitActivo del vecino
+	# debe estar seguro que ese es un vecino suyo
 	#ip: ip del vecino
 	#mascara: mascara del vecino
 	#puerto: puerto del vecino
-	#distancia: nueva distancia hacia el vecino
+	#bitActivo: nueva bitActivo del vecino
 	def modificarBitActivo(self, ip, mascara, puerto, bitActivo):
 		llave = ip, mascara, puerto
 		self.lockDiccVecinos.acquire()
@@ -83,6 +83,13 @@ class TablaVecinos:
 		for x in llaves:
 			valor = self.diccVecinos[x]
 			print( x[0] + " " + str(x[1]) + " " + str(x[2]) + " " + str(valor[0]) + " " + str(valor[1]) )
+
+	#Funcion que retornar los vecinos
+	def obtenerVecinos(self):
+		self.lockDiccVecinos.acquire()
+		llaves = self.diccVecinos.keys()
+		self.lockDiccVecinos.release()
+		return llaves
 
 #if __name__ == '__main__':
 #	tablaVecinos = TablaVecinos()
