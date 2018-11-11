@@ -17,8 +17,9 @@ class ReceptorUDP:
 	#mensajesRecibidos = MensajesRecibidos()
 	tablaAlcanzabilidad = TablaAlcanzabilidad()
 
-	def __init__(self,mensajesRecibidos, tablaAlcanzabilidad, tablaVecinos, socketNodo, lockSocketNodo):
+	def __init__(self, nodoId, mensajesRecibidos, tablaAlcanzabilidad, tablaVecinos, socketNodo, lockSocketNodo):
 		#self.mensajesRecibidos = mensajesRecibidos
+		self.nodoId = nodoId
 		self.tablaAlcanzabilidad = tablaAlcanzabilidad
 		self.tablaVecinos = tablaVecinos
 		self.socketNodo = socketNodo
@@ -61,6 +62,12 @@ class ReceptorUDP:
 		self.tablaVecinos.modificarBitActivo(vecino[0], mascara, vecino[1], False) #Se pone como un vecino no activo
 		self.tablaAlcanzabilidad.borrarAtravez(vecino[0], mascara, vecino[1]) #Se borran las entradas con las que se iban atravez de ese nodo
 
+	def mensajeActualizacionTabla(self, vecino, mensaje):
+		mensajeQuitandoTipo = mensaje[2:]
+		vecinoConMascara = vecino[0], bytesToInt( mensaje[1:2]), vecino[1]
+		distanciaVecino = self.tablaVecinos.obtenerDistancia(vecino[0], bytesToInt( mensaje[1:2]), vecino[1])
+		self.tablaAlcanzabilidad.actualizarTabla(mensajeQuitandoTipo, vecinoConMascara, distanciaVecino)
+
 	def recibeMensajes(self):
 		while 1:
 			#self.lockSocketNodo.acquire()
@@ -74,6 +81,10 @@ class ReceptorUDP:
 				self.respondieronVivo(clientAddress, message)
 			elif tipoMensaje == 4:
 				self.murioVecino(clientAddress, message)
+			elif tipoMensaje == 8:
+				self.mensajeActualizacionTabla(clientAddress, message)
+			else:
+				print("Llego mensaje con tipo desconocido")
 
 	def tuplaToBytes(self, tupla):
 		tupladiv = tupla.split(' ')

@@ -73,7 +73,7 @@ class TablaAlcanzabilidad:
 	#mensaje: actualizacion recibido (2bytes de cantidad de tuplas, 
 	#      tuplas (ip,mascara,puerto,distancia))
 	#atravezDe: tupla que es el intermediario entre el nodo y el destino, tupla (ip,mascara,puerto)
-	def actualizarTabla(self, mensaje, atravezDe):
+	def actualizarTabla(self, mensaje, atravezDe, distanciaAtravezDe):
 		#self.lockTablaAlcanzabilidad.acquire()
 
 		bytesMensaje = mensaje
@@ -81,10 +81,10 @@ class TablaAlcanzabilidad:
 		cantTuplas = bytesToInt( bytesMensaje[0:2] )
 		i = 0
 		while i < cantTuplas:
-			ipNuevo = bytesToIp( bytesMensaje[(i*8)+2:(i*8)+6] )
-			mascaraNuevo = bytesToInt( bytesMensaje[(i*8)+6:(i*8)+7] )
-			puertoNuevo = bytesToInt( bytesMensaje[(i*8)+7:(i*8)+9] )
-			distanciaNuevo = bytesToInt( bytesMensaje[(i*8)+9:(i*8)+10] )
+			ipNuevo = bytesToIp( bytesMensaje[(i*10)+2:(i*10)+6] )
+			mascaraNuevo = bytesToInt( bytesMensaje[(i*10)+6:(i*10)+7] )
+			puertoNuevo = bytesToInt( bytesMensaje[(i*10)+7:(i*10)+9] )
+			distanciaNuevo = bytesToInt( bytesMensaje[(i*10)+9:(i*10)+12] )
 
 			x = ipNuevo, mascaraNuevo, puertoNuevo #Se hace la tupla de key
 
@@ -94,11 +94,11 @@ class TablaAlcanzabilidad:
 			exite = self.tabla.get(x)
 			if exite == None : #Si una entrada con ese Key NO existe, se crea
 				#Se crea una nueva tupla
-				self.tabla[x] = distanciaNuevo, atravezDe
+				self.tabla[x] = (distanciaNuevo + distanciaAtravezDe), atravezDe
 			else:#Si existe una entrada con ese Key, se actualiza el valor de ser necesario
 				#Se pregunta si el costo recibido es menor al que tenia, en caso de que si se atualiza
-				if exite[0] > distanciaNuevo:#EN ESTA PREGUNTA FALTA SUMAR LA DISTANCIA DEL VECINO
-					self.tabla[x] = distanciaNuevo, atravezDe
+				if exite[0] > distanciaNuevo + distanciaAtravezDe:#EN ESTA PREGUNTA FALTA SUMAR LA DISTANCIA DEL VECINO
+					self.tabla[x] = (distanciaNuevo + distanciaAtravezDe), atravezDe
 					#FALTA MANDAR A BITACORA
 			self.lockTablaAlcanzabilidad.release()
 			#else:

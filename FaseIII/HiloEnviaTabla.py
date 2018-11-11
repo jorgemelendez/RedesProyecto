@@ -5,6 +5,7 @@ import errno
 import codecs
 import os
 import ipaddress
+import time
 from socket import error as SocketError
 from ArmarMensajes import *
 from TablaAlcanzabilidad import *
@@ -27,15 +28,19 @@ class HiloEnviaTabla:
 	#vecino: tupla (ip, mascara, puerto) del vecino
 	#tablaEnrutamiento: tabla de alcanzabilidad que se le pidio a TablaAlcanzabilidad
 	def construirMensaje(self, vecino, tablaEnrutamiento):
+		#print("Vecino: " + str(vecino))
 		mensaje = bytearray()
+		mensaje += intToBytes(8,1)#Tipos de mensaje es 8, actualizacion de la tabla
+		mensaje += intToBytes(24,1)#Tipos de mensaje es 8, actualizacion de la tabla
 		cantidaTuplasEnviar = (len(tablaEnrutamiento) - 1)
 		mensaje += intToBytes(cantidaTuplasEnviar,2)
-		for x in tablaEnrutamiento:
+		for x in tablaEnrutamiento: #Cada x tiene la forma (ip, mascara, puerto, distancia)
 			if (x[0],x[1],x[2]) != vecino:
 				mensaje += ipToBytes(x[0])#Mete la ip como 4 bytes
 				mensaje += intToBytes(x[1],1)#Mete la mascara como 1 byte
-				mensaje += intToBytes(x[0],2)#Mete el puerto como 2 bytes
-				mensaje += intToBytes(x[0],1)#Mete la distancia como 1 bytes
+				mensaje += intToBytes(x[2],2)#Mete el puerto como 2 bytes
+				mensaje += intToBytes(x[3],3)#Mete la distancia como 3 bytes
+		return mensaje
 
 	#Metodo que se encarga de enviar los mensajes a todos sus vecinos
 	def enviarTablaAVecinos(self):
@@ -46,3 +51,11 @@ class HiloEnviaTabla:
 			self.lockSocketNodo.acquire()
 			self.socketNodo.sendto( mensajeTablaParaVecino, (x[0], x[2]) )
 			self.lockSocketNodo.release()
+			#print("Entre a enviarle al vecino " + str(x))
+
+
+	#Metodo que es el ciclo de envio de tablas cada 30 segundos
+	def iniciarCiclo(self):
+		while True:
+			self.enviarTablaAVecinos()
+			time.sleep(5)

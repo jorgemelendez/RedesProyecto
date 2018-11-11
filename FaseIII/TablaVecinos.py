@@ -16,14 +16,14 @@ class TablaVecinos:
 	#	y el metodo se encarga de descomprimirlos y ponerlos
 	#	dentro del diccionario
 	def ingresarVecinos(self, objetoVecinos):
-		largo = int(len(objetoVecinos) / 8)
+		largo = int(len(objetoVecinos) / 10)
 		i = 0
 		self.lockDiccVecinos.acquire()
 		while i < largo:
-			ipi = bytesToIp(objetoVecinos[0+i*8 : 4+i*8]) #0 - 3 --> IP
-			masci = bytesToInt(objetoVecinos[4+i*8 : 5+i*8])#4 --> Mascara
-			puertoi = bytesToInt(objetoVecinos[5+i*8 : 7+i*8])#5 - 6 --> Puerto
-			distaciai = bytesToInt(objetoVecinos[7+i*8 : 8+i*8])#7 --> Distancia
+			ipi = bytesToIp(objetoVecinos[0+i*10 : 4+i*10]) #0 - 3 --> IP
+			masci = bytesToInt(objetoVecinos[4+i*10 : 5+i*10])#4 --> Mascara
+			puertoi = bytesToInt(objetoVecinos[5+i*10 : 7+i*10])#5 - 6 --> Puerto
+			distaciai = bytesToInt(objetoVecinos[7+i*10 : 10+i*10])#7 --> Distancia
 			llave = ipi,masci,puertoi # la llave del diccionaroi es la (Ip, Mascara, Puerto)
 			valor = distaciai, False #El valor va a ser (distancia,bitActivo)
 			self.diccVecinos[llave] = valor

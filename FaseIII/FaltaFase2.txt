@@ -6,6 +6,7 @@ ServerVecinos
 
 CreadorNodos
 	Poner la direccion del archivo como parametro y aumentar el numero en el IF para que sea valido el parametro
+	Falta apsar al nodo las mascara para que la almacene
 
 NodoUDP
 	Poner el servidor de vecinos como parametro como parametro y aumentar el numero en el IF para que sea valido el parametro

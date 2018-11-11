@@ -12,6 +12,7 @@ from TablaAlcanzabilidad import *
 from TablaVecinos import *
 from ReceptorUDP import *
 from EmisorUDP import *
+from HiloEnviaTabla import *
 
 class NodoUDP:
 
@@ -19,6 +20,7 @@ class NodoUDP:
 	#ip: ip de la maquina donde va a ser iniciado
 	#puerto: puerto donde va a ser iniciado
 	def __init__(self, ip, puerto):
+		self.nodoId = ip, puerto
 		self.mensajesRecibidos = MensajesRecibidos()
 		self.tablaAlcanzabilidad = TablaAlcanzabilidad()
 		self.tablaVecinos = TablaVecinos()
@@ -73,6 +75,7 @@ class NodoUDP:
 			vecinos = bytearray()
 			self.socketNodo.settimeout(1) #Espera respuesta durante 1 segundo
 			intento = 1
+			print("Intentando contactar al vecino: " + str(x))
 			while not(banderaParada): #While de intentos de contacto(maximo 3)
 				self.lockSocketNodo.acquire()
 				self.socketNodo.sendto(mensajeContactoVecino, (x[0], x[2]))
@@ -99,13 +102,19 @@ class NodoUDP:
 	# manda a ejecutar un hilo receptor y el emisor(interfaz con usuario)
 	def iniciarNodoUDP(self):
 		llenaronVecinos = self.pedirVecinos()
-		self.contactarVecinos()
 		if llenaronVecinos == 1:
-			receptorUDP = ReceptorUDP(self.mensajesRecibidos, self.tablaAlcanzabilidad, self.tablaVecinos, self.socketNodo, self.lockSocketNodo)
+			#Se contactan los vecinos
+			self.contactarVecinos()
+			#Se crea el hilo de enviar tablas cada 30 segunodos
+			hiloEnviaTabla = HiloEnviaTabla(self.tablaAlcanzabilidad, self.tablaVecinos, self.socketNodo, self.lockSocketNodo)
+			proceso_hiloEnviaTabla = threading.Thread(target=hiloEnviaTabla.iniciarCiclo, args=())
+			proceso_hiloEnviaTabla.start()
+			#Se crea el hilo de recepcion de mensajes
+			receptorUDP = ReceptorUDP(self.nodoId, self.mensajesRecibidos, self.tablaAlcanzabilidad, self.tablaVecinos, self.socketNodo, self.lockSocketNodo)
 			proceso_receptorUDP = threading.Thread(target=receptorUDP.recibeMensajes, args=())
 			proceso_receptorUDP.start()
-
-			emisorUDP = EmisorUDP(self.mensajesRecibidos, self.tablaAlcanzabilidad, self.tablaVecinos, self.socketNodo, self.lockSocketNodo)
+			#Se crea el hilo emisor de mensajes (interfaz con el usuario)
+			emisorUDP = EmisorUDP(self.nodoId, self.mensajesRecibidos, self.tablaAlcanzabilidad, self.tablaVecinos, self.socketNodo, self.lockSocketNodo)
 			proceso_emisorUDP = threading.Thread(target=emisorUDP.despligueMenuUDP, args=())
 			proceso_emisorUDP.start()
 		else:

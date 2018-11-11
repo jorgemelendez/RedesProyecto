@@ -12,8 +12,9 @@ from TablaAlcanzabilidad import *
 
 class EmisorUDP:
 
-	def __init__(self,mensajesRecibidos, tablaAlcanzabilidad, tablaVecinos, socketNodo, lockSocketNodo):
+	def __init__(self, nodoId, mensajesRecibidos, tablaAlcanzabilidad, tablaVecinos, socketNodo, lockSocketNodo):
 		#self.mensajesRecibidos = mensajesRecibidos
+		self.nodoId = nodoId
 		self.tablaAlcanzabilidad = tablaAlcanzabilidad
 		self.tablaVecinos = tablaVecinos
 		self.socketNodo = socketNodo
@@ -124,6 +125,7 @@ class EmisorUDP:
 
 		bandera = True
 		while bandera == True:
+			print( "Soy el nodo " + str(self.nodoId) )
 			print('Menu principal del modulo de Red UDP: \n'
 					'\t1. Enviar un mensaje. \n'
 					'\t2. Ver mensajes recibidos. \n'

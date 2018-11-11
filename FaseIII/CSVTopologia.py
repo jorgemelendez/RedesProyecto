@@ -4,49 +4,53 @@ import csv
 class CSVTopologia:
 
 	def __init__(self, nombrearchivo):
-		self.listaTuplas = dict()
+		self.dicNodos = dict()
 		self.nombrearchivo = nombrearchivo
 		self.llenaDiccionario()
 
 	def llenaDiccionario(self):
 		leearchivo = open(self.nombrearchivo,"r")
 		for line in leearchivo:
-			listaTuplas = line.split(',')
+			tupla = line.split(',') #Tupla es (ip1, mascara1, puerto1, ip2, mascara2, puerto2, distancia)
+			#Saca los datos del nodo de salida
+			ip1 = tupla[0]
+			mascara1 = int(tupla[1])
+			puerto1 = int(tupla[2])
+			#Saca los datos del nodo vecino
+			ip2 = tupla[3]
+			mascara2 = int(tupla[4])
+			puerto2 = int(tupla[5])
+			#Saca la distancia entre los nodos
+			distancia = int(tupla[6])
+			#Llave para el diccionario
+			nodoId = ip1, mascara1, puerto1
+			#Id del vecino y distancia, este es el valor del diccionario (ip, mascara, puerto, distancia)
+			vecinoIdDistancia = ip2, mascara2, puerto2, distancia
+			vecinoId = ip2, mascara2, puerto2
 
-			#Pregunta si la mascara y el puerto que ingreso esta correcta.
-			mascara1 = int(listaTuplas[1])
-			puerto1 = int(listaTuplas[2])
-
-			#El string de conexion para ensennar el mensaje.
-			idConexion = listaTuplas[0], mascara1, int(listaTuplas[2])
-
-			#El If funciona para ver si se ignora o se ingresa cada tupla.
+			#Revisa que las mascaras son un valor valido
 			if mascara1 < 2 or mascara1 > 30: 
-				print('Se ingoro: ' + idConexion +' .La mascara debe de estar [2,30]')
-			else:		
-				#Pregunta si el puerto esta entre los rangos. 
-				hayKey = self.listaTuplas.get(idConexion)
-				
-				#Pregunta si la mascara esta entre 2-30, si se exede pone el mayor rango.
-				mascara2 = int(listaTuplas[4])
-				puerto2 = int(listaTuplas[5])
-				distancia = int(listaTuplas[6])
+				print('Se ingora ' + nodoId +' porque la mascara debe de estar en [2,30]')
+			elif mascara2 < 2 or mascara2 > 30:
+				print("Se ingora " + nodoId +" porque la mascara del vecino " + str(vecinoId) + " debe de estar en [2,30]")
+			elif distancia < 20 or distancia > 100:
+				print("Se ingora " + nodoId +" --> " + str(vecinoId) + " porque la distancia debe estar en [20,100]")
+			else:
+				#print("Nodo salida " + str(nodoId))
+				#print("Nodo llegada " + str(vecinoIdDistancia))
+				#Pide los vecinos del nodo
+				listaVecinos = self.dicNodos.get(nodoId)
 
-				otroIpDistancia = listaTuplas[3],mascara2,puerto2, distancia
-
-				if mascara2 < 2 or mascara2 > 30:
-					print('Se ignoro agregar ' + str(otroIpDistancia) + ' a la conexion ' + str(idConexion) +' . La mascara debe estar entre [2,30]')
-
-				elif distancia < 20 or distancia > 100:
-					print ('Se ignoro agregar ' + str(otroIpDistancia) + ' a la conexion ' + str(idConexion) +' . La distancia debe estar entre [20,100]')
+				if listaVecinos is None:
+					#print("No tenia vecinos")
+					listaVecinos = list()
+					listaVecinos.append(vecinoIdDistancia)
+					self.dicNodos[nodoId] = listaVecinos
 				else:
-					if hayKey is None:
-						listaDireccion = list()
-						listaDireccion.append(otroIpDistancia)
-						self.listaTuplas[idConexion] = listaDireccion
-					else:
-						listaDireccion.append(otroIpDistancia)
+					#print("Tenia vecinos")
+					listaVecinos.append(vecinoIdDistancia)
+				#print(listaVecinos)
 
 
 	def getDiccionario(self):
-		return self.listaTuplas
+		return self.dicNodos

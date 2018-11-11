@@ -29,6 +29,7 @@ class ServerVecinos:
 	def obtenerMensajeDeVecinos(self, llave):
 		self.lockDicVecinos.acquire()
 		vecinos = self.dicVecinos.get(llave)
+		#print(str(vecinos))
 		mensajeVecinos = bytearray()
 		if vecinos is not None:
 			mensajeVecinos = self.construirMensaje(vecinos)
@@ -45,7 +46,7 @@ class ServerVecinos:
 			mensaje += ipToBytes(x[0])#mete la ip como 4 bytes
 			mensaje += intToBytes(x[1],1)#mete la mascara como 1 byte
 			mensaje += intToBytes(x[2],2)#mete la puerto como 2 bytes
-			mensaje += intToBytes(x[3],1)#mete la distancia como 1 bytes
+			mensaje += intToBytes(x[3],3)#mete la distancia como 3 bytes
 		return mensaje
 
 	#Ciclo del servidos para recibir mensajes y responder a los nodos 
@@ -87,3 +88,26 @@ if __name__ == '__main__':
 		servidor.iniciar()
 	else: 
 		print("Faltan parametros")
+
+
+#Pruebas
+#if __name__ == '__main__':
+#	if len(sys.argv) == 3:
+#		servidor = ServerVecinos(sys.argv[1], int(sys.argv[2]), "/home/christofer/Escritorio/RedesProyecto/CSVServidor")
+#		#servidor.iniciar()
+#		servidor.obtenerMensajeDeVecinos(("192.168.100.17",24,6000))
+#		print("\n\n\n")
+#		servidor.obtenerMensajeDeVecinos(("192.168.100.17",24,7000))
+#		print("\n\n\n")
+#		servidor.obtenerMensajeDeVecinos(("192.168.100.17",24,8000))
+#		print("\n\n\n")
+#		servidor.obtenerMensajeDeVecinos(("192.168.100.17",24,9000))
+#		print("\n\n\n")
+#		servidor.obtenerMensajeDeVecinos(("192.168.100.17",24,10000))
+#		print("\n\n\n")
+#		servidor.obtenerMensajeDeVecinos(("192.168.100.17",24,11000))
+#		print("\n\n\n")
+#		servidor.obtenerMensajeDeVecinos(("192.168.100.17",24,12000))
+#		print("\n\n\n")
+#	else: 
+#		print("Faltan parametros")
