@@ -16,7 +16,6 @@ class TablaAlcanzabilidad:
 
 	#Constructor
 	def __init__(self):
-		#self.tabla = list()
 		self.tabla = dict() #El formato va a ser:  key=(ip,mascara,puerto) valor=(costo,(ip,mascara,puerto))
 		self.lockTablaAlcanzabilidad = threading.Lock()
 
@@ -41,23 +40,22 @@ class TablaAlcanzabilidad:
 			return False
 
 	#Metodo para borrar un alcanzable de la tabla
+	# borra la tupla con llave (ip,mascara,puerto)
 	#ip: ip del alcanzable que se quiere borrar
 	#mascara: mascara del alcanzable que se quiere borrar
 	#puerto: puerto del alcanzable que se quiere borrar
 	def borrarAlcanzable(self,ip, mascara, puerto):
 		self.lockTablaAlcanzabilidad.acquire()
-		#print("Entre a borrar fuente")
 		del self.tabla[(ip, mascara, puerto)]
-		#print("Termine while")
 		self.lockTablaAlcanzabilidad.release()
 
 	#Metodo para borrar un alcanzable de la tabla
+	# borra las tuplas que su atravez ser (ip,mascara,puerto)
 	#ip: ip del alcanzable que se quiere borrar
 	#mascara: mascara del alcanzable que se quiere borrar
 	#puerto: puerto del alcanzable que se quiere borrar
 	def borrarAtravez(self,ip, mascara, puerto):
 		self.lockTablaAlcanzabilidad.acquire()
-		#print("Entre a borrar fuente")
 		listaEliminar = list()
 		llaves = self.tabla.keys()
 		for x in llaves:
@@ -66,18 +64,16 @@ class TablaAlcanzabilidad:
 				listaEliminar.append(x)
 		for x in listaEliminar:
 			del self.tabla[x]
-		#print("Termine while")
 		self.lockTablaAlcanzabilidad.release()
 
 	#Metodo para actualizar la tabla cuando llega un mensaje de actializacio de tabla
 	#mensaje: actualizacion recibido (2bytes de cantidad de tuplas, 
 	#      tuplas (ip,mascara,puerto,distancia))
 	#atravezDe: tupla que es el intermediario entre el nodo y el destino, tupla (ip,mascara,puerto)
+	#distanciaAtravezDe: distancia del vecino para tomarla en cuenta en la actualizacion
 	def actualizarTabla(self, mensaje, atravezDe, distanciaAtravezDe):
-		#self.lockTablaAlcanzabilidad.acquire()
-
+		self.lockTablaAlcanzabilidad.acquire()#Se agarra el candadi aqui para que la actualizacion se de completa
 		bytesMensaje = mensaje
-
 		cantTuplas = bytesToInt( bytesMensaje[0:2] )
 		i = 0
 		while i < cantTuplas:
@@ -85,12 +81,8 @@ class TablaAlcanzabilidad:
 			mascaraNuevo = bytesToInt( bytesMensaje[(i*10)+6:(i*10)+7] )
 			puertoNuevo = bytesToInt( bytesMensaje[(i*10)+7:(i*10)+9] )
 			distanciaNuevo = bytesToInt( bytesMensaje[(i*10)+9:(i*10)+12] )
-
 			x = ipNuevo, mascaraNuevo, puertoNuevo #Se hace la tupla de key
-
-			#if self.validarIP(ipNuevo,mascaraNuevo): #Se valida la IP del mensaje
-
-			self.lockTablaAlcanzabilidad.acquire()
+			#self.lockTablaAlcanzabilidad.acquire()
 			exite = self.tabla.get(x)
 			if exite == None : #Si una entrada con ese Key NO existe, se crea
 				#Se crea una nueva tupla
@@ -100,10 +92,9 @@ class TablaAlcanzabilidad:
 				if exite[0] > distanciaNuevo + distanciaAtravezDe:#EN ESTA PREGUNTA FALTA SUMAR LA DISTANCIA DEL VECINO
 					self.tabla[x] = (distanciaNuevo + distanciaAtravezDe), atravezDe
 					#FALTA MANDAR A BITACORA
-			self.lockTablaAlcanzabilidad.release()
-			#else:
-			#	print("Se ignora " + str(x) + " porque no es una IP valida en esa mascara")
+			#self.lockTablaAlcanzabilidad.release()
 			i = i + 1
+		self.lockTablaAlcanzabilidad.release()#Se suelta el candado al final de la actualizacion
 
 	#Metodo para agregar un alcanzable
 	#alcanzable: no alcanzable, tupla (ip,mascara,puerto)

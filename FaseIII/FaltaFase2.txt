@@ -24,13 +24,7 @@ EmisorUDP:
 TablaAlcanzabilidad:
 	Mandar la bitacora del nodo por paramentro a la tabla de alcabilidad en el contructor
 	Mandar a bitacora las actualizacion de la tabla en actualizarTabla
-	Ver si en alguna ocacion tengo que borrar entradas donde se cumpla que el atravez sea X, posiblemente si muere un vecino
-	Revisar su hay que validar la IP, creo que no porque en este caso las IPs son de maquinas y no de redes entonces cualquier ip debe funcionar, en el metodo actualizar tabla
-
 	Analizar que pasa cuando hacia el peso de un vecino, se borra la tupla en esta y se ingresa la nueva o se actualiza el valor
-
-	En actualizarTabla falta sumar la distancia entre atravez y el nodo
-	Analizar en actualizarTabla donde poner los locks, si en cada modificacion o en inicio-Fin para que se complete la actualizacion antes de que otra actualizacion lo modifique
 
 ReceptorUDP:
 	Metodo responderVivo se debe de hacer bien
@@ -38,3 +32,13 @@ ReceptorUDP:
 
 
 Si no tengo a un nodo como vecino pero me llega una pregunta de si estoy vivo, lo respondo?
+
+Como me doy cuenta que un nodo murio?
+
+cuando para el mensaje por inundacion?
+
+Cuando un nodo cambia el costo, solo se le notifica al vecino, este hace inundacion o no?
+
+En bitacora se meten eventos detectados, eventos causados, y otros, que son esos eventos?
+
+Cuando el mensaje se va propagando hay que imprimir el camino, se imprime en cada nodo por el que pase? o como?

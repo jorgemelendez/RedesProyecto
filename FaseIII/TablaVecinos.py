@@ -8,22 +8,23 @@ import sys
 
 class TablaVecinos:
 
+	#Construtor
 	def __init__(self):
 		self.diccVecinos = dict()
 		self.lockDiccVecinos = threading.Lock()
 
-	#Metodo que recibe el objetoVecinos que es el bytearray
-	#	y el metodo se encarga de descomprimirlos y ponerlos
-	#	dentro del diccionario
-	def ingresarVecinos(self, objetoVecinos):
-		largo = int(len(objetoVecinos) / 10)
+	#Metodo para ingresar los vecinos que indica el ServerVecinos
+	# guarda los vecinos en un diccionario
+	#mensajeVecinos: mensaje enviado por el ServerVecinos de cuales son mis vecinos
+	def ingresarVecinos(self, mensajeVecinos):
+		largo = int(len(mensajeVecinos) / 10)
 		i = 0
 		self.lockDiccVecinos.acquire()
 		while i < largo:
-			ipi = bytesToIp(objetoVecinos[0+i*10 : 4+i*10]) #0 - 3 --> IP
-			masci = bytesToInt(objetoVecinos[4+i*10 : 5+i*10])#4 --> Mascara
-			puertoi = bytesToInt(objetoVecinos[5+i*10 : 7+i*10])#5 - 6 --> Puerto
-			distaciai = bytesToInt(objetoVecinos[7+i*10 : 10+i*10])#7 --> Distancia
+			ipi = bytesToIp(mensajeVecinos[0+i*10 : 4+i*10]) #0 - 3 --> IP, 4 bytes
+			masci = bytesToInt(mensajeVecinos[4+i*10 : 5+i*10])#4 --> Mascara, 1 byte
+			puertoi = bytesToInt(mensajeVecinos[5+i*10 : 7+i*10])#5 - 6 --> Puerto, 3 bytes
+			distaciai = bytesToInt(mensajeVecinos[7+i*10 : 10+i*10])#7 --> Distancia, 3 bytes
 			llave = ipi,masci,puertoi # la llave del diccionaroi es la (Ip, Mascara, Puerto)
 			valor = distaciai, False #El valor va a ser (distancia,bitActivo)
 			self.diccVecinos[llave] = valor
