@@ -13,7 +13,7 @@ from TablaAlcanzabilidad import *
 class EmisorUDP:
 
 	def __init__(self,mensajesRecibidos, tablaAlcanzabilidad, tablaVecinos, socketNodo, lockSocketNodo):
-		self.mensajesRecibidos = mensajesRecibidos
+		#self.mensajesRecibidos = mensajesRecibidos
 		self.tablaAlcanzabilidad = tablaAlcanzabilidad
 		self.tablaVecinos = tablaVecinos
 		self.socketNodo = socketNodo
@@ -105,18 +105,20 @@ class EmisorUDP:
 					self.socketNodo.sendto(message, (serverNameS, serverPortS))
 					self.lockSocketNodo.release()
 
-	#Ahora deberia de hacerse avisandole a los vecinos nada mas
+	#Metodo que envia el mensaje de suicidio a los vecinos
 	def borrarme(self):
-		mensaje = bytearray((1).to_bytes(2, byteorder='big'))# cant tuplas
-		mensaje += (0).to_bytes(1, byteorder='big')
-		fuente = self.tablaAlcanzabilidad.eliminarPrimerFuente()
-		#print("Elimine la primer fuente")
-		#print ("llegue aqui")
-		while fuente.puertoFuente != 0:
-			self.lockSocketNodo.acquire()
-			self.socketNodo.sendto(mensaje, (fuente.ipFuente, fuente.puertoFuente))
-			self.lockSocketNodo.release()
-			fuente = self.tablaAlcanzabilidad.eliminarPrimerFuente()
+		mensajeAvisoMuerte = bytearray()
+		mensajeAvisoMuerte += intToBytes(4,1)#Tipo de mensaje es 4
+		mensajeAvisoMuerte += intToBytes(24,1) #Se pone la mascara en el mensaje de solicitudes
+
+		vecinos = self.tablaVecinos.obtenerVecinos()
+		for x in vecinos:
+			if self.tablaVecinos.obtenerBitActivo(x[0], x[1], x[2]) :
+				self.lockSocketNodo.acquire()
+				self.socketNodo.sendto( mensajeAvisoMuerte, (x[0], x[2]) )
+				self.lockSocketNodo.release()
+			else:
+				print(str(x) + " vecino no activo ELIMINAR MENSAJE")
 
 	def despligueMenuUDP(self):
 
@@ -133,8 +135,9 @@ class EmisorUDP:
 				self.envioMensajeUDP()
 			elif taskUsuario == '2':
 				print("\n\n")
-				print('Mensajes recibidos:')
-				self.mensajesRecibidos.imprimirMensajes()
+				print('Opcion deshabilitada')
+				#print('Mensajes recibidos:')
+				#self.mensajesRecibidos.imprimirMensajes()
 				print("\n\n")
 			elif taskUsuario == '3':
 				print("\n\n")

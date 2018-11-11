@@ -60,8 +60,9 @@ class NodoUDP:
 
 	#Metodo para intentar contactar a los vecinos para ver si estan activos
 	def contactarVecinos(self):
-		mensajeSolicitudVecinos = bytearray()
-		mensajeSolicitudVecinos += intToBytes(24,1) #Se pone la mascara en el mensaje de solicitudes
+		mensajeContactoVecino = bytearray()
+		mensajeContactoVecino += intToBytes(1,1)#Tipo de mensaje es 1
+		mensajeContactoVecino += intToBytes(24,1) #Se pone la mascara en el mensaje de solicitudes
 
 		vecinosTabla = self.tablaVecinos.obtenerVecinos()
 		for x in vecinosTabla: #Cada x, es (ip, mascara, puerto)
@@ -71,7 +72,7 @@ class NodoUDP:
 			intento = 1
 			while not(banderaParada):
 				self.lockSocketNodo.acquire()
-				self.socketNodo.sendto(mensajeSolicitudVecinos, (x[0], x[2]))
+				self.socketNodo.sendto(mensajeContactoVecino, (x[0], x[2]))
 				self.lockSocketNodo.release()
 				try:
 					vecinos, serverAddress = self.socketNodo.recvfrom(2048)
