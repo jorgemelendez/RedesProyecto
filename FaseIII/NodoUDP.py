@@ -7,12 +7,12 @@ import os
 import ipaddress
 
 from socket import error as SocketError
-from MensajesRecibidos import *
 from TablaAlcanzabilidad import *
 from TablaVecinos import *
 from ReceptorUDP import *
 from EmisorUDP import *
 from HiloEnviaTabla import *
+from Bitacora import *
 
 class NodoUDP:
 
@@ -22,17 +22,19 @@ class NodoUDP:
 	#puerto: puerto donde va a ser iniciado
 	def __init__(self, ip, mascara, puerto):
 		self.nodoId = ip, mascara, puerto
-		self.mensajesRecibidos = MensajesRecibidos()
-		self.tablaAlcanzabilidad = TablaAlcanzabilidad()
-		self.tablaVecinos = TablaVecinos()
+		self.bitacora = Bitacora("Bitacora-"+str(self.nodoId)+".txt")
+		self.tablaAlcanzabilidad = TablaAlcanzabilidad(self.bitacora)
+		self.tablaVecinos = TablaVecinos(self.bitacora)
 		self.socketNodo = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 		self.socketNodo.bind((ip, puerto))
 		self.lockSocketNodo = threading.Lock()
+		self.bitacora.escribir("NodoUDP: " + "Me crearon")
 
 	#Funcion para pedir los vecinos al ServerVecinos
 	#Retorna 1 si se pudo comunicar con el servidor de vecinos
 	#Retorna 0 si no se pudo comunicar con el servidor de vecinos
 	def pedirVecinos(self):
+		self.bitacora.escribir("NodoUDP: " + "Voy a perdir vecinos al servidor de vecinos")
 		mensajeSolicitudVecinos = bytearray()
 		mensajeSolicitudVecinos += intToBytes(self.nodoId[1],1) #Se pone la mascara en el mensaje de solicitudes
 		banderaParada = False
@@ -41,7 +43,7 @@ class NodoUDP:
 		intento = 1
 		while not(banderaParada):
 			self.lockSocketNodo.acquire()
-			self.socketNodo.sendto(mensajeSolicitudVecinos, ("192.168.100.17", 5000))
+			self.socketNodo.sendto(mensajeSolicitudVecinos, ("10.232.68.200", 5000))
 			self.lockSocketNodo.release()
 			try:
 				vecinos, serverAddress = self.socketNodo.recvfrom(2048)
@@ -51,7 +53,7 @@ class NodoUDP:
 					print("El servidor no esta activo")
 					banderaParada = True
 			else:
-				if serverAddress == ("192.168.100.17", 5000):
+				if serverAddress == ("10.232.68.200", 5000):
 					banderaParada = True
 				else:
 					intento = intento + 1
@@ -60,8 +62,10 @@ class NodoUDP:
 						banderaParada = True
 		self.socketNodo.settimeout(None)
 		if intento == 10:
+			self.bitacora.escribir("NodoUDP: " + "El servidor nunca contesto")
 			return 0
 		else:
+			self.bitacora.escribir("NodoUDP: " + "El servidor me dio los vecinos")
 			self.tablaVecinos.ingresarVecinos(vecinos)
 			return 1
 
@@ -70,6 +74,7 @@ class NodoUDP:
 	# actualiza el bitActivo del vecino en la tabla de vecinos
 	# si el vecino contesta, lo annade a la tabla de alcanzabilidad,(para indicar directo usa la misma tupla en atravez)
 	def contactarVecinos(self):
+		self.bitacora.escribir("NodoUDP: " + "Voy a intentar contactar vecinos")
 		mensajeContactoVecino = bytearray()
 		mensajeContactoVecino += intToBytes(1,1)#Tipo de mensaje es 1
 		mensajeContactoVecino += intToBytes(self.nodoId[1],1) #Se pone la mascara en el mensaje de solicitudes
@@ -80,6 +85,7 @@ class NodoUDP:
 			self.socketNodo.settimeout(1) #Espera respuesta durante 1 segundo
 			intento = 1
 			print("Intentando contactar al vecino: " + str(x))
+			self.bitacora.escribir("NodoUDP: " + "Intentando contactar al vecino: " + str(x))
 			while not(banderaParada): #While de intentos de contacto(maximo 5)
 				self.lockSocketNodo.acquire()
 				self.socketNodo.sendto(mensajeContactoVecino, (x[0], x[2]))
@@ -90,14 +96,17 @@ class NodoUDP:
 					intento = intento + 1
 					if intento == 5:
 						print("El vecino " + str(x) + " no esta activo")
+						self.bitacora.escribir("NodoUDP: " + "El vecino " + str(x) + " no esta activo")
 						banderaParada = True
 				else:
 					if serverAddress == (x[0], x[2]):
 						banderaParada = True
+						self.bitacora.escribir("NodoUDP: " + "El vecino " + str(x) + " esta activo")
 					else:
 						intento = intento + 1
 						if intento == 5:#se mete esta condicion aqui porque si no puede generar ciclos infinitos si algun vecino enviar mensajes muchas veces porque le llegan otros que no esta esperando
 							print("El vecino " + str(x) + " no esta activo")
+							self.bitacora.escribir("NodoUDP: " + "El vecino " + str(x) + " no esta activo")
 							banderaParada = True
 						print("Mensaje de " + str(serverAddress))
 			self.socketNodo.settimeout(None)
@@ -114,14 +123,18 @@ class NodoUDP:
 		llenaronVecinos = self.pedirVecinos()
 		if llenaronVecinos == 1:
 			self.contactarVecinos()#Se intenta contactar a los vecinos
-			hiloEnviaTabla = HiloEnviaTabla(self.nodoId, self.tablaAlcanzabilidad, self.tablaVecinos, self.socketNodo, self.lockSocketNodo)
+			hiloEnviaTabla = HiloEnviaTabla(self.nodoId, self.tablaAlcanzabilidad, self.tablaVecinos, self.socketNodo, self.lockSocketNodo, self.bitacora)
 			proceso_hiloEnviaTabla = threading.Thread(target=hiloEnviaTabla.iniciarCiclo, args=())
 			proceso_hiloEnviaTabla.start()#Se crea el hilo de enviar tablas cada 30 segunodos
-			receptorUDP = ReceptorUDP(self.nodoId, self.tablaAlcanzabilidad, self.tablaVecinos, self.socketNodo, self.lockSocketNodo)
+			self.bitacora.escribir("NodoUDP: " + "Se inicia el hilo que reenvia las tablas cada cierto tiempo")
+			receptorUDP = ReceptorUDP(self.nodoId, self.tablaAlcanzabilidad, self.tablaVecinos, self.socketNodo, self.lockSocketNodo, self.bitacora)
 			proceso_receptorUDP = threading.Thread(target=receptorUDP.recibeMensajes, args=())
 			proceso_receptorUDP.start()#Se crea el hilo de recepcion de mensajes
-			emisorUDP = EmisorUDP(self.nodoId, self.tablaAlcanzabilidad, self.tablaVecinos, self.socketNodo, self.lockSocketNodo)
+			self.bitacora.escribir("NodoUDP: " + "Se inicia el hilo que recibe mensajes")
+			emisorUDP = EmisorUDP(self.nodoId, self.tablaAlcanzabilidad, self.tablaVecinos, self.socketNodo, self.lockSocketNodo, self.bitacora)
 			proceso_emisorUDP = threading.Thread(target=emisorUDP.despligueMenuUDP, args=())
 			proceso_emisorUDP.start()#Se crea el hilo emisor de mensajes (interfaz con el usuario)
+			self.bitacora.escribir("NodoUDP: " + "Se inicia el hilo que envia mensajes")
 		else:
 			print("Error al tratar de comunicarse con el ServerVecinos")
+			self.bitacora.escribir("NodoUDP: " + "Error al tratar de comunicarse con el ServerVecinos")

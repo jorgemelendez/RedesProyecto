@@ -7,7 +7,6 @@ import os
 import ipaddress
 
 from socket import error as SocketError
-from MensajesRecibidos import *
 from TablaAlcanzabilidad import *
 from ArmarMensajes import *
 
@@ -19,7 +18,8 @@ class EmisorUDP:
 	#tablaVecinos: tabla de vecinos del nodo
 	#socketNodo: socket del nodo
 	#lockSocketNodo: lock del socket del nodo
-	def __init__(self, nodoId, tablaAlcanzabilidad, tablaVecinos, socketNodo, lockSocketNodo):
+	def __init__(self, nodoId, tablaAlcanzabilidad, tablaVecinos, socketNodo, lockSocketNodo, bitacora):
+		self.bitacora = bitacora
 		self.nodoId = nodoId
 		self.tablaAlcanzabilidad = tablaAlcanzabilidad
 		self.tablaVecinos = tablaVecinos
@@ -68,11 +68,15 @@ class EmisorUDP:
 								self.lockSocketNodo.acquire()
 								self.socketNodo.sendto(message, (sigNodo[0], sigNodo[2]))
 								self.lockSocketNodo.release()
+								self.bitacora.escribir("EmisorUDP: " + "Se envia el mensaje \"" + mensaje + "\" a (" + ipDigitada + "," + str(mascara) + "," + str(puerto) + ")" )
+								self.bitacora.escribir("EmisorUDP: " + "El mensaje se envio atravez de " + str(sigNodo) )
 							else:
 								print("Ese nodo no se encuentra como uno de los alcanzables en la tabla de enrrutamiento")
+								self.bitacora.escribir("EmisorUDP: " + "Ese nodo no se encuentra como uno de los alcanzables en la tabla de enrrutamiento")
 
 	#Metodo que envia el mensaje de suicidio a todos los vecinos
 	def borrarme(self):
+		self.bitacora.escribir("EmisorUDP: " + "Usuario solicito cerrar el nodo")
 		mensajeAvisoMuerte = bytearray()
 		mensajeAvisoMuerte += intToBytes(4,1)#Tipo de mensaje es 4
 		mensajeAvisoMuerte += intToBytes(self.nodoId[1],1) #Se pone la mascara en el mensaje de solicitudes
@@ -82,6 +86,7 @@ class EmisorUDP:
 				self.lockSocketNodo.acquire()
 				self.socketNodo.sendto( mensajeAvisoMuerte, (x[0], x[2]) )
 				self.lockSocketNodo.release()
+				self.bitacora.escribir("EmisorUDP: " + "Envie mensaje de muerte a " + str(x))
 
 	#Metodo que despliega el menu de comunicacion con el usuario
 	def despligueMenuUDP(self):

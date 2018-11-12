@@ -18,7 +18,8 @@ class HiloEnviaTabla:
 	#tablaVecinos: Tabla de vecinos para saber a quien enviarselos
 	#socketNodo: socket del nodo para enviar la tabla
 	#lockSocketNodo: lock para utilizar el socket
-	def __init__(self, nodoId, tablaAlcanzabilidad, tablaVecinos, socketNodo, lockSocketNodo):
+	def __init__(self, nodoId, tablaAlcanzabilidad, tablaVecinos, socketNodo, lockSocketNodo, bitacora):
+		self.bitacora = bitacora
 		self.nodoId = nodoId
 		self.tablaAlcanzabilidad = tablaAlcanzabilidad
 		self.tablaVecinos = tablaVecinos
@@ -51,6 +52,7 @@ class HiloEnviaTabla:
 			self.lockSocketNodo.acquire()
 			self.socketNodo.sendto( mensajeTablaParaVecino, (x[0], x[2]) )
 			self.lockSocketNodo.release()
+			self.bitacora.escribir("HiloEnviaTabla: " + "Se envio la tabla de enrrutamiento al vecino " + str(x))
 
 	#Metodo que es el ciclo de envio de tablas cada 30 segundos
 	def iniciarCiclo(self):

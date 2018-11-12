@@ -9,7 +9,8 @@ import sys
 class TablaVecinos:
 
 	#Construtor
-	def __init__(self):
+	def __init__(self, bitacora):
+		self.bitacora = bitacora
 		self.diccVecinos = dict()
 		self.lockDiccVecinos = threading.Lock()
 
@@ -28,6 +29,7 @@ class TablaVecinos:
 			llave = ipi,masci,puertoi # la llave del diccionaroi es la (Ip, Mascara, Puerto)
 			valor = distaciai, False #El valor va a ser (distancia,bitActivo)
 			self.diccVecinos[llave] = valor
+			self.bitacora.escribir("TablaVecinos: " + "Se annadio el vecino " + str(llave) + " con distancia " + str(distaciai) + " y el bit como " + str(False))
 			i = i + 1
 		self.lockDiccVecinos.release()
 
@@ -54,6 +56,7 @@ class TablaVecinos:
 		self.lockDiccVecinos.acquire()
 		self.diccVecinos[llave] = distancia, self.diccVecinos[llave][1] #Se mete la nueva distancia y se deja el valor antiguo del bitActivo
 		self.lockDiccVecinos.release()
+		self.bitacora.escribir("TablaVecinos: " + "Se modifico la distancia del vecino " + str(llave) + " por " + str(distancia))
 
 	#Funcion que retorna si el vecino se encientra como activo o no en la tabla de vecinos
 	# retorna True si el vecino esta activo, False en caso contrario
@@ -78,6 +81,7 @@ class TablaVecinos:
 		self.lockDiccVecinos.acquire()
 		self.diccVecinos[llave] = self.diccVecinos[llave][0], bitActivo #Se mete la nueva distancia y se deja el valor antiguo del bitActivo
 		self.lockDiccVecinos.release()
+		self.bitacora.escribir("TablaVecinos: " + "Se modifico el bitActivo del vecino " + str(llave) + " por " + str(bitActivo))
 
 	#Metodo que recorre el diccionario e imprime la tabla
 	# Formato de la tabla es (ip mascara puerto distancia bitActivo)

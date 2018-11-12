@@ -8,7 +8,6 @@ import ipaddress
 
 from socket import error as SocketError
 from NodoUDP import *
-from NodoTCP import *
 
 #Metodo que procesa los parametros enviados desde la consola
 #tipoNodo: tipo de nodo que desea crear, en este caso solo se puede con UDP

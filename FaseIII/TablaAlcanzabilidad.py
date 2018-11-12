@@ -9,13 +9,12 @@ import ipaddress
 
 from ArmarMensajes import *
 from socket import error as SocketError
-from Red import *
-from Fuente import *
 
 class TablaAlcanzabilidad:
 
 	#Constructor
-	def __init__(self):
+	def __init__(self, bitacora):
+		self.bitacora = bitacora
 		self.tabla = dict() #El formato va a ser:  key=(ip,mascara,puerto) valor=(costo,(ip,mascara,puerto))
 		self.lockTablaAlcanzabilidad = threading.Lock()
 
@@ -48,9 +47,10 @@ class TablaAlcanzabilidad:
 		self.lockTablaAlcanzabilidad.acquire()
 		del self.tabla[(ip, mascara, puerto)]
 		self.lockTablaAlcanzabilidad.release()
+		self.bitacora.escribir("TablaAlcanzabilidad: " + "Se borra el alcanzable " + str((ip,mascara,puerto)))
 
 	#Metodo para borrar un alcanzable de la tabla
-	# borra las tuplas que su atravez ser (ip,mascara,puerto)
+	# borra las tuplas que su a traves ser (ip,mascara,puerto)
 	#ip: ip del alcanzable que se quiere borrar
 	#mascara: mascara del alcanzable que se quiere borrar
 	#puerto: puerto del alcanzable que se quiere borrar
@@ -65,6 +65,7 @@ class TablaAlcanzabilidad:
 		for x in listaEliminar:
 			del self.tabla[x]
 		self.lockTablaAlcanzabilidad.release()
+		self.bitacora.escribir("TablaAlcanzabilidad: " + "Se borra todos los alcanzables que se llegaba a traves de" + str((ip,mascara,puerto)))
 
 	#Metodo para actualizar la tabla cuando llega un mensaje de actializacio de tabla
 	#mensaje: actualizacion recibido (2bytes de cantidad de tuplas, 
@@ -89,9 +90,9 @@ class TablaAlcanzabilidad:
 				self.tabla[x] = (distanciaNuevo + distanciaAtravezDe), atravezDe
 			else:#Si existe una entrada con ese Key, se actualiza el valor de ser necesario
 				#Se pregunta si el costo recibido es menor al que tenia, en caso de que si se atualiza
-				if exite[0] > distanciaNuevo + distanciaAtravezDe:#EN ESTA PREGUNTA FALTA SUMAR LA DISTANCIA DEL VECINO
+				if exite[0] > distanciaNuevo + distanciaAtravezDe:
 					self.tabla[x] = (distanciaNuevo + distanciaAtravezDe), atravezDe
-					#FALTA MANDAR A BITACORA
+					self.bitacora.escribir("TablaAlcanzabilidad: " + "Se actualizo la distancia y el a traves de " + str(x) + " a distancia " + str(distanciaNuevo + distanciaAtravezDe) + " a traves " + str(atravezDe) )
 			#self.lockTablaAlcanzabilidad.release()
 			i = i + 1
 		self.lockTablaAlcanzabilidad.release()#Se suelta el candado al final de la actualizacion
@@ -106,8 +107,10 @@ class TablaAlcanzabilidad:
 		if exite == None : #Si una entrada con ese Key NO existe, se crea
 			#Se crea una nueva tupla
 			self.tabla[alcanzable] = distanciaNuevo, atravezDe
+			self.bitacora.escribir("TablaAlcanzabilidad: " + "Se annade el alcanzable " + str(alcanzable) + " a traves de " + str(atravezDe) + " con distancia " + str(distanciaNuevo))
 		else:#Si existe una entrada con ese Key, se actualiza el valor de ser necesario
-			print(str(alcanzable) + " este nodo no deberia estar exstir en la tabla porque apenas esta llegando mensaje de aviso de que se desperto")
+			print(str(alcanzable) + " este nodo no deberia existir en la tabla porque apenas esta llegando mensaje de aviso de que se desperto")
+			self.bitacora.escribir("TablaAlcanzabilidad: " + str(alcanzable) + " este nodo no deberia existir en la tabla porque apenas esta llegando mensaje de aviso de que se desperto")
 		self.lockTablaAlcanzabilidad.release()
 
 	#Metodo para retornar lista de (ip, mascara, puerto, distancia) de los que conozco
@@ -121,7 +124,7 @@ class TablaAlcanzabilidad:
 		self.lockTablaAlcanzabilidad.release()
 		return tabla
 
-	#Funcion encargada de retornar el nodo atravez por el cual se puede llegar al destino indicado
+	#Funcion encargada de retornar el nodo a traves por el cual se puede llegar al destino indicado
 	#nodoDestino: nodo al que se quiere llegar, tupla (ip, mascara, puerto)
 	def obtenerSiguienteNodo(self, nodoDestino):
 		self.lockTablaAlcanzabilidad.acquire()
