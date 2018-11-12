@@ -6,34 +6,20 @@ ServerVecinos
 
 CreadorNodos
 	Poner la direccion del archivo como parametro y aumentar el numero en el IF para que sea valido el parametro
-	Falta apsar al nodo las mascara para que la almacene
 
 NodoUDP
 	Poner el servidor de vecinos como parametro como parametro y aumentar el numero en el IF para que sea valido el parametro
 
-	Quitar la clase intermedia de NodesTCP-UDP
-
-	Poner la mascara como variable, en la funcion pedirVecinos y en contactarVecinos
-
-EmisorUDP:
-	Este es el que tiene que enviar el mensaje cuando se va a morir, deberia de enviarlo solo a sus vecinos
-	Borrar mensaje en metodo borrarme
-
-	tuplaToBytes, leerMensaje, envioMensajeUDP, Ver para que van a sevir esos metodos
-
 TablaAlcanzabilidad:
 	Mandar la bitacora del nodo por paramentro a la tabla de alcabilidad en el contructor
 	Mandar a bitacora las actualizacion de la tabla en actualizarTabla
-	Analizar que pasa cuando hacia el peso de un vecino, se borra la tupla en esta y se ingresa la nueva o se actualiza el valor
-
-ReceptorUDP:
-	Metodo responderVivo se debe de hacer bien
+	Analizar que pasa cuando cambia el peso de un vecino, se borra la tupla en esta y se ingresa la nueva o se actualiza el valor
 
 
 
 Si no tengo a un nodo como vecino pero me llega una pregunta de si estoy vivo, lo respondo?
 
-Como me doy cuenta que un nodo murio?
+Como me doy cuenta que un nodo murio si no avisa?
 
 cuando para el mensaje por inundacion?
 
@@ -42,3 +28,5 @@ Cuando un nodo cambia el costo, solo se le notifica al vecino, este hace inundac
 En bitacora se meten eventos detectados, eventos causados, y otros, que son esos eventos?
 
 Cuando el mensaje se va propagando hay que imprimir el camino, se imprime en cada nodo por el que pase? o como?
+
+Cuando se cambia el peso de un vecino, se debe borrar de la tabla de alcanzabilidad o actualizar?

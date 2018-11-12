@@ -9,6 +9,7 @@ import ipaddress
 from socket import error as SocketError
 from MensajesRecibidos import *
 from TablaAlcanzabilidad import *
+from ArmarMensajes import *
 
 class EmisorUDP:
 
@@ -44,7 +45,7 @@ class EmisorUDP:
 				if mascara < 2 or mascara > 30:
 					print ("Mascara no valida, debe estar en [2,30]")
 				else:
-					lecturaMascara = input('Digite el puerto del destinatario: ')
+					lecturaPuerto = input('Digite el puerto del destinatario: ')
 					try:
 						puerto = int(lecturaPuerto)
 					except ValueError as e:
@@ -53,10 +54,22 @@ class EmisorUDP:
 						if puerto < 0 or puerto > 65535:
 							print ("Puerto no valido")
 						else:#Codigo para hacer y enviar el mensaje
-							message = bytearray()
-							self.lockSocketNodo.acquire()
-							self.socketNodo.sendto(message, (ipDigitada, puerto))
-							self.lockSocketNodo.release()
+							mensaje = input('Digite el mensaje que desea enviar: ')
+							message = intToBytes(16,1)#Tipo de mensaje es 16
+							message += ipToBytes(self.nodoId[0]) #Se pone la ip emisor en el mensaje
+							message += intToBytes(self.nodoId[1],1) #Se pone la mascara emisor en el mensaje
+							message += intToBytes(self.nodoId[2],2) #Se pone el puerto emisor en el mensaje
+							message += ipToBytes(ipDigitada) #Se pone la ip destino en el mensaje
+							message += intToBytes(mascara,1) #Se pone la mascara destino en el mensaje
+							message += intToBytes(puerto,2) #Se pone el puerto destino en el mensaje
+							message += str.encode(mensaje)
+							sigNodo = self.tablaAlcanzabilidad.obtenerSiguienteNodo((ipDigitada,mascara,puerto))
+							if sigNodo != None:
+								self.lockSocketNodo.acquire()
+								self.socketNodo.sendto(message, (sigNodo[0], sigNodo[2]))
+								self.lockSocketNodo.release()
+							else:
+								print("Ese nodo no se encuentra como uno de los alcanzables en la tabla de enrrutamiento")
 
 	#Metodo que envia el mensaje de suicidio a todos los vecinos
 	def borrarme(self):
@@ -69,8 +82,6 @@ class EmisorUDP:
 				self.lockSocketNodo.acquire()
 				self.socketNodo.sendto( mensajeAvisoMuerte, (x[0], x[2]) )
 				self.lockSocketNodo.release()
-			else:
-				print(str(x) + " vecino no activo ELIMINAR MENSAJE")
 
 	#Metodo que despliega el menu de comunicacion con el usuario
 	def despligueMenuUDP(self):
@@ -85,8 +96,8 @@ class EmisorUDP:
 					'\t5. Cerrar nodo.')
 			taskUsuario = input('Que desea hacer:')
 			if taskUsuario == '1':
-				print('Opcion deshabilitada')
-				#self.envioMensajeUDP()
+				#print('Opcion deshabilitada')
+				self.envioMensajeUDP()
 			elif taskUsuario == '2':
 				print("\n\n")
 				print('Opcion deshabilitada')

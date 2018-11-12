@@ -121,6 +121,14 @@ class TablaAlcanzabilidad:
 		self.lockTablaAlcanzabilidad.release()
 		return tabla
 
+	#Funcion encargada de retornar el nodo atravez por el cual se puede llegar al destino indicado
+	#nodoDestino: nodo al que se quiere llegar, tupla (ip, mascara, puerto)
+	def obtenerSiguienteNodo(self, nodoDestino):
+		self.lockTablaAlcanzabilidad.acquire()
+		sigNodo = self.tabla.get(nodoDestino)
+		self.lockTablaAlcanzabilidad.release()
+		return sigNodo[1]
+
 #if __name__ == '__main__':
 #	tablaAlcanzabilidad = TablaAlcanzabilidad()
 #	mensaje = bytearray()

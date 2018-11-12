@@ -5,7 +5,7 @@ import errno
 import codecs
 import os
 import ipaddress
-
+import time
 from socket import error as SocketError
 from Mensaje import *
 from MensajesRecibidos import *
@@ -74,6 +74,29 @@ class ReceptorUDP:
 		distanciaVecino = self.tablaVecinos.obtenerDistancia(vecino[0], bytesToInt( mensaje[1:2] ), vecino[1])
 		self.tablaAlcanzabilidad.actualizarTabla(mensajeQuitandoTipo, vecinoConMascara, distanciaVecino)
 
+	#Metodo que procesa un mensaje de enrutamiento o que me llego
+	#vecino: tupla que es (ip. puerto)
+	#mensaje: mensaje recibido, viene la mascara en el segundo byte, luego vienen los datos
+	def mensajeRecibido(self, vecino, mensaje):
+		ipEmisor = bytesToIp(mensaje[1:5])
+		mascaraEmisor = bytesToInt(mensaje[5:6])
+		puertoEmisor = bytesToInt(mensaje[6:8])
+		ipDestino = bytesToIp(mensaje[8:12])
+		mascaraDestino = bytesToInt(mensaje[12:13])
+		puertoDestino = bytesToInt(mensaje[13:15])
+		textoMensaje = (mensaje[15:]).decode()
+		nodoEmisor = ipEmisor, mascaraEmisor, puertoEmisor
+		nodoDestino = ipDestino, mascaraDestino, puertoDestino
+		if self.nodoId == nodoDestino:#Caso donde el mensaje que llega es para mi
+			print("Se recibio un mensaje proveniente de " + str(nodoEmisor) + " el cual dice: " + textoMensaje)
+		else:#Caso donde el mensaje que llega hay que enrrutarlo
+			time.sleep(0.5)
+			print("Se recibio un mensaje proveniente de " + str(nodoEmisor) + " el cual va para " + str(nodoDestino))
+			sigNodo = self.tablaAlcanzabilidad.obtenerSiguienteNodo(nodoDestino)
+			self.lockSocketNodo.acquire()
+			self.socketNodo.sendto(mensaje, (sigNodo[0], sigNodo[2])) #0 es la ip, 1 es el puerto
+			self.lockSocketNodo.release()
+
 	#Metodo encargado de recibir los mensajes que le envian al nodo
 	def recibeMensajes(self):
 		while 1:
@@ -87,5 +110,7 @@ class ReceptorUDP:
 				self.murioVecino(clientAddress, message)
 			elif tipoMensaje == 8:
 				self.mensajeActualizacionTabla(clientAddress, message)
+			elif tipoMensaje == 16:
+				self.mensajeRecibido(clientAddress, message)
 			else:
 				print("Llego mensaje con tipo desconocido")
