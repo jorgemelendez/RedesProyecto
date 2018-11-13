@@ -30,3 +30,11 @@ En bitacora se meten eventos detectados, eventos causados, y otros, que son esos
 Cuando el mensaje se va propagando hay que imprimir el camino, se imprime en cada nodo por el que pase? o como?
 
 Cuando se cambia el peso de un vecino, se debe borrar de la tabla de alcanzabilidad o actualizar?
+
+
+Respuestas:
+- En el CSV es un grado dirigido, A,B,6 => B,A,6
+- Si es importante tener un check de si le llego el mensaje, esto para saber si el nodo sigue vivo. Tener otro hilo que pregunte si esta vivo, no hacerlo por las tablas.
+- Cuando un nodo se cae, hay que borrar toda la tabla de alcanzabilidad y hay que volver a jalarla desde la tabla de vecinos y volver a enviar a los vecinos comienzo BF otra vez.
+- Investigar metodos de inundación. 
+- Cambio de peso de un vecino hay que hacer lo mismo de reenviar todo.
