@@ -1,7 +1,7 @@
 import sys
 import random
 import subprocess
-
+import time
 from CSVNodos import *
 
 class CreadorNodos:
@@ -23,6 +23,7 @@ class CreadorNodos:
 				print(str((ip,mascara,i)) + " creado con exito")
 			else:
 				print("Error al crear al nodo")
+			time.sleep(1)
 
 #Metodo que inica el programa para crear nodos
 if __name__ == '__main__':
