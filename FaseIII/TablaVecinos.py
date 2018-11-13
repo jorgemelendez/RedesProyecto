@@ -113,6 +113,19 @@ class TablaVecinos:
 		self.lockDiccVecinos.release()
 		return vecinosActivos
 
+	#Metodo que retorna una lista de los vecinos que se encuentran activos
+	# Formato de la lista es (ip mascara puerto distancia)
+	def obtenerVecinosActivosConDistancia(self):
+		self.lockDiccVecinos.acquire()
+		llaves = self.diccVecinos.keys()
+		vecinosActivos = list()
+		for x in llaves:
+			valor = self.diccVecinos[x]
+			if valor[1]:
+				vecinosActivos.append((x[0],x[1],x[2],valor[0]))
+		self.lockDiccVecinos.release()
+		return vecinosActivos
+
 #if __name__ == '__main__':
 #	tablaVecinos = TablaVecinos()
 #	mensaje = bytearray()

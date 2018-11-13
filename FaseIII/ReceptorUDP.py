@@ -132,9 +132,7 @@ class ReceptorUDP:
 		mascara = bytesToInt(mensaje[1:2])
 		vecinoId = vecino[0], mascara, vecino[1]
 		self.lockVecinosSupervivientes.acquire()
-		print("VECINO " + str(vecinoId))
 		buzon = self.vecinosSupervivientes.get(vecinoId)
-		print( "BUZON " + str(buzon))
 		buzon.meterBuzon(mensaje)
 		self.lockVecinosSupervivientes.release()
 
