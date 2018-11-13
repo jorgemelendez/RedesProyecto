@@ -27,6 +27,7 @@ class TablaAlcanzabilidad:
 			vecino = (x[0],x[1],x[2])
 			self.tabla[vecino] = x[3], vecino
 		self.lockTablaAlcanzabilidad.release()
+		self.bitacora.escribir("Se borra la tabla de alcanzabilidad y se ponen solo los vecinos activos")
 
 	#Metodo que imprime la tabla de alcanzabilidad del nodo
 	def imprimirTabla(self):
@@ -130,7 +131,7 @@ class TablaAlcanzabilidad:
 		tabla = list()
 		for x in llaves:
 			valor = self.tabla[x]
-			tabla.append( (x[0],x[1],x[2],valor[0]) )
+			tabla.append( (x[0],x[1],x[2],valor[1][0],valor[1][1],valor[1][2],valor[0]) )
 		self.lockTablaAlcanzabilidad.release()
 		return tabla
 

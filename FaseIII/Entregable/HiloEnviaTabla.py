@@ -33,14 +33,17 @@ class HiloEnviaTabla:
 		mensaje = bytearray()
 		mensaje += intToBytes(8,1)#Tipos de mensaje es 8, actualizacion de la tabla
 		mensaje += intToBytes(self.nodoId[1],1)#Se annade la mascara en el mensaje
-		cantidaTuplasEnviar = (len(tablaEnrutamiento) - 1)# -1 porque no se manda la tupla del nodo que estoy contactando
-		mensaje += intToBytes(cantidaTuplasEnviar,2)
+		cantidaTuplasEnviar = 0
+		mensajeTemp = bytearray()
 		for x in tablaEnrutamiento: #Cada x tiene la forma (ip, mascara, puerto, distancia)
-			if (x[0],x[1],x[2]) != vecino:
-				mensaje += ipToBytes(x[0])#Mete la ip como 4 bytes
-				mensaje += intToBytes(x[1],1)#Mete la mascara como 1 byte
-				mensaje += intToBytes(x[2],2)#Mete el puerto como 2 bytes
-				mensaje += intToBytes(x[3],3)#Mete la distancia como 3 bytes
+			if (x[0],x[1],x[2]) != vecino and (x[3],x[4],x[5]) != vecino:
+				cantidaTuplasEnviar = cantidaTuplasEnviar + 1
+				mensajeTemp += ipToBytes(x[0])#Mete la ip como 4 bytes
+				mensajeTemp += intToBytes(x[1],1)#Mete la mascara como 1 byte
+				mensajeTemp += intToBytes(x[2],2)#Mete el puerto como 2 bytes
+				mensajeTemp += intToBytes(x[6],3)#Mete la distancia como 3 bytes
+		mensaje += intToBytes(cantidaTuplasEnviar,2)
+		mensaje += mensajeTemp
 		return mensaje
 
 	#Metodo que se encarga de enviar los mensajes a todos sus vecinos
@@ -58,4 +61,4 @@ class HiloEnviaTabla:
 	def iniciarCiclo(self):
 		while True:
 			self.enviarTablaAVecinos()
-			time.sleep(5)
+			time.sleep(30)

@@ -54,7 +54,7 @@ class HiloVerificacionVivo:
 			while salir == False:
 				self.lockSocketNodo.acquire()
 				self.socketNodo.sendto(mensaje, (self.vecino[0], self.vecino[2]))
-				print("Envie pregunta de vivo a " + str(self.vecino))
+				#print("Envie pregunta de vivo a " + str(self.vecino))
 				self.lockSocketNodo.release()
 				time.sleep(1)
 				self.lockBuzon.acquire()
@@ -68,7 +68,7 @@ class HiloVerificacionVivo:
 					if haymensaje == 0:
 						intento = intento + 1
 						if intento == 5:
-							print("Murio el vecino " + str(self.vecino))
+							#print("Murio el vecino " + str(self.vecino))
 							self.bitacora.escribir("Murio el vecino " + str(self.vecino))
 							self.eventoMurioVecino()
 							murioNodo = True

@@ -88,8 +88,8 @@ class ServerVecinos:
 #Metodo de inicio del programa para el Server de vecinos
 #Hay que poner la direccion del archivo CSV como parametro y aumentar la condicion del if y enviar el parametro
 if __name__ == '__main__':
-	if len(sys.argv) == 3:
-		servidor = ServerVecinos(sys.argv[1], int(sys.argv[2]), "/home/christofer/Escritorio/RedesProyecto/CSVServidor")
+	if len(sys.argv) == 4:#3:
+		servidor = ServerVecinos(sys.argv[1], int(sys.argv[2]), sys.argv[3])#"/home/christofer/Escritorio/RedesProyecto/CSVServidor")
 		servidor.iniciar()
 	else: 
 		print("Faltan parametros")

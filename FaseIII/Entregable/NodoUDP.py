@@ -21,7 +21,12 @@ class NodoUDP:
 	#ip: ip de la maquina donde va a ser iniciado
 	#mascara: mascara del nodo
 	#puerto: puerto donde va a ser iniciado
-	def __init__(self, ip, mascara, puerto):
+	#ipServerVecinos: ip del servidor de vecinos
+	#mascaraServerVecinos: mascara del servidor de vecinos
+	#puertoServerVecinos: puerto del servidor de vecinos
+	def __init__(self, ip, mascara, puerto, ipServerVecinos, mascaraServerVecinos, puertoServerVecinos):
+		self.servidorVecinos = ipServerVecinos, mascaraServerVecinos, puertoServerVecinos
+		self.serverVecinos = ipServerVecinos, puertoServerVecinos
 		self.nodoId = ip, mascara, puerto
 		self.bitacora = Bitacora("Bitacora-"+str(self.nodoId)+".txt")
 		self.tablaAlcanzabilidad = TablaAlcanzabilidad(self.bitacora)
@@ -46,7 +51,7 @@ class NodoUDP:
 		intento = 1
 		while not(banderaParada):
 			self.lockSocketNodo.acquire()
-			self.socketNodo.sendto(mensajeSolicitudVecinos, ("192.168.100.17", 5000))
+			self.socketNodo.sendto(mensajeSolicitudVecinos, self.serverVecinos)
 			self.lockSocketNodo.release()
 			try:
 				vecinos, serverAddress = self.socketNodo.recvfrom(2048)
@@ -56,7 +61,7 @@ class NodoUDP:
 					print("El servidor no esta activo")
 					banderaParada = True
 			else:
-				if serverAddress == ("192.168.100.17", 5000):
+				if serverAddress == self.serverVecinos:
 					banderaParada = True
 				else:
 					intento = intento + 1

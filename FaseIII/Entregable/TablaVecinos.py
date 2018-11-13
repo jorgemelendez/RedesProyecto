@@ -11,7 +11,7 @@ class TablaVecinos:
 	#Construtor
 	def __init__(self, bitacora):
 		self.bitacora = bitacora
-		self.diccVecinos = dict()
+		self.diccVecinos = dict() #El formato va a ser:  key=(ip,mascara,puerto) valor=(costo,bitActivo)
 		self.lockDiccVecinos = threading.Lock()
 
 	#Metodo para ingresar los vecinos que indica el ServerVecinos

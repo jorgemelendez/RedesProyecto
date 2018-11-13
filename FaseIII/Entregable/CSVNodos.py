@@ -12,6 +12,9 @@ class CSVNodos:
 	#Metodo que le encarga de leer el archivo de los nodos que hay que arrancar
 	def leerArchivo(self):
 		leearchivo = open(self.nombreDeArchivo, "r")
+		self.ipServer = leearchivo.readline()
+		self.mascaraServer = int(leearchivo.readline())
+		self.puertoServer = int(leearchivo.readline())
 		self.ipMia = leearchivo.readline()
 		print(self.ipMia)
 		self.mascara = int(leearchivo.readline())
@@ -29,3 +32,15 @@ class CSVNodos:
 	#Funcion que retorna una lista de los puertos que van a tener los nodos a arrancar
 	def getListaPuertos(self):
 		return self.puerto
+
+	#Funcion que retorna la ip del servidor de nodos
+	def getIPServer(self):
+		return self.ipServer
+
+	#Funcion que retorna la mascara del servidor de nodos
+	def getMascaraServer(self):
+		return self.mascaraServer
+
+	#Funcion que retorna el puerto del servidor de nodos
+	def getPuertoServer(self):
+		return self.puertoServer

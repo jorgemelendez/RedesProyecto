@@ -78,7 +78,8 @@ class ReceptorUDP:
 		self.bitacora.escribir("ReceptorUDP: " + "El vecino " + str(vecino) + " indico que se va a morir")
 		mascara = bytesToInt(mensaje[1:2])
 		self.tablaVecinos.modificarBitActivo(vecino[0], mascara, vecino[1], False) #Se pone como un vecino no activo
-		self.tablaAlcanzabilidad.borrarAtravez(vecino[0], mascara, vecino[1]) #Se borran las entradas con las que se iban atravez de ese nodo
+		vecinosActivosConDistancia = self.tablaVecinos.obtenerVecinosActivosConDistancia()
+		self.tablaAlcanzabilidad.limpiarPonerVecinosActivos(vecinosActivosConDistancia)
 
 	#Metodo que procesa un mensaje de actualizacion de tabla
 	#vecino: tupla que es (ip. puerto)
@@ -88,7 +89,8 @@ class ReceptorUDP:
 		mensajeQuitandoTipo = mensaje[2:]
 		vecinoConMascara = vecino[0], bytesToInt( mensaje[1:2] ), vecino[1]
 		distanciaVecino = self.tablaVecinos.obtenerDistancia(vecino[0], bytesToInt( mensaje[1:2] ), vecino[1])
-		self.tablaAlcanzabilidad.actualizarTabla(mensajeQuitandoTipo, vecinoConMascara, distanciaVecino)
+		proceso_actualizarTabla = threading.Thread(target=self.tablaAlcanzabilidad.actualizarTabla, args=(mensajeQuitandoTipo, vecinoConMascara, distanciaVecino,))
+		proceso_actualizarTabla.start()#Se crea un hilo para actualizar la tabla de alcanzabilidad
 
 	#Metodo que procesa un mensaje de enrutamiento o que me llego
 	#vecino: tupla que es (ip. puerto)
@@ -133,7 +135,8 @@ class ReceptorUDP:
 		vecinoId = vecino[0], mascara, vecino[1]
 		self.lockVecinosSupervivientes.acquire()
 		buzon = self.vecinosSupervivientes.get(vecinoId)
-		buzon.meterBuzon(mensaje)
+		if buzon != None:
+			buzon.meterBuzon(mensaje)
 		self.lockVecinosSupervivientes.release()
 
 	#Metodo encargado de recibir los mensajes que le envian al nodo
