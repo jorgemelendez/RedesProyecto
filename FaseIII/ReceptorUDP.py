@@ -9,6 +9,7 @@ import time
 from socket import error as SocketError
 from TablaAlcanzabilidad import *
 from ArmarMensajes import *
+from HiloVerificacionVivo import *
 
 
 class ReceptorUDP:
@@ -19,13 +20,15 @@ class ReceptorUDP:
 	#tablaVecinos: tabla de vecinos del nodo
 	#socketNodo: sockect del nodo
 	#lockSocketNodo: lock del socket del nodo
-	def __init__(self, nodoId, tablaAlcanzabilidad, tablaVecinos, socketNodo, lockSocketNodo, bitacora):
+	def __init__(self, nodoId, tablaAlcanzabilidad, tablaVecinos, socketNodo, lockSocketNodo, bitacora, vecinosSupervivientes, lockVecinosSupervivientes):
 		self.bitacora = bitacora
 		self.nodoId = nodoId
 		self.tablaAlcanzabilidad = tablaAlcanzabilidad
 		self.tablaVecinos = tablaVecinos
 		self.socketNodo = socketNodo
 		self.lockSocketNodo = lockSocketNodo
+		self.vecinosSupervivientes = vecinosSupervivientes
+		self.lockVecinosSupervivientes = lockVecinosSupervivientes
 
 	#Metodo para responder a vecino que si estoy vivo
 	#vecino: tupla que es (ip, puerto)
@@ -51,6 +54,14 @@ class ReceptorUDP:
 			self.socketNodo.sendto(mensajeRespContacto, vecino)
 			self.lockSocketNodo.release()
 			self.bitacora.escribir("ReceptorUDP: " + "Le respondi al vecino " + str(vecino) + " que estoy vivo")
+			vecinoId = vecino[0], mascara, vecino[1]
+			hiloSupervivencia = HiloVerificacionVivo(self.nodoId, vecinoId, self.tablaAlcanzabilidad, self.tablaVecinos, self.socketNodo, self.lockSocketNodo, self.bitacora)
+			self.lockVecinosSupervivientes.acquire()
+			print("Vecino que se va a anadir " + str(vecinoId))
+			self.vecinosSupervivientes[vecinoId] = hiloSupervivencia
+			self.lockVecinosSupervivientes.release()
+			proceso_hiloSupervivencia = threading.Thread(target=self.metaSacaHiloSupervivencia, args=(vecinoId, hiloSupervivencia,))
+			proceso_hiloSupervivencia.start()#Se crea el hilo
 
 	#Metodo para activar vecino en la tabla vecinos, y meterlo en la tabla de vecinos
 	#vecino: tupla que es (ip. puerto)
@@ -105,6 +116,28 @@ class ReceptorUDP:
 			self.socketNodo.sendto(mensaje, (sigNodo[0], sigNodo[2])) #0 es la ip, 1 es el puerto
 			self.lockSocketNodo.release()
 
+	#Metodo encargado de ejecutar el ciclo de revisar si el vecino esta vivo
+	# cuando muere regresa a este metodo y saca el hilo del diccionario
+	#hiloSupervivencia: estructura del hilo que verifica si el vecino esta vivo
+	def metaSacaHiloSupervivencia(self, vecinoId, hiloSupervivencia):
+		hiloSupervivencia.iniciarCiclo()
+		self.lockVecinosSupervivientes.acquire()
+		del self.vecinosSupervivientes[vecinoId]
+		self.lockVecinosSupervivientes.release()
+
+	#Metodo que procesa un mensaje de si sigo vivo
+	#vecino: tupla que es (ip. puerto)
+	#mensaje: mensaje recibido, viene la mascara en el segundo byte
+	def mensajeVerificacionVivo(self, vecino, mensaje):
+		mascara = bytesToInt(mensaje[1:2])
+		vecinoId = vecino[0], mascara, vecino[1]
+		self.lockVecinosSupervivientes.acquire()
+		print("VECINO " + str(vecinoId))
+		buzon = self.vecinosSupervivientes.get(vecinoId)
+		print( "BUZON " + str(buzon))
+		buzon.meterBuzon(mensaje)
+		self.lockVecinosSupervivientes.release()
+
 	#Metodo encargado de recibir los mensajes que le envian al nodo
 	def recibeMensajes(self):
 		while 1:
@@ -120,6 +153,8 @@ class ReceptorUDP:
 				self.mensajeActualizacionTabla(clientAddress, message)
 			elif tipoMensaje == 16:
 				self.mensajeRecibido(clientAddress, message)
+			elif tipoMensaje == 32:
+				self.mensajeVerificacionVivo(clientAddress, message)
 			else:
 				print("Llego mensaje con tipo desconocido")
 				self.bitacora.escribir("ReceptorUDP: " + "Llego mensaje con tipo desconocido")

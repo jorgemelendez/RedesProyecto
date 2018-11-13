@@ -13,6 +13,7 @@ from ReceptorUDP import *
 from EmisorUDP import *
 from HiloEnviaTabla import *
 from Bitacora import *
+from HiloVerificacionVivo import *
 
 class NodoUDP:
 
@@ -29,6 +30,8 @@ class NodoUDP:
 		self.socketNodo.bind((ip, puerto))
 		self.lockSocketNodo = threading.Lock()
 		self.bitacora.escribir("NodoUDP: " + "Me crearon")
+		self.vecinosSupervivientes = dict()
+		self.lockVecinosSupervivientes = threading.Lock()
 
 	#Funcion para pedir los vecinos al ServerVecinos
 	#Retorna 1 si se pudo comunicar con el servidor de vecinos
@@ -43,7 +46,7 @@ class NodoUDP:
 		intento = 1
 		while not(banderaParada):
 			self.lockSocketNodo.acquire()
-			self.socketNodo.sendto(mensajeSolicitudVecinos, ("10.232.65.54", 5000))
+			self.socketNodo.sendto(mensajeSolicitudVecinos, ("10.232.68.240", 5000))
 			self.lockSocketNodo.release()
 			try:
 				vecinos, serverAddress = self.socketNodo.recvfrom(2048)
@@ -53,7 +56,7 @@ class NodoUDP:
 					print("El servidor no esta activo")
 					banderaParada = True
 			else:
-				if serverAddress == ("10.232.65.54", 5000):
+				if serverAddress == ("10.232.68.240", 5000):
 					banderaParada = True
 				else:
 					intento = intento + 1
@@ -117,6 +120,18 @@ class NodoUDP:
 				distancia = self.tablaVecinos.obtenerDistancia(x[0], x[1], x[2])
 				self.tablaAlcanzabilidad.annadirAlcanzable( x, distancia, x )
 
+	#Metodo para levantar los hilos que preguntan si los vecinos continuan activos
+	def levantarHiloSupervivencia(self):
+		vecinosVivos = self.tablaVecinos.obtenerVecinosActivos()
+		for x in vecinosVivos:
+			hiloSupervivencia = HiloVerificacionVivo(self.nodoId, x, self.tablaAlcanzabilidad, self.tablaVecinos, self.socketNodo, self.lockSocketNodo, self.bitacora)
+			self.lockVecinosSupervivientes.acquire()
+			self.vecinosSupervivientes[x] = hiloSupervivencia
+			self.lockVecinosSupervivientes.release()
+			proceso_hiloSupervivencia = threading.Thread(target=hiloSupervivencia.iniciarCiclo, args=())
+			proceso_hiloSupervivencia.start()#Se crea el hilo
+		
+
 	#Metodo que da inico al nodo, pide los vecinos al ServerVecinos, intenta contactar a los vecinos 
 	# manda a ejecutar un hilo receptor y el emisor(interfaz con usuario)
 	def iniciarNodoUDP(self):
@@ -127,7 +142,7 @@ class NodoUDP:
 			proceso_hiloEnviaTabla = threading.Thread(target=hiloEnviaTabla.iniciarCiclo, args=())
 			proceso_hiloEnviaTabla.start()#Se crea el hilo de enviar tablas cada 30 segunodos
 			self.bitacora.escribir("NodoUDP: " + "Se inicia el hilo que reenvia las tablas cada cierto tiempo")
-			receptorUDP = ReceptorUDP(self.nodoId, self.tablaAlcanzabilidad, self.tablaVecinos, self.socketNodo, self.lockSocketNodo, self.bitacora)
+			receptorUDP = ReceptorUDP(self.nodoId, self.tablaAlcanzabilidad, self.tablaVecinos, self.socketNodo, self.lockSocketNodo, self.bitacora, self.vecinosSupervivientes, self.lockVecinosSupervivientes)
 			proceso_receptorUDP = threading.Thread(target=receptorUDP.recibeMensajes, args=())
 			proceso_receptorUDP.start()#Se crea el hilo de recepcion de mensajes
 			self.bitacora.escribir("NodoUDP: " + "Se inicia el hilo que recibe mensajes")
@@ -135,6 +150,7 @@ class NodoUDP:
 			proceso_emisorUDP = threading.Thread(target=emisorUDP.despligueMenuUDP, args=())
 			proceso_emisorUDP.start()#Se crea el hilo emisor de mensajes (interfaz con el usuario)
 			self.bitacora.escribir("NodoUDP: " + "Se inicia el hilo que envia mensajes")
+			self.levantarHiloSupervivencia()
 		else:
 			print("Error al tratar de comunicarse con el ServerVecinos")
 			self.bitacora.escribir("NodoUDP: " + "Error al tratar de comunicarse con el ServerVecinos")

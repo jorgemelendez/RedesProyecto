@@ -17,23 +17,10 @@ TablaAlcanzabilidad:
 
 
 
-Si no tengo a un nodo como vecino pero me llega una pregunta de si estoy vivo, lo respondo?
 
-Como me doy cuenta que un nodo murio si no avisa?
-
-cuando para el mensaje por inundacion?
-
-Cuando un nodo cambia el costo, solo se le notifica al vecino, este hace inundacion o no?
-
-En bitacora se meten eventos detectados, eventos causados, y otros, que son esos eventos?
-
-Cuando el mensaje se va propagando hay que imprimir el camino, se imprime en cada nodo por el que pase? o como?
-
-Cuando se cambia el peso de un vecino, se debe borrar de la tabla de alcanzabilidad o actualizar?
 
 
 Respuestas:
-- En el CSV es un grado dirigido, A,B,6 => B,A,6
 - Si es importante tener un check de si le llego el mensaje, esto para saber si el nodo sigue vivo. Tener otro hilo que pregunte si esta vivo, no hacerlo por las tablas.
 - Cuando un nodo se cae, hay que borrar toda la tabla de alcanzabilidad y hay que volver a jalarla desde la tabla de vecinos y volver a enviar a los vecinos comienzo BF otra vez.
 - Investigar metodos de inundación. 
