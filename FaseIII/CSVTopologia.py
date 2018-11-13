@@ -31,6 +31,8 @@ class CSVTopologia:
 			nodoId = ip1, mascara1, puerto1
 			#Id del vecino y distancia, este es el valor del diccionario (ip, mascara, puerto, distancia)
 			vecinoIdDistancia = ip2, mascara2, puerto2, distancia
+			vecinoIdDistancia2 = ip1, mascara1, puerto1, distancia
+			#vecinoId tambien va a hacer como una llave para agregar en el diccionario
 			vecinoId = ip2, mascara2, puerto2
 			#Revisa que las mascaras son un valor valido
 			if mascara1 < 2 or mascara1 > 30: 
@@ -47,6 +49,14 @@ class CSVTopologia:
 					self.dicNodos[nodoId] = listaVecinos
 				else:
 					listaVecinos.append(vecinoIdDistancia)
+
+				listaVecinosInv = self.dicNodos.get(vecinoId)	
+				if listaVecinosInv is None:
+					listaVecinosInv = list()
+					listaVecinosInv.append(vecinoIdDistancia2)
+					self.dicNodos[vecinoId] = listaVecinosInv
+				else:
+					listaVecinosInv.append(vecinoIdDistancia2)				
 
 	#Funcion que retorna el diccionario creado a partir de la topologia de la red
 	def getDiccionario(self):
