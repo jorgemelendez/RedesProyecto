@@ -56,7 +56,7 @@ class CSVTopologia:
 					listaVecinosInv.append(vecinoIdDistancia2)
 					self.dicNodos[vecinoId] = listaVecinosInv
 				else:
-					listaVecinosInv.append(vecinoIdDistancia2)				
+					listaVecinosInv.append(vecinoIdDistancia2)		 		
 
 	#Funcion que retorna el diccionario creado a partir de la topologia de la red
 	def getDiccionario(self):
