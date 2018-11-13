@@ -43,7 +43,7 @@ class NodoUDP:
 		intento = 1
 		while not(banderaParada):
 			self.lockSocketNodo.acquire()
-			self.socketNodo.sendto(mensajeSolicitudVecinos, ("10.232.68.200", 5000))
+			self.socketNodo.sendto(mensajeSolicitudVecinos, ("10.232.65.54", 5000))
 			self.lockSocketNodo.release()
 			try:
 				vecinos, serverAddress = self.socketNodo.recvfrom(2048)
@@ -53,7 +53,7 @@ class NodoUDP:
 					print("El servidor no esta activo")
 					banderaParada = True
 			else:
-				if serverAddress == ("10.232.68.200", 5000):
+				if serverAddress == ("10.232.65.54", 5000):
 					banderaParada = True
 				else:
 					intento = intento + 1

@@ -121,6 +121,8 @@ class EmisorUDP:
 				bandera = False
 				self.borrarme()
 				print('Salida.')
+				self.bitacora.escribir("Me voy a morir")
+				self.bitacora.terminar()
 				os._exit(1)
 			else:
 				print('Ingrese opcion valida.')
