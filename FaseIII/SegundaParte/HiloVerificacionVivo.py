@@ -44,8 +44,8 @@ class HiloVerificacionVivo:
 	#Metodo que es el ciclo de envi mensaje para ver si esta vivo cada 30 segundos
 	def iniciarCiclo(self):
 		mensaje = bytearray()
-		mensaje += intToBytes(32,1)#Tipos de mensaje es 32, verificacion de vivo
-		mensaje += intToBytes(self.nodoId[1],1)#Se añade mi mascara
+		mensaje += intToBytes(2,1)#Tipos de mensaje es 2, verificacion de vivo
+		#mensaje += intToBytes(self.nodoId[1],1)#Se añade mi mascara
 		intento = 0
 		murioNodo = False
 		while murioNodo == False:

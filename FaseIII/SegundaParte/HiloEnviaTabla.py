@@ -31,8 +31,8 @@ class HiloEnviaTabla:
 	#tablaEnrutamiento: tabla de alcanzabilidad que se le pidio a TablaAlcanzabilidad
 	def construirMensaje(self, vecino, tablaEnrutamiento):
 		mensaje = bytearray()
-		mensaje += intToBytes(8,1)#Tipos de mensaje es 8, actualizacion de la tabla
-		mensaje += intToBytes(self.nodoId[1],1)#Se annade la mascara en el mensaje
+		mensaje += intToBytes(1,1)#Tipos de mensaje es 1, actualizacion de la tabla
+		#mensaje += intToBytes(self.nodoId[1],1)#Se annade la mascara en el mensaje
 		cantidaTuplasEnviar = 0
 		mensajeTemp = bytearray()
 		for x in tablaEnrutamiento: #Cada x tiene la forma (ip, mascara, puerto, distancia)
@@ -61,4 +61,4 @@ class HiloEnviaTabla:
 	def iniciarCiclo(self):
 		while True:
 			self.enviarTablaAVecinos()
-			time.sleep(30)
+			time.sleep(5)

@@ -84,8 +84,8 @@ class NodoUDP:
 	def contactarVecinos(self):
 		self.bitacora.escribir("NodoUDP: " + "Voy a intentar contactar vecinos")
 		mensajeContactoVecino = bytearray()
-		mensajeContactoVecino += intToBytes(1,1)#Tipo de mensaje es 1
-		mensajeContactoVecino += intToBytes(self.nodoId[1],1) #Se pone la mascara en el mensaje de solicitudes
+		mensajeContactoVecino += intToBytes(2,1)#Tipo de mensaje es 1
+		#mensajeContactoVecino += intToBytes(self.nodoId[1],1) #Se pone la mascara en el mensaje de solicitudes
 		vecinosTabla = self.tablaVecinos.obtenerVecinos()#Se obtiene  los vecinos para intentar contactarlos
 		for x in vecinosTabla: #Cada x, es (ip, mascara, puerto)
 			banderaParada = False
@@ -95,6 +95,8 @@ class NodoUDP:
 			print("Intentando contactar al vecino: " + str(x))
 			self.bitacora.escribir("NodoUDP: " + "Intentando contactar al vecino: " + str(x))
 			while not(banderaParada): #While de intentos de contacto(maximo 5)
+				#print("ASQUEROSO")
+				#print("intento: " + str(intento))
 				self.lockSocketNodo.acquire()
 				self.socketNodo.sendto(mensajeContactoVecino, (x[0], x[2]))
 				self.lockSocketNodo.release()
@@ -116,7 +118,7 @@ class NodoUDP:
 							print("El vecino " + str(x) + " no esta activo")
 							self.bitacora.escribir("NodoUDP: " + "El vecino " + str(x) + " no esta activo")
 							banderaParada = True
-						print("Mensaje de " + str(serverAddress))
+						#print("Mensaje de " + str(serverAddress))
 			self.socketNodo.settimeout(None)
 			if intento == 5:
 				self.tablaVecinos.modificarBitActivo(x[0], x[1], x[2], False)

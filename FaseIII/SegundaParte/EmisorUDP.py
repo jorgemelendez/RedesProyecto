@@ -55,14 +55,17 @@ class EmisorUDP:
 							print ("Puerto no valido")
 						else:#Codigo para hacer y enviar el mensaje
 							mensaje = input('Digite el mensaje que desea enviar: ')
-							message = intToBytes(16,1)#Tipo de mensaje es 16
+							tamanno = len(mensaje)
+							message = intToBytes(5,1)#Tipo de mensaje es 5
 							message += ipToBytes(self.nodoId[0]) #Se pone la ip emisor en el mensaje
-							message += intToBytes(self.nodoId[1],1) #Se pone la mascara emisor en el mensaje
+							#message += intToBytes(self.nodoId[1],1) #Se pone la mascara emisor en el mensaje
 							message += intToBytes(self.nodoId[2],2) #Se pone el puerto emisor en el mensaje
 							message += ipToBytes(ipDigitada) #Se pone la ip destino en el mensaje
-							message += intToBytes(mascara,1) #Se pone la mascara destino en el mensaje
+							#message += intToBytes(mascara,1) #Se pone la mascara destino en el mensaje
 							message += intToBytes(puerto,2) #Se pone el puerto destino en el mensaje
+							message += intToBytes(tamanno,2)
 							message += str.encode(mensaje)
+							#AQUI VA EL PARSER
 							sigNodo = self.tablaAlcanzabilidad.obtenerSiguienteNodo((ipDigitada,mascara,puerto))
 							if sigNodo != None:
 								self.lockSocketNodo.acquire()
@@ -78,8 +81,8 @@ class EmisorUDP:
 	def borrarme(self):
 		self.bitacora.escribir("EmisorUDP: " + "Usuario solicito cerrar el nodo")
 		mensajeAvisoMuerte = bytearray()
-		mensajeAvisoMuerte += intToBytes(4,1)#Tipo de mensaje es 4
-		mensajeAvisoMuerte += intToBytes(self.nodoId[1],1) #Se pone la mascara en el mensaje de solicitudes
+		mensajeAvisoMuerte += intToBytes(7,1)#Tipo de mensaje es 7
+		#mensajeAvisoMuerte += intToBytes(self.nodoId[1],1) #Se pone la mascara en el mensaje de solicitudes
 		vecinos = self.tablaVecinos.obtenerVecinos()#Se piden todos los vecinos
 		for x in vecinos:
 			if self.tablaVecinos.obtenerBitActivo(x[0], x[1], x[2]) :

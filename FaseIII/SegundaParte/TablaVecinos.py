@@ -11,6 +11,8 @@ class TablaVecinos:
 	#Construtor
 	def __init__(self, bitacora):
 		self.bitacora = bitacora
+		self.parser = dict()
+		self.lockParser = threading.Lock()
 		self.diccVecinos = dict() #El formato va a ser:  key=(ip,mascara,puerto) valor=(costo,bitActivo)
 		self.lockDiccVecinos = threading.Lock()
 
@@ -21,6 +23,7 @@ class TablaVecinos:
 		largo = int(len(mensajeVecinos) / 10)
 		i = 0
 		self.lockDiccVecinos.acquire()
+		self.lockParser.acquire()
 		while i < largo:
 			ipi = bytesToIp(mensajeVecinos[0+i*10 : 4+i*10]) #0 - 3 --> IP, 4 bytes
 			masci = bytesToInt(mensajeVecinos[4+i*10 : 5+i*10])#4 --> Mascara, 1 byte
@@ -29,8 +32,10 @@ class TablaVecinos:
 			llave = ipi,masci,puertoi # la llave del diccionaroi es la (Ip, Mascara, Puerto)
 			valor = distaciai, False #El valor va a ser (distancia,bitActivo)
 			self.diccVecinos[llave] = valor
+			self.parser[(ipi,puertoi)] = llave
 			self.bitacora.escribir("TablaVecinos: " + "Se annadio el vecino " + str(llave) + " con distancia " + str(distaciai) + " y el bit como " + str(False))
 			i = i + 1
+		self.lockParser.release()
 		self.lockDiccVecinos.release()
 
 	#Funcion que retorna la distancia que existe hacia un vecino
@@ -125,6 +130,14 @@ class TablaVecinos:
 				vecinosActivos.append((x[0],x[1],x[2],valor[0]))
 		self.lockDiccVecinos.release()
 		return vecinosActivos
+
+	#Funcion encargada de retornar (ip,mascara,puerto) dado (ip,puerto)
+	#nodo: tupla (ip, puerto)
+	def obtenerKey(self, nodo):
+		self.lockParser.acquire()
+		key = self.parser.get(nodo)
+		self.lockParser.release()
+		return key
 
 #if __name__ == '__main__':
 #	tablaVecinos = TablaVecinos()
