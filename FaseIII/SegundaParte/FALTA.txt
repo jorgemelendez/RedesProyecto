@@ -1,0 +1,3 @@
+Avisarle al hiloVerificacionVivo que el nodo murio
+	-Poner un bool con lock y hacer metodos para modificar el bool y preguntar en el ciclo que si el nodo murio(bit en falso), salir del ciclo
+

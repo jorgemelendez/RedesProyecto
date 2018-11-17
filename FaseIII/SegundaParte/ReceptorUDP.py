@@ -73,7 +73,7 @@ class ReceptorUDP:
 	#mensaje: mascara del vecino
 	def respondieronVivo(self, vecino, mensaje):
 		#mascara = bytesToInt(mensaje[1:2])
-		mascara = (self.tablaAlcanzabilidad.obtenerKey(vecino))[1]
+		mascara = (self.tablaVecinos.obtenerKey(vecino))[1]
 		self.lockVecinosSupervivientes.acquire()
 		buzon = self.vecinosSupervivientes.get((vecino[0],mascara,vecino[1]))
 		if buzon != None:
@@ -89,7 +89,7 @@ class ReceptorUDP:
 		#print("LARGO DEL PAQ " + str(len(mensaje)))
 		self.bitacora.escribir("ReceptorUDP: " + "El vecino " + str(vecino) + " indico que se va a morir")
 		#mascara = bytesToInt(mensaje[1:2])
-		mascara = (self.tablaAlcanzabilidad.obtenerKey(vecino))[1]
+		mascara = (self.tablaVecinos.obtenerKey(vecino))[1]
 		self.tablaVecinos.modificarBitActivo(vecino[0], mascara, vecino[1], False) #Se pone como un vecino no activo
 		vecinosActivosConDistancia = self.tablaVecinos.obtenerVecinosActivosConDistancia()
 		self.tablaAlcanzabilidad.limpiarPonerVecinosActivos(vecinosActivosConDistancia)
@@ -102,7 +102,7 @@ class ReceptorUDP:
 		#mensajeQuitandoTipo = mensaje[2:]
 		mensajeQuitandoTipo = mensaje[1:]
 		#vecinoConMascara = vecino[0], bytesToInt( mensaje[1:2] ), vecino[1]
-		mascara = (self.tablaAlcanzabilidad.obtenerKey(vecino))[1]
+		mascara = (self.tablaVecinos.obtenerKey(vecino))[1]
 		vecinoConMascara = vecino[0], mascara, vecino[1]
 		distanciaVecino = self.tablaVecinos.obtenerDistancia(vecino[0], mascara, vecino[1])
 		proceso_actualizarTabla = threading.Thread(target=self.tablaAlcanzabilidad.actualizarTabla, args=(mensajeQuitandoTipo, vecinoConMascara, distanciaVecino,))

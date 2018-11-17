@@ -50,7 +50,7 @@ class HiloVerificacionVivo:
 		murioNodo = False
 		while murioNodo == False:
 			salir = False
-			time.sleep(10)
+			time.sleep(3)
 			while salir == False:
 				self.lockSocketNodo.acquire()
 				self.socketNodo.sendto(mensaje, (self.vecino[0], self.vecino[2]))
