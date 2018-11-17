@@ -61,4 +61,4 @@ class HiloEnviaTabla:
 	def iniciarCiclo(self):
 		while True:
 			self.enviarTablaAVecinos()
-			time.sleep(3)
+			time.sleep(30)

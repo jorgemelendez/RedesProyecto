@@ -28,6 +28,14 @@ class HiloVerificacionVivo:
 		self.lockSocketNodo = lockSocketNodo
 		self.buzon = list()
 		self.lockBuzon = threading.Lock()
+		self.sigueVivo = True #Variable para avisarme que el nodo murio
+		self.lockSigueVivo = threading.Lock()
+
+	#Metodo para que me avisen que el otro nodo murio
+	def murio(self):
+		self.lockSigueVivo.acquire()
+		self.sigueVivo = False
+		self.lockSigueVivo.release()
 
 	#Metodo que ingresa un mensaje al buzon
 	def meterBuzon(self, mensaje):
@@ -50,38 +58,59 @@ class HiloVerificacionVivo:
 		murioNodo = False
 		while murioNodo == False:
 			salir = False
-			time.sleep(3)
-			while salir == False:
-				self.lockSocketNodo.acquire()
-				self.socketNodo.sendto(mensaje, (self.vecino[0], self.vecino[2]))
-				#print("Envie pregunta de vivo a " + str(self.vecino))
-				self.lockSocketNodo.release()
-				time.sleep(1)
-				self.lockBuzon.acquire()
-				haymensaje = len(self.buzon)
-				self.lockBuzon.release()
-				if haymensaje == 0:
+			time.sleep(10)
+			self.lockSigueVivo.acquire()
+			continuaVivo = self.sigueVivo
+			self.lockSigueVivo.release()
+			if continuaVivo:
+				while salir == False:
+					self.lockSocketNodo.acquire()
+					self.socketNodo.sendto(mensaje, (self.vecino[0], self.vecino[2]))
+					#print("Envie pregunta de vivo a " + str(self.vecino))
+					self.lockSocketNodo.release()
 					time.sleep(1)
-					self.lockBuzon.acquire()
-					haymensaje = len(self.buzon)
-					self.lockBuzon.release()
-					if haymensaje == 0:
-						intento = intento + 1
-						if intento == 5:
-							#print("Murio el vecino " + str(self.vecino))
-							self.bitacora.escribir("Murio el vecino " + str(self.vecino))
-							self.eventoMurioVecino()
-							murioNodo = True
-							salir = True
-					else:
-						intento = 0
-						salir = True
+					self.lockSigueVivo.acquire()
+					continuaVivo = self.sigueVivo
+					self.lockSigueVivo.release()
+					if continuaVivo:
 						self.lockBuzon.acquire()
-						mensajeRecibido = self.buzon.pop()
+						haymensaje = len(self.buzon)
 						self.lockBuzon.release()
-				else:
-					intento = 0
-					salir = True
-					self.lockBuzon.acquire()
-					mensajeRecibido = self.buzon.pop()
-					self.lockBuzon.release()
+						if haymensaje == 0:
+							time.sleep(1)
+							self.lockSigueVivo.acquire()
+							continuaVivo = self.sigueVivo
+							self.lockSigueVivo.release()
+							if continuaVivo:
+								self.lockBuzon.acquire()
+								haymensaje = len(self.buzon)
+								self.lockBuzon.release()
+								if haymensaje == 0:
+									intento = intento + 1
+									if intento == 5:
+										#print("Murio el vecino " + str(self.vecino))
+										self.bitacora.escribir("Murio el vecino " + str(self.vecino))
+										self.eventoMurioVecino()
+										murioNodo = True
+										salir = True
+								else:
+									intento = 0
+									salir = True
+									self.lockBuzon.acquire()
+									mensajeRecibido = self.buzon.pop()
+									self.lockBuzon.release()
+							else:
+								salir = True
+								murioNodo = True
+						else:
+							intento = 0
+							salir = True
+							self.lockBuzon.acquire()
+							mensajeRecibido = self.buzon.pop()
+							self.lockBuzon.release()
+					else:
+						salir = True
+						murioNodo = True
+			else:
+				murioNodo = True
+		#print("Voy a salir")

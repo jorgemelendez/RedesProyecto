@@ -51,7 +51,7 @@ class ReceptorUDP:
 			self.lockSocketNodo.acquire()
 			self.socketNodo.sendto(mensajeRespContacto, vecino)
 			self.lockSocketNodo.release()
-			self.bitacora.escribir("ReceptorUDP: " + "Le respondi al vecino " + str(vecino) + " que estoy vivo")
+			self.bitacora.escribir("ReceptorUDP: " + "Le respondi al vecino " + str(vecino) + " que sigo vivo")
 		else:
 			self.tablaAlcanzabilidad.annadirAlcanzable( tuplaVecino, distancia, tuplaVecino )
 			self.tablaVecinos.modificarBitActivo(vecino[0], mascara, vecino[1], True)
@@ -80,7 +80,7 @@ class ReceptorUDP:
 			buzon.meterBuzon(mensaje)
 		self.lockVecinosSupervivientes.release()
 		#print("El vecino " + str(vecino) + " indico que continua vivo")
-		self.bitacora.escribir("ReceptorUDP: " + "El vecino " + str(vecino) + " indico que continua vivo")
+		self.bitacora.escribir("ReceptorUDP: " + "El vecino " + str(vecino) + " indico que continuo vivo")
 
 	#Metodo para desactivar vecino en la tabla vecinos y sacar las entradas a las que se llevaban mediante este
 	#vecino: tupla que es (ip. puerto)
@@ -91,6 +91,11 @@ class ReceptorUDP:
 		#mascara = bytesToInt(mensaje[1:2])
 		mascara = (self.tablaVecinos.obtenerKey(vecino))[1]
 		self.tablaVecinos.modificarBitActivo(vecino[0], mascara, vecino[1], False) #Se pone como un vecino no activo
+		self.lockVecinosSupervivientes.acquire()
+		hiloVecino = self.vecinosSupervivientes[(vecino[0], mascara, vecino[1])]
+		hiloVecino.murio()
+		#print("Ya le avise al hilo que el nodo murio")
+		self.lockVecinosSupervivientes.release()
 		vecinosActivosConDistancia = self.tablaVecinos.obtenerVecinosActivosConDistancia()
 		self.tablaAlcanzabilidad.limpiarPonerVecinosActivos(vecinosActivosConDistancia)
 

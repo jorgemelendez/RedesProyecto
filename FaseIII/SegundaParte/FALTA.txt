@@ -1,3 +1,24 @@
 Avisarle al hiloVerificacionVivo que el nodo murio
 	-Poner un bool con lock y hacer metodos para modificar el bool y preguntar en el ciclo que si el nodo murio(bit en falso), salir del ciclo
 
+Inundacion
+	-Mandar mensaje cuando
+		-Me llega mensaje de un vecino avisando que va a morir
+		-Me doy vuenta en el hiloVerificaVivo que el vecino murio, este se puede hacer al retorno del hilo, cuando se va a borrar del dicc
+	-Este mensaje se le manda a todos los vecinos
+	-Cuando me llega uno de inundacion debo
+		-Borrar la tabla de alcanzabilidad completa(metodo de limpiaTabla....., se le manda los vecinos activos para que el metodo haga la tabla nueva)
+
+Cambio de costo
+	-Agregar opcion en el menu
+	-Cambiar costo en la tabla de vecinos
+	-Mandar mensaje de cambio del costo al vecino respectivo
+	-Borrar mi tabla de alcanzabilidad compelta(metodo de limpiaTabla....., se le manda los vecinos activos para que el metodo haga la tabla nueva)
+	-ANALIZAR SI MANDO INUNDACION A MIS VECINOS, esto porque pueda que yo soy un nodo intermedio que por donde pasan todos los mensajes de los extremos, y si no mando la inuncacion y este cambio es hacia arriba entonces los mensajes de actualizacion de no harian que se actualice la tabla de los vecinos que no estuvieron involucrados en el cambio del costo, CREO QUE SI SE NECESITA ENVIAR INUNCACION A LOS VECINOS PASADO UN PEQUEÑO TIEMPO DESPUES DE ENVIAR EL MENSAJE DE CAMBIO DE COSTO AL VECINO
+
+	-Cuando me llega un mensaje de cambio de costo
+		-Cambio el costo del vecino en la tabla de vecinos
+		-Borrar mi tabla de alcanzabilidad compelta(metodo de limpiaTabla....., se le manda los vecinos activos para que el metodo haga la tabla nueva)
+		-Mando mensaje de inundacion a todos mis vecinos
+
+PUEDE HABER DEPENDENCIA ENTRE CAMBIO COSTO E INUNCACION, PORQUE EL CAMBIO DE COSTO ENVIA INUNCACION
