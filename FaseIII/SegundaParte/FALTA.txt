@@ -1,13 +1,20 @@
+Revisar:
+	- Si un vecino se muere con el hiloVerificaVivo ver si lo estoy sacando poniendo en el falso en la tabla de vecinos.
+
 Avisarle al hiloVerificacionVivo que el nodo murio
 	-Poner un bool con lock y hacer metodos para modificar el bool y preguntar en el ciclo que si el nodo murio(bit en falso), salir del ciclo
 
+
+
 Inundacion
 	-Mandar mensaje cuando
-		-Me llega mensaje de un vecino avisando que va a morir
+		-Me llega mensaje de un vecino avisando que va a morir -- Listo
 		-Me doy vuenta en el hiloVerificaVivo que el vecino murio, este se puede hacer al retorno del hilo, cuando se va a borrar del dicc
-	-Este mensaje se le manda a todos los vecinos
-	-Cuando me llega uno de inundacion debo
+	-Este mensaje se le manda a todos los vecinos -- Listo
+	-Cuando me llega uno de inundacion debo				-- Listo
 		-Borrar la tabla de alcanzabilidad completa(metodo de limpiaTabla....., se le manda los vecinos activos para que el metodo haga la tabla nueva)
+
+
 
 Cambio de costo
 	-Agregar opcion en el menu
