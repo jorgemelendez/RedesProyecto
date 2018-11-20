@@ -29,6 +29,9 @@ class ReceptorUDP:
 		self.lockSocketNodo = lockSocketNodo
 		self.vecinosSupervivientes = vecinosSupervivientes
 		self.lockVecinosSupervivientes = lockVecinosSupervivientes
+		self.banderaNoInundacion = True
+		self.lockBanderInundacion = threading.Lock()
+
 
 	#Metodo para responder a vecino que si estoy vivo
 	#vecino: tupla que es (ip, puerto)
@@ -68,6 +71,16 @@ class ReceptorUDP:
 			proceso_hiloSupervivencia = threading.Thread(target=self.metaSacaHiloSupervivencia, args=(vecinoId, hiloSupervivencia,))
 			proceso_hiloSupervivencia.start()#Se crea el hilo
 
+	def sleepHiloInundacion(self):
+		self.lockBanderInundacion.acquire()
+		self.banderaNoInundacion = False
+		self.lockBanderInundacion.release()
+		time.sleep(10)
+
+		self.lockBanderInundacion.acquire()
+		self.banderaNoInundacion = True
+		self.lockBanderInundacion.release()
+
 	#Metodo para activar vecino en la tabla vecinos, y meterlo en la tabla de vecinos
 	#vecino: tupla que es (ip. puerto)
 	#mensaje: mascara del vecino
@@ -92,23 +105,32 @@ class ReceptorUDP:
 		self.tablaAlcanzabilidad.limpiarPonerVecinosActivos(vecinosActivosConDistancia)
 
 		#Ahora se decrementa el valor del mensaje de inundacion.
-		valPaquete = bytesToInt(message[1:])
-		valPaquete = valPaquete - 1
+		valPaquete = bytesToInt(mensaje[1:])
 
-		#Volvemos a crear el mensaje para enviar a nuestros vecinos.
-		mensajeInundacion = bytearray()
-		mensajeInundacion += intToBytes(4,1)	#Tipo de mensaje es 3
-		mensajeInundacion += intToBytes(valPaquete,1)	#Se agrega el contador del paquete para la inundacion
+		if valPaquete > 0:
+			valPaquete = valPaquete - 1
 
-		#obtenerVecinosActivos lo que envia en la lista es de formato: (ip mascara puerto)
-		#Se reciben los vecinos activos para mandarle el mensaje de inundacion.
-		vecinosAenviar = self.tablaVecinos.obtenerVecinosActivos()
+			#Volvemos a crear el mensaje para enviar a nuestros vecinos.
+			mensajeInundacion = bytearray()
+			mensajeInundacion += intToBytes(4,1)	#Tipo de mensaje es 4
+			mensajeInundacion += intToBytes(valPaquete,1)	#Se agrega el contador del paquete para la inundacion
 
-		for x in vecinosAenviar:
-			dirVecino = x[0],x[2] 	#Pone el Ip = X[0], Puerto = X[2]
-			self.lockSocketNodo.acquire()
-			self.socket.sendto(mensajeInundacion, dirVecino) #Envia el mensaje a los vecinos.
-			self.lockSocketNodo.release()
+			#obtenerVecinosActivos lo que envia en la lista es de formato: (ip mascara puerto)
+			#Se reciben los vecinos activos para mandarle el mensaje de inundacion.
+			vecinosAenviar = self.tablaVecinos.obtenerVecinosActivos()
+
+			for x in vecinosAenviar:
+				dirVecino = x[0],x[2] 	#Pone el Ip = X[0], Puerto = X[2]
+				self.lockSocketNodo.acquire()
+				self.socketNodo.sendto(mensajeInundacion, dirVecino) #Envia el mensaje a los vecinos.
+				self.lockSocketNodo.release()
+
+			self.lockBanderInundacion.acquire()
+			banderaNoInundacion = self.banderaNoInundacion
+			self.lockBanderInundacion.release()
+			if banderaNoInundacion == True:
+				hiloEsperaInundacion = threading.Thread(target=self.sleepHiloInundacion, args=())
+				hiloEsperaInundacion.start()#Se crea el hilo
 
 
 	#Metodo para enviar a los vecinos el mensaje de que un vecino mio se murioself.
@@ -131,8 +153,11 @@ class ReceptorUDP:
 		for x in vecinosAenviar:
 			dirVecino = x[0],x[2] 	#Pone el Ip = X[0], Puerto = X[2]
 			self.lockSocketNodo.acquire()
-			self.socket.sendto(mensajeInundacion, dirVecino) #Envia el mensaje a los vecinos.
+			self.socketNodo.sendto(mensajeInundacion, dirVecino) #Envia el mensaje a los vecinos.
 			self.lockSocketNodo.release()
+
+		hiloEsperaInundacion = threading.Thread(target=self.sleepHiloInundacion, args=())
+		hiloEsperaInundacion.start()#Se crea el hilo
 
 	#Metodo para desactivar vecino en la tabla vecinos y sacar las entradas a las que se llevaban mediante este
 	#vecino: tupla que es (ip. puerto)
@@ -218,7 +243,7 @@ class ReceptorUDP:
 		self.tablaVecinos.modificarBitActivo(vecinoId[0], vecinoId[1], vecinoId[2], False)
 
 		#Como el vecino se murio debemos de generar una INUNDACION a nuestros vecinos.
-		vecinosActivos = self.tablaVecinos.obtenerVecinosActivos()
+		vecinosActivos = self.tablaVecinos.obtenerVecinosActivosConDistancia()
 
 		self.tablaAlcanzabilidad.limpiarPonerVecinosActivos(vecinosActivos)
 
@@ -232,7 +257,7 @@ class ReceptorUDP:
 		for x in vecinosAenviar:
 			dirVecino = x[0],x[2] 	#Pone el Ip = X[0], Puerto = X[2]
 			self.lockSocketNodo.acquire()
-			self.socket.sendto(mensajeInundacion, dirVecino) #Envia el mensaje a los vecinos.
+			self.socketNodo.sendto(mensajeInundacion, dirVecino) #Envia el mensaje a los vecinos.
 			self.lockSocketNodo.release()
 
 		#Esto no deberia de suceder, ya que arriba se borra la tabla de alcanzabilidad
@@ -243,13 +268,17 @@ class ReceptorUDP:
 		while 1:
 			message, clientAddress = self.socketNodo.recvfrom(2048)
 			tipoMensaje = bytesToInt(message[0:1])
+			self.lockBanderInundacion.acquire()
+			banderaNoInundacion = self.banderaNoInundacion
+			self.lockBanderInundacion.release()
+
 			if tipoMensaje == 2:
 				self.responderVivo(clientAddress, message)
 			elif tipoMensaje == 3:#Creo que este caso no tiene sentido aqui, pero por si llegara uno, para decir que esta fuera de lugar
 				self.respondieronVivo(clientAddress, message)
 			elif tipoMensaje == 7:
 				self.murioVecino(clientAddress, message)
-			elif tipoMensaje == 1:
+			elif tipoMensaje == 1 and banderaNoInundacion:
 				self.mensajeActualizacionTabla(clientAddress, message)
 			elif tipoMensaje == 5:
 				self.mensajeRecibido(clientAddress, message)
