@@ -72,6 +72,7 @@ class ReceptorUDP:
 			proceso_hiloSupervivencia.start()#Se crea el hilo
 
 	def sleepHiloInundacion(self):
+		self.bitacora.escribir("Me llego un mensaje de inundacion, espera de 10 segs.")
 		self.lockBanderInundacion.acquire()
 		self.banderaNoInundacion = False
 		self.lockBanderInundacion.release()
@@ -109,7 +110,7 @@ class ReceptorUDP:
 
 		if valPaquete > 0:
 			valPaquete = valPaquete - 1
-
+			self.bitacora.escribir("Me llego un mensaje de inundacion. El valor del paquete es: " + str(valPaquete))
 			#Volvemos a crear el mensaje para enviar a nuestros vecinos.
 			mensajeInundacion = bytearray()
 			mensajeInundacion += intToBytes(4,1)	#Tipo de mensaje es 4
@@ -140,7 +141,7 @@ class ReceptorUDP:
 		mensajeInundacion = bytearray()
 		mensajeInundacion += intToBytes(4,1)	#Tipo de mensaje es 3
 		mensajeInundacion += intToBytes(50,1)	#Se agrega el contador del paquete para la inundacion
-
+		self.bitacora.escribir("Un vecino mio se murio...Se comienza inundacion.")
 		#Obtiene los vecinos activos para enviarselo al metodo de limpiarPonerVecinosActivos
 		vecinosActivosConDistancia = self.tablaVecinos.obtenerVecinosActivosConDistancia()
 		#Borrar toda la tabla de alcanzabilidad pero deja nada mas los vecinos activos.
