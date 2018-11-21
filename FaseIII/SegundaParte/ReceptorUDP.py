@@ -125,13 +125,16 @@ class ReceptorUDP:
 				self.lockSocketNodo.acquire()
 				self.socketNodo.sendto(mensajeInundacion, dirVecino) #Envia el mensaje a los vecinos.
 				self.lockSocketNodo.release()
+				self.bitacora.escribir("Continue inundacion, enviado a " + str(x))
 
 			self.lockBanderInundacion.acquire()
 			banderaNoInundacion = self.banderaNoInundacion
 			self.lockBanderInundacion.release()
 			if banderaNoInundacion == True:
+				print("Voy a crear hilo1")
 				hiloEsperaInundacion = threading.Thread(target=self.sleepHiloInundacion, args=())
 				hiloEsperaInundacion.start()#Se crea el hilo
+				print("Hilo creo1")
 
 
 	#Metodo para enviar a los vecinos el mensaje de que un vecino mio se murioself.
@@ -139,7 +142,7 @@ class ReceptorUDP:
 	def mandarInundacionInicial(self):
 		#Crea el mensaje con el #4 y tambien se manda el byte del contador del paquete.
 		mensajeInundacion = bytearray()
-		mensajeInundacion += intToBytes(4,1)	#Tipo de mensaje es 3
+		mensajeInundacion += intToBytes(4,1)	#Tipo de mensaje es 4
 		mensajeInundacion += intToBytes(50,1)	#Se agrega el contador del paquete para la inundacion
 		self.bitacora.escribir("Un vecino mio se murio...Se comienza inundacion.")
 		#Obtiene los vecinos activos para enviarselo al metodo de limpiarPonerVecinosActivos
@@ -156,9 +159,11 @@ class ReceptorUDP:
 			self.lockSocketNodo.acquire()
 			self.socketNodo.sendto(mensajeInundacion, dirVecino) #Envia el mensaje a los vecinos.
 			self.lockSocketNodo.release()
-
+			self.bitacora.escribir("Continue inundacion, enviado a " + str(x))
+		print("Voy a crear hilo2")
 		hiloEsperaInundacion = threading.Thread(target=self.sleepHiloInundacion, args=())
 		hiloEsperaInundacion.start()#Se crea el hilo
+		print("Hilo creo2")
 
 	#Metodo para desactivar vecino en la tabla vecinos y sacar las entradas a las que se llevaban mediante este
 	#vecino: tupla que es (ip. puerto)
@@ -235,34 +240,13 @@ class ReceptorUDP:
 	#hiloSupervivencia: estructura del hilo que verifica si el vecino esta vivo
 	def metaSacaHiloSupervivencia(self, vecinoId, hiloSupervivencia):
 		hiloSupervivencia.iniciarCiclo()
-
+		print("LLEGUE")
+		#Se pone primero el bit de activo en falso en el vecino que se murio.
+		self.tablaVecinos.modificarBitActivo(vecinoId[0], vecinoId[1], vecinoId[2], False)
 		self.lockVecinosSupervivientes.acquire()
 		del self.vecinosSupervivientes[vecinoId]
 		self.lockVecinosSupervivientes.release()
-
-		#Se pone primero el bit de activo en falso en el vecino que se murio.
-		self.tablaVecinos.modificarBitActivo(vecinoId[0], vecinoId[1], vecinoId[2], False)
-
-		#Como el vecino se murio debemos de generar una INUNDACION a nuestros vecinos.
-		vecinosActivos = self.tablaVecinos.obtenerVecinosActivosConDistancia()
-
-		self.tablaAlcanzabilidad.limpiarPonerVecinosActivos(vecinosActivos)
-
-		#Crea el mensaje con el #4 y tambien se manda el byte del contador del paquete.
-		mensajeInundacion = bytearray()
-		mensajeInundacion += intToBytes(4,1)	#Tipo de mensaje es 3
-		mensajeInundacion += intToBytes(50,1)	#Se agrega el contador del paquete para la inundacion
-
-		vecinosAenviar = self.tablaVecinos.obtenerVecinosActivos()
-
-		for x in vecinosAenviar:
-			dirVecino = x[0],x[2] 	#Pone el Ip = X[0], Puerto = X[2]
-			self.lockSocketNodo.acquire()
-			self.socketNodo.sendto(mensajeInundacion, dirVecino) #Envia el mensaje a los vecinos.
-			self.lockSocketNodo.release()
-
-		#Esto no deberia de suceder, ya que arriba se borra la tabla de alcanzabilidad
-
+		self.mandarInundacionInicial()
 
 	#Metodo encargado de recibir los mensajes que le envian al nodo
 	def recibeMensajes(self):
@@ -287,4 +271,15 @@ class ReceptorUDP:
 				self.continuarInundacion(message)
 			else:
 				#print("Llego mensaje con tipo desconocido")
-				self.bitacora.escribir("ReceptorUDP: " + "Llego mensaje con tipo desconocido")
+				self.bitacora.escribir("ReceptorUDP: " + "Llego mensaje con tipo desconocido(si dice que es tipo 1 es porque la bandera de inundacion esta apagada), " + str(tipoMensaje))
+
+	#Metodo para levantar los hilos que preguntan si los vecinos continuan activos
+	def levantarHiloSupervivencia(self):
+		vecinosVivos = self.tablaVecinos.obtenerVecinosActivos()
+		for x in vecinosVivos:
+			hiloSupervivencia = HiloVerificacionVivo(self.nodoId, x, self.tablaAlcanzabilidad, self.tablaVecinos, self.socketNodo, self.lockSocketNodo, self.bitacora)
+			self.lockVecinosSupervivientes.acquire()
+			self.vecinosSupervivientes[x] = hiloSupervivencia
+			self.lockVecinosSupervivientes.release()
+			proceso_hiloSupervivencia = threading.Thread(target=self.metaSacaHiloSupervivencia, args=(x,hiloSupervivencia,))
+			proceso_hiloSupervivencia.start()#Se crea el hilo

@@ -127,18 +127,6 @@ class NodoUDP:
 				distancia = self.tablaVecinos.obtenerDistancia(x[0], x[1], x[2])
 				self.tablaAlcanzabilidad.annadirAlcanzable( x, distancia, x )
 
-	#Metodo para levantar los hilos que preguntan si los vecinos continuan activos
-	def levantarHiloSupervivencia(self):
-		vecinosVivos = self.tablaVecinos.obtenerVecinosActivos()
-		for x in vecinosVivos:
-			hiloSupervivencia = HiloVerificacionVivo(self.nodoId, x, self.tablaAlcanzabilidad, self.tablaVecinos, self.socketNodo, self.lockSocketNodo, self.bitacora)
-			self.lockVecinosSupervivientes.acquire()
-			self.vecinosSupervivientes[x] = hiloSupervivencia
-			self.lockVecinosSupervivientes.release()
-			proceso_hiloSupervivencia = threading.Thread(target=hiloSupervivencia.iniciarCiclo, args=())
-			proceso_hiloSupervivencia.start()#Se crea el hilo
-		
-
 	#Metodo que da inico al nodo, pide los vecinos al ServerVecinos, intenta contactar a los vecinos 
 	# manda a ejecutar un hilo receptor y el emisor(interfaz con usuario)
 	def iniciarNodoUDP(self):
@@ -150,6 +138,7 @@ class NodoUDP:
 			proceso_hiloEnviaTabla.start()#Se crea el hilo de enviar tablas cada 30 segunodos
 			self.bitacora.escribir("NodoUDP: " + "Se inicia el hilo que reenvia las tablas cada cierto tiempo")
 			receptorUDP = ReceptorUDP(self.nodoId, self.tablaAlcanzabilidad, self.tablaVecinos, self.socketNodo, self.lockSocketNodo, self.bitacora, self.vecinosSupervivientes, self.lockVecinosSupervivientes)
+			receptorUDP.levantarHiloSupervivencia()
 			proceso_receptorUDP = threading.Thread(target=receptorUDP.recibeMensajes, args=())
 			proceso_receptorUDP.start()#Se crea el hilo de recepcion de mensajes
 			self.bitacora.escribir("NodoUDP: " + "Se inicia el hilo que recibe mensajes")
@@ -157,7 +146,6 @@ class NodoUDP:
 			proceso_emisorUDP = threading.Thread(target=emisorUDP.despligueMenuUDP, args=())
 			proceso_emisorUDP.start()#Se crea el hilo emisor de mensajes (interfaz con el usuario)
 			self.bitacora.escribir("NodoUDP: " + "Se inicia el hilo que envia mensajes")
-			self.levantarHiloSupervivencia()
 		else:
 			print("Error al tratar de comunicarse con el ServerVecinos")
 			self.bitacora.escribir("NodoUDP: " + "Error al tratar de comunicarse con el ServerVecinos")

@@ -58,7 +58,7 @@ class HiloVerificacionVivo:
 		murioNodo = False
 		while murioNodo == False:
 			salir = False
-			time.sleep(10)
+			time.sleep(5)
 			self.lockSigueVivo.acquire()
 			continuaVivo = self.sigueVivo
 			self.lockSigueVivo.release()
@@ -90,9 +90,10 @@ class HiloVerificacionVivo:
 									if intento == 5:
 										#print("Murio el vecino " + str(self.vecino))
 										self.bitacora.escribir("Murio el vecino " + str(self.vecino))
-										self.eventoMurioVecino()
+										#self.eventoMurioVecino()
 										murioNodo = True
 										salir = True
+										print("Murio1")
 								else:
 									intento = 0
 									salir = True
@@ -102,6 +103,7 @@ class HiloVerificacionVivo:
 							else:
 								salir = True
 								murioNodo = True
+								print("Murio2")
 						else:
 							intento = 0
 							salir = True
@@ -111,6 +113,8 @@ class HiloVerificacionVivo:
 					else:
 						salir = True
 						murioNodo = True
+						print("Murio3")
 			else:
 				murioNodo = True
-		#print("Voy a salir")
+				print("Murio4")
+		print("Voy a salir")

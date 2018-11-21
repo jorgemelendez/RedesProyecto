@@ -83,9 +83,12 @@ class TablaVecinos:
 	#bitActivo: nueva bitActivo del vecino
 	def modificarBitActivo(self, ip, mascara, puerto, bitActivo):
 		llave = ip, mascara, puerto
+		self.bitacora.escribir("VOY A PEDIR EL CANDADO")
 		self.lockDiccVecinos.acquire()
+		self.bitacora.escribir("CANDADO AGARRADO")
 		self.diccVecinos[llave] = self.diccVecinos[llave][0], bitActivo #Se mete la nueva distancia y se deja el valor antiguo del bitActivo
 		self.lockDiccVecinos.release()
+		self.bitacora.escribir("CANDADO LIBERADO")
 		self.bitacora.escribir("TablaVecinos: " + "Se modifico el bitActivo del vecino " + str(llave) + " por " + str(bitActivo))
 
 	#Metodo que recorre el diccionario e imprime la tabla
