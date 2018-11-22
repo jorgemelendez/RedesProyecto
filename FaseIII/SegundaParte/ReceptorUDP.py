@@ -248,6 +248,16 @@ class ReceptorUDP:
 		self.lockVecinosSupervivientes.release()
 		self.mandarInundacionInicial()
 
+	def reciboCambioCosto(self, vecino, mensaje):
+		distanciaNueva = bytesToInt(mensaje[1:4])
+		vecinoCOnMascara = self.tablaVecinos.obtenerKey(vecino)
+		distanciaVieja = self.tablaVecinos.obtenerDistancia(vecinoCOnMascara[0],vecinoCOnMascara[1],vecinoCOnMascara[2])
+		self.tablaVecinos.modificarDistancia(vecinoCOnMascara[0],vecinoCOnMascara[1],vecinoCOnMascara[2], distanciaNueva)
+		if distanciaNueva > distanciaVieja:
+			self.mandarInundacionInicial()
+		else:
+			self.tablaAlcanzabilidad.modificarCosto(vecinoCOnMascara, distanciaNueva)
+
 	#Metodo encargado de recibir los mensajes que le envian al nodo
 	def recibeMensajes(self):
 		while 1:
@@ -269,6 +279,8 @@ class ReceptorUDP:
 				self.mensajeRecibido(clientAddress, message)
 			elif tipoMensaje == 4:
 				self.continuarInundacion(message)
+			elif tipoMensaje == 6:
+				self.reciboCambioCosto(clientAddress, message)
 			else:
 				#print("Llego mensaje con tipo desconocido")
 				self.bitacora.escribir("ReceptorUDP: " + "Llego mensaje con tipo desconocido(si dice que es tipo 1 es porque la bandera de inundacion esta apagada), " + str(tipoMensaje))

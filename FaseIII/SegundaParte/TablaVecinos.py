@@ -142,6 +142,18 @@ class TablaVecinos:
 		self.lockParser.release()
 		return key
 
+	def existeVecinoActivo(self, key):
+		self.lockDiccVecinos.acquire()
+		valor = self.diccVecinos[key]
+		self.lockDiccVecinos.release()
+		if valor == None:#Caso donde no es mi vecino
+			return False
+		else:
+			if valor[1]:#Caso esta activo
+				return True
+			else:#Caso no esta activo
+				return False
+
 #if __name__ == '__main__':
 #	tablaVecinos = TablaVecinos()
 #	mensaje = bytearray()

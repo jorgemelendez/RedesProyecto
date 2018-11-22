@@ -20,6 +20,11 @@ class TablaAlcanzabilidad:
 		self.tabla = dict() #El formato va a ser:  key=(ip,mascara,puerto) valor=(costo,(ip,mascara,puerto))
 		self.lockTablaAlcanzabilidad = threading.Lock()
 
+	def modificarCosto(self, key, costoNuevo):
+		self.lockTablaAlcanzabilidad.acquire()
+		self.tabla[key] = costoNuevo, self.tabla[key][1]
+		self.lockTablaAlcanzabilidad.release()
+
 	#Metodo para borrar la tabla de alcanzabilidad
 	#vecinosActivos: tuplas de la forma (ip, mascara, puerto, distancia)
 	def limpiarPonerVecinosActivos(self, vecinosActivos):

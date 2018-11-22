@@ -91,6 +91,57 @@ class EmisorUDP:
 				self.lockSocketNodo.release()
 				self.bitacora.escribir("EmisorUDP: " + "Envie mensaje de muerte a " + str(x))
 
+	def realizarCambio(self, key, distanciaNueva):
+		existe = self.tablaVecinos.existeVecinoActivo(key)
+		if existe:
+			distanciaVieja = self.tablaVecinos.obtenerDistancia(key[0],key[1],key[2])
+			self.tablaVecinos.modificarDistancia(key[0],key[1],key[2],distanciaNueva)
+			message = intToBytes(6,1)#Tipo de mensaje es 6
+			message += intToBytes(distanciaNueva,3)#Distancia nueva
+			self.lockSocketNodo.acquire()
+			self.socketNodo.sendto(message, (key[0], key[2]))
+			self.lockSocketNodo.release()
+		else:
+			print("El nodo " + str(key) + " no es mi vecino o no esta vivo, por lo tanto no se puede cambiar el costo")
+
+	def cambiarCosto(self):
+		ipDigitada = input('Digite la ip del destinatario: ')
+		ipPrueba = ipDigitada + "/32"
+		try:
+			n = ipaddress.ip_network(ipPrueba)
+		except ValueError as e:
+			print ("Ip no valida")
+		else:
+			lecturaMascara = input('Digite la mascara del destinatario: ')
+			try:
+				mascara = int(lecturaMascara)
+			except ValueError as e:
+				print ("Mascara no valida")
+			else:
+				if mascara < 2 or mascara > 30:
+					print ("Mascara no valida, debe estar en [2,30]")
+				else:
+					lecturaPuerto = input('Digite el puerto del destinatario: ')
+					try:
+						puerto = int(lecturaPuerto)
+					except ValueError as e:
+						print ("Puerto no valido")
+					else:
+						if puerto < 0 or puerto > 65535:
+							print ("Puerto no valido")
+						else:
+							lecturaDistancia = input('Digite la nueva distancia: ')
+							try:
+								distancia = int(lecturaDistancia)
+							except ValueError as e:
+								print ("Distancia no valida")
+							else:
+								if distancia < 20 or distancia > 100:
+									print ("Distancia no valida")
+								else:
+									self.realizarCambio((ipDigitada,mascara,puerto),distancia)
+
+
 	#Metodo que despliega el menu de comunicacion con el usuario
 	def despligueMenuUDP(self):
 		bandera = True
@@ -108,7 +159,8 @@ class EmisorUDP:
 				self.envioMensajeUDP()
 			elif taskUsuario == '2':
 				print("\n\n")
-				print('Opcion deshabilitada')
+				print('Cambiar costo con vecino')
+				self.cambiarCosto()
 				print("\n\n")
 			elif taskUsuario == '3':
 				print("\n\n")
