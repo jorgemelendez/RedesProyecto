@@ -93,26 +93,3 @@ if __name__ == '__main__':
 		servidor.iniciar()
 	else: 
 		print("Faltan parametros")
-
-
-#Pruebas
-#if __name__ == '__main__':
-#	if len(sys.argv) == 3:
-#		servidor = ServerVecinos(sys.argv[1], int(sys.argv[2]), "/home/christofer/Escritorio/RedesProyecto/CSVServidor")
-#		#servidor.iniciar()
-#		servidor.obtenerMensajeDeVecinos(("192.168.100.17",24,6000))
-#		print("\n\n\n")
-#		servidor.obtenerMensajeDeVecinos(("192.168.100.17",24,7000))
-#		print("\n\n\n")
-#		servidor.obtenerMensajeDeVecinos(("192.168.100.17",24,8000))
-#		print("\n\n\n")
-#		servidor.obtenerMensajeDeVecinos(("192.168.100.17",24,9000))
-#		print("\n\n\n")
-#		servidor.obtenerMensajeDeVecinos(("192.168.100.17",24,10000))
-#		print("\n\n\n")
-#		servidor.obtenerMensajeDeVecinos(("192.168.100.17",24,11000))
-#		print("\n\n\n")
-#		servidor.obtenerMensajeDeVecinos(("192.168.100.17",24,12000))
-#		print("\n\n\n")
-#	else: 
-#		print("Faltan parametros")

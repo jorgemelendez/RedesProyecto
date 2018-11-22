@@ -29,7 +29,9 @@ class NodoUDP:
 		self.serverVecinos = ipServerVecinos, puertoServerVecinos
 		self.nodoId = ip, mascara, puerto
 		self.bitacora = Bitacora("Bitacora-"+str(self.nodoId)+".txt")
-		self.tablaAlcanzabilidad = TablaAlcanzabilidad(self.bitacora)
+		self.lockAbortarActualizaciones = threading.Lock()
+		self.abortarActualizaciones = False
+		self.tablaAlcanzabilidad = TablaAlcanzabilidad(self.bitacora, self.lockAbortarActualizaciones, self.abortarActualizaciones)
 		self.tablaVecinos = TablaVecinos(self.bitacora)
 		self.socketNodo = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 		self.socketNodo.bind((ip, puerto))
@@ -137,7 +139,7 @@ class NodoUDP:
 			proceso_hiloEnviaTabla = threading.Thread(target=hiloEnviaTabla.iniciarCiclo, args=())
 			proceso_hiloEnviaTabla.start()#Se crea el hilo de enviar tablas cada 30 segunodos
 			self.bitacora.escribir("NodoUDP: " + "Se inicia el hilo que reenvia las tablas cada cierto tiempo")
-			receptorUDP = ReceptorUDP(self.nodoId, self.tablaAlcanzabilidad, self.tablaVecinos, self.socketNodo, self.lockSocketNodo, self.bitacora, self.vecinosSupervivientes, self.lockVecinosSupervivientes)
+			receptorUDP = ReceptorUDP(self.nodoId, self.tablaAlcanzabilidad, self.tablaVecinos, self.socketNodo, self.lockSocketNodo, self.bitacora, self.vecinosSupervivientes, self.lockVecinosSupervivientes, self.lockAbortarActualizaciones, self.abortarActualizaciones)
 			receptorUDP.levantarHiloSupervivencia()
 			proceso_receptorUDP = threading.Thread(target=receptorUDP.recibeMensajes, args=())
 			proceso_receptorUDP.start()#Se crea el hilo de recepcion de mensajes

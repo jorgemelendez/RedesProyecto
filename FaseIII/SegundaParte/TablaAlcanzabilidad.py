@@ -13,12 +13,14 @@ from socket import error as SocketError
 class TablaAlcanzabilidad:
 
 	#Constructor
-	def __init__(self, bitacora):
+	def __init__(self, bitacora, lockAbortarActualizaciones, abortarActualizaciones):
 		self.bitacora = bitacora
 		self.parser = dict()
 		self.lockParser = threading.Lock()
 		self.tabla = dict() #El formato va a ser:  key=(ip,mascara,puerto) valor=(costo,(ip,mascara,puerto))
 		self.lockTablaAlcanzabilidad = threading.Lock()
+		self.lockAbortarActualizaciones = lockAbortarActualizaciones
+		self.abortarActualizaciones = abortarActualizaciones
 
 	def modificarCosto(self, key, costoNuevo):
 		self.lockTablaAlcanzabilidad.acquire()
@@ -102,30 +104,36 @@ class TablaAlcanzabilidad:
 	#distanciaAtravezDe: distancia del vecino para tomarla en cuenta en la actualizacion
 	def actualizarTabla(self, mensaje, atravezDe, distanciaAtravezDe):
 		self.lockTablaAlcanzabilidad.acquire()#Se agarra el candadi aqui para que la actualizacion se de completa
-		self.lockParser.acquire()
-		bytesMensaje = mensaje
-		cantTuplas = bytesToInt( bytesMensaje[0:2] )
-		i = 0
-		while i < cantTuplas:
-			ipNuevo = bytesToIp( bytesMensaje[(i*10)+2:(i*10)+6] )
-			mascaraNuevo = bytesToInt( bytesMensaje[(i*10)+6:(i*10)+7] )
-			puertoNuevo = bytesToInt( bytesMensaje[(i*10)+7:(i*10)+9] )
-			distanciaNuevo = bytesToInt( bytesMensaje[(i*10)+9:(i*10)+12] )
-			x = ipNuevo, mascaraNuevo, puertoNuevo #Se hace la tupla de key
-			#self.lockTablaAlcanzabilidad.acquire()
-			exite = self.tabla.get(x)
-			if exite == None : #Si una entrada con ese Key NO existe, se crea
-				#Se crea una nueva tupla
-				self.tabla[x] = (distanciaNuevo + distanciaAtravezDe), atravezDe
-				self.parser[(x[0],x[2])] = x
-			else:#Si existe una entrada con ese Key, se actualiza el valor de ser necesario
-				#Se pregunta si el costo recibido es menor al que tenia, en caso de que si se atualiza
-				if exite[0] > distanciaNuevo + distanciaAtravezDe:
+		self.lockAbortarActualizaciones.acquire()
+		abortar = self.abortarActualizaciones
+		self.lockAbortarActualizaciones.release()
+		if abortar == False:
+			self.lockParser.acquire()
+			bytesMensaje = mensaje
+			cantTuplas = bytesToInt( bytesMensaje[0:2] )
+			i = 0
+			while i < cantTuplas:
+				ipNuevo = bytesToIp( bytesMensaje[(i*10)+2:(i*10)+6] )
+				mascaraNuevo = bytesToInt( bytesMensaje[(i*10)+6:(i*10)+7] )
+				puertoNuevo = bytesToInt( bytesMensaje[(i*10)+7:(i*10)+9] )
+				distanciaNuevo = bytesToInt( bytesMensaje[(i*10)+9:(i*10)+12] )
+				x = ipNuevo, mascaraNuevo, puertoNuevo #Se hace la tupla de key
+				#self.lockTablaAlcanzabilidad.acquire()
+				exite = self.tabla.get(x)
+				if exite == None : #Si una entrada con ese Key NO existe, se crea
+					#Se crea una nueva tupla
 					self.tabla[x] = (distanciaNuevo + distanciaAtravezDe), atravezDe
-					self.bitacora.escribir("TablaAlcanzabilidad: " + "Se actualizo la distancia y el a traves de " + str(x) + " a distancia " + str(distanciaNuevo + distanciaAtravezDe) + " a traves " + str(atravezDe) )
-			#self.lockTablaAlcanzabilidad.release()
-			i = i + 1
-		self.lockParser.release()
+					self.parser[(x[0],x[2])] = x
+				else:#Si existe una entrada con ese Key, se actualiza el valor de ser necesario
+					#Se pregunta si el costo recibido es menor al que tenia, en caso de que si se atualiza
+					if exite[0] > distanciaNuevo + distanciaAtravezDe:
+						self.tabla[x] = (distanciaNuevo + distanciaAtravezDe), atravezDe
+						self.bitacora.escribir("TablaAlcanzabilidad: " + "Se actualizo la distancia y el a traves de " + str(x) + " a distancia " + str(distanciaNuevo + distanciaAtravezDe) + " a traves " + str(atravezDe) )
+				#self.lockTablaAlcanzabilidad.release()
+				i = i + 1
+			self.lockParser.release()
+		else:
+			self.bitacora.escribir("ABORTE ACTUALIZACION")
 		self.lockTablaAlcanzabilidad.release()#Se suelta el candado al final de la actualizacion
 
 	#Metodo para agregar un alcanzable
@@ -173,33 +181,3 @@ class TablaAlcanzabilidad:
 		key = self.parser.get(nodo)
 		self.lockParser.release()
 		return key
-
-#if __name__ == '__main__':
-#	tablaAlcanzabilidad = TablaAlcanzabilidad()
-#	mensaje = bytearray()
-#	mensaje += intToBytes(4,2)
-#	mensaje +=  ipToBytes("192.168.100.17") + intToBytes(24,1) + intToBytes(9000,2) + intToBytes(70,1)
-#	mensaje +=	ipToBytes("192.168.100.17") + intToBytes(24,1) + intToBytes(10000,2) + intToBytes(80,1)
-#	mensaje +=	ipToBytes("192.168.100.17") + intToBytes(24,1) + intToBytes(11000,2) + intToBytes(51,1)
-#	mensaje +=	ipToBytes("192.168.100.17") + intToBytes(24,1) + intToBytes(12000,2) + intToBytes(42,1)
-#	
-#	tablaAlcanzabilidad.actualizarTabla(mensaje,("192.168.100.17", 24, 4000))
-#
-#	mensaje = intToBytes(1,2)
-#	mensaje +=	ipToBytes("192.168.100.17") + intToBytes(24,1) + intToBytes(13000,2) + intToBytes(42,1)
-#	
-#	tablaAlcanzabilidad.actualizarTabla(mensaje,("192.168.100.17", 24, 5000))
-#
-#	tablaAlcanzabilidad.imprimirTabla()
-#
-#	print("\n\n\n")
-#	tablaAlcanzabilidad.borrarAlcanzable("192.168.100.17", 24, 9000)
-#	tablaAlcanzabilidad.imprimirTabla()
-#
-#	print("\n\n\n")
-#	tablaAlcanzabilidad.borrarAlcanzable("192.168.100.17", 24, 11000)
-#	tablaAlcanzabilidad.imprimirTabla()
-#
-#	print("\n\n\n")
-#	tablaAlcanzabilidad.borrarAtravez("192.168.100.17", 24, 4000)
-#	tablaAlcanzabilidad.imprimirTabla()

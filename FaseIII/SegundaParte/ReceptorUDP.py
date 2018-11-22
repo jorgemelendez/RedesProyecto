@@ -20,7 +20,7 @@ class ReceptorUDP:
 	#tablaVecinos: tabla de vecinos del nodo
 	#socketNodo: sockect del nodo
 	#lockSocketNodo: lock del socket del nodo
-	def __init__(self, nodoId, tablaAlcanzabilidad, tablaVecinos, socketNodo, lockSocketNodo, bitacora, vecinosSupervivientes, lockVecinosSupervivientes):
+	def __init__(self, nodoId, tablaAlcanzabilidad, tablaVecinos, socketNodo, lockSocketNodo, bitacora, vecinosSupervivientes, lockVecinosSupervivientes, lockAbortarActualizaciones, abortarActualizaciones):
 		self.bitacora = bitacora
 		self.nodoId = nodoId
 		self.tablaAlcanzabilidad = tablaAlcanzabilidad
@@ -31,6 +31,8 @@ class ReceptorUDP:
 		self.lockVecinosSupervivientes = lockVecinosSupervivientes
 		self.banderaNoInundacion = True
 		self.lockBanderInundacion = threading.Lock()
+		self.lockAbortarActualizaciones = lockAbortarActualizaciones
+		self.abortarActualizaciones = abortarActualizaciones
 
 
 	#Metodo para responder a vecino que si estoy vivo
@@ -99,6 +101,9 @@ class ReceptorUDP:
 	#Metodo para seguir con la inundacion que me acaba de llegar. Eliminar su tabla de TablaAlcanzabilidad
 	#	tambien, disminuye el numero del paquete.
 	def continuarInundacion(self, mensaje):
+		self.lockAbortarActualizaciones.acquire()
+		self.abortarActualizaciones = True
+		self.lockAbortarActualizaciones.release()
 		#Primero tiene que borrar su tabla de alcanzabilidad
 		#Obtiene los vecinos activos para enviarselo al metodo de limpiarPonerVecinosActivos
 		vecinosActivosConDistancia = self.tablaVecinos.obtenerVecinosActivosConDistancia()
@@ -131,10 +136,12 @@ class ReceptorUDP:
 			banderaNoInundacion = self.banderaNoInundacion
 			self.lockBanderInundacion.release()
 			if banderaNoInundacion == True:
-				print("Voy a crear hilo1")
+				self.bitacora.escribir("Se crea hilo para ignorar mensajes de actualizacion")
 				hiloEsperaInundacion = threading.Thread(target=self.sleepHiloInundacion, args=())
 				hiloEsperaInundacion.start()#Se crea el hilo
-				print("Hilo creo1")
+		self.lockAbortarActualizaciones.acquire()
+		self.abortarActualizaciones = False
+		self.lockAbortarActualizaciones.release()
 
 
 	#Metodo para enviar a los vecinos el mensaje de que un vecino mio se murioself.
@@ -160,10 +167,9 @@ class ReceptorUDP:
 			self.socketNodo.sendto(mensajeInundacion, dirVecino) #Envia el mensaje a los vecinos.
 			self.lockSocketNodo.release()
 			self.bitacora.escribir("Continue inundacion, enviado a " + str(x))
-		print("Voy a crear hilo2")
+		self.bitacora.escribir("Se crea hilo para ignorar mensajes de actualizacion")
 		hiloEsperaInundacion = threading.Thread(target=self.sleepHiloInundacion, args=())
 		hiloEsperaInundacion.start()#Se crea el hilo
-		print("Hilo creo2")
 
 	#Metodo para desactivar vecino en la tabla vecinos y sacar las entradas a las que se llevaban mediante este
 	#vecino: tupla que es (ip. puerto)
@@ -214,13 +220,13 @@ class ReceptorUDP:
 		tamanno = bytesToInt(mensaje[13:15])
 		textoMensaje = (mensaje[15:]).decode()
 		nodoEmisor = self.tablaAlcanzabilidad.obtenerKey((ipEmisor, puertoEmisor))
-		print("EMISOR " + str(nodoEmisor))
+		#print("EMISOR " + str(nodoEmisor))
 		#nodoEmisor = ipEmisor, puertoEmisor
 		if (self.nodoId[0],self.nodoId[2]) == (ipDestino,puertoDestino):
 			nodoDestino = self.nodoId
 		else:
 			nodoDestino = self.tablaAlcanzabilidad.obtenerKey((ipDestino, puertoDestino))
-		print("DESTINO " + str(nodoDestino))
+		#print("DESTINO " + str(nodoDestino))
 		#nodoDestino = ipDestino, puertoDestino
 		if self.nodoId == nodoDestino:#Caso donde el mensaje que llega es para mi
 			print("Se recibio un mensaje proveniente de " + str(nodoEmisor) + " el cual dice: " + textoMensaje)
@@ -240,7 +246,6 @@ class ReceptorUDP:
 	#hiloSupervivencia: estructura del hilo que verifica si el vecino esta vivo
 	def metaSacaHiloSupervivencia(self, vecinoId, hiloSupervivencia):
 		hiloSupervivencia.iniciarCiclo()
-		print("LLEGUE")
 		#Se pone primero el bit de activo en falso en el vecino que se murio.
 		self.tablaVecinos.modificarBitActivo(vecinoId[0], vecinoId[1], vecinoId[2], False)
 		self.lockVecinosSupervivientes.acquire()

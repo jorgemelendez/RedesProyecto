@@ -83,12 +83,12 @@ class TablaVecinos:
 	#bitActivo: nueva bitActivo del vecino
 	def modificarBitActivo(self, ip, mascara, puerto, bitActivo):
 		llave = ip, mascara, puerto
-		self.bitacora.escribir("VOY A PEDIR EL CANDADO")
+		#self.bitacora.escribir("VOY A PEDIR EL CANDADO")
 		self.lockDiccVecinos.acquire()
-		self.bitacora.escribir("CANDADO AGARRADO")
+		#self.bitacora.escribir("CANDADO AGARRADO")
 		self.diccVecinos[llave] = self.diccVecinos[llave][0], bitActivo #Se mete la nueva distancia y se deja el valor antiguo del bitActivo
 		self.lockDiccVecinos.release()
-		self.bitacora.escribir("CANDADO LIBERADO")
+		#self.bitacora.escribir("CANDADO LIBERADO")
 		self.bitacora.escribir("TablaVecinos: " + "Se modifico el bitActivo del vecino " + str(llave) + " por " + str(bitActivo))
 
 	#Metodo que recorre el diccionario e imprime la tabla
@@ -153,35 +153,3 @@ class TablaVecinos:
 				return True
 			else:#Caso no esta activo
 				return False
-
-#if __name__ == '__main__':
-#	tablaVecinos = TablaVecinos()
-#	mensaje = bytearray()
-#	mensaje =   ipToBytes("192.168.100.17") + intToBytes(24,1) + intToBytes(9000,2) + intToBytes(70,1)
-#	mensaje +=	ipToBytes("192.168.100.17") + intToBytes(24,1) + intToBytes(10000,2) + intToBytes(80,1)
-#	mensaje +=	ipToBytes("192.168.100.17") + intToBytes(24,1) + intToBytes(11000,2) + intToBytes(51,1)
-#	mensaje +=	ipToBytes("192.168.100.17") + intToBytes(24,1) + intToBytes(12000,2) + intToBytes(42,1)
-#	
-#	tablaVecinos.ingresarVecinos(mensaje)
-#
-#	tablaVecinos.imprimirTablaVecinos()
-#
-#
-#	tablaVecinos.modificarDistancia("192.168.100.17", 24, 9000, 20)
-#	tablaVecinos.modificarDistancia("192.168.100.17", 24, 10000, 30)
-#	tablaVecinos.modificarDistancia("192.168.100.17", 24, 11000, 40)
-#	tablaVecinos.modificarDistancia("192.168.100.17", 24, 12000, 50)
-#
-#	print("\n\n\n\n")
-#
-#	tablaVecinos.imprimirTablaVecinos()
-#
-#
-#	tablaVecinos.modificarBitActivo("192.168.100.17", 24, 9000, True)
-#	tablaVecinos.modificarBitActivo("192.168.100.17", 24, 10000, True)
-#	tablaVecinos.modificarBitActivo("192.168.100.17", 24, 11000, True)
-#	tablaVecinos.modificarBitActivo("192.168.100.17", 24, 12000, True)
-#
-#	print("\n\n\n\n")
-#
-#	tablaVecinos.imprimirTablaVecinos()
