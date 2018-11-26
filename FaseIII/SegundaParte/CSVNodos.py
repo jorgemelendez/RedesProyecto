@@ -16,7 +16,7 @@ class CSVNodos:
 		self.mascaraServer = int(leearchivo.readline())
 		self.puertoServer = int(leearchivo.readline())
 		self.ipMia = leearchivo.readline()
-		print(self.ipMia)
+		#print(self.ipMia)
 		self.mascara = int(leearchivo.readline())
 		for line in leearchivo:
 			self.puerto.append(int(line))

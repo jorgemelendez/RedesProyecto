@@ -93,7 +93,6 @@ class HiloVerificacionVivo:
 										#self.eventoMurioVecino()
 										murioNodo = True
 										salir = True
-										print("Murio1")
 								else:
 									intento = 0
 									salir = True
@@ -103,7 +102,6 @@ class HiloVerificacionVivo:
 							else:
 								salir = True
 								murioNodo = True
-								print("Murio2")
 						else:
 							intento = 0
 							salir = True
@@ -113,8 +111,5 @@ class HiloVerificacionVivo:
 					else:
 						salir = True
 						murioNodo = True
-						print("Murio3")
 			else:
 				murioNodo = True
-				print("Murio4")
-		print("Voy a salir")
