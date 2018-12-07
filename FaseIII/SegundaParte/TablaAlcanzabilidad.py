@@ -46,9 +46,11 @@ class TablaAlcanzabilidad:
 	def imprimirTabla(self):
 		self.lockTablaAlcanzabilidad.acquire()
 		llaves = self.tabla.keys()
+		i = 0
 		for x in llaves:
 			valor = self.tabla[x]
-			print( str(x) + " " + str(valor[0]) + " " + str(valor[1]) )
+			print( str(i) + ": " + str(x) + " " + str(valor[0]) + " " + str(valor[1]) )
+			i = i + 1
 		self.lockTablaAlcanzabilidad.release()
 
 	#Metodo para validar que la ip que llego el valida
