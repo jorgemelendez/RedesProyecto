@@ -42,6 +42,7 @@ class ReceptorUDP:
 		mensajeRespContacto = bytearray()
 		mensajeRespContacto += intToBytes(3,1)#Tipo de mensaje es 3
 		#mensajeRespContacto += intToBytes(self.nodoId[1],1) #Se pone la mascara en el mensaje de solicitudes
+		print("El del error es el nodo: " + str(vecino))
 		#mascara = bytesToInt(mensaje[1:2])
 		#print("VECINO: " + str(vecino))
 		mascara = (self.tablaVecinos.obtenerKey(vecino))[1]
@@ -114,7 +115,7 @@ class ReceptorUDP:
 		#Ahora se decrementa el valor del mensaje de inundacion.
 		valPaquete = bytesToInt(mensaje[1:])
 		print("inundacion " + str(valPaquete))
-		if valPaquete > 0:
+		if valPaquete > 1:
 			valPaquete = valPaquete - 1
 			self.bitacora.escribir("Me llego un mensaje de inundacion. El valor del paquete es: " + str(valPaquete))
 			#Volvemos a crear el mensaje para enviar a nuestros vecinos.
@@ -284,6 +285,7 @@ class ReceptorUDP:
 			elif tipoMensaje == 5:
 				self.mensajeRecibido(clientAddress, message)
 			elif tipoMensaje == 4:
+				print(str(clientAddress))
 				self.continuarInundacion(message)
 			elif tipoMensaje == 6:
 				self.reciboCambioCosto(clientAddress, message)
