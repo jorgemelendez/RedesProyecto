@@ -101,6 +101,7 @@ class ReceptorUDP:
 	#Metodo para seguir con la inundacion que me acaba de llegar. Eliminar su tabla de TablaAlcanzabilidad
 	#	tambien, disminuye el numero del paquete.
 	def continuarInundacion(self, mensaje):
+		
 		self.lockAbortarActualizaciones.acquire()
 		self.abortarActualizaciones = True
 		self.lockAbortarActualizaciones.release()
@@ -112,7 +113,7 @@ class ReceptorUDP:
 
 		#Ahora se decrementa el valor del mensaje de inundacion.
 		valPaquete = bytesToInt(mensaje[1:])
-
+		print("inundacion " + str(valPaquete))
 		if valPaquete > 0:
 			valPaquete = valPaquete - 1
 			self.bitacora.escribir("Me llego un mensaje de inundacion. El valor del paquete es: " + str(valPaquete))

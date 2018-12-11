@@ -1,5 +1,5 @@
 Comando para ejecutar el servidor de vecinos
-	python3 ServerVecinos.py 192.168.100.17 5000 ./CSVServidor.txt
+	python3 ServerVecinos.py 192.168.43.231 5000 ./CSVServidor.txt
 
 Comando para ejecutar el creador de nodos
 	python3 CreadorNodos.py ./Despachador.txt

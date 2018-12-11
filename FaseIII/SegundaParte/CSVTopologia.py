@@ -35,13 +35,14 @@ class CSVTopologia:
 			#vecinoId tambien va a hacer como una llave para agregar en el diccionario
 			vecinoId = ip2, mascara2, puerto2
 			#Revisa que las mascaras son un valor valido
-			if mascara1 < 2 or mascara1 > 30: 
-				print('Se ingora ' + nodoId +' porque la mascara debe de estar en [2,30]')
-			elif mascara2 < 2 or mascara2 > 30:
-				print("Se ingora " + nodoId +" porque la mascara del vecino " + str(vecinoId) + " debe de estar en [2,30]")
-			elif distancia < 20 or distancia > 100:
-				print("Se ingora " + nodoId +" --> " + str(vecinoId) + " porque la distancia debe estar en [20,100]")
-			else:
+			#if mascara1 < 2 or mascara1 > 30: 
+			#	print('Se ingora ' + str(nodoId) +' porque la mascara debe de estar en [2,30]')
+			#elif mascara2 < 2 or mascara2 > 30:
+			#	print("Se ingora " + str(nodoId) +" porque la mascara del vecino " + str(vecinoId) + " debe de estar en [2,30]")
+			#elif distancia < 20 or distancia > 100:
+			#	print("Se ingora " + str(nodoId) +" --> " + str(vecinoId) + " porque la distancia debe estar en [20,100]")
+			#else:
+			if True:
 				listaVecinos = self.dicNodos.get(nodoId)
 				if listaVecinos is None:
 					listaVecinos = list()
