@@ -58,7 +58,7 @@ class HiloVerificacionVivo:
 		murioNodo = False
 		while murioNodo == False:
 			salir = False
-			time.sleep(90)
+			time.sleep(200)
 			self.lockSigueVivo.acquire()
 			continuaVivo = self.sigueVivo
 			self.lockSigueVivo.release()

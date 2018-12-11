@@ -101,7 +101,7 @@ class ReceptorUDP:
 	#Metodo para seguir con la inundacion que me acaba de llegar. Eliminar su tabla de TablaAlcanzabilidad
 	#	tambien, disminuye el numero del paquete.
 	def continuarInundacion(self, mensaje):
-		
+
 		self.lockAbortarActualizaciones.acquire()
 		self.abortarActualizaciones = True
 		self.lockAbortarActualizaciones.release()
@@ -151,7 +151,7 @@ class ReceptorUDP:
 		#Crea el mensaje con el #4 y tambien se manda el byte del contador del paquete.
 		mensajeInundacion = bytearray()
 		mensajeInundacion += intToBytes(4,1)	#Tipo de mensaje es 4
-		mensajeInundacion += intToBytes(50,1)	#Se agrega el contador del paquete para la inundacion
+		mensajeInundacion += intToBytes(10,1)	#Se agrega el contador del paquete para la inundacion
 		self.bitacora.escribir("Un vecino mio se murio...Se comienza inundacion.")
 		#Obtiene los vecinos activos para enviarselo al metodo de limpiarPonerVecinosActivos
 		vecinosActivosConDistancia = self.tablaVecinos.obtenerVecinosActivosConDistancia()
